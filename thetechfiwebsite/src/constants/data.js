@@ -106,10 +106,10 @@ export const CONTACT_INFO = {
 
 export const FOOTER_DATA = {
   services: [
-    "Salesforce Consulting",
-    "IT Consulting Services",
-    "CRM Customization",
-    "Cloud Computing Services"
+    "Salesforce Consulting & Implementation",
+    "Salesforce Data Migration & ETL",
+    "Website & Web App Development",
+    "Mobile App Development"
   ],
   company: [
     "About Us",
@@ -118,7 +118,7 @@ export const FOOTER_DATA = {
     "Contact"
   ],
   socialLinks: [
-    { name: "Twitter", icon: "twitter", href: "#" },
+    { name: "Instagram", icon: "instagram", href: "#" },
     { name: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/the-technology-fiction/" }
   ]
 } 
