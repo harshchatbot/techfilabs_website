@@ -1,24 +1,16 @@
 import Container from '../ui/Container'
+import {
+  SITE_CONFIG,
+  SERVICES_DATA,
+  TESTIMONIALS_DATA,
+  ABOUT_DATA,
+  CONTACT_INFO,
+  FOOTER_DATA
+} from '../../constants/data'
 
 const Footer = ({ 
   logo = { text: "The Technology Fiction", initials: "TF", logo: "tech_fi_logo_512x512_image.jpeg" },
   description = "Transforming businesses through innovative technology solutions. We specialize in Salesforce automation, implementation, and React development.",
-  services = [
-    "Salesforce Automation",
-    "Salesforce Implementation", 
-    "React Development",
-    "Consulting"
-  ],
-  company = [
-    "About Us",
-    "Careers", 
-    "Blog",
-    "Contact"
-  ],
-  socialLinks = [
-    { name: "Twitter", icon: "twitter", href: "#" },
-    { name: "LinkedIn", icon: "linkedin", href: "#" }
-  ],
   copyright = "© 2024 The Technology Fiction. All rights reserved.",
   className = ""
 }) => {
@@ -41,7 +33,7 @@ const Footer = ({
               {description}
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
+              {FOOTER_DATA.socialLinks.map((social, index) => (
                 <button 
                   key={index}
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
@@ -66,7 +58,7 @@ const Footer = ({
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-gray-400">
-              {services.map((service, index) => (
+              {FOOTER_DATA.services.map((service, index) => (
                 <li key={index}>
                   <a href="#" className="hover:text-white transition-colors">
                     {service}
@@ -79,7 +71,7 @@ const Footer = ({
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-gray-400">
-              {company.map((item, index) => (
+              {FOOTER_DATA.company.map((item, index) => (
                 <li key={index}>
                   <a href="#" className="hover:text-white transition-colors">
                     {item}
