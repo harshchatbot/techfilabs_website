@@ -134,3 +134,8 @@ This project is licensed under the MIT License.
 ---
 
 Built with ❤️ by The Technology Fiction team
+
+
+## Deployment Steps :
+Step1. npm run build
+Step2. npm run zip

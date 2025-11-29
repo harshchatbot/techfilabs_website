@@ -10,7 +10,7 @@ export const SITE_CONFIG = {
     logo: "/tech_fi_logo_512x512_image.jpeg"
   },
   navigation: {
-    menuItems: ['home', 'services', 'about', 'contact'],
+    menuItems: ['home', 'services','blog', 'about', 'contact'],
     ctaButton: {
       text: "Get Started",
       action: () => {
@@ -158,7 +158,7 @@ export const FOOTER_DATA = {
   company: [
     { name: "About Us", href: "#" },
     { name: "Careers", href: "#" },
-    { name: "Salesforce Blog", href: "https://thetechnologyfiction.com/" },
+    { name: "Salesforce Blog", href: "https://thetechnologyfiction.com/blog" },
     { name: "Contact", href: "#" }
   ],
   socialLinks: [
