@@ -16,6 +16,9 @@ import {
   FOOTER_DATA
 } from './constants/data'
 
+import WhatsAppChatButton from './components/WhatsAppChatButton'
+
+
 function App() {
   return (
     <div className="min-h-screen bg-white">
@@ -63,6 +66,9 @@ function App() {
         company={FOOTER_DATA.company}
         socialLinks={FOOTER_DATA.socialLinks}
       />
+      
+      <WhatsAppChatButton />
+
     </div>
   )
 }
