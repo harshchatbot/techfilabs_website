@@ -2,15 +2,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react'
 import emailjs from '@emailjs/browser'
-import Button from '../ui/Button'
-import Container from '../ui/Container'
 
 const Contact = ({ 
-  title = "Get Free IT Consulting & Salesforce Consultation",
-  subtitle = "Ready to transform your business with expert IT services and Salesforce consulting? Get a free consultation from our professional Salesforce consultants. We specialize in IT services for small businesses and startups.",
+  title = "Start Your Transformation",
+  subtitle = "Ready to scale? Connect with our Salesforce & AI experts for a free consultation tailored to your business needs.",
   contactInfo = {
     phone: "+91 7976111087",
-    email: "thetechfisolutions@gmail.com",
+    email: "thetechfilabs@gmail.com",
     address: "Jaipur, Rajasthan 302001"
   },
   className = ""
@@ -22,7 +20,7 @@ const Contact = ({
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', null
+  const [submitStatus, setSubmitStatus] = useState(null)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -37,41 +35,28 @@ const Contact = ({
     setIsSubmitting(true)
     setSubmitStatus(null)
 
-    // Format message with company name prefix
     const formattedMessage = formData.company 
       ? `- ${formData.company}: ${formData.message}`
       : formData.message
 
-    // Prepare the template parameters
     const templateParams = {
       user_name: formData.name,
       user_email: formData.email,
       user_message: formattedMessage,
       to_name: 'The Technology Fiction Team',
       website_source: 'TechFi Website',
-      subject: `New Contact Form Submission from ${formData.name} - TechFi Website`
+      subject: `New Contact Form Submission from ${formData.name}`
     }
 
-    console.log('Sending email with parameters:', templateParams)
-
     try {
-      // You'll need to replace these with your actual EmailJS credentials
-      // Sign up at https://www.emailjs.com/ and get your credentials
-      const result = await emailjs.send(
-        'service_n22qsrq', // Replace with your Service ID from EmailJS dashboard
-        'template_akdqils', // Replace with your Template ID from EmailJS dashboard
+      await emailjs.send(
+        'service_n22qsrq', 
+        'template_akdqils', 
         templateParams,
-        '6ICiKx6wEuxS-3WZ5' // Replace with your Public Key from EmailJS dashboard (Account → API Keys)
+        '6ICiKx6wEuxS-3WZ5' 
       )
-
-      console.log('Email sent successfully:', result)
       setSubmitStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        message: ''
-      })
+      setFormData({ name: '', email: '', company: '', message: '' })
     } catch (error) {
       console.error('Email send failed:', error)
       setSubmitStatus('error')
@@ -81,190 +66,165 @@ const Contact = ({
   }
 
   return (
-    <section id="contact" className={`section-padding ${className}`}>
-      <Container>
+    <section id="contact" className={`py-32 bg-black relative overflow-hidden ${className}`}>
+      
+      {/* Background Decor */}
+      <div className="absolute right-0 top-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6">
             {title}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-light">
             {subtitle}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          
+          {/* LEFT: Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="space-y-8"
           >
-            <h3 className="text-2xl font-display font-bold text-gray-900 mb-6">
-              Contact Information
-            </h3>
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">Phone</h4>
-                  <p className="text-gray-600">{contactInfo.phone}</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
-                  <p className="text-gray-600">{contactInfo.email}</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">Address</h4>
-                  <p className="text-gray-600">{contactInfo.address}</p>
-                </div>
+            <div className="p-8 rounded-3xl bg-zinc-900/30 border border-white/5 backdrop-blur-sm">
+              <h3 className="text-2xl font-bold text-white mb-8 tracking-tight">
+                Contact Information
+              </h3>
+              
+              <div className="space-y-8">
+                {[
+                  { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
+                  { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+                  { icon: MapPin, label: "Address", value: contactInfo.address, href: "#" }
+                ].map((item, index) => (
+                  <a 
+                    key={index} 
+                    href={item.href}
+                    className="flex items-center gap-6 group cursor-pointer"
+                  >
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:bg-blue-500/20 group-hover:border-blue-500/30 transition-all">
+                      <item.icon className="w-6 h-6 text-zinc-400 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-1">{item.label}</h4>
+                      <p className="text-lg text-white font-medium group-hover:text-blue-400 transition-colors">{item.value}</p>
+                    </div>
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
 
+          {/* RIGHT: The Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-gray-50 rounded-2xl p-8"
+            className="bg-zinc-900/40 rounded-3xl p-8 md:p-10 border border-white/5 backdrop-blur-xl"
           >
-            {/* Success Message */}
+            {/* Status Messages */}
             {submitStatus === 'success' && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3"
-              >
-                <CheckCircle className="w-6 h-6 text-green-600" />
-                <div>
-                  <h4 className="font-semibold text-green-800">Email sent successfully!</h4>
-                  <p className="text-green-700">We'll get back to you as soon as possible.</p>
-                </div>
-              </motion.div>
+              <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                <p className="text-green-200">Message sent successfully! We'll be in touch.</p>
+              </div>
             )}
 
-            {/* Error Message */}
             {submitStatus === 'error' && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3"
-              >
-                <AlertCircle className="w-6 h-6 text-red-600" />
-                <div>
-                  <h4 className="font-semibold text-red-800">Failed to send email</h4>
-                  <p className="text-red-700">Please try again or contact us directly at {contactInfo.email}</p>
-                </div>
-              </motion.div>
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 text-red-400" />
+                <p className="text-red-200">Something went wrong. Please try again later.</p>
+              </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
-              <div className="grid md:grid-cols-1 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name *
-                  </label>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm text-zinc-400 ml-1">Full Name</label>
                   <input
                     type="text"
-                    id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    aria-required="true"
-                    aria-describedby="name-error"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                    placeholder="Enter your full name"
+                    className="w-full px-6 py-4 bg-black/50 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
+                    placeholder="John Doe"
                   />
                 </div>
                 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address *
-                  </label>
+                <div className="space-y-2">
+                  <label className="text-sm text-zinc-400 ml-1">Email Address</label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    aria-required="true"
-                    aria-describedby="email-error"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                    placeholder="Enter your email address"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                    Company Name (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                    placeholder="Enter your company name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    aria-required="true"
-                    aria-describedby="message-error"
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
-                    placeholder="Tell us about your project or inquiry..."
+                    className="w-full px-6 py-4 bg-black/50 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
+                    placeholder="john@example.com"
                   />
                 </div>
               </div>
 
-              <Button 
+              <div className="space-y-2">
+                <label className="text-sm text-zinc-400 ml-1">Company (Optional)</label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full px-6 py-4 bg-black/50 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
+                  placeholder="Your Company Ltd"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm text-zinc-400 ml-1">Message</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={4}
+                  className="w-full px-6 py-4 bg-black/50 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700 resize-none"
+                  placeholder="Tell us about your project..."
+                />
+              </div>
+
+              <button 
                 type="submit" 
-                variant="primary" 
-                size="lg"
-                className="w-full btn-primary"
-                icon={ArrowRight}
                 disabled={isSubmitting}
-                aria-label={isSubmitting ? "Sending message..." : "Send message"}
+                className="w-full py-4 bg-white text-black font-bold rounded-2xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group mt-4"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    Send Message 
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
             </form>
           </motion.div>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }
 
-export default Contact 
+export default Contact

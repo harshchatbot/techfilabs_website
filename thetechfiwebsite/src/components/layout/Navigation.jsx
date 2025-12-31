@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import Button from "../ui/Button";
-import Container from "../ui/Container";
+import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BLOG_URL = "https://thetechnologyfiction.com/blog/";
+const COACHING_PATH = "/salesforce-coaching-ajmer";
+
+// these are sections that exist on the homepage (scroll targets)
+const HOME_SECTIONS = new Set(["home", "services", "about", "contact", "testimonials"]);
 
 const Navigation = ({
   logo = {
@@ -12,53 +15,91 @@ const Navigation = ({
     initials: "TF",
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
-  menuItems = ["home", "services", "blog", "about", "contact"],
+  // add "coaching" here in your config to show it in menu
+  menuItems = ["home", "services", "coaching", "blog", "about", "contact"],
   ctaButton = { text: "Get Started", action: () => {} },
   className = "",
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // 1) LOCK BODY SCROLL: Prevent background move when menu open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+  }, [isMenuOpen]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const yOffset = -80;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
-    setIsMenuOpen(false);
   };
 
-  // 👇 moved inside component so it can use scrollToSection + setIsMenuOpen
+  const goHomeThenScroll = async (sectionId) => {
+    // if already on home, just scroll
+    if (location.pathname === "/") {
+      scrollToSection(sectionId);
+      return;
+    }
+
+    // go to home first
+    navigate("/");
+
+    // wait a tick for home to render, then scroll
+    setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 150);
+  };
+
   const handleMenuClick = (item) => {
+    // close menu immediately for better UX
+    setIsMenuOpen(false);
+
     if (item === "blog") {
-      window.location.href = BLOG_URL; // open blog homepage
-      setIsMenuOpen(false);
-    } else {
-      scrollToSection(item);
+      window.location.href = BLOG_URL;
+      return;
     }
+
+    if (item === "coaching") {
+      navigate(COACHING_PATH);
+      return;
+    }
+
+    // all other items are homepage sections
+    if (HOME_SECTIONS.has(item)) {
+      goHomeThenScroll(item);
+      return;
+    }
+
+    // fallback: try scroll anyway
+    goHomeThenScroll(item);
   };
 
-  const handleMenuKeyDown = (e, item) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      handleMenuClick(item);
-    }
-  };
-
+  // Scroll Spy Logic (only on homepage + only for actual sections)
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
+      setScrolled(window.scrollY > 20);
 
-      // ignore "blog" in scroll-based active section
-      for (const section of menuItems.filter((m) => m !== "blog")) {
+      // Only run scroll spy on the homepage
+      if (location.pathname !== "/") return;
+
+      const spyItems = menuItems.filter(
+        (m) => m !== "blog" && m !== "coaching" && HOME_SECTIONS.has(m)
+      );
+
+      for (const section of spyItems) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
           }
@@ -68,126 +109,165 @@ const Navigation = ({
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
+  }, [menuItems, location.pathname]);
 
-  // Close mobile menu when clicking outside
+  // If on coaching page, highlight coaching in menu
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isMenuOpen && !event.target.closest("nav")) {
-        setIsMenuOpen(false);
-      }
-    };
+    if (location.pathname === COACHING_PATH) {
+      setActiveSection("coaching");
+    } else if (location.pathname !== "/") {
+      // for other non-home pages, don't force a section
+      // keep existing activeSection
+    }
+  }, [location.pathname]);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMenuOpen]);
+  // Animations
+  const menuVariants = {
+    closed: { opacity: 0, x: "100%" },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 300, damping: 30 },
+    },
+  };
+
+  const linkVariants = {
+    closed: { opacity: 0, x: 50 },
+    open: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" },
+    }),
+  };
 
   return (
-    <nav
-      className={`fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-secondary-200 shadow-sm ${className}`}
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <Container>
-        <div className="flex justify-between items-center h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-3"
-          >
-            <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-secondary-200">
-              <img
-                src={logo.logo}
-                alt={`${logo.name || logo.text} logo`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span className="text-xl font-display font-bold text-gradient">
-              {logo.name || logo.text || "No text found"}
-            </span>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8" role="menubar">
-            {menuItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => handleMenuClick(item)}
-                onKeyDown={(e) => handleMenuKeyDown(e, item)}
-                className={`capitalize font-medium transition-colors duration-300 ${
-                  activeSection === item ? "nav-link-active" : "nav-link"
-                }`}
-                role="menuitem"
-                aria-current={activeSection === item ? "page" : undefined}
-                aria-label={`Navigate to ${item} section`}
-              >
-                {item}
-              </button>
-            ))}
-            <Button
-              onClick={ctaButton.action}
-              className="btn-primary"
-              aria-label={ctaButton.text}
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+          scrolled ? "bg-black/80 backdrop-blur-xl border-white/10 py-3" : "bg-transparent border-transparent py-6"
+        } ${className}`}
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center">
+            {/* LOGO */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3 z-50 relative"
             >
-              {ctaButton.text}
-            </Button>
-          </div>
+              <div
+                className="w-10 h-10 rounded-full overflow-hidden border border-white/10 shadow-lg cursor-pointer"
+                onClick={() => handleMenuClick("home")}
+              >
+                <img
+                  src={logo.logo}
+                  alt={logo.text}
+                  className="w-full h-full object-cover opacity-90"
+                />
+              </div>
+              <span className="text-lg font-bold tracking-tight text-white hidden md:block">
+                {logo.text}
+              </span>
+            </motion.div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-secondary-100 transition-colors text-secondary-600"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </Container>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-secondary-200 shadow-lg"
-            id="mobile-menu"
-            role="menu"
-            aria-label="Mobile navigation menu"
-          >
-            <div className="px-4 py-4 space-y-4">
+            {/* DESKTOP NAV */}
+            <div className="hidden md:flex items-center gap-8">
               {menuItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  onKeyDown={(e) => handleMenuKeyDown(e, item)}
-                  className={`block w-full text-left capitalize font-medium py-2 px-4 rounded-lg transition-colors duration-300 ${
-                    activeSection === item
-                      ? "text-primary-600 bg-primary-50 border border-primary-200"
-                      : "text-secondary-600 hover:text-primary-600 hover:bg-secondary-50"
+                  className={`text-sm font-medium capitalize tracking-wide transition-colors duration-300 relative ${
+                    activeSection === item ? "text-white" : "text-zinc-500 hover:text-zinc-300"
                   }`}
-                  role="menuitem"
-                  aria-current={activeSection === item ? "page" : undefined}
-                  aria-label={`Navigate to ${item} section`}
                 >
                   {item}
+                  {activeSection === item && (
+                    <motion.div
+                      layoutId="activeDot"
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
+                    />
+                  )}
                 </button>
               ))}
-              <Button
-                className="w-full btn-primary"
+
+              <button
                 onClick={ctaButton.action}
-                aria-label={ctaButton.text}
+                className="group relative px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-all flex items-center gap-2"
               >
                 {ctaButton.text}
-              </Button>
+                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+              </button>
             </div>
+
+            {/* MOBILE MENU TOGGLE */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden z-50 p-2 text-white hover:bg-white/10 rounded-full transition-colors relative"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col pt-32 px-6 h-screen"
+          >
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
+
+            <div className="flex flex-col gap-6 relative z-10">
+              {menuItems.map((item, i) => (
+                <motion.button
+                  custom={i}
+                  variants={linkVariants}
+                  key={item}
+                  onClick={() => handleMenuClick(item)}
+                  className={`text-4xl font-bold capitalize text-left flex items-center justify-between group ${
+                    activeSection === item ? "text-white" : "text-zinc-600"
+                  }`}
+                >
+                  <span>{item}</span>
+                  <ChevronRight
+                    className={`w-8 h-8 transition-opacity ${
+                      activeSection === item ? "opacity-100 text-blue-500" : "opacity-0 group-hover:opacity-50"
+                    }`}
+                  />
+                </motion.button>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="mt-auto mb-10 border-t border-white/10 pt-8"
+            >
+              <button
+                className="w-full py-4 bg-white text-black font-bold text-lg rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                onClick={() => {
+                  ctaButton.action();
+                  setIsMenuOpen(false);
+                }}
+              >
+                {ctaButton.text}
+                <ArrowRight className="w-5 h-5" />
+              </button>
+
+              <div className="mt-8 text-center">
+                <p className="text-zinc-500 text-sm">© 2025 The Technology Fiction</p>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
