@@ -9,7 +9,7 @@ const Testimonials = ({
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart Inc.",
-      content: "The Technology Fiction transformed our business with their Salesforce automation. Our sales process is now 40% more efficient!",
+      content: "TechfiLabs transformed our business with their Salesforce automation. Our sales process is now 40% more efficient!",
       rating: 5
     },
     {
@@ -21,7 +21,7 @@ const Testimonials = ({
     {
       name: "Emily Rodriguez",
       role: "Operations Manager, GrowthCo",
-      content: "Professional, reliable, and results-driven. The Technology Fiction exceeded our expectations in every way.",
+      content: "Professional, reliable, and results-driven. TechfiLabs exceeded our expectations in every way.",
       rating: 5
     }
   ],

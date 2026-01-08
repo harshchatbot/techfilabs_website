@@ -2,7 +2,7 @@ import { Zap, Globe, Users, Database , Smartphone, MessageCircle, Cpu } from 'lu
 
 export const SITE_CONFIG = {
   company: {
-    name: "The Technology Fiction",
+    name: "TechfiLabs",
     initials: "TF",
     email: "thetechfilabs@gmail.com",
     phone: "+91 7976111087",
@@ -107,7 +107,7 @@ export const TESTIMONIALS_DATA = [
   {
     name: "Sarah Johnson",
     role: "CEO, TechStart Inc.",
-    content: "The Technology Fiction transformed our business with their Salesforce automation. Our sales process is now 40% more efficient!",
+    content: "TechfiLabs transformed our business with their Salesforce automation. Our sales process is now 40% more efficient!",
     rating: 5
   },
   {
@@ -119,25 +119,25 @@ export const TESTIMONIALS_DATA = [
   {
     name: "Emily Rodriguez",
     role: "Operations Manager, GrowthCo",
-    content: "Professional, reliable, and results-driven. The Technology Fiction exceeded our expectations in every way.",
+    content: "Professional, reliable, and results-driven. TechfiLabs exceeded our expectations in every way.",
     rating: 5
   },
   {
     name: "Rajesh Kumar",
     role: "Managing Director, Digital Solutions India",
-    content: "The Technology Fiction helped us implement Salesforce across our entire organization. Their expertise in Indian business processes made the transition seamless. Our team productivity increased by 60% within 3 months!",
+    content: "TechfiLabs helped us implement Salesforce across our entire organization. Their expertise in Indian business processes made the transition seamless. Our team productivity increased by 60% within 3 months!",
     rating: 5
   },
   {
     name: "Priya Sharma",
     role: "Founder, E-commerce Startup, Mumbai",
-    content: "As a startup founder, I needed a professional website that could scale with our business. The Technology Fiction delivered a stunning React-based platform that perfectly captures our brand essence and has significantly improved our customer engagement.",
+    content: "As a startup founder, I needed a professional website that could scale with our business. TechfiLabs delivered a stunning React-based platform that perfectly captures our brand essence and has significantly improved our customer engagement.",
     rating: 5
   },
   {
     name: "Amit Patel",
     role: "IT Director, Manufacturing Solutions Ltd, Bangalore",
-    content: "We were struggling with manual processes until The Technology Fiction automated our entire sales pipeline with Salesforce. The ROI was incredible - we recovered our investment in just 6 months and our sales team is now 3x more productive.",
+    content: "We were struggling with manual processes until TechfiLabs automated our entire sales pipeline with Salesforce. The ROI was incredible - we recovered our investment in just 6 months and our sales team is now 3x more productive.",
     rating: 5
   }
 ]

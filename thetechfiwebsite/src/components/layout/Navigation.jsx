@@ -11,7 +11,7 @@ const HOME_SECTIONS = new Set(["home", "services", "about", "contact", "testimon
 
 const Navigation = ({
   logo = {
-    text: "The Technology Fiction",
+    text: "TechfiLabs",
     initials: "TF",
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
@@ -261,7 +261,7 @@ const Navigation = ({
               </button>
 
               <div className="mt-8 text-center">
-                <p className="text-zinc-500 text-sm">© 2025 The Technology Fiction</p>
+                <p className="text-zinc-500 text-sm">© 2025 TechfiLabs</p>
               </div>
             </motion.div>
           </motion.div>
