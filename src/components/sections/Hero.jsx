@@ -2,47 +2,56 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
+function getNextQuarterText() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+
+  let quarter;
+  let displayYear = year;
+
+  if (month <= 3) quarter = 2;
+  else if (month <= 6) quarter = 3;
+  else if (month <= 9) quarter = 4;
+  else {
+    quarter = 1;
+    displayYear = year + 1;
+  }
+
+  return `Accepting Projects for Q${quarter} ${displayYear}`;
+  // Alternative (converts better):
+  // return "Now booking new client projects";
+}
+
 const Hero = ({
-  subtitle = "We help startups and growing businesses scale using Salesforce consulting, AI automation, WhatsApp solutions, and modern web & mobile app development.",
+  subtitle = "TechfiLabs helps startups and growing businesses scale with Salesforce consulting, AI automation, WhatsApp solutions, and modern web & mobile app development.",
   primaryButton = { text: "Get Free Consultation", action: () => {} },
 }) => {
-  
   const handleScrollDown = () => {
-    const nextSection = document.getElementById('services'); 
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    const nextSection = document.getElementById("services");
+    if (nextSection) nextSection.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative w-full h-screen min-h-[800px] flex flex-col items-center justify-center overflow-hidden text-center bg-black">
-      
-      {/* 1. VIDEO BACKGROUND */}
+      {/* VIDEO BACKGROUND */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-60"
-        >
-          {/* CORRECT PATH: Directly at the root of public/ */}
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-60">
           <source src="/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
-      {/* 2. DARK OVERLAY (Essential for text contrast) */}
+      {/* DARK OVERLAY */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10" />
 
-      {/* 3. ATMOSPHERIC GLOW */}
+      {/* ATMOSPHERIC GLOW */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-600/20 rounded-[100%] blur-[120px] pointer-events-none mix-blend-screen z-10" />
 
-      {/* 4. CONTENT */}
+      {/* CONTENT */}
       <div className="relative z-20 max-w-5xl mx-auto px-6 mt-10">
-        
         {/* Badge */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -50,25 +59,28 @@ const Hero = ({
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           <span className="text-xs md:text-sm font-medium text-zinc-200 tracking-wider uppercase">
-            Accepting Projects for Q1 2026
+            {getNextQuarterText()}
           </span>
         </motion.div>
 
         {/* Headline */}
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-8 leading-[1.1]"
         >
-          Powering Growth with <br />
+          <span className="text-zinc-200/90">TechfiLabs</span>
+          <span className="text-zinc-200/70"> builds </span>
+          <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">
-            Intelligent Systems.
+            Intelligent Systems
           </span>
+          <span className="text-zinc-200/70"> for growth.</span>
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
@@ -78,7 +90,7 @@ const Hero = ({
         </motion.p>
 
         {/* Buttons */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
@@ -95,7 +107,7 @@ const Hero = ({
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
@@ -105,7 +117,6 @@ const Hero = ({
         <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
         <ChevronDown className="w-5 h-5 animate-bounce" />
       </motion.div>
-
     </section>
   );
 };
