@@ -10,7 +10,7 @@ export const SITE_CONFIG = {
     logo: "/tech_fi_logo_512x512_image.jpeg"
   },
   navigation: {
-    menuItems: ['home', 'services','coaching','blog', 'about', 'contact'],
+    menuItems: ['home', 'services', 'about', 'contact'],
     ctaButton: {
       text: "Get Started",
       action: () => {
