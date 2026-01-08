@@ -74,9 +74,9 @@ const Hero = ({
           <span className="text-zinc-200/70"> builds </span>
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">
-            Intelligent Systems
+           digital systems
           </span>
-          <span className="text-zinc-200/70"> for growth.</span>
+          <span className="text-zinc-200/70"> for growing businesses.</span>
         </motion.h1>
 
         {/* Subtitle */}
