@@ -1,6 +1,8 @@
 import React from 'react';
 import { Instagram, Linkedin, Twitter, Facebook, Globe } from 'lucide-react';
 import { FOOTER_DATA } from "../../constants/data";
+import { scrollToSection } from "../../utils/scrollToSection";
+
 
 // Helper to map string icon names to Lucide components dynamically
 const getIcon = (iconName) => {
@@ -60,21 +62,30 @@ const Footer = ({
 
             {/* Social Icons - "Ghost" Style */}
             <div className="flex gap-3">
-              {FOOTER_DATA.socialLinks.map((social, index) => {
-                const Icon = getIcon(social.icon);
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-zinc-400 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300"
-                    aria-label={social.name}
-                  >
-                    <Icon size={18} strokeWidth={1.5} />
-                  </a>
-                );
-              })}
+            {FOOTER_DATA.company.map((item, i) => {
+  const isContact =
+    item.name?.toLowerCase() === "contact" ||
+    item.href === "#contact" ||
+    item.href === "/#contact";
+
+  return (
+    <li key={i}>
+      <a
+        href={item.href || "#"}
+        onClick={(e) => {
+          if (isContact) {
+            e.preventDefault();
+            scrollToSection("contact");
+          }
+        }}
+        className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
+      >
+        {item.name}
+      </a>
+    </li>
+  );
+})}
+
             </div>
           </div>
 

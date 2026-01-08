@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://thetechnologyfiction.com/sitemap.xml
+Sitemap: https://www.techfilabs.com/sitemap.xml
