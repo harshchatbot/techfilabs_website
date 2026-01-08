@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const BLOG_URL = "https://thetechnologyfiction.com/blog/";
-const COACHING_PATH = "/salesforce-coaching-ajmer";
 
 // these are sections that exist on the homepage (scroll targets)
 const HOME_SECTIONS = new Set(["home", "services", "about", "contact", "testimonials"]);
@@ -16,7 +14,7 @@ const Navigation = ({
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
   // add "coaching" here in your config to show it in menu
-  menuItems = ["home", "services", "coaching", "blog", "about", "contact"],
+  menuItems = ["home", "services", "about", "contact"],
   ctaButton = { text: "Get Started", action: () => {} },
   className = "",
 }) => {
@@ -61,16 +59,6 @@ const Navigation = ({
     // close menu immediately for better UX
     setIsMenuOpen(false);
 
-    if (item === "blog") {
-      window.location.href = BLOG_URL;
-      return;
-    }
-
-    if (item === "coaching") {
-      navigate(COACHING_PATH);
-      return;
-    }
-
     // all other items are homepage sections
     if (HOME_SECTIONS.has(item)) {
       goHomeThenScroll(item);
@@ -111,15 +99,6 @@ const Navigation = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuItems, location.pathname]);
 
-  // If on coaching page, highlight coaching in menu
-  useEffect(() => {
-    if (location.pathname === COACHING_PATH) {
-      setActiveSection("coaching");
-    } else if (location.pathname !== "/") {
-      // for other non-home pages, don't force a section
-      // keep existing activeSection
-    }
-  }, [location.pathname]);
 
   // Animations
   const menuVariants = {
