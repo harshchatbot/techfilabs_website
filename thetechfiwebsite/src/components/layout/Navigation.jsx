@@ -13,7 +13,7 @@ const Navigation = ({
     initials: "TF",
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
-  // add "coaching" here in your config to show it in menu
+
   menuItems = ["home", "services", "about", "contact"],
   ctaButton = { text: "Get Started", action: () => {} },
   className = "",
@@ -78,9 +78,7 @@ const Navigation = ({
       // Only run scroll spy on the homepage
       if (location.pathname !== "/") return;
 
-      const spyItems = menuItems.filter(
-        (m) => m !== "blog" && m !== "coaching" && HOME_SECTIONS.has(m)
-      );
+      const spyItems = HOME_SECTIONS;
 
       for (const section of spyItems) {
         const element = document.getElementById(section);
