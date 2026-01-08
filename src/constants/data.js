@@ -174,7 +174,6 @@ export const FOOTER_DATA = {
   company: [
     { name: "About Us", href: "#" },
     { name: "Careers", href: "#" },
-    { name: "Salesforce Blog", href: "https://thetechnologyfiction.com/blog" },
     { name: "Contact", href: "#" }
   ],
   socialLinks: [
