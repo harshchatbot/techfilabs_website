@@ -103,7 +103,6 @@ const Footer = ({
                     <li key={i}>
                         <a 
                           href={item.href} 
-                          target={item.name.includes("Blog") ? "_blank" : "_self"}
                           className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
                         >
                             {item.name}

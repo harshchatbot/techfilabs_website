@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const BLOG_URL = "https://thetechnologyfiction.com/blog/";
-const COACHING_PATH = "/salesforce-coaching-ajmer";
+
 
 // these are sections that exist on the homepage (scroll targets)
 const HOME_SECTIONS = new Set(["home", "services", "about", "contact", "testimonials"]);
@@ -16,7 +15,7 @@ const Navigation = ({
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
   // add "coaching" here in your config to show it in menu
-  menuItems = ["home", "services", "coaching", "blog", "about", "contact"],
+  menuItems = ["home", "services", "about", "contact"],
   ctaButton = { text: "Get Started", action: () => {} },
   className = "",
 }) => {
@@ -61,16 +60,6 @@ const Navigation = ({
     // close menu immediately for better UX
     setIsMenuOpen(false);
 
-    if (item === "blog") {
-      window.location.href = BLOG_URL;
-      return;
-    }
-
-    if (item === "coaching") {
-      navigate(COACHING_PATH);
-      return;
-    }
-
     // all other items are homepage sections
     if (HOME_SECTIONS.has(item)) {
       goHomeThenScroll(item);
@@ -84,42 +73,16 @@ const Navigation = ({
   // Scroll Spy Logic (only on homepage + only for actual sections)
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
-      setScrolled(window.scrollY > 20);
 
       // Only run scroll spy on the homepage
       if (location.pathname !== "/") return;
 
-      const spyItems = menuItems.filter(
-        (m) => m !== "blog" && m !== "coaching" && HOME_SECTIONS.has(m)
-      );
-
-      for (const section of spyItems) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuItems, location.pathname]);
 
-  // If on coaching page, highlight coaching in menu
-  useEffect(() => {
-    if (location.pathname === COACHING_PATH) {
-      setActiveSection("coaching");
-    } else if (location.pathname !== "/") {
-      // for other non-home pages, don't force a section
-      // keep existing activeSection
-    }
-  }, [location.pathname]);
 
   // Animations
   const menuVariants = {
