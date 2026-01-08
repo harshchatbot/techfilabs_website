@@ -1,4 +1,4 @@
-# EmailJS Setup Guide for The Technology Fiction Website
+# EmailJS Setup Guide for TechfiLabs Website
 
 This guide will help you set up EmailJS to handle contact form submissions from your website.
 

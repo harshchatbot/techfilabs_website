@@ -1,6 +1,6 @@
-# The Technology Fiction - IT Company Website
+# TechfiLabs - IT Company Website
 
-A modern, responsive website for "The Technology Fiction" - an IT company specializing in Salesforce automation, implementation, and React development.
+A modern, responsive website for "TechfiLabs" - an IT company specializing in Salesforce automation, implementation, and React development.
 
 ## 🚀 Features
 
@@ -133,7 +133,7 @@ This project is licensed under the MIT License.
 
 ---
 
-Built with ❤️ by The Technology Fiction team
+Built with ❤️ by TechfiLabs team
 
 
 ## Deployment Steps :

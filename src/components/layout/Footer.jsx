@@ -15,12 +15,12 @@ const getIcon = (iconName) => {
 
 const Footer = ({
   logo = {
-    text: "The Technology Fiction",
+    text: "TechfiLabs",
     initials: "TF",
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
   description = "We help startups and small businesses scale with powerful Salesforce solutions, modern web and mobile applications, and intelligent automation.",
-  copyright = "© 2025 The Technology Fiction. All rights reserved.",
+  copyright = "© 2025 TechfiLabs. All rights reserved.",
   className = "",
 }) => {
   return (

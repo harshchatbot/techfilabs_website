@@ -1,4 +1,4 @@
-# The Technology Fiction Website - Component Structure
+# TechfiLabs Website - Component Structure
 
 This project has been restructured for better maintainability and reusability. Here's the new folder structure:
 

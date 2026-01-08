@@ -5,7 +5,7 @@ import { CheckCircle } from 'lucide-react';
 import { fadeInUp, zoomIn } from '../../utils/motion'; 
 
 const About = ({ 
-  title = "About The Technology Fiction",
+  title = "About TechfiLabs",
   subtitle = "We don't just write code; we architect digital futures.",
   description = "With over a decade of deep expertise in Salesforce ecosystems and modern web frameworks, we bridge the gap between complex enterprise requirements and elegant user experiences.",
   stats = [],

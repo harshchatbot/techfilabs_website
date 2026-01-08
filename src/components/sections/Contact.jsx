@@ -43,7 +43,7 @@ const Contact = ({
       user_name: formData.name,
       user_email: formData.email,
       user_message: formattedMessage,
-      to_name: 'The Technology Fiction Team',
+      to_name: 'TechfiLabs Team',
       website_source: 'TechFi Website',
       subject: `New Contact Form Submission from ${formData.name}`
     }
