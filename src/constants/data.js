@@ -145,7 +145,7 @@ export const TESTIMONIALS_DATA = [
 export const ABOUT_DATA = {
   stats: [
     { number: "15+", label: "IT Projects Completed" },
-    { number: "30+", label: "Small Business Clients" },
+    { number: "30+", label: "Business Clients" },
     { number: "10+", label: "Years Experience" },
     { number: "24/7", label: "IT Support Available" }
   ],
