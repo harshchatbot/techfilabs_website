@@ -172,9 +172,9 @@ export const FOOTER_DATA = {
     "WhatsApp Automation Solutions"
   ],
   company: [
-    { name: "About Us", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Contact", href: "#" }
+    { name: "About Us", href: "#about" },
+    { name: "Careers", href: "#careers" },
+    { name: "Contact", href: "#contact" }
   ],
   socialLinks: [
     { name: "Instagram", icon: "instagram", href: "#" },
