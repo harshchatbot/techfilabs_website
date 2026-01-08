@@ -6,7 +6,6 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/salesforce-coaching-ajmer" element={<SalesforceCoachingAjmer />} />
     </Routes>
   );
 }
