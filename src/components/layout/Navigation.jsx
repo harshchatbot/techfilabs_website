@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
-
 // these are sections that exist on the homepage (scroll targets)
 const HOME_SECTIONS = new Set(["home", "services", "about", "contact", "testimonials"]);
 
@@ -14,7 +12,6 @@ const Navigation = ({
     initials: "TF",
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
-  // add "coaching" here in your config to show it in menu
   menuItems = ["home", "services", "about", "contact"],
   ctaButton = { text: "Get Started", action: () => {} },
   className = "",
@@ -41,48 +38,52 @@ const Navigation = ({
   };
 
   const goHomeThenScroll = async (sectionId) => {
-    // if already on home, just scroll
     if (location.pathname === "/") {
       scrollToSection(sectionId);
       return;
     }
-
-    // go to home first
     navigate("/");
-
-    // wait a tick for home to render, then scroll
     setTimeout(() => {
       scrollToSection(sectionId);
     }, 150);
   };
 
   const handleMenuClick = (item) => {
-    // close menu immediately for better UX
     setIsMenuOpen(false);
-
-    // all other items are homepage sections
     if (HOME_SECTIONS.has(item)) {
       goHomeThenScroll(item);
       return;
     }
-
-    // fallback: try scroll anyway
     goHomeThenScroll(item);
   };
 
-  // Scroll Spy Logic (only on homepage + only for actual sections)
+  // 2) SCROLL SPY LOGIC (Fixed: Now actually updates active state)
   useEffect(() => {
     const handleScroll = () => {
+      // Background blur effect
+      setScrolled(window.scrollY > 20);
 
       // Only run scroll spy on the homepage
       if (location.pathname !== "/") return;
 
+      // Find which section is currently in view
+      let current = "";
+      for (const section of menuItems) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If section top is within the top third of viewport
+          if (rect.top <= 200 && rect.bottom >= 200) {
+            current = section;
+          }
+        }
+      }
+      if (current) setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuItems, location.pathname]);
-
 
   // Animations
   const menuVariants = {
@@ -107,10 +108,13 @@ const Navigation = ({
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-          scrolled ? "bg-black/80 backdrop-blur-xl border-white/10 py-3" : "bg-transparent border-transparent py-6"
+          scrolled 
+            ? "bg-black/80 backdrop-blur-xl border-white/10 py-3" 
+            : "bg-transparent border-transparent py-4 md:py-6"
         } ${className}`}
       >
-        <div className="container mx-auto px-6">
+        {/* FIX: Changed px-6 to px-4 for better mobile alignment */}
+        <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center">
             {/* LOGO */}
             <motion.div
@@ -181,8 +185,10 @@ const Navigation = ({
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col pt-32 px-6 h-screen"
+            // FIX: Added overflow-hidden to contain blur effects
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 h-screen overflow-hidden"
           >
+            {/* Background Blob */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="flex flex-col gap-6 relative z-10">
@@ -210,7 +216,7 @@ const Navigation = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="mt-auto mb-10 border-t border-white/10 pt-8"
+              className="mt-auto mb-10 border-t border-white/10 pt-8 relative z-10"
             >
               <button
                 className="w-full py-4 bg-white text-black font-bold text-lg rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
@@ -224,7 +230,7 @@ const Navigation = ({
               </button>
 
               <div className="mt-8 text-center">
-                <p className="text-zinc-500 text-sm">© 2025 TechfiLabs</p>
+                <p className="text-zinc-500 text-sm">© 2024 TechfiLabs</p>
               </div>
             </motion.div>
           </motion.div>

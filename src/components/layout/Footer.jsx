@@ -25,7 +25,7 @@ const Footer = ({
 }) => {
   return (
     <footer
-      className={`bg-black pt-24 pb-12 border-t border-white/10 relative overflow-hidden ${className}`}
+      className={`bg-black pt-24 pb-24 border-t border-white/10 relative overflow-hidden ${className}`}
     >
       {/* Background Ambience */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">

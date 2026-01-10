@@ -33,7 +33,7 @@ const Hero = ({
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[800px] flex flex-col items-center justify-center overflow-hidden text-center bg-black">
+    <section className="relative w-full h-screen min-h-[800px] pt-32 flex flex-col items-center justify-center overflow-hidden text-center bg-black">
       {/* VIDEO BACKGROUND */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-60">
