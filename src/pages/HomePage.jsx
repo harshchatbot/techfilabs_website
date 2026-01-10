@@ -18,10 +18,19 @@ import {
   } from "../constants/data";
   
   import WhatsAppChatButton from "../components/WhatsAppChatButton";
-  
+  import Seo from "../components/Seo";
+
   export default function HomePage() {
     return (
       <div className="min-h-screen bg-bg text-text">
+
+        <Seo 
+        title="Best IT & Software Company in Ajmer & Jaipur | TechFi Labs"
+        description="TechFi Labs is the leading IT & Software company in Ajmer. We provide custom Web Development, Mobile Apps, Salesforce Consulting, and AI Solutions."
+        canonical="https://techfilabs.com/"
+        type="business.business"
+        />
+
         <Navigation
           logo={SITE_CONFIG.company}
           menuItems={SITE_CONFIG.navigation.menuItems}
