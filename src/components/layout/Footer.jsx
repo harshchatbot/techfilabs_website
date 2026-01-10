@@ -1,15 +1,15 @@
-import React from 'react';
-import { Instagram, Linkedin, Twitter, Facebook, Globe } from 'lucide-react';
+import React from "react";
+import { Instagram, Linkedin, Twitter, Facebook, Globe } from "lucide-react";
 import { FOOTER_DATA } from "../../constants/data";
 
 // Helper to map string icon names to Lucide components dynamically
 const getIcon = (iconName) => {
   if (!iconName) return Globe;
   const name = iconName.toLowerCase();
-  if (name.includes('instagram')) return Instagram;
-  if (name.includes('linkedin')) return Linkedin;
-  if (name.includes('twitter') || name.includes('x')) return Twitter;
-  if (name.includes('facebook')) return Facebook;
+  if (name.includes("instagram")) return Instagram;
+  if (name.includes("linkedin")) return Linkedin;
+  if (name.includes("twitter") || name.includes("x")) return Twitter;
+  if (name.includes("facebook")) return Facebook;
   return Globe;
 };
 
@@ -19,21 +19,21 @@ const Footer = ({
     initials: "TF",
     logo: "tech_fi_logo_512x512_image.jpeg",
   },
-  description = "We help startups and small businesses scale with powerful Salesforce solutions, modern web and mobile applications, and intelligent automation.",
-  copyright = "© 2025 TechfiLabs. All rights reserved.",
+  description =
+  "We help startups and small businesses scale with powerful Salesforce solutions, modern web and mobile applications, and intelligent automation. TechfiLabs is a delivery-focused services unit of The Technology Fiction.",
   className = "",
 }) => {
   return (
-    <footer className={`bg-black pt-24 pb-12 border-t border-white/10 relative overflow-hidden ${className}`}>
-      
+    <footer
+      className={`bg-black pt-24 pb-12 border-t border-white/10 relative overflow-hidden ${className}`}
+    >
       {/* Background Ambience */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-         <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-12 gap-12 mb-20">
-
           {/* BRAND COLUMN (Span 5 for more width) */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-3 mb-8">
@@ -53,7 +53,7 @@ const Footer = ({
                 {logo.text}
               </span>
             </div>
-            
+
             <p className="text-zinc-500 leading-relaxed mb-8 max-w-sm text-sm">
               {description}
             </p>
@@ -83,53 +83,71 @@ const Footer = ({
 
           {/* SERVICES COLUMN (Span 3) */}
           <div className="md:col-span-3">
-             <h4 className="text-white font-semibold mb-6 tracking-wide">Services</h4>
-             <ul className="space-y-4">
-                {FOOTER_DATA.services.map((service, i) => (
-                    <li key={i}>
-                        <a href="#" className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200">
-                            {service}
-                        </a>
-                    </li>
-                ))}
-             </ul>
+            <h4 className="text-white font-semibold mb-6 tracking-wide">
+              Services
+            </h4>
+            <ul className="space-y-4">
+              {FOOTER_DATA.services.map((service, i) => (
+                <li key={i}>
+                  <a
+                    href="#"
+                    className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
+                  >
+                    {service}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* COMPANY COLUMN (Span 3) */}
           <div className="md:col-span-3">
-             <h4 className="text-white font-semibold mb-6 tracking-wide">Company</h4>
-             <ul className="space-y-4">
-                {FOOTER_DATA.company.map((item, i) => (
-                    <li key={i}>
-                        <a 
-                          href={item.href} 
-                          className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
-                        >
-                            {item.name}
-                        </a>
-                    </li>
-                ))}
-             </ul>
+            <h4 className="text-white font-semibold mb-6 tracking-wide">
+              Company
+            </h4>
+            <ul className="space-y-4">
+              {FOOTER_DATA.company.map((item, i) => (
+                <li key={i}>
+                  <a
+                    href={item.href}
+                    className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-zinc-600 text-xs">
-                {copyright}
-            </p>
-            <div className="flex items-center gap-6">
-                {/* Updated Privacy Policy Link */}
-                <a 
-                  href="https://thetechnologyfiction.com/blog/privacy-policy/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-zinc-600 hover:text-zinc-400 text-xs transition-colors"
-                >
-                  Privacy Policy
-                </a>
-                
-            </div>
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-3 text-center">
+          <p className="text-zinc-600 text-xs text-center md:text-left">
+            © 2025 TechfiLabs. All rights reserved.
+            <span className="block md:inline md:ml-1">
+              A unit of{" "}
+              <a
+                href="https://thetechnologyfiction.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 hover:text-zinc-300 underline underline-offset-2"
+              >
+                The Technology Fiction
+              </a>
+            </span>
+          </p>
+
+          <div className="flex items-center gap-6">
+            {/* Updated Privacy Policy Link */}
+            <a
+              href="https://thetechnologyfiction.com/blog/privacy-policy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-600 hover:text-zinc-400 text-xs transition-colors"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </div>
       </div>
     </footer>
