@@ -10,7 +10,7 @@ const Navigation = ({
   logo = {
     text: "TechfiLabs",
     initials: "TF",
-    logo: "tech_fi_logo_512x512_image.jpeg",
+    logo: "techfilabs_primary_logo.png", // not sure where it impacts
   },
   menuItems = ["home", "services", "about", "contact"],
   ctaButton = { text: "Get Started", action: () => {} },
@@ -129,7 +129,8 @@ const Navigation = ({
                 <img
                   src={logo.logo}
                   alt={logo.text}
-                  className="w-full h-full object-cover opacity-90"
+                  className="w-full h-full object-cover opacity-90 object-contain"
+                  //className="w-full h-full object-contain p-1"
                 />
               </div>
               <span className="text-lg font-bold tracking-tight text-white hidden md:block">
@@ -151,7 +152,7 @@ const Navigation = ({
                   {activeSection === item && (
                     <motion.div
                       layoutId="activeDot"
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-brand rounded-full"
                     />
                   )}
                 </button>
@@ -189,7 +190,7 @@ const Navigation = ({
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 h-screen overflow-hidden"
           >
             {/* Background Blob */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-dark/20 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="flex flex-col gap-6 relative z-10">
               {menuItems.map((item, i) => (
@@ -205,7 +206,7 @@ const Navigation = ({
                   <span>{item}</span>
                   <ChevronRight
                     className={`w-8 h-8 transition-opacity ${
-                      activeSection === item ? "opacity-100 text-blue-500" : "opacity-0 group-hover:opacity-50"
+                      activeSection === item ? "opacity-100 text-brand" : "opacity-0 group-hover:opacity-50"
                     }`}
                   />
                 </motion.button>

@@ -46,7 +46,7 @@ const Hero = ({
       <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10" />
 
       {/* ATMOSPHERIC GLOW */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-600/20 rounded-[100%] blur-[120px] pointer-events-none mix-blend-screen z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-brand-dark/20 rounded-[100%] blur-[120px] pointer-events-none mix-blend-screen z-10" />
 
       {/* CONTENT */}
       <div className="relative z-20 max-w-5xl mx-auto px-6 mt-10">

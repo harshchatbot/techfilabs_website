@@ -81,7 +81,7 @@ const Testimonials = ({
 
                 {/* Footer (User Info) - Pushed to bottom */}
                 <div className="mt-auto flex items-center gap-4 pt-6 border-t border-white/5">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg text-white font-bold text-lg">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand to-purple-600 flex items-center justify-center shadow-lg text-white font-bold text-lg">
                     {testimonial.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>

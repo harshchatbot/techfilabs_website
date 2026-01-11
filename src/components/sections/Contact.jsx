@@ -115,12 +115,12 @@ const Contact = ({
                     href={item.href}
                     className="flex items-center gap-6 group cursor-pointer"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:bg-blue-500/20 group-hover:border-blue-500/30 transition-all">
-                      <item.icon className="w-6 h-6 text-zinc-400 group-hover:text-blue-400 transition-colors" />
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:bg-brand/20 group-hover:border-blue-500/30 transition-all">
+                      <item.icon className="w-6 h-6 text-zinc-400 group-hover:text-brand transition-colors" />
                     </div>
                     <div>
                       <h4 className="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-1">{item.label}</h4>
-                      <p className="text-lg text-white font-medium group-hover:text-blue-400 transition-colors">{item.value}</p>
+                      <p className="text-lg text-white font-medium group-hover:text-brand transition-colors">{item.value}</p>
                     </div>
                   </a>
                 ))}

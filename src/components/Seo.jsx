@@ -39,7 +39,7 @@ export default function Seo({
   title, 
   description, 
   canonical, 
-  image = "/favicon.jpg", // Default image if none provided
+  image = "/techfilabs_all_variations_logo.png", // Default image if none provided
   type = "website" 
 }) {
   useEffect(() => {

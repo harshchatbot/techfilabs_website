@@ -17,7 +17,7 @@ const Footer = ({
   logo = {
     text: "TechfiLabs",
     initials: "TF",
-    logo: "tech_fi_logo_512x512_image.jpeg",
+    logo: "techfilabs_primary_logo.png",
   },
   description =
   "We help startups and small businesses scale with powerful Salesforce solutions, modern web and mobile applications, and intelligent automation. TechfiLabs is a delivery-focused services unit of The Technology Fiction.",
@@ -91,7 +91,7 @@ const Footer = ({
                 <li key={i}>
                   <a
                     href="#"
-                    className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
+                    className="text-zinc-500 hover:text-brand transition-colors text-sm block hover:translate-x-1 duration-200"
                   >
                     {service}
                   </a>
@@ -110,7 +110,7 @@ const Footer = ({
                 <li key={i}>
                   <a
                     href={item.href}
-                    className="text-zinc-500 hover:text-blue-400 transition-colors text-sm block hover:translate-x-1 duration-200"
+                    className="text-zinc-500 hover:text-brand transition-colors text-sm block hover:translate-x-1 duration-200"
                   >
                     {item.name}
                   </a>

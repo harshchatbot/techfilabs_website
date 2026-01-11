@@ -29,7 +29,7 @@ const About = ({
             variants={fadeInUp}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-white/5 border border-white/10">
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
               <span className="text-xs font-medium text-zinc-300 uppercase tracking-widest">
                 Our Story
               </span>
@@ -59,8 +59,8 @@ const About = ({
                   viewport={{ once: true }}
                   className="flex items-center gap-4 group"
                 >
-                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                    <CheckCircle className="w-4 h-4 text-blue-500" />
+                  <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
+                    <CheckCircle className="w-4 h-4 text-brand" />
                   </div>
                   <span className="text-zinc-300 font-medium group-hover:text-white transition-colors">
                     {feature}
@@ -79,7 +79,7 @@ const About = ({
             className="relative"
           >
             <div className="relative z-10 bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 overflow-hidden group hover:border-white/20 transition-colors">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-10">
@@ -96,7 +96,7 @@ const About = ({
                   </div>
                   <div>
                     <h3 className="text-white font-bold text-xl tracking-tight">
-                      The Tech<span className="text-blue-500">Fi</span> Standard
+                      The Tech<span className="text-brand">Fi</span> Standard
                     </h3>
                     <p className="text-zinc-500 text-sm">Excellence Since 2015</p>
                   </div>

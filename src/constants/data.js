@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
     email: "thetechfilabs@gmail.com",
     phone: "+91 7976111087",
     address: "Jaipur, Rajasthan 302001",
-    logo: "/tech_fi_logo_512x512_image.jpeg"
+    logo: "/techfilabs_all_variations_logo.png"
   },
   navigation: {
     menuItems: ['home', 'services', 'about', 'contact'],

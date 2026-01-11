@@ -49,8 +49,8 @@ const Services = ({
             >
               <div className="h-full flex flex-col p-8 rounded-3xl bg-zinc-900/40 border border-white/5 hover:border-white/10 hover:bg-zinc-900/60 transition-all duration-300 backdrop-blur-sm">
                 
-                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300 border border-white/5 shrink-0">
-                  <div className="text-zinc-300 group-hover:text-blue-400 transition-colors">
+                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand/20 group-hover:scale-110 transition-all duration-300 border border-white/5 shrink-0">
+                  <div className="text-zinc-300 group-hover:text-brand transition-colors">
                      {service.icon && <service.icon size={28} strokeWidth={1.5} />}
                   </div>
                 </div>
@@ -66,7 +66,7 @@ const Services = ({
                 <ul className="space-y-4 border-t border-white/5 pt-6 mt-auto">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start text-sm text-zinc-300/80">
-                      <Check className="w-4 h-4 text-blue-500 mr-3 mt-0.5 shrink-0" />
+                      <Check className="w-4 h-4 text-brand mr-3 mt-0.5 shrink-0" />
                       <span className="leading-snug">{feature}</span>
                     </li>
                   ))}
