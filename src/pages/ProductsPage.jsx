@@ -6,8 +6,8 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-emerald-950 text-white">
       <Seo
-        title="Products | TechFi Labs"
-        description="Explore products built by TechFi Labs across mobile apps, web platforms, and AI tools."
+        title="Products by TechFi Labs | Mobile Apps, Web Apps and AI Tools"
+        description="Explore TechFi Labs products including Sentinel Society Management and upcoming web and AI platforms."
         canonical="https://techfilabs.com/products"
         type="website"
       />

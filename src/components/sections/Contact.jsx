@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 import { AlertCircle, ArrowRight, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
+const EMAILJS_SERVICE_ID = "service_n22qsrq";
+const EMAILJS_NOTIFY_TEMPLATE_ID = "template_akdqils";
+const EMAILJS_PUBLIC_KEY = "6ICiKx6wEuxS-3WZ5";
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_leadmagnet_autoreply";
+const LEAD_MAGNET_DOWNLOAD_URL = "https://techfilabs.com/lead-magnets/product-salesforce-growth-checklist-2026.pdf";
+
 const initialFormState = {
   name: "",
   email: "",
@@ -15,8 +21,8 @@ const initialFormState = {
 };
 
 export default function Contact({
-  title = "Let’s build your next product",
-  subtitle = "Share your goal and we’ll send a practical action plan.",
+  title = "Let’s solve your growth challenge",
+  subtitle = "Tell us your business goal and we will send an outcome-focused execution plan.",
   contactInfo = {
     phone: "+91 7976111087",
     email: "thetechfilabs@gmail.com",
@@ -27,6 +33,9 @@ export default function Contact({
   const [formData, setFormData] = useState(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [leadMagnetEmail, setLeadMagnetEmail] = useState("");
+  const [leadMagnetSubmitting, setLeadMagnetSubmitting] = useState(false);
+  const [leadMagnetStatus, setLeadMagnetStatus] = useState(null);
 
   const productOptions = products.map((product) => product.name);
 
@@ -60,7 +69,7 @@ export default function Contact({
     };
 
     try {
-      await emailjs.send("service_n22qsrq", "template_akdqils", templateParams, "6ICiKx6wEuxS-3WZ5");
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
       setSubmitStatus("success");
       setFormData(initialFormState);
     } catch (error) {
@@ -68,6 +77,56 @@ export default function Contact({
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleLeadMagnetSubmit = async (event) => {
+    event.preventDefault();
+    if (!leadMagnetEmail) return;
+
+    setLeadMagnetSubmitting(true);
+    setLeadMagnetStatus(null);
+
+    const templateParams = {
+      user_name: "Lead Magnet Request",
+      user_email: leadMagnetEmail,
+      user_message:
+        "Requested lead magnet: Free Product + Salesforce Growth Checklist (2026 edition).",
+      to_name: "TechFi Labs Team",
+      website_source: "TechFi Website Lead Magnet",
+      subject: "New Lead Magnet Signup",
+    };
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
+
+      const autoReplyParams = {
+        user_name: "TechFi Labs",
+        user_email: leadMagnetEmail,
+        to_email: leadMagnetEmail,
+        user_message: `Thanks for requesting the checklist. Download link: ${LEAD_MAGNET_DOWNLOAD_URL}`,
+        lead_magnet_link: LEAD_MAGNET_DOWNLOAD_URL,
+        subject: "Your Free Product + Salesforce Growth Checklist",
+      };
+
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_AUTOREPLY_TEMPLATE_ID,
+          autoReplyParams,
+          EMAILJS_PUBLIC_KEY
+        );
+      } catch (autoReplyError) {
+        console.warn("Auto-reply template failed. Keep team notification only:", autoReplyError);
+      }
+
+      setLeadMagnetStatus("success");
+      setLeadMagnetEmail("");
+    } catch (error) {
+      console.error("Lead magnet signup failed:", error);
+      setLeadMagnetStatus("error");
+    } finally {
+      setLeadMagnetSubmitting(false);
     }
   };
 
@@ -110,6 +169,50 @@ export default function Contact({
                 </div>
               </a>
             ))}
+
+            <div className="rounded-2xl border border-lime-300/25 bg-lime-300/10 p-5 mt-2">
+              <p className="text-xs uppercase tracking-[0.16em] text-lime-100 mb-2">Lead Magnet</p>
+              <h4 className="text-lg font-bold text-white mb-2">Free Growth Outcome Checklist</h4>
+              <p className="text-sm text-emerald-100/80 mb-4">
+                Get our practical checklist to identify bottlenecks and improve conversions, process speed, and delivery quality.
+              </p>
+
+              {leadMagnetStatus === "success" && (
+                <p className="text-sm text-lime-100 mb-3">
+                  Thanks. Check your inbox for the checklist. If not received, use this direct download:
+                  {" "}
+                  <a
+                    href={LEAD_MAGNET_DOWNLOAD_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2"
+                  >
+                    Download checklist
+                  </a>
+                </p>
+              )}
+              {leadMagnetStatus === "error" && (
+                <p className="text-sm text-red-200 mb-3">Could not submit right now. Please try again.</p>
+              )}
+
+              <form onSubmit={handleLeadMagnetSubmit} className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="email"
+                  value={leadMagnetEmail}
+                  onChange={(event) => setLeadMagnetEmail(event.target.value)}
+                  required
+                  className="input-base"
+                  placeholder="Enter your work email"
+                />
+                <button
+                  type="submit"
+                  disabled={leadMagnetSubmitting}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-300 px-4 py-3 font-semibold text-emerald-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
+                >
+                  {leadMagnetSubmitting ? "Submitting..." : "Get Checklist"}
+                </button>
+              </form>
+            </div>
           </motion.div>
 
           <motion.div

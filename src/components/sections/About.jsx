@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 export default function About({
-  title = "Why teams choose TechFi Labs",
-  subtitle = "Product thinking, execution discipline, and speed with accountability.",
-  description = "We combine UI/UX, engineering, and automation strategy into delivery systems that create measurable business outcomes.",
+  title = "Why growth-focused teams choose TechFi Labs",
+  subtitle = "We combine strategy and execution to turn business goals into measurable results.",
+  description = "Our approach is simple: identify bottlenecks, build the right system, and optimize continuously until your business sees clear outcome improvements.",
   stats = [],
   features = [],
   logo,

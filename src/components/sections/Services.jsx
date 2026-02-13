@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Services({
-  title = "Services that power product growth",
-  subtitle = "From architecture to automation, we help teams ship faster and operate better.",
+  title = "Services focused on growth outcomes",
+  subtitle = "We align technology with your business goals to improve conversion, efficiency, and execution speed.",
   services = [],
 }) {
   return (
@@ -46,6 +47,16 @@ export default function Services({
                   </li>
                 ))}
               </ul>
+
+              {service.slug && (
+                <Link
+                  to={`/services/${service.slug}`}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-lime-200/35 px-4 py-2 text-sm font-semibold text-lime-100 hover:bg-lime-200/15 transition-colors"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              )}
             </motion.article>
           ))}
         </div>

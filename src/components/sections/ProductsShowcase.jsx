@@ -27,10 +27,10 @@ export default function ProductsShowcase({ products = [] }) {
             Product Studio
           </p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-4">
-            Products we build, run, and scale.
+            Products designed to create real business impact.
           </h2>
           <p className="text-lg text-emerald-100/80">
-            Sentinel is live. More mobile apps, web products, and AI tools are listed here as they launch.
+            Sentinel is live. Every product here is built to solve a clear business problem and improve outcomes.
           </p>
         </motion.div>
 

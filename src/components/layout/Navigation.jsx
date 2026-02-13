@@ -46,8 +46,12 @@ export default function Navigation({
       if (location.pathname === "/") {
         scrollToSection(item);
       } else {
-        navigate("/");
-        setTimeout(() => scrollToSection(item), 150);
+        if (item === "contact") {
+          navigate("/#contact");
+        } else {
+          navigate("/");
+          setTimeout(() => scrollToSection(item), 150);
+        }
       }
       return;
     }
@@ -65,8 +69,7 @@ export default function Navigation({
       return;
     }
 
-    navigate("/");
-    setTimeout(() => scrollToSection("contact"), 180);
+    navigate("/#contact");
   };
 
   useEffect(() => {

@@ -1,40 +1,67 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Mascot from "../ui/Mascot";
 
 function getDeliveryText() {
   const now = new Date();
-  return `Shipping product and automation builds • ${now.getFullYear()}`;
+  return `Outcome-driven execution • ${now.getFullYear()}`;
 }
 
 export default function Hero({
-  subtitle = "TechFi Labs designs, builds, and scales digital products for ambitious companies, from residential apps like Sentinel to AI and automation systems.",
+  subtitle = "We help businesses increase revenue, improve team productivity, and reduce manual operations through product engineering, Salesforce consulting, and AI automation.",
   primaryButton = { text: "Explore Products", action: () => {} },
 }) {
   const [showGreeting, setShowGreeting] = useState(false);
   const speechScript =
-    "Hi, I am Mr. Green. At TechFi Labs, we build products and provide Salesforce consulting services from development to data migration.";
+    "Hi, I am Mr. Green. We focus on outcomes: more conversions, faster execution, and lower operational effort with product, Salesforce, and automation systems.";
   const [typedText, setTypedText] = useState("");
+  const mascotCardRef = useRef(null);
+  const hasStartedGreetingRef = useRef(false);
 
   useEffect(() => {
-    setShowGreeting(true);
-    let index = 0;
-    const typingTimer = setInterval(() => {
-      index += 1;
-      setTypedText(speechScript.slice(0, index));
-      if (index >= speechScript.length) {
-        clearInterval(typingTimer);
-      }
-    }, 32);
+    const element = mascotCardRef.current;
+    if (!element) return undefined;
 
-    const hideTimer = setTimeout(() => setShowGreeting(false), 9000);
+    let typingTimer;
+    let hideTimer;
+
+    const startGreeting = () => {
+      if (hasStartedGreetingRef.current) return;
+      hasStartedGreetingRef.current = true;
+      setShowGreeting(true);
+      setTypedText("");
+
+      let index = 0;
+      typingTimer = setInterval(() => {
+        index += 1;
+        setTypedText(speechScript.slice(0, index));
+        if (index >= speechScript.length) {
+          clearInterval(typingTimer);
+        }
+      }, 32);
+
+      hideTimer = setTimeout(() => setShowGreeting(false), 9000);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry?.isIntersecting) {
+          startGreeting();
+        }
+      },
+      { threshold: 0.45 }
+    );
+
+    observer.observe(element);
 
     return () => {
+      observer.disconnect();
       clearInterval(typingTimer);
       clearTimeout(hideTimer);
     };
-  }, []);
+  }, [speechScript]);
 
   const handleScrollDown = () => {
     const nextSection = document.getElementById("products");
@@ -63,7 +90,7 @@ export default function Hero({
             transition={{ duration: 0.65, delay: 0.1 }}
             className="text-5xl md:text-7xl xl:text-8xl leading-[0.95] font-black tracking-tight text-white mb-7"
           >
-            Build products that users love and teams can scale.
+            We solve growth bottlenecks and deliver measurable business outcomes.
           </motion.h1>
 
           <motion.p
@@ -103,7 +130,7 @@ export default function Hero({
           transition={{ duration: 0.7, delay: 0.25 }}
           className="relative lg:justify-self-end"
         >
-          <div className="relative rounded-[2rem] border border-lime-300/30 bg-emerald-900/30 p-8 backdrop-blur-md max-w-[420px]">
+          <div ref={mascotCardRef} className="relative rounded-[2rem] border border-lime-300/30 bg-emerald-900/30 p-8 backdrop-blur-md max-w-[420px]">
             <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-lime-300/20 blur-2xl" />
             <AnimatePresence>
               {showGreeting && (
