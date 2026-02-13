@@ -56,6 +56,11 @@ export default function ProductsShowcase({ products = [] }) {
               </div>
 
               <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
+              <div className="mb-3">
+                <span className="inline-flex items-center rounded-full border border-lime-200/45 bg-lime-200/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-lime-100">
+                  {product.category}
+                </span>
+              </div>
               <p className="text-lime-100/85 mb-4">{product.tagline}</p>
               <p className="text-emerald-100/75 text-sm leading-relaxed mb-6 flex-grow">{product.summary}</p>
 
