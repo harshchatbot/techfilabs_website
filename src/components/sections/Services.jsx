@@ -1,85 +1,55 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
-// FIX: Changed "../" to "../../" to reach the root src folder
-import { fadeInUp, staggerContainer, cardVariant } from '../../utils/motion'; 
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 
-const Services = ({ 
-  title = "Our Expertise",
-  subtitle = "We architect scalable digital ecosystems using cutting-edge technologies.",
-  services = [], 
-  className = ""
-}) => {
+export default function Services({
+  title = "Services that power product growth",
+  subtitle = "From architecture to automation, we help teams ship faster and operate better.",
+  services = [],
+}) {
   return (
-    <section id="services" className={`py-32 bg-black relative overflow-hidden ${className}`}>
-      
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      
+    <section id="services" className="py-28 bg-emerald-950 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(132,204,22,0.14),transparent_42%)]" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* HEADER: Uses standard fadeInUp */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }} // Triggers 100px before element hits bottom
-          variants={fadeInUp}
-          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6">
-            {title}
-          </h2>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-light">
-            {subtitle}
-          </p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-4">{title}</h2>
+          <p className="text-lg text-emerald-100/80 max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
-        {/* GRID: Uses staggerContainer to control children */}
-        <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariant} // Child automatically inherits the timing from parent
-              className="group relative h-full"
+            <motion.article
+              key={service.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              viewport={{ once: true, margin: "-60px" }}
+              className="h-full rounded-3xl border border-white/10 bg-emerald-900/25 p-7"
             >
-              <div className="h-full flex flex-col p-8 rounded-3xl bg-zinc-900/40 border border-white/5 hover:border-white/10 hover:bg-zinc-900/60 transition-all duration-300 backdrop-blur-sm">
-                
-                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand/20 group-hover:scale-110 transition-all duration-300 border border-white/5 shrink-0">
-                  <div className="text-zinc-300 group-hover:text-brand transition-colors">
-                     {service.icon && <service.icon size={28} strokeWidth={1.5} />}
-                  </div>
-                </div>
-
-                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">
-                  {service.title}
-                </h3>
-                
-                <p className="text-zinc-400 mb-8 leading-relaxed flex-grow">
-                  {service.description}
-                </p>
-
-                <ul className="space-y-4 border-t border-white/5 pt-6 mt-auto">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start text-sm text-zinc-300/80">
-                      <Check className="w-4 h-4 text-brand mr-3 mt-0.5 shrink-0" />
-                      <span className="leading-snug">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="w-12 h-12 rounded-2xl bg-lime-300/15 border border-lime-200/20 flex items-center justify-center mb-6">
+                {service.icon ? <service.icon className="w-6 h-6 text-lime-100" /> : null}
               </div>
-            </motion.div>
+
+              <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
+              <p className="text-emerald-100/75 mb-6 leading-relaxed">{service.description}</p>
+
+              <ul className="space-y-3 pt-5 border-t border-white/10">
+                {service.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm text-emerald-50/85">
+                    <Check className="w-4 h-4 mt-0.5 text-lime-200 shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
-  )
+  );
 }
-
-export default Services;

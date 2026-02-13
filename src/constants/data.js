@@ -1,27 +1,145 @@
-import { Zap, Globe, Users, Database , Smartphone, MessageCircle, Cpu } from 'lucide-react'
+import {
+  Bot,
+  Building2,
+  Cpu,
+  Database,
+  Globe,
+  MessageCircle,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Zap,
+} from "lucide-react";
+
+const scrollToSection = (id) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 export const SITE_CONFIG = {
   company: {
-    name: "TechfiLabs",
+    name: "TechFi Labs",
     initials: "TF",
     email: "thetechfilabs@gmail.com",
     phone: "+91 7976111087",
     address: "Jaipur, Rajasthan 302001",
-    logo: "/techfilabs_all_variations_logo.png"
+    logo: "/techfilabs_all_variations_logo.png",
   },
   navigation: {
-    menuItems: ['home', 'services', 'about', 'contact'],
+    menuItems: ["home", "products", "services", "about", "contact"],
     ctaButton: {
-      text: "Get Started",
-      action: () => {
-        const contactSection = document.getElementById('contact')
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth' })
-        }
-      }
-    }
-  }
-}
+      text: "Book a Strategy Call",
+      action: () => scrollToSection("contact"),
+    },
+  },
+};
+
+export const PRODUCTS_DATA = [
+  {
+    slug: "sentinel-society-management",
+    name: "Sentinel Society Management",
+    shortName: "Sentinel",
+    category: "Mobile App",
+    status: "Live",
+    icon: ShieldCheck,
+    theme: "emerald",
+    tagline: "Smart residential security and operations in one app.",
+    summary:
+      "Sentinel helps gated communities manage visitor approvals, staff tracking, complaints, announcements, and emergency workflows from one control center.",
+    description:
+      "Built for modern societies that need secure access, transparent communication, and reliable daily operations. Residents, guards, and admins all work from dedicated flows designed for speed and accountability.",
+    platforms: ["Android"],
+    audience: ["Resident Welfare Associations", "Property Managers", "Security Teams"],
+    highlights: [
+      { label: "Gate entry approval", value: "Under 10 sec" },
+      { label: "Role-specific workflows", value: "3 user types" },
+      { label: "Operations visibility", value: "Real-time" },
+    ],
+    features: [
+      "Visitor and delivery approvals with instant resident notifications",
+      "Guard panel for fast check-in, logs, and incident reporting",
+      "Complaint and maintenance ticket workflows",
+      "Broadcast announcements and emergency alerts",
+      "Daily operations dashboard for admins",
+    ],
+    ctas: {
+      primary: { label: "Book Sentinel Demo", href: "/#contact" },
+      secondary: { label: "Chat on WhatsApp", href: "https://wa.me/917976111087" },
+    },
+    links: {
+      playStore: "https://play.google.com/store/apps",
+    },
+    screenshots: [],
+  },
+  {
+    slug: "opsflow-control-center",
+    name: "OpsFlow Control Center",
+    shortName: "OpsFlow",
+    category: "Web App",
+    status: "Coming Soon",
+    icon: Building2,
+    theme: "lime",
+    tagline: "A single command dashboard for multi-site operations.",
+    summary:
+      "Web-first command console to monitor operations, service SLAs, and incident timelines across locations.",
+    description:
+      "Designed for teams running distributed operations and requiring fast decisions with structured visibility.",
+    platforms: ["Web"],
+    audience: ["Operations Heads", "Enterprise Admin Teams"],
+    highlights: [
+      { label: "KPI feeds", value: "Live" },
+      { label: "Workflows", value: "Configurable" },
+      { label: "Reports", value: "Executive-ready" },
+    ],
+    features: [
+      "Cross-site performance dashboards",
+      "SLA and ticket tracking with escalations",
+      "Custom workflow automation",
+      "Team-level access controls",
+    ],
+    ctas: {
+      primary: { label: "Join Waitlist", href: "/#contact" },
+      secondary: { label: "Talk to Team", href: "https://wa.me/917976111087" },
+    },
+    links: {},
+    screenshots: [],
+  },
+  {
+    slug: "salespilot-ai",
+    name: "SalesPilot AI",
+    shortName: "SalesPilot",
+    category: "AI Tool",
+    status: "In Development",
+    icon: Bot,
+    theme: "teal",
+    tagline: "AI-led lead qualification and follow-up automation.",
+    summary:
+      "An AI assistant layer that qualifies leads, runs follow-ups, and syncs insights into CRM workflows.",
+    description:
+      "Created for growth teams that need higher conversion velocity without increasing manual effort.",
+    platforms: ["Web", "WhatsApp", "Voice"],
+    audience: ["Sales Teams", "Founders", "Inside Sales"],
+    highlights: [
+      { label: "Lead response", value: "24/7" },
+      { label: "CRM sync", value: "Automated" },
+      { label: "Workflows", value: "AI-assisted" },
+    ],
+    features: [
+      "AI lead qualification and routing",
+      "WhatsApp and email follow-ups",
+      "CRM enrichment and activity logging",
+      "Intent scoring and summary dashboards",
+    ],
+    ctas: {
+      primary: { label: "Request Early Access", href: "/#contact" },
+      secondary: { label: "WhatsApp Us", href: "https://wa.me/917976111087" },
+    },
+    links: {},
+    screenshots: [],
+  },
+];
 
 export const SERVICES_DATA = [
   {
@@ -30,154 +148,144 @@ export const SERVICES_DATA = [
     description:
       "End-to-end Salesforce consulting and CRM implementation for startups and growing businesses.",
     features: [
-      "Salesforce CRM Setup",
-      "Custom CRM Development",
-      "Salesforce Lightning Migration",
-      "CRM Customization Services",
+      "Salesforce CRM setup and architecture",
+      "Custom object and automation workflows",
+      "Lightning migration and optimization",
+      "Ongoing admin and growth support",
     ],
   },
   {
     icon: Database,
     title: "Salesforce Data Migration & ETL",
     description:
-      "Accurate and secure Salesforce data migration with ETL, cleansing, mapping, and quality checks.",
+      "Secure migration pipelines with mapping, validation, and post-go-live QA.",
     features: [
-      "Discovery & Data Planning",
-      "Data Cleansing & Deduplication",
-      "Custom Field Mapping & Transformation",
-      "ETL Tool Expertise (Data Loader, DBAmp, MuleSoft, etc.)",
-      "Quality Assurance & Post-Migration Support",
+      "Data discovery and mapping plans",
+      "Cleansing and deduplication",
+      "Transformation and bulk migration",
+      "Post-migration quality checks",
     ],
   },
   {
     icon: Globe,
     title: "Website & Web Application Development",
     description:
-      "Modern, responsive websites and web apps built for performance, scalability, and great UX.",
+      "Performance-focused websites and web apps designed for growth and conversion.",
     features: [
-      "Custom Website & Portal Development",
-      "Headless CMS & Progressive Web Apps",
-      "Legacy Modernisation & Third-Party Integrations",
-      "Performance & Accessibility Optimisation",
-      "UX/UI Design & User Experience",
+      "Custom product websites and portals",
+      "Progressive web apps and integrations",
+      "Modernization of legacy systems",
+      "UX, performance, and accessibility focus",
     ],
   },
   {
     icon: Smartphone,
-    title: "Mobile & Cross‑Platform App Development",
-    description: "Create native iOS and Android apps or cross‑platform solutions with Flutter or React Native. Our end‑to‑end services cover discovery, UI/UX design, secure backend integration, testing, launch and post‑release support. We also build progressive web apps to deliver a native‑like experience on the web.",
+    title: "Mobile App Development",
+    description:
+      "Native and cross-platform mobile products from UX architecture to launch and support.",
     features: [
-      "Native iOS & Android App Development",
-      "Flutter & Cross‑Platform App Development",
-      "Progressive Web Apps (PWAs)",
-      "Full Lifecycle: Design, Development, Testing, Launch, Support",
-      "Scalable Architecture & Integration"
-    ]
+      "Android and iOS app development",
+      "Flutter and React Native builds",
+      "Secure backend and API integrations",
+      "Testing, release, and maintenance",
+    ],
   },
   {
     icon: Cpu,
     title: "AI Agents & Automation",
-    description: "Revolutionize your business operations with custom AI agents designed to automate calls, collect feedback, and handle repetitive tasks intelligently. From AI-powered calling assistants to chat-driven customer engagement systems, we create end-to-end AI workflows that integrate seamlessly with your CRM and business tools to boost efficiency and enhance user experience.",
+    description:
+      "Custom AI agents for lead capture, support, and repetitive workflow automation.",
     features: [
-      "Custom AI Calling & Voice Agents",
-      "Feedback & Lead Collection Automation",
-      "CRM Integration with Salesforce & HubSpot",
-      "Conversational AI & Chatbot Development",
-      "AI Workflow Orchestration using LangChain & n8n"
-    ]
+      "AI voice and chat assistants",
+      "Feedback and lead automation",
+      "Salesforce and HubSpot integrations",
+      "n8n and LangChain orchestration",
+    ],
   },
   {
     icon: MessageCircle,
     title: "WhatsApp Automation Solutions",
-    description: "Transform customer communication with powerful WhatsApp automation tailored for your business. We design and build intelligent WhatsApp workflows that automate customer support, lead generation, notifications, and marketing campaigns — all while integrating seamlessly with your existing systems like CRM, databases, and internal tools.",
+    description:
+      "Automated customer journeys for support, marketing, and transactional updates.",
     features: [
-      "WhatsApp Chatbot & Conversational Flows",
-      "Lead Generation & Qualification Automation",
-      "WhatsApp Marketing & Broadcast Campaigns",
-      "Customer Support & Ticket Automation",
-      "CRM & Backend Integration (Salesforce, Google Sheets, APIs)",
-      "Payment, Booking & Notification Automation",
-      "AI-powered WhatsApp Assistants & Smart Replies"
-    ]
-  }
-  
-]
+      "Conversational WhatsApp bots",
+      "Lead qualification journeys",
+      "Campaign and broadcast automation",
+      "Payment and booking workflows",
+    ],
+  },
+];
 
 export const TESTIMONIALS_DATA = [
   {
-    name: "Sarah Johnson",
-    role: "CEO, TechStart Inc.",
-    content: "TechfiLabs transformed our business with their Salesforce automation. Our sales process is now 40% more efficient!",
-    rating: 5
-  },
-  {
-    name: "Michael Chen",
-    role: "CTO, InnovateCorp",
-    content: "Their React development team delivered an exceptional website that perfectly represents our brand and drives conversions.",
-    rating: 5
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Operations Manager, GrowthCo",
-    content: "Professional, reliable, and results-driven. TechfiLabs exceeded our expectations in every way.",
-    rating: 5
-  },
-  {
     name: "Rajesh Kumar",
     role: "Managing Director, Digital Solutions India",
-    content: "TechfiLabs helped us implement Salesforce across our entire organization. Their expertise in Indian business processes made the transition seamless. Our team productivity increased by 60% within 3 months!",
-    rating: 5
+    content:
+      "TechFi Labs implemented Salesforce across our teams and productivity increased significantly within a quarter.",
+    rating: 5,
   },
   {
     name: "Priya Sharma",
-    role: "Founder, E-commerce Startup, Mumbai",
-    content: "As a startup founder, I needed a professional website that could scale with our business. TechfiLabs delivered a stunning React-based platform that perfectly captures our brand essence and has significantly improved our customer engagement.",
-    rating: 5
+    role: "Founder, Mumbai Ecommerce Brand",
+    content:
+      "Their team translated our vision into a product-ready platform with strong design and dependable delivery.",
+    rating: 5,
   },
   {
     name: "Amit Patel",
-    role: "IT Director, Manufacturing Solutions Ltd, Bangalore",
-    content: "We were struggling with manual processes until TechfiLabs automated our entire sales pipeline with Salesforce. The ROI was incredible - we recovered our investment in just 6 months and our sales team is now 3x more productive.",
-    rating: 5
-  }
-]
+    role: "IT Director, Manufacturing Solutions",
+    content:
+      "They automated our sales operations with clean architecture and measurable business impact.",
+    rating: 5,
+  },
+];
 
 export const ABOUT_DATA = {
   stats: [
-    { number: "15+", label: "IT Projects Completed" },
-    { number: "30+", label: "Business Clients" },
-    { number: "10+", label: "Years Experience" },
-    { number: "24/7", label: "IT Support Available" }
+    { number: "25+", label: "Products & IT Projects" },
+    { number: "40+", label: "Business Clients" },
+    { number: "10+", label: "Years of Experience" },
+    { number: "24/7", label: "Support Mindset" },
   ],
   features: [
-    "Expert Salesforce Consultants",
-    "Affordable IT Solutions",
-    "IT Services for Small Businesses",
-    "Salesforce Consultants for Startups"
-  ]
-}
+    "Product-first engineering",
+    "Fast design-to-deployment cycles",
+    "Business-focused technology decisions",
+    "Long-term support and iteration",
+  ],
+};
 
 export const CONTACT_INFO = {
   phone: SITE_CONFIG.company.phone,
   email: SITE_CONFIG.company.email,
-  address: SITE_CONFIG.company.address
-}
+  address: SITE_CONFIG.company.address,
+};
 
 export const FOOTER_DATA = {
   services: [
-    "Salesforce Consulting & Implementation",
-    "Salesforce Data Migration & ETL",
-    "Website & Web App Development",
-    "Mobile App Development",
-    "WhatsApp Automation Solutions"
+    "Salesforce Consulting",
+    "Web & Mobile Product Engineering",
+    "AI Agents & Automation",
+    "WhatsApp Workflows",
   ],
   company: [
-    { name: "About Us", href: "#about" },
-    { name: "Careers", href: "#careers" },
-    { name: "Contact", href: "#contact" }
+    { name: "Products", href: "#products" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "/#contact" },
   ],
   socialLinks: [
     { name: "Instagram", icon: "instagram", href: "#" },
-    { name: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/the-technology-fiction/" }
-  ]
-} 
+    {
+      name: "LinkedIn",
+      icon: "linkedin",
+      href: "https://www.linkedin.com/company/the-technology-fiction/",
+    },
+  ],
+};
+
+export const PRODUCT_PAGE_FALLBACK = {
+  title: "Product not found",
+  description: "We could not find this product. Please check the URL.",
+  cta: { label: "Back to Home", href: "/" },
+  icon: Sparkles,
+};

@@ -1,8 +1,6 @@
-import React from "react";
-import { Instagram, Linkedin, Twitter, Facebook, Globe } from "lucide-react";
+import { Facebook, Globe, Instagram, Linkedin, Twitter } from "lucide-react";
 import { FOOTER_DATA } from "../../constants/data";
 
-// Helper to map string icon names to Lucide components dynamically
 const getIcon = (iconName) => {
   if (!iconName) return Globe;
   const name = iconName.toLowerCase();
@@ -13,105 +11,61 @@ const getIcon = (iconName) => {
   return Globe;
 };
 
-const Footer = ({
-  logo = {
-    text: "TechfiLabs",
-    initials: "TF",
-    logo: "techfilabs_primary_logo.png",
-  },
+export default function Footer({
+  logo = { name: "TechFi Labs", logo: "/techfilabs_primary_logo.png" },
   description =
-  "We help startups and small businesses scale with powerful Salesforce solutions, modern web and mobile applications, and intelligent automation. TechfiLabs is a delivery-focused services unit of The Technology Fiction.",
-  className = "",
-}) => {
+    "TechFi Labs builds and scales digital products across mobile, web, Salesforce, and AI automation workflows.",
+}) {
   return (
-    <footer
-      className={`bg-black pt-24 pb-24 border-t border-white/10 relative overflow-hidden ${className}`}
-    >
-      {/* Background Ambience */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[120px]" />
-      </div>
+    <footer className="bg-[#052e16] pt-20 pb-16 border-t border-lime-200/15 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(132,204,22,0.14),transparent_45%)]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-12 gap-12 mb-20">
-          {/* BRAND COLUMN (Span 5 for more width) */}
+        <div className="grid md:grid-cols-12 gap-10 mb-14">
           <div className="md:col-span-5">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10">
-                {/* Safe check for logo src */}
-                {logo.logo ? (
-                  <img
-                    src={logo.logo}
-                    alt={logo.text}
-                    className="w-full h-full object-cover opacity-90"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-zinc-800" />
-                )}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-11 h-11 rounded-full border border-lime-300/30 bg-white/90 overflow-hidden">
+                <img src={logo.logo} alt={logo.name} className="w-full h-full object-contain" />
               </div>
-              <span className="text-xl font-bold text-white tracking-tight">
-                {logo.text}
-              </span>
+              <span className="text-xl font-bold text-lime-100 tracking-tight">{logo.name}</span>
             </div>
 
-            <p className="text-zinc-500 leading-relaxed mb-8 max-w-sm text-sm">
-              {description}
-            </p>
+            <p className="text-emerald-100/75 max-w-sm mb-6">{description}</p>
 
-            {/* Social Icons - "Ghost" Style */}
             <div className="flex gap-3">
-              {FOOTER_DATA.socialLinks.map((social, index) => {
+              {FOOTER_DATA.socialLinks.map((social) => {
                 const Icon = getIcon(social.icon);
                 return (
                   <a
-                    key={index}
+                    key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-zinc-400 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300"
+                    className="w-10 h-10 rounded-full border border-lime-200/20 bg-white/5 text-lime-100 flex items-center justify-center hover:bg-lime-300 hover:text-emerald-950 transition-colors"
                     aria-label={social.name}
                   >
-                    <Icon size={18} strokeWidth={1.5} />
+                    <Icon className="w-4 h-4" />
                   </a>
                 );
               })}
             </div>
           </div>
 
-          {/* SPACER COLUMN (Span 1) */}
-          <div className="hidden md:block md:col-span-1" />
-
-          {/* SERVICES COLUMN (Span 3) */}
           <div className="md:col-span-3">
-            <h4 className="text-white font-semibold mb-6 tracking-wide">
-              Services
-            </h4>
-            <ul className="space-y-4">
-              {FOOTER_DATA.services.map((service, i) => (
-                <li key={i}>
-                  <a
-                    href="#"
-                    className="text-zinc-500 hover:text-brand transition-colors text-sm block hover:translate-x-1 duration-200"
-                  >
-                    {service}
-                  </a>
-                </li>
+            <h4 className="text-lime-100 font-semibold mb-4">Services</h4>
+            <ul className="space-y-3 text-emerald-100/75 text-sm">
+              {FOOTER_DATA.services.map((service) => (
+                <li key={service}>{service}</li>
               ))}
             </ul>
           </div>
 
-          {/* COMPANY COLUMN (Span 3) */}
-          <div className="md:col-span-3">
-            <h4 className="text-white font-semibold mb-6 tracking-wide">
-              Company
-            </h4>
-            <ul className="space-y-4">
-              {FOOTER_DATA.company.map((item, i) => (
-                <li key={i}>
-                  <a
-                    href={item.href}
-                    className="text-zinc-500 hover:text-brand transition-colors text-sm block hover:translate-x-1 duration-200"
-                  >
+          <div className="md:col-span-4">
+            <h4 className="text-lime-100 font-semibold mb-4">Company</h4>
+            <ul className="space-y-3 text-emerald-100/75 text-sm">
+              {FOOTER_DATA.company.map((item) => (
+                <li key={item.name}>
+                  <a href={item.href} className="hover:text-lime-100 transition-colors">
                     {item.name}
                   </a>
                 </li>
@@ -120,38 +74,18 @@ const Footer = ({
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-3 text-center">
-          <p className="text-zinc-600 text-xs text-center md:text-left">
-            © 2025 TechfiLabs. All rights reserved.
-            <span className="block md:inline md:ml-1">
-              A unit of{" "}
-              <a
-                href="https://thetechnologyfiction.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-zinc-300 underline underline-offset-2"
-              >
-                The Technology Fiction
-              </a>
-            </span>
-          </p>
-
-          <div className="flex items-center gap-6">
-            {/* Updated Privacy Policy Link */}
-            <a
-              href="https://thetechnologyfiction.com/blog/privacy-policy/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-600 hover:text-zinc-400 text-xs transition-colors"
-            >
-              Privacy Policy
-            </a>
-          </div>
+        <div className="pt-8 border-t border-lime-200/10 text-sm text-emerald-100/65 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p>© 2026 TechFi Labs. All rights reserved.</p>
+          <a
+            href="https://thetechnologyfiction.com/blog/privacy-policy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-lime-100 transition-colors"
+          >
+            Privacy Policy
+          </a>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

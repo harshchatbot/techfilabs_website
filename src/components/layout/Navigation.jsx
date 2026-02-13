@@ -1,176 +1,135 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-// these are sections that exist on the homepage (scroll targets)
-const HOME_SECTIONS = new Set(["home", "services", "about", "contact", "testimonials"]);
+const HOME_SECTIONS = new Set(["home", "products", "services", "about", "contact", "testimonials"]);
 
-const Navigation = ({
-  logo = {
-    text: "TechfiLabs",
-    initials: "TF",
-    logo: "techfilabs_primary_logo.png", // not sure where it impacts
-  },
-  menuItems = ["home", "services", "about", "contact"],
-  ctaButton = { text: "Get Started", action: () => {} },
-  className = "",
-}) => {
+export default function Navigation({
+  logo = { name: "TechFi Labs", logo: "/techfilabs_primary_logo.png" },
+  menuItems = ["home", "products", "services", "about", "contact"],
+  ctaButton = { text: "Book a Strategy Call", action: () => {} },
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 1) LOCK BODY SCROLL: Prevent background move when menu open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
   }, [isMenuOpen]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      const yOffset = -80;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
-
-  const goHomeThenScroll = async (sectionId) => {
-    if (location.pathname === "/") {
-      scrollToSection(sectionId);
-      return;
-    }
-    navigate("/");
-    setTimeout(() => {
-      scrollToSection(sectionId);
-    }, 150);
+    if (!element) return;
+    const yOffset = -80;
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
   };
 
   const handleMenuClick = (item) => {
     setIsMenuOpen(false);
+
     if (HOME_SECTIONS.has(item)) {
-      goHomeThenScroll(item);
+      if (item === "home") {
+        if (location.pathname === "/") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        navigate("/");
+        return;
+      }
+
+      if (location.pathname === "/") {
+        scrollToSection(item);
+      } else {
+        navigate("/");
+        setTimeout(() => scrollToSection(item), 150);
+      }
       return;
     }
-    goHomeThenScroll(item);
+
+    navigate(`/${item}`);
   };
 
-  // 2) SCROLL SPY LOGIC (Fixed: Now actually updates active state)
   useEffect(() => {
-    const handleScroll = () => {
-      // Background blur effect
+    const onScroll = () => {
       setScrolled(window.scrollY > 20);
-
-      // Only run scroll spy on the homepage
       if (location.pathname !== "/") return;
 
-      // Find which section is currently in view
-      let current = "";
       for (const section of menuItems) {
         const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // If section top is within the top third of viewport
-          if (rect.top <= 200 && rect.bottom >= 200) {
-            current = section;
-          }
+        if (!element) continue;
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 140 && rect.bottom >= 140) {
+          setActiveSection(section);
+          break;
         }
       }
-      if (current) setActiveSection(current);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [menuItems, location.pathname]);
-
-  // Animations
-  const menuVariants = {
-    closed: { opacity: 0, x: "100%" },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: { type: "spring", stiffness: 300, damping: 30 },
-    },
-  };
-
-  const linkVariants = {
-    closed: { opacity: 0, x: 50 },
-    open: (i) => ({
-      opacity: 1,
-      x: 0,
-      transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" },
-    }),
-  };
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-          scrolled 
-            ? "bg-black/80 backdrop-blur-xl border-white/10 py-3" 
-            : "bg-transparent border-transparent py-4 md:py-6"
-        } ${className}`}
+        className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+          scrolled
+            ? "bg-emerald-950/90 border-lime-300/15 backdrop-blur-xl py-3"
+            : "bg-transparent border-transparent py-5"
+        }`}
       >
-        {/* FIX: Changed px-6 to px-4 for better mobile alignment */}
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex justify-between items-center">
-            {/* LOGO */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3 z-50 relative"
-            >
-              <div
-                className="w-10 h-10 rounded-full overflow-hidden border border-white/10 shadow-lg cursor-pointer"
-                onClick={() => handleMenuClick("home")}
-              >
-                <img
-                  src={logo.logo}
-                  alt={logo.text}
-                  className="w-full h-full object-cover opacity-90 object-contain"
-                  //className="w-full h-full object-contain p-1"
-                />
+        <div className="max-w-7xl mx-auto px-5">
+          <div className="flex items-center justify-between gap-6">
+            <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full border border-lime-300/35 bg-white/90 overflow-hidden">
+                <img src={logo.logo} alt={logo.name} className="w-full h-full object-contain" />
               </div>
-              <span className="text-lg font-bold tracking-tight text-white hidden md:block">
-                {logo.text}
+              <span className="hidden md:block text-base font-semibold tracking-tight text-lime-100">
+                {logo.name}
               </span>
-            </motion.div>
+            </button>
 
-            {/* DESKTOP NAV */}
             <div className="hidden md:flex items-center gap-8">
               {menuItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  className={`text-sm font-medium capitalize tracking-wide transition-colors duration-300 relative ${
-                    activeSection === item ? "text-white" : "text-zinc-500 hover:text-zinc-300"
+                  className={`capitalize text-sm font-semibold tracking-wide transition-colors ${
+                    activeSection === item && location.pathname === "/"
+                      ? "text-lime-100"
+                      : "text-emerald-100/75 hover:text-lime-100"
                   }`}
                 >
                   {item}
-                  {activeSection === item && (
-                    <motion.div
-                      layoutId="activeDot"
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-brand rounded-full"
-                    />
-                  )}
                 </button>
               ))}
 
+              <Link
+                to="/products/sentinel-society-management"
+                className="rounded-full border border-lime-200/35 px-4 py-2 text-sm font-semibold text-lime-100 hover:bg-lime-200/15 transition-colors"
+              >
+                Sentinel
+              </Link>
+
               <button
                 onClick={ctaButton.action}
-                className="group relative px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-all flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-5 py-2.5 text-sm font-bold text-emerald-950 hover:bg-lime-200 transition-colors"
               >
                 {ctaButton.text}
-                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
 
-            {/* MOBILE MENU TOGGLE */}
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden z-50 p-2 text-white hover:bg-white/10 rounded-full transition-colors relative"
+              className="md:hidden rounded-xl p-2 text-lime-100 hover:bg-lime-200/15 transition-colors"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -178,67 +137,49 @@ const Navigation = ({
         </div>
       </nav>
 
-      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            variants={menuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            // FIX: Added overflow-hidden to contain blur effects
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 h-screen overflow-hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", stiffness: 320, damping: 30 }}
+            className="fixed inset-0 z-40 bg-emerald-950/95 backdrop-blur-xl md:hidden pt-24 px-6"
           >
-            {/* Background Blob */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-dark/20 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="flex flex-col gap-6 relative z-10">
-              {menuItems.map((item, i) => (
-                <motion.button
-                  custom={i}
-                  variants={linkVariants}
+            <div className="space-y-4">
+              {menuItems.map((item) => (
+                <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  className={`text-4xl font-bold capitalize text-left flex items-center justify-between group ${
-                    activeSection === item ? "text-white" : "text-zinc-600"
-                  }`}
+                  className="w-full rounded-2xl border border-lime-300/20 px-4 py-4 text-left text-2xl font-semibold capitalize text-lime-100"
                 >
-                  <span>{item}</span>
-                  <ChevronRight
-                    className={`w-8 h-8 transition-opacity ${
-                      activeSection === item ? "opacity-100 text-brand" : "opacity-0 group-hover:opacity-50"
-                    }`}
-                  />
-                </motion.button>
+                  {item}
+                </button>
               ))}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="mt-auto mb-10 border-t border-white/10 pt-8 relative z-10"
-            >
+            <div className="mt-10 space-y-4">
+              <Link
+                to="/products/sentinel-society-management"
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full rounded-2xl border border-lime-300/25 px-5 py-4 text-center font-semibold text-lime-100"
+              >
+                Open Sentinel Product Page
+              </Link>
+
               <button
-                className="w-full py-4 bg-white text-black font-bold text-lg rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
                 onClick={() => {
                   ctaButton.action();
                   setIsMenuOpen(false);
                 }}
+                className="w-full rounded-2xl bg-lime-300 py-4 font-bold text-emerald-950"
               >
                 {ctaButton.text}
-                <ArrowRight className="w-5 h-5" />
               </button>
-
-              <div className="mt-8 text-center">
-                <p className="text-zinc-500 text-sm">© 2024 TechfiLabs</p>
-              </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
-};
-
-export default Navigation;
+}

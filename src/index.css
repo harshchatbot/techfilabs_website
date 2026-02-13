@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
-
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -13,22 +10,26 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
-    @apply bg-black text-zinc-100; /* THE LUXURY BASELINE */
-    font-family: 'Inter', sans-serif;
+    @apply bg-emerald-950 text-white;
+    font-family: "Manrope", sans-serif;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    @apply tracking-tight;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Nunito", sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
-/* Optional: Cinematic Text Utility */
-@layer utilities {
-  .text-gradient-luxury {
-    @apply bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50;
+@layer components {
+  .input-base {
+    @apply w-full rounded-xl border border-white/15 bg-emerald-950/70 px-4 py-3 text-emerald-50 outline-none transition-colors placeholder:text-emerald-200/40 focus:border-lime-300/50;
   }
 }

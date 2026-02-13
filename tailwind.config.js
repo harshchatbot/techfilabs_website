@@ -1,34 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        bg: '#000000',          // Pure black (luxury base)
-        surface: '#121212',     // Elevated sections
-        text: '#ffffff',
-
-        // TechfiLabs Brand System
+        bg: "#052e16",
+        surface: "#064e3b",
+        text: "#ecfdf5",
         brand: {
-          DEFAULT: '#4887BC',   // Logo blue
-          dark: '#2F5F8A',
-          light: '#7FB0DD',
+          DEFAULT: "#bef264",
+          dark: "#84cc16",
+          light: "#d9f99d",
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Satoshi', 'sans-serif'],
+        sans: ["Manrope", "sans-serif"],
+        display: ["Nunito", "sans-serif"],
       },
       letterSpacing: {
-        tighter: '-0.05em',
-        tight: '-0.025em',
+        tighter: "-0.05em",
+        tight: "-0.025em",
       },
       backgroundImage: {
-        'hero-glow':
-          'radial-gradient(circle at 50% 50%, rgba(72, 135, 188, 0.18) 0%, rgba(0, 0, 0, 0) 55%)',
+        "hero-glow":
+          "radial-gradient(circle at 50% 50%, rgba(190, 242, 100, 0.24) 0%, rgba(0, 0, 0, 0) 55%)",
       },
     },
   },
