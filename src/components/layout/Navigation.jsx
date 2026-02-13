@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const HOME_SECTIONS = new Set(["home", "products", "services", "about", "contact", "testimonials"]);
 
 export default function Navigation({
-  logo = { name: "TechFi Labs", logo: "/techfilabs_primary_logo.png" },
+  logo = { name: "TechFi Labs", logo: "/techfilabs_logo_2026.png" },
   menuItems = ["home", "products", "services", "about", "contact"],
   ctaButton = { text: "Book a Strategy Call", action: () => {} },
   themeVariant = "green",
@@ -134,8 +134,8 @@ export default function Navigation({
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex items-center justify-between gap-6">
             <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-full border overflow-hidden ${navTheme.logoWrap}`}>
-                <img src={logo.logo} alt={logo.name} className="w-full h-full object-contain" />
+              <div className={`w-12 h-12 rounded-full border overflow-hidden ${navTheme.logoWrap}`}>
+                <img src={logo.logo} alt={logo.name} className="w-full h-full object-cover scale-[1.18]" />
               </div>
               <span className={`hidden md:block text-base font-semibold tracking-tight ${navTheme.logoText}`}>
                 {logo.name}

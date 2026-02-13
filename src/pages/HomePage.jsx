@@ -35,7 +35,7 @@ export default function HomePage() {
     "@type": "LocalBusiness",
     name: "TechFi Labs",
     url: "https://techfilabs.com/",
-    image: "https://techfilabs.com/techfilabs_cropped_icononly_logo.png",
+    image: "https://techfilabs.com/techfilabs_logo_2026.png",
     telephone: "+91 7976111087",
     email: "thetechfilabs@gmail.com",
     address: {

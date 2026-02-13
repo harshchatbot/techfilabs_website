@@ -12,7 +12,7 @@ const getIcon = (iconName) => {
 };
 
 export default function Footer({
-  logo = { name: "TechFi Labs", logo: "/techfilabs_primary_logo.png" },
+  logo = { name: "TechFi Labs", logo: "/techfilabs_logo_2026.png" },
   description =
     "TechFi Labs builds and scales digital products across mobile, web, Salesforce, and AI automation workflows.",
   themeVariant = "green",
@@ -52,8 +52,8 @@ export default function Footer({
         <div className="grid md:grid-cols-12 gap-10 mb-14">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3 mb-5">
-              <div className={`w-11 h-11 rounded-full border overflow-hidden ${footerTheme.logoWrap}`}>
-                <img src={logo.logo} alt={logo.name} className="w-full h-full object-contain" />
+              <div className={`w-14 h-14 rounded-full border overflow-hidden ${footerTheme.logoWrap}`}>
+                <img src={logo.logo} alt={logo.name} className="w-full h-full object-cover scale-[1.18]" />
               </div>
               <span className={`text-xl font-bold tracking-tight ${footerTheme.logoText}`}>{logo.name}</span>
             </div>

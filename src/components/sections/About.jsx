@@ -49,7 +49,7 @@ export default function About({
         >
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20 bg-white/90">
-              <img src={logo?.logo} alt={logo?.name || "TechFi Labs"} className="w-full h-full object-contain" />
+              <img src={logo?.logo} alt={logo?.name || "TechFi Labs"} className="w-full h-full object-cover scale-[1.18]" />
             </div>
             <div>
               <p className="text-white font-semibold">TechFi Labs Build System</p>
