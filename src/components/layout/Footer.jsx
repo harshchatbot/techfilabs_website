@@ -103,7 +103,7 @@ export default function Footer({
         </div>
 
         <div className={`pt-8 border-t text-sm flex flex-col md:flex-row items-center justify-between gap-4 ${footerTheme.bottomBar}`}>
-          <p>© 2026 TechFi Labs. All rights reserved.</p>
+          <p>© 2025 TechFi Labs. All rights reserved.</p>
           <a
             href="https://thetechnologyfiction.com/blog/privacy-policy/"
             target="_blank"
