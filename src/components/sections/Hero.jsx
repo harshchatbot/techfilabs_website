@@ -112,17 +112,17 @@ export default function Hero({
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -5, scale: 0.96 }}
                   transition={{ duration: 0.45 }}
-                  className="absolute -top-20 left-1/2 -translate-x-1/2 z-20 w-[92vw] max-w-[430px]"
+                  className="z-20 w-full max-w-[360px] mx-auto mb-3 md:mb-0 md:absolute md:top-2 md:left-1/2 md:-translate-x-1/2 md:w-[min(92vw,380px)]"
                 >
                   <div className="relative rounded-2xl bg-lime-100 text-emerald-950 px-4 py-3 text-xs md:text-sm font-bold shadow-xl leading-relaxed">
                     {typedText}
                     <span className="ml-0.5 inline-block w-1.5 h-4 bg-emerald-950/80 align-[-2px] animate-pulse" />
-                    <span className="absolute left-1/2 -translate-x-1/2 top-full border-x-8 border-x-transparent border-t-8 border-t-lime-100" />
+                    <span className="hidden md:block absolute left-1/2 -translate-x-1/2 top-full border-x-8 border-x-transparent border-t-8 border-t-lime-100" />
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-            <Mascot size="md" className="mx-auto mb-4" />
+            <Mascot size="md" className="mx-auto mb-4 md:mt-16" />
             <p className="text-center text-lime-100/90 text-sm font-semibold">Meet Mr. Green, our product mascot.</p>
           </div>
         </motion.div>

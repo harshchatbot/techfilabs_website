@@ -44,7 +44,7 @@ export const PRODUCTS_DATA = [
     category: "Mobile App",
     status: "Live",
     icon: ShieldCheck,
-    theme: "emerald",
+    theme: "sentinel",
     tagline: "Smart residential security and operations in one app.",
     summary:
       "Sentinel helps gated communities manage visitor approvals, staff tracking, complaints, announcements, and emergency workflows from one control center.",
@@ -71,7 +71,20 @@ export const PRODUCTS_DATA = [
     links: {
       playStore: "https://play.google.com/store/apps",
     },
-    screenshots: [],
+    screenshots: [
+      "/products/sentinel/sentinel1.jpg",
+      "/products/sentinel/sentinel2.jpg",
+      "/products/sentinel/sentinel3.jpg",
+      "/products/sentinel/sentinel4.jpg",
+      "/products/sentinel/sentinel5.jpg",
+      "/products/sentinel/sentinel6.jpg",
+      "/products/sentinel/sentinel7.jpg",
+      "/products/sentinel/sentinel8.jpg",
+      "/products/sentinel/sentinel9.jpg",
+      "/products/sentinel/sentinel10.jpg",
+      "/products/sentinel/sentinel11.jpg",
+      "/products/sentinel/sentinel12.jpg",
+    ],
   },
   {
     slug: "opsflow-control-center",

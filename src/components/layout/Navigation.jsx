@@ -9,6 +9,7 @@ export default function Navigation({
   logo = { name: "TechFi Labs", logo: "/techfilabs_primary_logo.png" },
   menuItems = ["home", "products", "services", "about", "contact"],
   ctaButton = { text: "Book a Strategy Call", action: () => {} },
+  themeVariant = "green",
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -54,6 +55,20 @@ export default function Navigation({
     navigate(`/${item}`);
   };
 
+  const handleCtaClick = () => {
+    setIsMenuOpen(false);
+
+    if (location.pathname === "/") {
+      if (typeof ctaButton.action === "function") {
+        ctaButton.action();
+      }
+      return;
+    }
+
+    navigate("/");
+    setTimeout(() => scrollToSection("contact"), 180);
+  };
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -75,22 +90,51 @@ export default function Navigation({
     return () => window.removeEventListener("scroll", onScroll);
   }, [menuItems, location.pathname]);
 
+  const navTheme =
+    themeVariant === "sentinel"
+      ? {
+          navScrolled: "bg-[#3d2a1f]/90 border-[#d7c8ae]/30 backdrop-blur-xl py-3",
+          logoWrap: "border-[#e6d8c1]/60 bg-[#f8f3e8]",
+          logoText: "text-[#f3ead9]",
+          menuActive: "text-[#f3ead9]",
+          menuIdle: "text-[#d7c8ae]/90 hover:text-[#fff6e8]",
+          sentinelButton: "border-[#e6d8c1]/45 text-[#f3ead9] hover:bg-[#f3ead9]/10",
+          ctaButton: "bg-[#f3ead9] text-[#3d2a1f] hover:bg-[#fff6e8]",
+          mobileToggle: "text-[#f3ead9] hover:bg-[#f3ead9]/15",
+          mobilePanel: "bg-[#3d2a1f]/95 backdrop-blur-xl",
+          mobileMenuItem: "border-[#d7c8ae]/25 text-[#f3ead9]",
+          mobileSentinel: "border-[#d7c8ae]/35 text-[#f3ead9]",
+          mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
+        }
+      : {
+          navScrolled: "bg-emerald-950/90 border-lime-300/15 backdrop-blur-xl py-3",
+          logoWrap: "border-lime-300/35 bg-white/90",
+          logoText: "text-lime-100",
+          menuActive: "text-lime-100",
+          menuIdle: "text-emerald-100/75 hover:text-lime-100",
+          sentinelButton: "border-lime-200/35 text-lime-100 hover:bg-lime-200/15",
+          ctaButton: "bg-lime-300 text-emerald-950 hover:bg-lime-200",
+          mobileToggle: "text-lime-100 hover:bg-lime-200/15",
+          mobilePanel: "bg-emerald-950/95 backdrop-blur-xl",
+          mobileMenuItem: "border-lime-300/20 text-lime-100",
+          mobileSentinel: "border-lime-300/25 text-lime-100",
+          mobileCta: "bg-lime-300 text-emerald-950",
+        };
+
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-          scrolled
-            ? "bg-emerald-950/90 border-lime-300/15 backdrop-blur-xl py-3"
-            : "bg-transparent border-transparent py-5"
+          scrolled ? navTheme.navScrolled : "bg-transparent border-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex items-center justify-between gap-6">
             <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-lime-300/35 bg-white/90 overflow-hidden">
+              <div className={`w-10 h-10 rounded-full border overflow-hidden ${navTheme.logoWrap}`}>
                 <img src={logo.logo} alt={logo.name} className="w-full h-full object-contain" />
               </div>
-              <span className="hidden md:block text-base font-semibold tracking-tight text-lime-100">
+              <span className={`hidden md:block text-base font-semibold tracking-tight ${navTheme.logoText}`}>
                 {logo.name}
               </span>
             </button>
@@ -102,8 +146,8 @@ export default function Navigation({
                   onClick={() => handleMenuClick(item)}
                   className={`capitalize text-sm font-semibold tracking-wide transition-colors ${
                     activeSection === item && location.pathname === "/"
-                      ? "text-lime-100"
-                      : "text-emerald-100/75 hover:text-lime-100"
+                      ? navTheme.menuActive
+                      : navTheme.menuIdle
                   }`}
                 >
                   {item}
@@ -112,14 +156,14 @@ export default function Navigation({
 
               <Link
                 to="/products/sentinel-society-management"
-                className="rounded-full border border-lime-200/35 px-4 py-2 text-sm font-semibold text-lime-100 hover:bg-lime-200/15 transition-colors"
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${navTheme.sentinelButton}`}
               >
                 Sentinel
               </Link>
 
               <button
-                onClick={ctaButton.action}
-                className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-5 py-2.5 text-sm font-bold text-emerald-950 hover:bg-lime-200 transition-colors"
+                onClick={handleCtaClick}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${navTheme.ctaButton}`}
               >
                 {ctaButton.text}
                 <ArrowRight className="w-4 h-4" />
@@ -127,7 +171,7 @@ export default function Navigation({
             </div>
 
             <button
-              className="md:hidden rounded-xl p-2 text-lime-100 hover:bg-lime-200/15 transition-colors"
+              className={`md:hidden rounded-xl p-2 transition-colors ${navTheme.mobileToggle}`}
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label="Toggle menu"
             >
@@ -144,14 +188,14 @@ export default function Navigation({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className="fixed inset-0 z-40 bg-emerald-950/95 backdrop-blur-xl md:hidden pt-24 px-6"
+            className={`fixed inset-0 z-40 md:hidden pt-24 px-6 ${navTheme.mobilePanel}`}
           >
             <div className="space-y-4">
               {menuItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  className="w-full rounded-2xl border border-lime-300/20 px-4 py-4 text-left text-2xl font-semibold capitalize text-lime-100"
+                  className={`w-full rounded-2xl border px-4 py-4 text-left text-2xl font-semibold capitalize ${navTheme.mobileMenuItem}`}
                 >
                   {item}
                 </button>
@@ -162,17 +206,16 @@ export default function Navigation({
               <Link
                 to="/products/sentinel-society-management"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full rounded-2xl border border-lime-300/25 px-5 py-4 text-center font-semibold text-lime-100"
+                className={`block w-full rounded-2xl border px-5 py-4 text-center font-semibold ${navTheme.mobileSentinel}`}
               >
                 Open Sentinel Product Page
               </Link>
 
               <button
                 onClick={() => {
-                  ctaButton.action();
-                  setIsMenuOpen(false);
+                  handleCtaClick();
                 }}
-                className="w-full rounded-2xl bg-lime-300 py-4 font-bold text-emerald-950"
+                className={`w-full rounded-2xl py-4 font-bold ${navTheme.mobileCta}`}
               >
                 {ctaButton.text}
               </button>

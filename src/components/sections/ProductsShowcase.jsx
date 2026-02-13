@@ -81,10 +81,16 @@ export default function ProductsShowcase({ products = [] }) {
                     href={product.links.playStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-3 py-2 text-xs font-semibold text-white hover:bg-white/10 transition-colors"
                   >
-                    Play Store
-                    <ExternalLink className="w-4 h-4" />
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
+                      <path fill="#34A853" d="M3 3l10.5 9L3 21z" />
+                      <path fill="#4285F4" d="M13.5 12L17 8.5 21 12l-4 3.5z" />
+                      <path fill="#FBBC05" d="M3 3l14 5.5L13.5 12z" />
+                      <path fill="#EA4335" d="M3 21l14-5.5L13.5 12z" />
+                    </svg>
+                    Get it on Google Play
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}
               </div>

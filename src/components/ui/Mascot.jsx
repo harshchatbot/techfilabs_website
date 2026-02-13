@@ -82,18 +82,18 @@ export default function Mascot({ className = "", size = "md" }) {
       />
 
       <motion.div
-        className="absolute top-[34%] left-[28%] w-6 h-6 rounded-full bg-white flex items-center justify-center"
+        className="absolute top-[32%] left-[24%] w-8 h-8 rounded-full bg-white flex items-center justify-center"
         animate={eyeControls}
         style={{ transformOrigin: "center center" }}
       >
-        <div className="w-2.5 h-2.5 rounded-full bg-zinc-900" />
+        <div className="w-3.5 h-3.5 rounded-full bg-zinc-900" />
       </motion.div>
       <motion.div
-        className="absolute top-[34%] right-[28%] w-6 h-6 rounded-full bg-white flex items-center justify-center"
+        className="absolute top-[32%] right-[24%] w-8 h-8 rounded-full bg-white flex items-center justify-center"
         animate={eyeControls}
         style={{ transformOrigin: "center center" }}
       >
-        <div className="w-2.5 h-2.5 rounded-full bg-zinc-900" />
+        <div className="w-3.5 h-3.5 rounded-full bg-zinc-900" />
       </motion.div>
 
       <div className="absolute bottom-[28%] left-1/2 -translate-x-1/2 w-16 h-8 border-b-[5px] border-zinc-900 rounded-b-full" />
