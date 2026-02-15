@@ -1,10 +1,15 @@
 # Enable URL rewriting
 RewriteEngine On
+RewriteBase /
 
-# Handle React Router for subdomain
+# Canonical host: force non-www
+RewriteCond %{HTTP_HOST} ^www\.techfilabs\.com$ [NC]
+RewriteRule ^(.*)$ https://techfilabs.com/$1 [L,R=301]
+
+# Handle React Router deep links
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.html [L]
+RewriteRule ^ index.html [L]
 
 # Force HTTPS (optional - uncomment if you have SSL)
 # RewriteCond %{HTTPS} off
