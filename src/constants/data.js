@@ -519,6 +519,11 @@ export const FOOTER_DATA = {
   socialLinks: [
     { name: "Instagram", icon: "instagram", href: "#" },
     {
+      name: "Facebook",
+      icon: "facebook",
+      href: "https://www.facebook.com/thetechnologyfiction/",
+    },
+    {
       name: "LinkedIn",
       icon: "linkedin",
       href: "https://www.linkedin.com/company/the-technology-fiction/",
