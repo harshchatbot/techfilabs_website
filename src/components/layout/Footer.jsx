@@ -103,7 +103,21 @@ export default function Footer({
         </div>
 
         <div className={`pt-8 border-t text-sm flex flex-col md:flex-row items-center justify-between gap-4 ${footerTheme.bottomBar}`}>
-          <p>© 2025 TechFi Labs. All rights reserved.</p>
+          <p>
+            © 2025 TechFi Labs. All rights reserved.
+            <span className="block md:inline md:ml-1">
+              A unit of{" "}
+              <a
+                href="https://thetechnologyfiction.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`font-semibold transition-colors ${footerTheme.linkHover}`}
+              >
+                The Technology Fiction
+              </a>
+              .
+            </span>
+          </p>
           <a
             href="https://thetechnologyfiction.com/blog/privacy-policy/"
             target="_blank"

@@ -115,12 +115,6 @@ export default function Hero({
               {primaryButton.text}
               <ArrowRight className="w-4 h-4" />
             </button>
-            <a
-              href="/products/sentinel-society-management"
-              className="inline-flex items-center gap-2 rounded-full border border-lime-100/35 px-7 py-3.5 text-base font-semibold text-lime-100 hover:bg-lime-100/10 transition-colors"
-            >
-              View Sentinel
-            </a>
           </motion.div>
         </div>
 

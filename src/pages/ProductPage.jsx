@@ -173,6 +173,37 @@ export default function ProductPage() {
                     </span>
                   </a>
                 )}
+                {product.links?.chromeWebStore && (
+                  <a
+                    href={product.links.chromeWebStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-3 rounded-xl border px-4 py-2.5 transition-colors ${theme.ctaSecondary}`}
+                    aria-label={`Add ${product.name} to Chrome`}
+                  >
+                    <span className="inline-flex w-8 h-8 items-center justify-center rounded-md bg-white/10">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
+                        <path
+                          fill="#EA4335"
+                          d="M12 12L5.2 12.1A6.95 6.95 0 0 1 12 2a6.94 6.94 0 0 1 6.08 3.55H12z"
+                        />
+                        <path
+                          fill="#34A853"
+                          d="M12 12l3.4 5.9A7 7 0 0 1 2.92 12h9.08z"
+                        />
+                        <path
+                          fill="#FBBC05"
+                          d="M12 12h6.08A7 7 0 0 1 15.4 17.9L12 12z"
+                        />
+                        <circle cx="12" cy="12" r="3.2" fill="#4285F4" />
+                      </svg>
+                    </span>
+                    <span className="leading-tight text-left">
+                      <span className="block text-[10px] uppercase tracking-[0.16em] opacity-80">Available on</span>
+                      <span className="block text-sm font-bold">Chrome Web Store</span>
+                    </span>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -200,7 +231,7 @@ export default function ProductPage() {
                     <div>
                       <Mascot size="md" className="mx-auto mb-5" />
                       <p className={`text-sm max-w-xs mx-auto ${theme.subtitle}`}>
-                        Add Sentinel screenshots or demo video links here to enrich the product page.
+                        Add product screenshots or demo video links here to enrich this page.
                       </p>
                     </div>
                   </div>

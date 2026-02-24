@@ -164,6 +164,15 @@ export default function Navigation({
                 Sentinel
               </Link>
 
+              <a
+                href="https://thetechnologyfiction.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-bold transition-colors ${navTheme.menuIdle}`}
+              >
+                The Technology Fiction
+              </a>
+
               <button
                 onClick={handleCtaClick}
                 className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${navTheme.ctaButton}`}
@@ -213,6 +222,16 @@ export default function Navigation({
               >
                 Open Sentinel Product Page
               </Link>
+
+              <a
+                href="https://thetechnologyfiction.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block w-full rounded-2xl border px-5 py-4 text-center font-bold ${navTheme.mobileSentinel}`}
+              >
+                The Technology Fiction
+              </a>
 
               <button
                 onClick={() => {

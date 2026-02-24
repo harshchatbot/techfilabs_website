@@ -30,7 +30,7 @@ export default function ProductsShowcase({ products = [] }) {
             Products designed to create real business impact.
           </h2>
           <p className="text-lg text-emerald-100/80">
-            Sentinel is live. Every product here is built to solve a clear business problem and improve outcomes.
+            Sentinel and FieldLens are live. Every product here is built to solve a clear business problem and improve outcomes.
           </p>
         </motion.div>
 
@@ -95,6 +95,33 @@ export default function ProductsShowcase({ products = [] }) {
                       <path fill="#EA4335" d="M3 21l14-5.5L13.5 12z" />
                     </svg>
                     Get it on Google Play
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+
+                {product.links?.chromeWebStore && (
+                  <a
+                    href={product.links.chromeWebStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-3 py-2 text-xs font-semibold text-white hover:bg-white/10 transition-colors"
+                  >
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
+                      <path
+                        fill="#EA4335"
+                        d="M12 12L5.2 12.1A6.95 6.95 0 0 1 12 2a6.94 6.94 0 0 1 6.08 3.55H12z"
+                      />
+                      <path
+                        fill="#34A853"
+                        d="M12 12l3.4 5.9A7 7 0 0 1 2.92 12h9.08z"
+                      />
+                      <path
+                        fill="#FBBC05"
+                        d="M12 12h6.08A7 7 0 0 1 15.4 17.9L12 12z"
+                      />
+                      <circle cx="12" cy="12" r="3.2" fill="#4285F4" />
+                    </svg>
+                    Add to Chrome
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}
