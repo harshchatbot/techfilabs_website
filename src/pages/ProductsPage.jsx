@@ -10,6 +10,7 @@ export default function ProductsPage() {
         description="Explore TechFi Labs products including Sentinel Society Management, FieldLens for Salesforce, and upcoming web and AI platforms."
         canonical="https://techfilabs.com/products"
         type="website"
+        keywords="Tech products, Salesforce Chrome extension, FieldLens for Salesforce, society management app, software products by IT company, Ajmer software company, Rajasthan IT company, India software products"
       />
 
       <Navigation

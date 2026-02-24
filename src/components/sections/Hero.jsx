@@ -9,7 +9,7 @@ function getDeliveryText() {
 }
 
 export default function Hero({
-  subtitle = "We help businesses increase revenue, improve team productivity, and reduce manual operations through product engineering, Salesforce consulting, and AI automation.",
+  subtitle = "We design scalable, compliant systems using Salesforce Platform , build digital products and AI systems that eliminate manual work and improve operational performance , productivity and revenue.",
   primaryButton = { text: "Explore Products", action: () => {} },
 }) {
   const [showGreeting, setShowGreeting] = useState(false);
@@ -90,7 +90,7 @@ export default function Hero({
             transition={{ duration: 0.65, delay: 0.1 }}
             className="text-5xl md:text-7xl xl:text-8xl leading-[0.95] font-black tracking-tight text-white mb-7"
           >
-            We solve growth bottlenecks and deliver measurable business outcomes.
+            We Architect Systems That Drive Operational Excellence.
           </motion.h1>
 
           <motion.p

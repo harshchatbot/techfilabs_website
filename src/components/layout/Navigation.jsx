@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const HOME_SECTIONS = new Set(["home", "products", "services", "about", "contact", "testimonials"]);
+const HOME_SECTIONS = new Set(["home", "products", "services", "case-studies", "about", "contact", "testimonials"]);
 
 export default function Navigation({
   logo = { name: "TechFi Labs", logo: "/techfilabs_logo_2026.png" },
@@ -157,22 +157,6 @@ export default function Navigation({
                 </button>
               ))}
 
-              <Link
-                to="/products/sentinel-society-management"
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${navTheme.sentinelButton}`}
-              >
-                Sentinel
-              </Link>
-
-              <a
-                href="https://thetechnologyfiction.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-sm font-bold transition-colors ${navTheme.menuIdle}`}
-              >
-                The Technology Fiction
-              </a>
-
               <button
                 onClick={handleCtaClick}
                 className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${navTheme.ctaButton}`}
@@ -215,24 +199,6 @@ export default function Navigation({
             </div>
 
             <div className="mt-10 space-y-4">
-              <Link
-                to="/products/sentinel-society-management"
-                onClick={() => setIsMenuOpen(false)}
-                className={`block w-full rounded-2xl border px-5 py-4 text-center font-semibold ${navTheme.mobileSentinel}`}
-              >
-                Open Sentinel Product Page
-              </Link>
-
-              <a
-                href="https://thetechnologyfiction.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                className={`block w-full rounded-2xl border px-5 py-4 text-center font-bold ${navTheme.mobileSentinel}`}
-              >
-                The Technology Fiction
-              </a>
-
               <button
                 onClick={() => {
                   handleCtaClick();

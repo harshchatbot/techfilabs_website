@@ -42,12 +42,24 @@ export default function ServiceLandingPage() {
     serviceType: service.title,
     url: service.canonical,
   };
+  const pageKeywords = [
+    service.title,
+    `${service.title} Ajmer`,
+    `${service.title} Jaipur`,
+    `${service.title} Rajasthan`,
+    `${service.title} India`,
+    "Salesforce consulting company",
+    "IT company",
+    "software development company",
+    "global software services",
+  ].join(", ");
 
   return (
     <div className="min-h-screen bg-emerald-950 text-white">
       <Seo
         title={service.seoTitle}
         description={service.seoDescription}
+        keywords={pageKeywords}
         canonical={service.canonical}
         type="website"
       />

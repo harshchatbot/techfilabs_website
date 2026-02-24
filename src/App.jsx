@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import CaseStudyPage from "./pages/CaseStudyPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:slug" element={<ProductPage />} />
       <Route path="/services/:slug" element={<ServiceLandingPage />} />
+      <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
     </Routes>
   );
 }

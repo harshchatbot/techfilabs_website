@@ -50,6 +50,16 @@ export default function ProductPage() {
     offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
     brand: { "@type": "Organization", name: "TechFi Labs" },
   };
+  const productKeywords = [
+    product.name,
+    product.category,
+    "TechFi Labs products",
+    "software company in Ajmer",
+    "IT company in Rajasthan",
+    "India software development company",
+    "Salesforce tools",
+    "global software products",
+  ].join(", ");
 
   const isSentinelTheme = product.theme === "sentinel";
   const theme = isSentinelTheme
@@ -97,6 +107,7 @@ export default function ProductPage() {
       <Seo
         title={`${product.name} | TechFi Labs`}
         description={product.summary}
+        keywords={productKeywords}
         canonical={`https://techfilabs.com/products/${product.slug}`}
         type="website"
       />

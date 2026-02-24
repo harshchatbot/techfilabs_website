@@ -28,7 +28,7 @@ export const SITE_CONFIG = {
     logo: "/techfilabs_logo_2026.png",
   },
   navigation: {
-    menuItems: ["home", "products", "services", "about", "contact"],
+    menuItems: ["home", "products", "services", "case-studies", "about", "contact"],
     ctaButton: {
       text: "Book a Strategy Call",
       action: () => scrollToSection("contact"),
@@ -530,6 +530,38 @@ export const TESTIMONIALS_DATA = [
   },
 ];
 
+export const CASE_STUDIES_DATA = [
+  {
+    slug: "ctccs-clinical-trial-contact-center-solution",
+    title: "CTCCS – Clinical Trial Contact Center Solution (Salesforce)",
+    industry: "Life Sciences",
+    period: "Jan 2025 - Present",
+    summary:
+      "Enterprise Salesforce solution for clinical trial participant engagement, safety workflows, and compliance operations in an FDA-regulated environment.",
+    outcomes: [
+      "Improved participant-site coordination with lifecycle-based Salesforce architecture",
+      "Reduced safety escalation delays through structured Adverse Event workflows",
+      "Strengthened audit readiness with compliance-focused case tracking and documentation",
+    ],
+    keywords: [
+      "Salesforce Life Sciences implementation",
+      "Clinical trial contact center Salesforce",
+      "FDA compliance Salesforce workflows",
+      "Adverse event intake Salesforce",
+      "Computer system validation IQ OQ PQ",
+    ],
+    technologies: [
+      "Salesforce Cloud",
+      "Apex",
+      "LWC",
+      "Flows",
+      "Gearset",
+      "Azure DevOps",
+      "Agile Delivery",
+    ],
+  },
+];
+
 export const ABOUT_DATA = {
   stats: [
     { number: "25+", label: "Products & IT Projects" },
@@ -560,6 +592,7 @@ export const FOOTER_DATA = {
   ],
   company: [
     { name: "Products", href: "#products" },
+    { name: "Case Studies", href: "#case-studies" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "/#contact" },
   ],

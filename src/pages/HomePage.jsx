@@ -1,5 +1,6 @@
 import {
   About,
+  CaseStudies,
   Contact,
   Footer,
   Hero,
@@ -9,10 +10,11 @@ import {
   Testimonials,
 } from "../components";
 import WhatsAppChatButton from "../components/WhatsAppChatButton";
-import Seo from "../components/Seo";
 import Schema from "../components/Schema";
+import Seo from "../components/Seo";
 import {
   ABOUT_DATA,
+  CASE_STUDIES_DATA,
   CONTACT_INFO,
   FOOTER_DATA,
   PRODUCTS_DATA,
@@ -57,6 +59,7 @@ export default function HomePage() {
         description="TechFi Labs helps businesses increase conversions, improve execution speed, and reduce operational effort through app development, Salesforce consulting, data migration, and AI automation."
         canonical="https://techfilabs.com/"
         type="website"
+        keywords="Salesforce consulting company, Salesforce development company, IT company in Ajmer, software company in Rajasthan, software development company India, Salesforce implementation partner India, AI automation services, mobile app development company, web application development company, global IT services"
       />
       <Schema id="website-schema" data={websiteSchema} />
       <Schema id="local-business-schema" data={localBusinessSchema} />
@@ -83,6 +86,8 @@ export default function HomePage() {
         <ProductsShowcase products={PRODUCTS_DATA} />
 
         <Services services={SERVICES_DATA} />
+
+        <CaseStudies studies={CASE_STUDIES_DATA} />
 
         <About
           logo={SITE_CONFIG.company}

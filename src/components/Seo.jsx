@@ -38,6 +38,7 @@ function upsertLink(rel, href) {
 export default function Seo({ 
   title, 
   description, 
+  keywords,
   canonical, 
   image = "/techfilabs_logo_2026.png", // Default image if none provided
   type = "website" 
@@ -48,6 +49,7 @@ export default function Seo({
 
     // 2. Update Standard SEO
     upsertMeta("description", description);
+    upsertMeta("keywords", keywords);
     upsertLink("canonical", canonical);
 
     // 3. Update Open Graph (Facebook/LinkedIn/WhatsApp)
@@ -63,7 +65,7 @@ export default function Seo({
     upsertMeta("twitter:image", window.location.origin + image);
     upsertMeta("twitter:card", "summary_large_image");
 
-  }, [title, description, canonical, image, type]);
+  }, [title, description, keywords, canonical, image, type]);
 
   return null;
 }
