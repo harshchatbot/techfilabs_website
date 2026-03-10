@@ -60,6 +60,13 @@ export default function ProductPage() {
     "Salesforce tools",
     "global software products",
   ].join(", ");
+  const descriptionParagraphs = product.description
+    .split("\n\n")
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+  const heroTitle = product.heroHeadline || product.name;
+  const heroSubtext = product.heroSubtext || product.tagline;
+  const brandName = product.brandName || product.name;
 
   const isSentinelTheme = product.theme === "sentinel";
   const theme = isSentinelTheme
@@ -81,6 +88,9 @@ export default function ProductPage() {
         shotCard: "border-[#d7c8ae]/30 bg-[#2b1c15]/60",
         featureWrap: "border-[#d7c8ae]/25 bg-[#f3ead9]/5",
         featureCard: "border-[#d7c8ae]/25 bg-[#2b1c15]/45 text-[#f1e4cf]",
+        surfaceCard: "border-[#d7c8ae]/25 bg-[#2b1c15]/45",
+        sectionLabel: "text-[#e7d8be]",
+        muted: "text-[#d9c8ad]",
       }
     : {
         pageBg: "bg-emerald-950 text-white",
@@ -100,6 +110,9 @@ export default function ProductPage() {
         shotCard: "border-white/20 bg-emerald-950/40",
         featureWrap: "border-white/10 bg-emerald-900/30",
         featureCard: "border-white/10 bg-white/5 text-emerald-50/90",
+        surfaceCard: "border-white/10 bg-white/5",
+        sectionLabel: "text-lime-200",
+        muted: "text-emerald-100/75",
       };
 
   return (
@@ -131,10 +144,16 @@ export default function ProductPage() {
 
           <div className="mt-8 grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.tag}`}>{product.category}</p>
-              <h1 className={`text-4xl md:text-6xl font-black tracking-tight mb-4 ${theme.title}`}>{product.name}</h1>
-              <p className={`text-xl mb-3 ${theme.subtitle}`}>{product.tagline}</p>
-              <p className={`leading-relaxed mb-8 ${theme.body}`}>{product.description}</p>
+              <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.tag}`}>{brandName}</p>
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className={`text-xs tracking-[0.2em] uppercase ${theme.tag}`}>{product.category}</span>
+                <span className={`rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${theme.highlightCard} ${theme.highlightValue}`}>
+                  {product.status}
+                </span>
+              </div>
+              <h1 className={`text-4xl md:text-6xl font-black tracking-tight mb-4 ${theme.title}`}>{heroTitle}</h1>
+              <p className={`text-xl mb-4 ${theme.subtitle}`}>{heroSubtext}</p>
+              <p className={`text-base sm:text-lg leading-relaxed mb-8 ${theme.body}`}>{product.summary}</p>
 
               <div className="grid sm:grid-cols-3 gap-4 mb-8">
                 {product.highlights.map((item) => (
@@ -264,6 +283,50 @@ export default function ProductPage() {
         </section>
 
         <section className="max-w-7xl mx-auto px-6 mt-20">
+          <div className="grid lg:grid-cols-[1.35fr_0.65fr] gap-6">
+            <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>
+              <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>Summary</p>
+              <h2 className={`text-3xl font-bold mb-5 ${theme.title}`}>Built for speed, creativity, and scale</h2>
+              {product.intro ? <p className={`text-lg leading-relaxed mb-6 ${theme.subtitle}`}>{product.intro}</p> : null}
+              <div className="space-y-5">
+                {descriptionParagraphs.map((paragraph) => (
+                  <p key={paragraph} className={`leading-relaxed ${theme.body}`}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-6">
+              <div className={`rounded-3xl border p-8 ${theme.surfaceCard}`}>
+                <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>Audience</p>
+                <div className="space-y-3">
+                  {product.audience.map((item) => (
+                    <div key={item} className={`rounded-2xl border px-4 py-3 ${theme.featureCard}`}>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={`rounded-3xl border p-8 ${theme.surfaceCard}`}>
+                <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>Platform Availability</p>
+                <div className="flex flex-wrap gap-3">
+                  {product.platforms.map((platform) => (
+                    <span
+                      key={platform}
+                      className={`rounded-full border px-4 py-2 text-sm font-medium ${theme.featureCard}`}
+                    >
+                      {platform}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-7xl mx-auto px-6 mt-20">
           <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>
             <h2 className="text-3xl font-bold mb-6">Feature Breakdown</h2>
             <div className="grid md:grid-cols-2 gap-4">
@@ -272,6 +335,39 @@ export default function ProductPage() {
                   {feature}
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-7xl mx-auto px-6 mt-20">
+          <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>
+            <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>Get Started</p>
+            <h2 className={`text-3xl font-bold mb-4 ${theme.title}`}>
+              {product.ctaSection?.title || `Take the next step with ${product.name}`}
+            </h2>
+            <p className={`max-w-3xl leading-relaxed mb-8 ${theme.muted}`}>
+              {product.ctaSection?.description ||
+                "See how this product fits into your workflow and start exploring the fastest path to launch."}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={product.ctas.primary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition-colors ${theme.ctaPrimary}`}
+              >
+                {product.ctas.primary.label}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href={product.ctas.secondary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-colors ${theme.ctaSecondary}`}
+              >
+                {product.ctas.secondary.label}
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </section>
