@@ -215,6 +215,17 @@ export default function ProductPage() {
                     </span>
                   </a>
                 )}
+                {product.links?.website && (
+                  <a
+                    href={product.links.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-colors ${theme.ctaSecondary}`}
+                  >
+                    Visit Product Website
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
 

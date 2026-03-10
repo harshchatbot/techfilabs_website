@@ -30,7 +30,7 @@ export default function ProductsShowcase({ products = [] }) {
             Products designed to create real business impact.
           </h2>
           <p className="text-lg text-emerald-100/80">
-            Sentinel and FieldLens are live. Every product here is built to solve a clear business problem and improve outcomes.
+            Explore live and upcoming TechFi Labs products across mobile, SaaS, Salesforce, web, and AI categories.
           </p>
         </motion.div>
 
@@ -122,6 +122,18 @@ export default function ProductsShowcase({ products = [] }) {
                       <circle cx="12" cy="12" r="3.2" fill="#4285F4" />
                     </svg>
                     Add to Chrome
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+
+                {product.links?.website && (
+                  <a
+                    href={product.links.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-3 py-2 text-xs font-semibold text-white hover:bg-white/10 transition-colors"
+                  >
+                    Visit Website
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}

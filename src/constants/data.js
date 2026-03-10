@@ -167,6 +167,52 @@ export const PRODUCTS_DATA = [
     screenshots: [],
   },
   {
+    slug: "rangmanch-ai",
+    name: "RangManch AI",
+    shortName: "RangManch",
+    category: "SaaS Platform",
+    status: "Live",
+    icon: Sparkles,
+    theme: "green",
+    tagline: "Create viral AI videos, cinematic visuals, and influencer content in seconds.",
+    summary:
+      "RangManch AI is an all-in-one AI creator studio that helps creators, marketers, and businesses generate cinematic videos, viral reels, and AI-powered visuals from simple prompts.",
+    description:
+      "RangManch AI is a next-generation AI content creation platform built for the modern creator economy. It helps users generate cinematic AI videos, influencer-style visuals, educational explainers, and viral social media content in seconds. With smart templates, prompt enhancement, and automated rendering workflows, teams can produce high-quality content without traditional editing effort.",
+    platforms: ["Web", "Mobile Web"],
+    audience: [
+      "Content Creators",
+      "Social Media Influencers",
+      "Educators",
+      "Marketers",
+      "Startups",
+      "Businesses",
+    ],
+    highlights: [
+      { label: "AI video generation", value: "Cinematic 9:16 output" },
+      { label: "Smart templates", value: "Viral-ready formats" },
+      { label: "Creator workflow", value: "Script to video pipeline" },
+    ],
+    features: [
+      "AI video generation from text prompts",
+      "AI image generation with cinematic visual styles",
+      "Viral template library for creators",
+      "Infographic and explainer content generation",
+      "AI influencer image creation with character consistency",
+      "Script generation and prompt enhancement",
+      "Asynchronous rendering for faster generation flow",
+      "Dashboard to manage images, videos, and creative projects",
+    ],
+    ctas: {
+      primary: { label: "Try RangManch AI", href: "https://rangmanchai.com" },
+      secondary: { label: "Explore AI Templates", href: "https://rangmanchai.com/templates" },
+    },
+    links: {
+      website: "https://rangmanchai.com",
+    },
+    screenshots: [],
+  },
+  {
     slug: "salespilot-ai",
     name: "SalesPilot AI",
     shortName: "SalesPilot",
