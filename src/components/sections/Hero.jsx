@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import Mascot from "../ui/Mascot";
+import { ABOUT_DATA } from "../../constants/data";
 
 function getDeliveryText() {
   const now = new Date();
@@ -12,56 +12,6 @@ export default function Hero({
   subtitle = "We design scalable, compliant systems using Salesforce Platform , build digital products and AI systems that eliminate manual work and improve operational performance , productivity and revenue.",
   primaryButton = { text: "Explore Products", action: () => {} },
 }) {
-  const [showGreeting, setShowGreeting] = useState(false);
-  const speechScript =
-    "Hi, I am Mr. Green. We focus on outcomes: more conversions, faster execution, and lower operational effort with product, Salesforce, and automation systems.";
-  const [typedText, setTypedText] = useState("");
-  const mascotCardRef = useRef(null);
-  const hasStartedGreetingRef = useRef(false);
-
-  useEffect(() => {
-    const element = mascotCardRef.current;
-    if (!element) return undefined;
-
-    let typingTimer;
-    let hideTimer;
-
-    const startGreeting = () => {
-      if (hasStartedGreetingRef.current) return;
-      hasStartedGreetingRef.current = true;
-      setShowGreeting(true);
-      setTypedText("");
-
-      let index = 0;
-      typingTimer = setInterval(() => {
-        index += 1;
-        setTypedText(speechScript.slice(0, index));
-        if (index >= speechScript.length) {
-          clearInterval(typingTimer);
-        }
-      }, 32);
-
-      hideTimer = setTimeout(() => setShowGreeting(false), 9000);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting) {
-          startGreeting();
-        }
-      },
-      { threshold: 0.45 }
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-      clearInterval(typingTimer);
-      clearTimeout(hideTimer);
-    };
-  }, [speechScript]);
 
   const handleScrollDown = () => {
     const nextSection = document.getElementById("products");
@@ -79,9 +29,9 @@ export default function Hero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center rounded-full border border-lime-300/40 bg-lime-300/10 px-4 py-2 mb-7"
+            className="inline-flex items-center rounded-full border border-emerald-700/60 bg-emerald-900/40 px-4 py-2 mb-7"
           >
-            <span className="text-xs tracking-[0.16em] uppercase text-lime-100">{getDeliveryText()}</span>
+            <span className="text-xs tracking-[0.16em] uppercase text-emerald-100">{getDeliveryText()}</span>
           </motion.div>
 
           <motion.h1
@@ -97,7 +47,7 @@ export default function Hero({
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2 }}
-            className="text-lg md:text-xl text-emerald-50/90 max-w-2xl leading-relaxed mb-10"
+            className="text-lg md:text-xl text-stone-300 max-w-2xl leading-relaxed mb-10"
           >
             {subtitle}
           </motion.p>
@@ -124,27 +74,22 @@ export default function Hero({
           transition={{ duration: 0.7, delay: 0.25 }}
           className="relative lg:justify-self-end"
         >
-          <div ref={mascotCardRef} className="relative rounded-[2rem] border border-lime-300/30 bg-emerald-900/30 p-8 backdrop-blur-md max-w-[420px]">
-            <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-lime-300/20 blur-2xl" />
-            <AnimatePresence>
-              {showGreeting && (
+          <div className="relative rounded-[2rem] border border-white/15 bg-emerald-900/45 p-8 backdrop-blur-md max-w-[420px]">
+            <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-lime-300/10 blur-2xl" />
+            <div className="grid grid-cols-2 gap-4">
+              {ABOUT_DATA.stats.map((stat) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -5, scale: 0.96 }}
-                  transition={{ duration: 0.45 }}
-                  className="z-20 w-full max-w-[360px] mx-auto mb-3 md:mb-0 md:absolute md:top-2 md:left-1/2 md:-translate-x-1/2 md:w-[min(92vw,380px)]"
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="rounded-2xl border border-white/10 bg-emerald-900/35 p-4"
                 >
-                  <div className="relative rounded-2xl bg-lime-100 text-emerald-950 px-4 py-3 text-xs md:text-sm font-bold shadow-xl leading-relaxed">
-                    {typedText}
-                    <span className="ml-0.5 inline-block w-1.5 h-4 bg-emerald-950/80 align-[-2px] animate-pulse" />
-                    <span className="hidden md:block absolute left-1/2 -translate-x-1/2 top-full border-x-8 border-x-transparent border-t-8 border-t-lime-100" />
-                  </div>
+                  <p className="text-2xl md:text-3xl font-medium text-emerald-50">{stat.number}</p>
+                  <p className="text-xs uppercase tracking-[0.15em] text-emerald-100/65 mt-1">{stat.label}</p>
                 </motion.div>
-              )}
-            </AnimatePresence>
-            <Mascot size="md" className="mx-auto mb-4 md:mt-16" />
-            <p className="text-center text-lime-100/90 text-sm font-semibold">Meet Mr. Green, our product mascot.</p>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -154,7 +99,7 @@ export default function Hero({
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.7 }}
         onClick={handleScrollDown}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center text-lime-100/80 hover:text-white"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center text-emerald-100/60 hover:text-white"
       >
         <span className="text-[10px] tracking-[0.2em] uppercase mb-1">Scroll</span>
         <ChevronDown className="w-5 h-5 animate-bounce" />

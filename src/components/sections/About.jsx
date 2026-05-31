@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import CountUpNumber from "../ui/CountUpNumber";
+import { fadeSlideUpVariants, getAnimationConfig, prefersReducedMotion } from "../../utils/motionConfig";
 
 export default function About({
   title = "Why growth-focused teams choose TechFi Labs",
@@ -17,12 +19,13 @@ export default function About({
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-lime-200 mb-4">About us</p>
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">{title}</h2>
-          <p className="text-xl text-lime-100/90 mb-4">{subtitle}</p>
-          <p className="text-emerald-100/75 leading-relaxed mb-8">{description}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-emerald-100 mb-4">About us</p>
+          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-4">{title}</h2>
+          <p className="text-xl text-stone-300 mb-4">{subtitle}</p>
+          <p className="text-stone-300/85 leading-relaxed mb-8">{description}</p>
 
           <div className="space-y-3">
             {features.map((feature, index) => (
@@ -30,11 +33,11 @@ export default function About({
                 key={feature}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.08 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3 text-emerald-50/90"
+                className="flex items-center gap-3 text-stone-300"
               >
-                <CheckCircle2 className="w-5 h-5 text-lime-200" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-200" />
                 <span>{feature}</span>
               </motion.div>
             ))}
@@ -42,10 +45,11 @@ export default function About({
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          variants={getAnimationConfig(fadeSlideUpVariants, { visible: () => ({ opacity: 1, y: 0 }) })}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-9"
+          className="rounded-3xl border border-white/10 bg-emerald-900/35 p-7 md:p-9"
         >
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20 bg-white/90">
@@ -60,7 +64,9 @@ export default function About({
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat) => (
               <div key={stat.label} className="rounded-2xl border border-white/10 bg-emerald-900/35 p-4">
-                <p className="text-2xl md:text-3xl font-black text-lime-100">{stat.number}</p>
+                <p className="text-2xl md:text-3xl font-medium text-emerald-50">
+                  <CountUpNumber value={stat.number} duration={1200} />
+                </p>
                 <p className="text-xs uppercase tracking-[0.15em] text-emerald-100/65 mt-1">{stat.label}</p>
               </div>
             ))}

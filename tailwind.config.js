@@ -11,11 +11,17 @@ export default {
           DEFAULT: "#bef264",
           dark: "#84cc16",
           light: "#d9f99d",
+          muted: "#7c8b5e",
+        },
+        neutral: {
+          warm: "#f5f3ec",
+          light: "#e8e6dd",
+          medium: "#d4d1c8",
         },
       },
       fontFamily: {
         sans: ["Manrope", "sans-serif"],
-        display: ["Nunito", "sans-serif"],
+        display: ["Inter", "sans-serif"],
       },
       letterSpacing: {
         tighter: "-0.05em",

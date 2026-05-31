@@ -36,12 +36,12 @@ export default function Footer({
           glow: "bg-[radial-gradient(circle_at_90%_20%,rgba(132,204,22,0.14),transparent_45%)]",
           logoWrap: "border-lime-300/30 bg-white/90",
           logoText: "text-lime-100",
-          bodyText: "text-emerald-100/75",
+          bodyText: "text-stone-300",
           social: "border-lime-200/20 bg-white/5 text-lime-100 hover:bg-lime-300 hover:text-emerald-950",
-          heading: "text-lime-100",
-          list: "text-emerald-100/75 text-sm",
-          linkHover: "hover:text-lime-100",
-          bottomBar: "border-lime-200/10 text-emerald-100/65",
+          heading: "text-white",
+          list: "text-stone-300 text-sm",
+          linkHover: "hover:text-stone-100",
+          bottomBar: "border-lime-200/10 text-stone-400",
         };
 
   return (

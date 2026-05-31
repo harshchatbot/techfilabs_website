@@ -141,8 +141,8 @@ export default function Contact({
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">{title}</h2>
-          <p className="text-lg text-emerald-100/80 max-w-2xl mx-auto">{subtitle}</p>
+          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-4">{title}</h2>
+          <p className="text-lg text-stone-300 max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-7 items-start">
@@ -160,20 +160,20 @@ export default function Contact({
               { icon: MapPin, label: "Location", value: contactInfo.address, href: "#" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl bg-lime-300/20 text-lime-100 flex items-center justify-center">
+                <div className="w-11 h-11 rounded-xl bg-emerald-900/30 text-emerald-100 flex items-center justify-center">
                   <item.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-emerald-100/70">{item.label}</p>
-                  <p className="text-emerald-50">{item.value}</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-stone-400">{item.label}</p>
+                  <p className="text-stone-300">{item.value}</p>
                 </div>
               </a>
             ))}
 
-            <div className="rounded-2xl border border-lime-300/25 bg-lime-300/10 p-5 mt-2">
-              <p className="text-xs uppercase tracking-[0.16em] text-lime-100 mb-2">Lead Magnet</p>
+            <div className="rounded-2xl border border-emerald-700/40 bg-emerald-900/35 p-5 mt-2">
+              <p className="text-xs uppercase tracking-[0.16em] text-emerald-100 mb-2">Lead Magnet</p>
               <h4 className="text-lg font-bold text-white mb-2">Free Growth Outcome Checklist</h4>
-              <p className="text-sm text-emerald-100/80 mb-4">
+              <p className="text-sm text-stone-300/80 mb-4">
                 Get our practical checklist to identify bottlenecks and improve conversions, process speed, and delivery quality.
               </p>
 
@@ -219,10 +219,10 @@ export default function Contact({
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-white/10 bg-emerald-900/35 p-7"
+            className="rounded-3xl border border-white/10 bg-emerald-900/50 p-7"
           >
             {submitStatus === "success" && (
-              <div className="mb-6 rounded-xl border border-lime-300/30 bg-lime-300/15 p-3 text-lime-100 flex items-center gap-2">
+              <div className="mb-6 rounded-xl border border-emerald-700/40 bg-emerald-900/25 p-3 text-emerald-100 flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5" />
                 Message sent. We will reach out shortly.
               </div>
@@ -358,7 +358,7 @@ export default function Contact({
 function Field({ label, children }) {
   return (
     <label className="block space-y-2">
-      <span className="text-xs uppercase tracking-[0.15em] text-emerald-100/70">{label}</span>
+      <span className="text-xs uppercase tracking-[0.15em] text-stone-400">{label}</span>
       {children}
     </label>
   );
