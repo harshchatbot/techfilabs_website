@@ -62,10 +62,10 @@ export default function HomePage() {
     <div className="min-h-screen bg-emerald-950 text-white">
       <Seo
         title="TechFi Labs | Salesforce Consulting, Delivery & Managed Services"
-        description="TechFi Labs helps businesses with Salesforce consulting, implementation, managed services, production support, staff augmentation, Experience Cloud delivery, and integrations."
+        description="TechFi Labs helps businesses and consulting firms with Salesforce consulting, implementation support, managed services, production support, staff augmentation, Experience Cloud delivery, integrations, and delivery support from India."
         canonical="https://techfilabs.com/"
         type="website"
-        keywords="Salesforce consulting, Salesforce implementation, Salesforce managed services, Salesforce production support, Salesforce staff augmentation, Experience Cloud, Salesforce integrations, Apex LWC Flows, Salesforce support company, TechFi Labs"
+        keywords="Salesforce consulting, Salesforce implementation support, Salesforce managed services, Salesforce production support, Salesforce staff augmentation, offshore Salesforce delivery from India, Experience Cloud, Salesforce integrations, Apex LWC Flows, Salesforce support company, TechFi Labs"
       />
       <Schema id="website-schema" data={websiteSchema} />
       <Schema id="local-business-schema" data={localBusinessSchema} />
@@ -80,9 +80,9 @@ export default function HomePage() {
         <Hero
           eyebrow="Salesforce consulting and delivery"
           headline="Salesforce Consulting, Delivery & Managed Services"
-          subtitle="TechFi Labs helps businesses and consulting partners design, implement, support, and scale Salesforce solutions with expert delivery teams, flexible engagement models, and practical execution."
+          subtitle="TechFi Labs helps businesses and consulting firms with Salesforce implementation support, production support, managed services, staff augmentation, and delivery support from India through expert teams, flexible engagement models, and practical execution."
           primaryButton={{
-            text: "Book a Consultation",
+            text: "Book a Salesforce Consultation",
             action: () => {
               const contactSection = document.getElementById("contact");
               if (contactSection) {
@@ -91,7 +91,7 @@ export default function HomePage() {
             },
           }}
           secondaryButton={{
-            text: "Explore Services",
+            text: "Explore Salesforce Services",
             action: () => {
               const servicesSection = document.getElementById("services");
               if (servicesSection) {
@@ -141,6 +141,7 @@ export default function HomePage() {
         <EngagementModels
           title="From Strategy to Ongoing Support"
           subtitle="We work from discovery through delivery and post-launch support with a practical, execution-first approach."
+          note="TechFi Labs can work as a dedicated Salesforce resource, an extended delivery team, a managed support pod, or a project-based implementation partner."
           models={HOMEPAGE_ENGAGEMENT_MODELS}
         />
 
@@ -156,8 +157,8 @@ export default function HomePage() {
 
         <About
           title="Built for Teams That Need Reliable Salesforce Execution"
-          subtitle="Professional Salesforce consulting and delivery support focused on maintainability, execution quality, and long-term reliability."
-          description="TechFi Labs supports Salesforce implementation work, managed services, production support, staff augmentation, Experience Cloud delivery, and integrations with a practical engineering mindset and business-focused execution."
+          subtitle="Salesforce-specific delivery support focused on clean implementation, stable operations, maintainable customizations, and dependable release execution."
+          description="TechFi Labs supports Salesforce implementation support, managed services, production support, staff augmentation, Experience Cloud delivery, and integrations with a practical engineering approach built around Salesforce delivery quality."
           logo={SITE_CONFIG.company}
           stats={ABOUT_DATA.stats}
           features={ABOUT_DATA.features}
@@ -175,7 +176,7 @@ export default function HomePage() {
             "Salesforce Staff Augmentation",
             "Salesforce Production Support",
             "Salesforce Managed Services",
-            "Salesforce Implementation",
+            "Salesforce Implementation Support",
             "Experience Cloud & Integrations",
           ]}
           projectTypes={[
@@ -189,7 +190,7 @@ export default function HomePage() {
           projectTypeLabel="Engagement Model"
           messageLabel="Support Requirement"
           messagePlaceholder="Tell us about your Salesforce roadmap, support needs, or team extension requirement."
-          submitButtonLabel="Book a Consultation"
+          submitButtonLabel="Discuss Salesforce Support Needs"
           showLeadMagnet={false}
         />
       </main>

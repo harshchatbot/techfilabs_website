@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
   navigation: {
     menuItems: ["home", "products", "services", "case-studies", "about", "contact"],
     ctaButton: {
-      text: "Book a Consultation",
+      text: "Book a Salesforce Consultation",
       action: () => scrollToSection("contact"),
     },
   },
@@ -684,11 +684,11 @@ export const ABOUT_DATA = {
 };
 
 export const HOMEPAGE_TRUST_STRIP = [
+  "Staff Augmentation",
+  "Production Support",
   "Salesforce Consulting",
   "Implementation Support",
   "Managed Services",
-  "Production Support",
-  "Staff Augmentation",
   "Experience Cloud & Integrations",
 ];
 
@@ -706,7 +706,7 @@ export const HOMEPAGE_SERVICES_DATA = [
     icon: Zap,
   },
   {
-    title: "Salesforce Implementation",
+    title: "Salesforce Implementation Support",
     description:
       "Design, customize, integrate, and deploy Salesforce solutions aligned to your business processes and user experience goals.",
     features: [

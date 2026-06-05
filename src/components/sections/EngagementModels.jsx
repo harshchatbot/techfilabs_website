@@ -4,6 +4,7 @@ export default function EngagementModels({
   title = "How we work",
   subtitle = "Choose the engagement model that fits your pipeline, support load, and delivery structure.",
   models = [],
+  note = "",
 }) {
   return (
     <section id="engagement-models" className="py-28 bg-gradient-to-b from-emerald-950 to-emerald-900/85 relative overflow-hidden">
@@ -20,6 +21,7 @@ export default function EngagementModels({
           <p className="text-xs uppercase tracking-[0.22em] text-emerald-100 mb-4">Engagement Models</p>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-4">{title}</h2>
           <p className="text-lg text-stone-300">{subtitle}</p>
+          {note ? <p className="mt-4 text-sm leading-relaxed text-emerald-100/80">{note}</p> : null}
         </motion.div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
