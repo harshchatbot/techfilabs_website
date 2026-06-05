@@ -4,8 +4,8 @@ import { useState } from "react";
 import { fadeSlideUpVariants, hoverLiftVariants, getAnimationConfig, prefersReducedMotion } from "../../utils/motionConfig";
 
 export default function Testimonials({
-  title = "Trusted by scaling teams",
-  subtitle = "Partnerships built on delivery quality and measurable outcomes.",
+  title = "Client & Partner Feedback",
+  subtitle = "Testimonials coming soon. Until then, explore representative delivery experience and engagement models.",
   testimonials = [],
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -27,39 +27,53 @@ export default function Testimonials({
           <p className="text-lg text-stone-300 max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
-          {testimonials.map((testimonial, index) => (
-            <motion.article
-              key={`${testimonial.name}-${index}`}
-              variants={getAnimationConfig(fadeSlideUpVariants, { visible: () => ({ opacity: 1, y: 0 }) })}
-              initial="hidden"
-              whileInView="visible"
-              custom={reduceMotion ? 0 : index * 0.08}
-              viewport={{ once: true, margin: "-60px" }}
-              whileHover={reduceMotion ? {} : { y: -6 }}
-              onMouseEnter={() => !reduceMotion && setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`rounded-3xl border transition-colors duration-300 bg-emerald-900/55 p-7 cursor-pointer ${
-                hoveredIndex === index ? "border-emerald-200/40" : "border-white/10"
-              }`}
-            >
-              <Quote className="w-8 h-8 text-emerald-200/50 mb-4" />
+        {testimonials.length ? (
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {testimonials.map((testimonial, index) => (
+              <motion.article
+                key={`${testimonial.name}-${index}`}
+                variants={getAnimationConfig(fadeSlideUpVariants, { visible: () => ({ opacity: 1, y: 0 }) })}
+                initial="hidden"
+                whileInView="visible"
+                custom={reduceMotion ? 0 : index * 0.08}
+                viewport={{ once: true, margin: "-60px" }}
+                whileHover={reduceMotion ? {} : { y: -6 }}
+                onMouseEnter={() => !reduceMotion && setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`rounded-3xl border transition-colors duration-300 bg-emerald-900/55 p-7 cursor-pointer ${
+                  hoveredIndex === index ? "border-emerald-200/40" : "border-white/10"
+                }`}
+              >
+                <Quote className="w-8 h-8 text-emerald-200/50 mb-4" />
 
-              <div className="flex items-center gap-1 mb-5">
-                {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
-                  <Star key={starIndex} className="w-4 h-4 fill-emerald-200 text-emerald-200" />
-                ))}
-              </div>
+                <div className="flex items-center gap-1 mb-5">
+                  {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
+                    <Star key={starIndex} className="w-4 h-4 fill-emerald-200 text-emerald-200" />
+                  ))}
+                </div>
 
-              <p className="text-stone-300 mb-6 leading-relaxed">"{testimonial.content}"</p>
+                <p className="text-stone-300 mb-6 leading-relaxed">"{testimonial.content}"</p>
 
-              <div className="pt-5 border-t border-white/10">
-                <p className="text-white font-semibold">{testimonial.name}</p>
-                <p className="text-xs uppercase tracking-[0.16em] text-emerald-100/65 mt-1">{testimonial.role}</p>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+                <div className="pt-5 border-t border-white/10">
+                  <p className="text-white font-semibold">{testimonial.name}</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-emerald-100/65 mt-1">{testimonial.role}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto rounded-3xl border border-white/10 bg-emerald-900/55 p-8 text-center"
+          >
+            <p className="text-white text-lg leading-relaxed">
+              Testimonials coming soon. Until then, explore representative delivery experience and engagement models.
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -9,6 +9,7 @@ import {
   Navigation,
   ProductsShowcase,
   Services,
+  Testimonials,
   TrustStrip,
   WhoWeHelp,
 } from "../components";
@@ -24,7 +25,6 @@ import {
   HOMEPAGE_ENGAGEMENT_MODELS,
   HOMEPAGE_SERVICES_DATA,
   HOMEPAGE_TRUST_STRIP,
-  HOMEPAGE_WHO_WE_HELP,
   PRODUCTS_DATA,
   SITE_CONFIG,
 } from "../constants/data";
@@ -62,11 +62,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-emerald-950 text-white">
       <Seo
-        title="TechFi Labs | Offshore Salesforce Delivery Partner from India"
-        description="TechFi Labs helps consulting firms and businesses scale Salesforce delivery through staff augmentation, production support, managed services, and implementation support from India."
+        title="TechFi Labs | Salesforce Consulting, Delivery & Managed Services"
+        description="TechFi Labs helps businesses design, implement, integrate, and support Salesforce solutions through founder-led delivery, experienced Salesforce talent, and flexible managed service models."
         canonical="https://techfilabs.com/"
         type="website"
-        keywords="offshore Salesforce delivery partner, Salesforce staff augmentation India, Salesforce production support, Salesforce managed services India, Salesforce implementation support, Salesforce offshore team, Salesforce consulting firms support, Salesforce developers India, Salesforce support partner, TechFi Labs"
+        keywords="Salesforce consulting company, Salesforce managed services, Salesforce production support, Salesforce implementation support, Salesforce staff augmentation, Salesforce engineering leadership, Salesforce support company India, Experience Cloud development, Apex LWC Flows Integrations, TechFi Labs"
       />
       <Schema id="website-schema" data={websiteSchema} />
       <Schema id="local-business-schema" data={localBusinessSchema} />
@@ -79,11 +79,11 @@ export default function HomePage() {
 
       <main id="main-content">
         <Hero
-          eyebrow="Salesforce delivery from India"
-          headline="Your Offshore Salesforce Delivery Partner"
-          subtitle="TechFi Labs helps consulting firms and businesses scale Salesforce delivery through staff augmentation, production support, managed services, and implementation support from India."
+          eyebrow="Founder-led Salesforce delivery"
+          headline="Salesforce Consulting, Delivery & Managed Services"
+          subtitle="TechFi Labs helps businesses design, implement, integrate, and support Salesforce solutions through founder-led delivery, experienced Salesforce talent, and flexible managed service models."
           primaryButton={{
-            text: "Book a 15-Minute Call",
+            text: "Book a Consultation",
             action: () => {
               const contactSection = document.getElementById("contact");
               if (contactSection) {
@@ -92,7 +92,7 @@ export default function HomePage() {
             },
           }}
           secondaryButton={{
-            text: "View Salesforce Services",
+            text: "Explore Salesforce Services",
             action: () => {
               const servicesSection = document.getElementById("services");
               if (servicesSection) {
@@ -106,32 +106,65 @@ export default function HomePage() {
 
         <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
 
-        <WhoWeHelp items={HOMEPAGE_WHO_WE_HELP} />
-
         <Services
-          title="What we do"
-          subtitle="TechFi Labs focuses on four Salesforce delivery services that help consulting firms and businesses add offshore execution capacity without adding unnecessary complexity."
+          title="Salesforce services we support"
+          subtitle="TechFi Labs provides practical Salesforce consulting and delivery support across implementation, managed services, production support, engineering, and augmentation models."
           services={HOMEPAGE_SERVICES_DATA}
         />
 
-        <EngagementModels models={HOMEPAGE_ENGAGEMENT_MODELS} />
+        <WhoWeHelp
+          title="Who we work with"
+          subtitle="We support consulting firms, business teams, and delivery organizations that need reliable Salesforce execution capacity."
+          items={[
+            {
+              title: "Consulting Firms",
+              description:
+                "Add implementation, engineering, and support bandwidth without stretching internal teams too thin.",
+            },
+            {
+              title: "Business Teams",
+              description:
+                "Get help designing, improving, and supporting Salesforce when the in-house team needs experienced delivery backing.",
+            },
+            {
+              title: "Growth-Stage Companies",
+              description:
+                "Move Salesforce work forward with practical support across build, integration, issue resolution, and ongoing improvements.",
+            },
+            {
+              title: "Offshore-Capacity Seekers",
+              description:
+                "Work with an India-based team for staff augmentation, managed services, or delivery support models that can flex with demand.",
+            },
+          ]}
+        />
+
+        <EngagementModels
+          title="How we work"
+          subtitle="We can engage early as a consulting partner, support implementation delivery, stabilize production, and help you scale ongoing Salesforce execution."
+          models={HOMEPAGE_ENGAGEMENT_MODELS}
+        />
 
         <CapabilitiesGrid capabilities={HOMEPAGE_CAPABILITIES} />
 
         <CaseStudies
-          title="Proof of practical Salesforce delivery experience"
-          subtitle="A real delivery example from compliance-heavy Salesforce work, showing implementation depth, support awareness, and enterprise execution discipline."
+          title="Representative Salesforce Delivery Experience"
+          subtitle="Representative examples of Salesforce delivery exposure across regulated environments, portals, and field operations programs."
+          disclaimer="The following examples represent Salesforce delivery experience led by our founder across enterprise engagements. Client names and confidential details are intentionally omitted."
           studies={CASE_STUDIES_DATA}
+          showLinks={false}
         />
 
         <About
-          title="Why TechFi Labs"
-          subtitle="Salesforce-focused delivery support built for consulting firms and businesses that need dependable offshore execution."
-          description="TechFi Labs is a Salesforce-focused consulting and delivery company from India. We support consulting firms, IT agencies, startups, and businesses with hands-on implementation help, production support, managed services, and staff augmentation. The delivery model is founder-led, technically grounded, cost-effective, and designed for long-term reliability."
+          title="Built for Teams That Need Reliable Salesforce Execution"
+          subtitle="Professional Salesforce consulting and delivery support with clear communication, senior ownership, and long-term maintainability in mind."
+          description="TechFi Labs supports Salesforce implementation work, managed services, production support, and augmentation needs with founder-led delivery experience and hands-on engineering depth."
           logo={SITE_CONFIG.company}
           stats={ABOUT_DATA.stats}
           features={ABOUT_DATA.features}
         />
+
+        <Testimonials testimonials={[]} />
 
         <ProductsShowcase products={innovationProducts} />
 

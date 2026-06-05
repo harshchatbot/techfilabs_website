@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
 import CountUpNumber from "../ui/CountUpNumber";
 import { fadeSlideUpVariants, getAnimationConfig, prefersReducedMotion } from "../../utils/motionConfig";
 
@@ -27,18 +26,17 @@ export default function About({
           <p className="text-xl text-stone-300 mb-4">{subtitle}</p>
           <p className="text-stone-300/85 leading-relaxed mb-8">{description}</p>
 
-          <div className="space-y-3">
+          <div className="grid sm:grid-cols-2 gap-4">
             {features.map((feature, index) => (
               <motion.div
                 key={feature}
-                initial={{ opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3 text-stone-300"
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 text-stone-300 leading-relaxed"
               >
-                <CheckCircle2 className="w-5 h-5 text-emerald-200" />
-                <span>{feature}</span>
+                {feature}
               </motion.div>
             ))}
           </div>

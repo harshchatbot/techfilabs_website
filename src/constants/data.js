@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
   navigation: {
     menuItems: ["home", "products", "services", "case-studies", "about", "contact"],
     ctaButton: {
-      text: "Book a Strategy Call",
+      text: "Book a Consultation",
       action: () => scrollToSection("contact"),
     },
   },
@@ -592,15 +592,21 @@ export const TESTIMONIALS_DATA = [
 export const CASE_STUDIES_DATA = [
   {
     slug: "ctccs-clinical-trial-contact-center-solution",
-    title: "CTCCS – Clinical Trial Contact Center Solution (Salesforce)",
-    industry: "Life Sciences",
-    period: "Jan 2025 - Present",
+    title: "Clinical Trial Contact Center Solution on Salesforce",
+    industry: "Life Sciences / Clinical Trial Operations",
+    period: "Representative Delivery Experience",
     summary:
-      "Enterprise Salesforce solution for clinical trial participant engagement, safety workflows, and compliance operations in an FDA-regulated environment.",
+      "Led the delivery of a Salesforce-based Clinical Trial Contact Center Solution supporting patient-centric operations across pre-trial, active trial, and post-trial phases in an FDA-regulated life sciences environment.",
     outcomes: [
-      "Improved participant-site coordination with lifecycle-based Salesforce architecture",
-      "Reduced safety escalation delays through structured Adverse Event workflows",
-      "Strengthened audit readiness with compliance-focused case tracking and documentation",
+      "Patient Concierge Services",
+      "Virtual Research Coordination Center",
+      "Clinical Trial Hotline",
+      "Adverse Event intake and escalation",
+      "Compliance-driven case management",
+      "Audit trail and SLA monitoring",
+      "Clinical site and participant lifecycle architecture",
+      "Distance-based site matching",
+      "Go-live, hypercare, and optimization",
     ],
     keywords: [
       "Salesforce Life Sciences implementation",
@@ -610,7 +616,7 @@ export const CASE_STUDIES_DATA = [
       "Computer system validation IQ OQ PQ",
     ],
     technologies: [
-      "Salesforce Cloud",
+      "Salesforce CRM",
       "Apex",
       "LWC",
       "Flows",
@@ -619,54 +625,138 @@ export const CASE_STUDIES_DATA = [
       "Agile Delivery",
     ],
   },
+  {
+    slug: "rems-compliance-platform-admin-console-experience-cloud",
+    title: "REMS Compliance Platform with Admin Console & Experience Cloud Portal",
+    industry: "Healthcare / Life Sciences / REMS",
+    period: "Representative Delivery Experience",
+    summary:
+      "Led Salesforce engineering delivery for a configurable REMS platform with admin console, automated enrollment workflows, and a secure Experience Cloud portal for external stakeholders.",
+    outcomes: [
+      "REMS Program Setup",
+      "Program user management",
+      "Program switching",
+      "Experience Cloud portal",
+      "Dynamic UI layout configurations",
+      "Enrollment automation",
+      "Case-to-account mapping",
+      "Duplicate checks",
+      "Document submission workflows",
+    ],
+    keywords: [
+      "Salesforce REMS platform",
+      "Experience Cloud healthcare portal",
+      "Salesforce enrollment automation",
+      "Life sciences compliance workflows",
+      "Metadata driven Salesforce configuration",
+    ],
+    technologies: [
+      "Salesforce CRM",
+      "Experience Cloud",
+      "Apex",
+      "LWC",
+      "Flows",
+      "Metadata-driven configuration",
+    ],
+  },
+  {
+    slug: "salesforce-field-operations-platform-mobile-maps",
+    title: "Salesforce Field Operations Platform with Mobile & Maps",
+    industry: "Field Operations / Survey & Case Management",
+    period: "Representative Delivery Experience",
+    summary:
+      "Led development of a unified Salesforce field operations platform with mobile workflows, offline-ready field execution, supervisor visibility, and map-driven assignment capabilities.",
+    outcomes: [
+      "Salesforce mobile workflows",
+      "Offline-ready execution",
+      "Map-based routing and assignment",
+      "Nearest-interviewer logic",
+      "GPS-tagged attempts",
+      "Geo-audit workflows",
+      "Supervisor dashboards",
+      "Forsta integration",
+    ],
+    keywords: [
+      "Salesforce field operations platform",
+      "Salesforce mobile workflow delivery",
+      "Map based routing Salesforce",
+      "Geo audit Salesforce solution",
+      "Forsta Salesforce integration",
+    ],
+    technologies: [
+      "Salesforce",
+      "Apex",
+      "LWC",
+      "Flows",
+      "Salesforce Mobile",
+      "Google Maps APIs",
+      "Leaflet",
+      "REST APIs",
+      "Forsta",
+    ],
+  },
 ];
 
 export const ABOUT_DATA = {
   stats: [
     { number: "11+", label: "Years in IT Delivery" },
     { number: "6+", label: "Years in Salesforce" },
-    { number: "US", label: "Project Exposure" },
-    { number: "India", label: "Offshore Delivery Base" },
+    { number: "6x", label: "Salesforce Certified" },
+    { number: "US", label: "Delivery Exposure" },
   ],
   features: [
-    "Founder-led Salesforce delivery",
-    "Hands-on experience across implementation, support, and managed services",
-    "Experience supporting US-based Salesforce projects",
-    "Flexible, cost-effective offshore engagement models",
+    "Regular updates, transparent delivery tracking, and practical documentation",
+    "Architecture, code quality, release planning, and production-readiness handled with leadership-level accountability",
+    "We focus on maintainability, supportability, and continuous improvement beyond initial delivery",
+    "Work with us for implementation support, production support, managed services, or Salesforce talent augmentation",
   ],
 };
 
 export const HOMEPAGE_TRUST_STRIP = [
-  "Staff Augmentation",
-  "Production Support",
-  "Managed Services",
-  "Implementation",
-];
-
-export const HOMEPAGE_WHO_WE_HELP = [
-  {
-    title: "Salesforce Consulting Firms",
-    description:
-      "Extend your delivery capacity with offshore Salesforce talent that can plug into projects, support work, and managed service engagements.",
-  },
-  {
-    title: "IT Agencies",
-    description:
-      "Add Salesforce capability without over-hiring internally, and keep project delivery moving with dependable offshore execution support.",
-  },
-  {
-    title: "Startups",
-    description:
-      "Get practical Salesforce implementation and support help when you need structure, speed, and cost-conscious execution.",
-  },
-  {
-    title: "Growing Businesses",
-    description:
-      "Support sales, service, and operations teams with Salesforce customization, enhancements, issue resolution, and ongoing delivery coverage.",
-  },
+  "11+ Years IT Experience",
+  "Salesforce Engineering Leadership",
+  "6x Salesforce Certified",
+  "Healthcare, Life Sciences & Field Operations Experience",
+  "Implementation, Support & Managed Services",
 ];
 
 export const HOMEPAGE_SERVICES_DATA = [
+  {
+    title: "Salesforce Implementation Support",
+    description:
+      "Plan, configure, customize, and integrate Salesforce solutions across core clouds, automation, custom development, and third-party systems.",
+    features: [
+      "Sales Cloud, Service Cloud, and Experience Cloud delivery",
+      "Apex, LWC, Flows, and custom configuration support",
+      "Implementation help for new builds and active projects",
+      "Delivery support from design through release readiness",
+    ],
+    icon: Globe,
+  },
+  {
+    title: "Salesforce Managed Services",
+    description:
+      "Keep Salesforce stable and improving with structured monthly support for admin work, fixes, enhancements, monitoring, and backlog execution.",
+    features: [
+      "Enhancements, bug fixes, and org administration",
+      "Backlog execution with clear prioritization",
+      "Monitoring and ongoing improvement support",
+      "Managed delivery without overbuilding internal capacity",
+    ],
+    icon: Cpu,
+  },
+  {
+    title: "Salesforce Production Support",
+    description:
+      "Get dependable L1/L2/L3 support coverage for incidents, user issues, integration failures, data fixes, and release stabilization.",
+    features: [
+      "Incident triage and issue resolution",
+      "User support and production troubleshooting",
+      "Integration and data issue handling",
+      "Release support and post-deployment care",
+    ],
+    icon: Database,
+  },
   {
     title: "Salesforce Staff Augmentation",
     description:
@@ -680,63 +770,51 @@ export const HOMEPAGE_SERVICES_DATA = [
     icon: Zap,
   },
   {
-    title: "Salesforce Production Support",
+    title: "Experience Cloud & Portals",
     description:
-      "Get dependable L1/L2/L3 Salesforce support for incidents, bugs, user issues, integrations, data fixes, and release support.",
+      "Build secure external experiences for members, partners, program stakeholders, and field teams using Salesforce Experience Cloud.",
     features: [
-      "Incident triage and issue resolution",
-      "User support and production bug fixes",
-      "Integration monitoring and data corrections",
-      "Release support and post-deployment stabilization",
+      "Experience Cloud portals and external user journeys",
+      "Secure access, onboarding, and program workflows",
+      "Metadata-driven UI and process configuration",
+      "Portal support aligned with business operations",
     ],
-    icon: Database,
+    icon: MessageCircle,
   },
   {
-    title: "Salesforce Managed Services",
+    title: "Apex, LWC, Flows & Integrations",
     description:
-      "Keep your Salesforce org running smoothly with monthly support for enhancements, admin tasks, bug fixes, monitoring, and continuous improvements.",
+      "Extend Salesforce with custom engineering for business logic, UI components, workflow automation, APIs, and connected systems.",
     features: [
-      "Monthly enhancement and admin support",
-      "Backlog execution and org maintenance",
-      "Monitoring, bug fixes, and optimization",
-      "Ongoing delivery without building a large internal team",
+      "Custom Apex logic and LWC development",
+      "Flow automation and declarative orchestration",
+      "Third-party integrations and API delivery",
+      "Support for complex Salesforce engineering work",
     ],
-    icon: Cpu,
-  },
-  {
-    title: "Salesforce Implementation Support",
-    description:
-      "Build, customize, and integrate Salesforce solutions across Sales Cloud, Service Cloud, Experience Cloud, automation, Apex, LWC, and third-party systems.",
-    features: [
-      "Salesforce customization and automation",
-      "Apex, LWC, flows, and integration delivery",
-      "Cloud-specific implementation support",
-      "Project-based execution from build to rollout",
-    ],
-    icon: Globe,
+    icon: Smartphone,
   },
 ];
 
 export const HOMEPAGE_ENGAGEMENT_MODELS = [
   {
-    title: "Dedicated Resource",
+    title: "Advise",
     description:
-      "One Salesforce professional working as an extension of your team.",
+      "Review requirements, assess delivery gaps, and define the right Salesforce solution approach before development starts.",
   },
   {
-    title: "Managed Pod",
+    title: "Implement",
     description:
-      "A small offshore team with a technical lead, developer, admin/QA, and support capability.",
+      "Configure, customize, integrate, and build Salesforce solutions with practical delivery oversight and technical ownership.",
   },
   {
-    title: "Monthly Support Retainer",
+    title: "Support",
     description:
-      "Fixed monthly hours for ongoing Salesforce support, enhancements, and maintenance.",
+      "Stabilize production, handle issues, support users, and keep the org healthy with structured managed support.",
   },
   {
-    title: "Project-Based Delivery",
+    title: "Scale",
     description:
-      "Defined-scope Salesforce implementation, customization, integration, or migration work.",
+      "Add experienced Salesforce capacity through augmentation or managed delivery as your needs grow.",
   },
 ];
 

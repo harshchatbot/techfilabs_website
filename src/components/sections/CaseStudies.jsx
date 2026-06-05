@@ -3,9 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function CaseStudies({
-  title = "Case studies with enterprise delivery depth",
-  subtitle = "Proof of Salesforce execution in compliance-heavy and business-critical programs.",
+  title = "Representative Salesforce delivery experience",
+  subtitle = "Examples of Salesforce delivery exposure across compliance-heavy, portal-based, and field operations programs.",
+  disclaimer = "",
   studies = [],
+  showLinks = true,
 }) {
   return (
     <section id="case-studies" className="py-28 bg-emerald-925/60 relative overflow-hidden">
@@ -19,13 +21,18 @@ export default function CaseStudies({
           className="max-w-4xl mb-12"
         >
           <p className="inline-flex items-center rounded-full border border-emerald-700/40 bg-emerald-900/30 px-4 py-1 text-xs tracking-[0.2em] uppercase text-emerald-100 mb-5">
-            Salesforce Case Studies
+            Salesforce Delivery Experience
           </p>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-4">{title}</h2>
           <p className="text-lg text-stone-300">{subtitle}</p>
+          {disclaimer ? (
+            <p className="mt-5 rounded-2xl border border-amber-200/15 bg-white/5 px-5 py-4 text-sm leading-relaxed text-stone-300">
+              {disclaimer}
+            </p>
+          ) : null}
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid lg:grid-cols-3 gap-6">
           {studies.map((study, index) => (
             <motion.article
               key={study.slug}
@@ -51,13 +58,26 @@ export default function CaseStudies({
                 ))}
               </ul>
 
-              <Link
-                to={`/case-studies/${study.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-700/40 px-4 py-2.5 text-sm font-semibold text-emerald-100 hover:bg-emerald-900/30 transition-colors"
-              >
-                Read Case Study
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {study.technologies.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/15 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-emerald-100/85"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              {showLinks ? (
+                <Link
+                  to={`/case-studies/${study.slug}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-700/40 px-4 py-2.5 text-sm font-semibold text-emerald-100 hover:bg-emerald-900/30 transition-colors"
+                >
+                  Read Case Study
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : null}
             </motion.article>
           ))}
         </div>
