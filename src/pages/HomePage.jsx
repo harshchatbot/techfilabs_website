@@ -1,13 +1,16 @@
 import {
   About,
+  CapabilitiesGrid,
   CaseStudies,
   Contact,
+  EngagementModels,
   Footer,
   Hero,
   Navigation,
   ProductsShowcase,
   Services,
-  Testimonials,
+  TrustStrip,
+  WhoWeHelp,
 } from "../components";
 import WhatsAppChatButton from "../components/WhatsAppChatButton";
 import Schema from "../components/Schema";
@@ -17,13 +20,17 @@ import {
   CASE_STUDIES_DATA,
   CONTACT_INFO,
   FOOTER_DATA,
+  HOMEPAGE_CAPABILITIES,
+  HOMEPAGE_ENGAGEMENT_MODELS,
+  HOMEPAGE_SERVICES_DATA,
+  HOMEPAGE_TRUST_STRIP,
+  HOMEPAGE_WHO_WE_HELP,
   PRODUCTS_DATA,
-  SERVICES_DATA,
   SITE_CONFIG,
-  TESTIMONIALS_DATA,
 } from "../constants/data";
 
 export default function HomePage() {
+  const innovationProducts = PRODUCTS_DATA.filter((product) => ["Live", "Beta"].includes(product.status)).slice(0, 3);
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -55,11 +62,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-emerald-950 text-white">
       <Seo
-        title="TechFi Labs | Salesforce Consulting, App Development & AI Automation in Ajmer, Jaipur and Global"
-        description="TechFi Labs helps businesses increase conversions, improve execution speed, and reduce operational effort through app development, Salesforce consulting, data migration, and AI automation."
+        title="TechFi Labs | Offshore Salesforce Delivery Partner from India"
+        description="TechFi Labs helps consulting firms and businesses scale Salesforce delivery through staff augmentation, production support, managed services, and implementation support from India."
         canonical="https://techfilabs.com/"
         type="website"
-        keywords="Salesforce consulting company, Salesforce development company, IT company in Ajmer, software company in Rajasthan, software development company India, Salesforce implementation partner India, AI automation services, mobile app development company, web application development company, global IT services"
+        keywords="offshore Salesforce delivery partner, Salesforce staff augmentation India, Salesforce production support, Salesforce managed services India, Salesforce implementation support, Salesforce offshore team, Salesforce consulting firms support, Salesforce developers India, Salesforce support partner, TechFi Labs"
       />
       <Schema id="website-schema" data={websiteSchema} />
       <Schema id="local-business-schema" data={localBusinessSchema} />
@@ -72,32 +79,86 @@ export default function HomePage() {
 
       <main id="main-content">
         <Hero
+          eyebrow="Salesforce delivery from India"
+          headline="Your Offshore Salesforce Delivery Partner"
+          subtitle="TechFi Labs helps consulting firms and businesses scale Salesforce delivery through staff augmentation, production support, managed services, and implementation support from India."
           primaryButton={{
-            text: "Explore Products",
+            text: "Book a 15-Minute Call",
             action: () => {
-              const productsSection = document.getElementById("products");
-              if (productsSection) {
-                productsSection.scrollIntoView({ behavior: "smooth" });
+              const contactSection = document.getElementById("contact");
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: "smooth" });
               }
             },
           }}
+          secondaryButton={{
+            text: "View Salesforce Services",
+            action: () => {
+              const servicesSection = document.getElementById("services");
+              if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: "smooth" });
+              }
+            },
+          }}
+          stats={ABOUT_DATA.stats}
+          scrollTarget="services"
         />
 
-        <ProductsShowcase products={PRODUCTS_DATA} />
+        <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
 
-        <Services services={SERVICES_DATA} />
+        <WhoWeHelp items={HOMEPAGE_WHO_WE_HELP} />
 
-        <CaseStudies studies={CASE_STUDIES_DATA} />
+        <Services
+          title="What we do"
+          subtitle="TechFi Labs focuses on four Salesforce delivery services that help consulting firms and businesses add offshore execution capacity without adding unnecessary complexity."
+          services={HOMEPAGE_SERVICES_DATA}
+        />
+
+        <EngagementModels models={HOMEPAGE_ENGAGEMENT_MODELS} />
+
+        <CapabilitiesGrid capabilities={HOMEPAGE_CAPABILITIES} />
+
+        <CaseStudies
+          title="Proof of practical Salesforce delivery experience"
+          subtitle="A real delivery example from compliance-heavy Salesforce work, showing implementation depth, support awareness, and enterprise execution discipline."
+          studies={CASE_STUDIES_DATA}
+        />
 
         <About
+          title="Why TechFi Labs"
+          subtitle="Salesforce-focused delivery support built for consulting firms and businesses that need dependable offshore execution."
+          description="TechFi Labs is a Salesforce-focused consulting and delivery company from India. We support consulting firms, IT agencies, startups, and businesses with hands-on implementation help, production support, managed services, and staff augmentation. The delivery model is founder-led, technically grounded, cost-effective, and designed for long-term reliability."
           logo={SITE_CONFIG.company}
           stats={ABOUT_DATA.stats}
           features={ABOUT_DATA.features}
         />
 
-        <Testimonials testimonials={TESTIMONIALS_DATA} />
+        <ProductsShowcase products={innovationProducts} />
 
-        <Contact contactInfo={CONTACT_INFO} products={PRODUCTS_DATA} />
+        <Contact
+          title="Need reliable Salesforce delivery support?"
+          subtitle="Whether you need one Salesforce resource, a managed support pod, or implementation support, TechFi Labs can help you scale with confidence."
+          contactInfo={CONTACT_INFO}
+          products={PRODUCTS_DATA}
+          interestOptions={[
+            "Salesforce Staff Augmentation",
+            "Salesforce Production Support",
+            "Salesforce Managed Services",
+            "Salesforce Implementation Support",
+          ]}
+          projectTypes={[
+            "Dedicated Salesforce Resource",
+            "Managed Salesforce Pod",
+            "Monthly Support Retainer",
+            "Project-Based Implementation",
+          ]}
+          interestLabel="Service Needed"
+          projectTypeLabel="Engagement Model"
+          messageLabel="Support Requirement"
+          messagePlaceholder="Tell us what Salesforce delivery, support, or implementation help you need."
+          submitButtonLabel="Schedule a Quick Call"
+          showLeadMagnet={false}
+        />
       </main>
 
       <Footer

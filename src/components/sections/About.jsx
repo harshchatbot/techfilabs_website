@@ -56,8 +56,8 @@ export default function About({
               <img src={logo?.logo} alt={logo?.name || "TechFi Labs"} className="w-full h-full object-cover scale-[1.18]" />
             </div>
             <div>
-              <p className="text-white font-semibold">TechFi Labs Build System</p>
-              <p className="text-emerald-100/70 text-sm">Strategy, design, delivery, iteration</p>
+              <p className="text-white font-semibold">TechFi Labs Salesforce Delivery</p>
+              <p className="text-emerald-100/70 text-sm">Support, implementation, managed services</p>
             </div>
           </div>
 

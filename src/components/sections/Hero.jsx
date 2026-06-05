@@ -9,12 +9,17 @@ function getDeliveryText() {
 }
 
 export default function Hero({
+  eyebrow = getDeliveryText(),
+  headline = "We Architect Systems That Drive Operational Excellence.",
   subtitle = "We design scalable, compliant systems using Salesforce Platform , build digital products and AI systems that eliminate manual work and improve operational performance , productivity and revenue.",
   primaryButton = { text: "Explore Products", action: () => {} },
+  secondaryButton = null,
+  stats = ABOUT_DATA.stats,
+  scrollTarget = "services",
 }) {
 
   const handleScrollDown = () => {
-    const nextSection = document.getElementById("products");
+    const nextSection = document.getElementById(scrollTarget);
     if (nextSection) nextSection.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -31,7 +36,7 @@ export default function Hero({
             transition={{ duration: 0.6 }}
             className="inline-flex items-center rounded-full border border-emerald-700/60 bg-emerald-900/40 px-4 py-2 mb-7"
           >
-            <span className="text-xs tracking-[0.16em] uppercase text-emerald-100">{getDeliveryText()}</span>
+            <span className="text-xs tracking-[0.16em] uppercase text-emerald-100">{eyebrow}</span>
           </motion.div>
 
           <motion.h1
@@ -40,7 +45,7 @@ export default function Hero({
             transition={{ duration: 0.65, delay: 0.1 }}
             className="text-5xl md:text-7xl xl:text-8xl leading-[0.95] font-black tracking-tight text-white mb-7"
           >
-            We Architect Systems That Drive Operational Excellence.
+            {headline}
           </motion.h1>
 
           <motion.p
@@ -65,6 +70,15 @@ export default function Hero({
               {primaryButton.text}
               <ArrowRight className="w-4 h-4" />
             </button>
+            {secondaryButton ? (
+              <button
+                onClick={secondaryButton.action}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-base font-semibold text-white hover:bg-white/10 transition-colors"
+              >
+                {secondaryButton.text}
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            ) : null}
           </motion.div>
         </div>
 
@@ -77,7 +91,7 @@ export default function Hero({
           <div className="relative rounded-[2rem] border border-white/15 bg-emerald-900/45 p-8 backdrop-blur-md max-w-[420px]">
             <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-lime-300/10 blur-2xl" />
             <div className="grid grid-cols-2 gap-4">
-              {ABOUT_DATA.stats.map((stat) => (
+              {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 8 }}

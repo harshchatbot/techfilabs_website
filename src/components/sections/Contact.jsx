@@ -14,30 +14,44 @@ const initialFormState = {
   email: "",
   phone: "",
   company: "",
-  productInterest: "Sentinel Society Management",
-  projectType: "Product demo",
+  productInterest: "",
+  projectType: "",
   message: "",
   website: "",
 };
 
 export default function Contact({
-  title = "Let’s solve your growth challenge",
-  subtitle = "Tell us your business goal and we will send an outcome-focused execution plan.",
+  title = "Need reliable Salesforce delivery support?",
+  subtitle = "Whether you need one Salesforce resource, a managed support pod, or implementation support, TechFi Labs can help you scale with confidence.",
   contactInfo = {
     phone: "+91 7976111087",
     email: "thetechfilabs@gmail.com",
     address: "Jaipur, Rajasthan 302001",
   },
   products = [],
+  interestOptions = [],
+  projectTypes = [],
+  interestLabel = "Service Needed",
+  projectTypeLabel = "Engagement Type",
+  messageLabel = "Project Brief",
+  messagePlaceholder = "Describe the Salesforce support or delivery help you need.",
+  submitButtonLabel = "Schedule a Quick Call",
+  showLeadMagnet = true,
 }) {
-  const [formData, setFormData] = useState(initialFormState);
+  const resolvedInterestOptions = interestOptions.length ? interestOptions : products.map((product) => product.name);
+  const resolvedProjectTypes = projectTypes.length
+    ? projectTypes
+    : ["Product demo", "New app build", "Web platform", "AI automation", "Salesforce consulting"];
+  const [formData, setFormData] = useState({
+    ...initialFormState,
+    productInterest: resolvedInterestOptions[0] || "",
+    projectType: resolvedProjectTypes[0] || "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [leadMagnetEmail, setLeadMagnetEmail] = useState("");
   const [leadMagnetSubmitting, setLeadMagnetSubmitting] = useState(false);
   const [leadMagnetStatus, setLeadMagnetStatus] = useState(null);
-
-  const productOptions = products.map((product) => product.name);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -54,8 +68,8 @@ export default function Contact({
     const compiledMessage = [
       `Phone: ${formData.phone || "Not provided"}`,
       `Company: ${formData.company || "Not provided"}`,
-      `Product Interest: ${formData.productInterest}`,
-      `Project Type: ${formData.projectType}`,
+      `Service Needed: ${formData.productInterest}`,
+      `Engagement Model: ${formData.projectType}`,
       `Message: ${formData.message}`,
     ].join("\n");
 
@@ -71,7 +85,11 @@ export default function Contact({
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
       setSubmitStatus("success");
-      setFormData(initialFormState);
+      setFormData({
+        ...initialFormState,
+        productInterest: resolvedInterestOptions[0] || "",
+        projectType: resolvedProjectTypes[0] || "",
+      });
     } catch (error) {
       console.error("Email send failed:", error);
       setSubmitStatus("error");
@@ -170,6 +188,7 @@ export default function Contact({
               </a>
             ))}
 
+            {showLeadMagnet ? (
             <div className="rounded-2xl border border-emerald-700/40 bg-emerald-900/35 p-5 mt-2">
               <p className="text-xs uppercase tracking-[0.16em] text-emerald-100 mb-2">Lead Magnet</p>
               <h4 className="text-lg font-bold text-white mb-2">Free Growth Outcome Checklist</h4>
@@ -213,6 +232,7 @@ export default function Contact({
                 </button>
               </form>
             </div>
+            ) : null}
           </motion.div>
 
           <motion.div
@@ -295,39 +315,38 @@ export default function Contact({
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
-                <Field label="Product Interest">
+                <Field label={interestLabel}>
                   <select
                     name="productInterest"
                     value={formData.productInterest}
                     onChange={handleInputChange}
                     className="input-base"
                   >
-                    {productOptions.map((productName) => (
-                      <option key={productName} value={productName}>
-                        {productName}
+                    {resolvedInterestOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
                       </option>
                     ))}
-                    <option value="New custom product">New custom product</option>
                   </select>
                 </Field>
 
-                <Field label="Project Type">
+                <Field label={projectTypeLabel}>
                   <select
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleInputChange}
                     className="input-base"
                   >
-                    <option>Product demo</option>
-                    <option>New app build</option>
-                    <option>Web platform</option>
-                    <option>AI automation</option>
-                    <option>Salesforce consulting</option>
+                    {resolvedProjectTypes.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
                   </select>
                 </Field>
               </div>
 
-              <Field label="Project Brief">
+              <Field label={messageLabel}>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -335,7 +354,7 @@ export default function Contact({
                   rows={5}
                   required
                   className="input-base resize-none"
-                  placeholder="Describe what you want to build and timeline."
+                  placeholder={messagePlaceholder}
                 />
               </Field>
 
@@ -344,7 +363,7 @@ export default function Contact({
                 disabled={isSubmitting}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-lime-300 px-6 py-3.5 font-bold text-emerald-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
               >
-                {isSubmitting ? "Sending..." : "Send Request"}
+                {isSubmitting ? "Sending..." : submitButtonLabel}
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>

@@ -24,13 +24,13 @@ export default function ProductsShowcase({ products = [] }) {
           className="max-w-3xl mb-14"
         >
           <p className="inline-flex items-center rounded-full border border-emerald-700/40 bg-emerald-900/30 px-4 py-1 text-xs tracking-[0.2em] uppercase text-emerald-100 mb-5">
-            Product Studio
+            Innovation Lab
           </p>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-4">
-            Products designed to create real business impact.
+            Product and automation experiments from TechFi Labs.
           </h2>
           <p className="text-lg text-stone-300">
-            Explore live and upcoming TechFi Labs products across mobile, SaaS, Salesforce, web, and AI categories.
+            Alongside our Salesforce delivery practice, TechFi Labs also explores AI and automation products through our Innovation Lab.
           </p>
         </motion.div>
 

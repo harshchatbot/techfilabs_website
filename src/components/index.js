@@ -3,8 +3,12 @@ export { default as Card } from "./ui/Card";
 export { default as Container } from "./ui/Container";
 
 export { default as Hero } from "./sections/Hero";
+export { default as TrustStrip } from "./sections/TrustStrip";
+export { default as WhoWeHelp } from "./sections/WhoWeHelp";
 export { default as ProductsShowcase } from "./sections/ProductsShowcase";
 export { default as Services } from "./sections/Services";
+export { default as EngagementModels } from "./sections/EngagementModels";
+export { default as CapabilitiesGrid } from "./sections/CapabilitiesGrid";
 export { default as CaseStudies } from "./sections/CaseStudies";
 export { default as About } from "./sections/About";
 export { default as Testimonials } from "./sections/Testimonials";

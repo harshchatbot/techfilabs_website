@@ -623,18 +623,141 @@ export const CASE_STUDIES_DATA = [
 
 export const ABOUT_DATA = {
   stats: [
-    { number: "25+", label: "Products & IT Projects" },
-    { number: "40+", label: "Business Clients" },
-    { number: "10+", label: "Years of Experience" },
-    { number: "24/7", label: "Support Mindset" },
+    { number: "11+", label: "Years in IT Delivery" },
+    { number: "6+", label: "Years in Salesforce" },
+    { number: "US", label: "Project Exposure" },
+    { number: "India", label: "Offshore Delivery Base" },
   ],
   features: [
-    "Product-first engineering",
-    "Fast design-to-deployment cycles",
-    "Business-focused technology decisions",
-    "Long-term support and iteration",
+    "Founder-led Salesforce delivery",
+    "Hands-on experience across implementation, support, and managed services",
+    "Experience supporting US-based Salesforce projects",
+    "Flexible, cost-effective offshore engagement models",
   ],
 };
+
+export const HOMEPAGE_TRUST_STRIP = [
+  "Staff Augmentation",
+  "Production Support",
+  "Managed Services",
+  "Implementation",
+];
+
+export const HOMEPAGE_WHO_WE_HELP = [
+  {
+    title: "Salesforce Consulting Firms",
+    description:
+      "Extend your delivery capacity with offshore Salesforce talent that can plug into projects, support work, and managed service engagements.",
+  },
+  {
+    title: "IT Agencies",
+    description:
+      "Add Salesforce capability without over-hiring internally, and keep project delivery moving with dependable offshore execution support.",
+  },
+  {
+    title: "Startups",
+    description:
+      "Get practical Salesforce implementation and support help when you need structure, speed, and cost-conscious execution.",
+  },
+  {
+    title: "Growing Businesses",
+    description:
+      "Support sales, service, and operations teams with Salesforce customization, enhancements, issue resolution, and ongoing delivery coverage.",
+  },
+];
+
+export const HOMEPAGE_SERVICES_DATA = [
+  {
+    title: "Salesforce Staff Augmentation",
+    description:
+      "Hire skilled Salesforce developers, admins, QA engineers, support consultants, and technical leads on flexible offshore engagement models.",
+    features: [
+      "Developers, admins, QA, and support profiles",
+      "Flexible part-time or full-time offshore engagement",
+      "Daily collaboration with your delivery team",
+      "Extension of your existing Salesforce practice",
+    ],
+    icon: Zap,
+  },
+  {
+    title: "Salesforce Production Support",
+    description:
+      "Get dependable L1/L2/L3 Salesforce support for incidents, bugs, user issues, integrations, data fixes, and release support.",
+    features: [
+      "Incident triage and issue resolution",
+      "User support and production bug fixes",
+      "Integration monitoring and data corrections",
+      "Release support and post-deployment stabilization",
+    ],
+    icon: Database,
+  },
+  {
+    title: "Salesforce Managed Services",
+    description:
+      "Keep your Salesforce org running smoothly with monthly support for enhancements, admin tasks, bug fixes, monitoring, and continuous improvements.",
+    features: [
+      "Monthly enhancement and admin support",
+      "Backlog execution and org maintenance",
+      "Monitoring, bug fixes, and optimization",
+      "Ongoing delivery without building a large internal team",
+    ],
+    icon: Cpu,
+  },
+  {
+    title: "Salesforce Implementation Support",
+    description:
+      "Build, customize, and integrate Salesforce solutions across Sales Cloud, Service Cloud, Experience Cloud, automation, Apex, LWC, and third-party systems.",
+    features: [
+      "Salesforce customization and automation",
+      "Apex, LWC, flows, and integration delivery",
+      "Cloud-specific implementation support",
+      "Project-based execution from build to rollout",
+    ],
+    icon: Globe,
+  },
+];
+
+export const HOMEPAGE_ENGAGEMENT_MODELS = [
+  {
+    title: "Dedicated Resource",
+    description:
+      "One Salesforce professional working as an extension of your team.",
+  },
+  {
+    title: "Managed Pod",
+    description:
+      "A small offshore team with a technical lead, developer, admin/QA, and support capability.",
+  },
+  {
+    title: "Monthly Support Retainer",
+    description:
+      "Fixed monthly hours for ongoing Salesforce support, enhancements, and maintenance.",
+  },
+  {
+    title: "Project-Based Delivery",
+    description:
+      "Defined-scope Salesforce implementation, customization, integration, or migration work.",
+  },
+];
+
+export const HOMEPAGE_CAPABILITIES = [
+  "Apex",
+  "LWC",
+  "Flows",
+  "SOQL",
+  "Sales Cloud",
+  "Service Cloud",
+  "Experience Cloud",
+  "Health Cloud",
+  "CPQ",
+  "Data Cloud",
+  "CRM Analytics",
+  "Integrations",
+  "Data Migration",
+  "Reports & Dashboards",
+  "Production Support",
+  "Release Support",
+];
 
 export const CONTACT_INFO = {
   phone: SITE_CONFIG.company.phone,
@@ -644,10 +767,10 @@ export const CONTACT_INFO = {
 
 export const FOOTER_DATA = {
   services: [
-    "Salesforce Consulting",
-    "Web & Mobile Product Engineering",
-    "AI Agents & Automation",
-    "WhatsApp Workflows",
+    "Salesforce Staff Augmentation",
+    "Salesforce Production Support",
+    "Salesforce Managed Services",
+    "Salesforce Implementation Support",
   ],
   company: [
     { name: "Products", href: "#products" },
