@@ -149,9 +149,7 @@ export default function Contact({
   };
 
   return (
-    <section id="contact" className="py-28 bg-emerald-950 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(132,204,22,0.12),transparent_45%)]" />
-
+    <section id="contact" className="py-28 bg-green-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -159,8 +157,8 @@ export default function Contact({
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-4">{title}</h2>
-          <p className="text-lg text-stone-300 max-w-2xl mx-auto">{subtitle}</p>
+          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-4">{title}</h2>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-7 items-start">
@@ -168,9 +166,9 @@ export default function Contact({
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-white/10 bg-white/5 p-7 space-y-6"
+            className="rounded-3xl border border-gray-100 bg-white shadow-sm p-7 space-y-6"
           >
-            <h3 className="text-2xl font-bold text-white">Talk to the team</h3>
+            <h3 className="text-2xl font-semibold text-gray-900">Talk to the team</h3>
 
             {[
               { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
@@ -178,21 +176,21 @@ export default function Contact({
               { icon: MapPin, label: "Location", value: contactInfo.address, href: "#" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl bg-emerald-900/30 text-emerald-100 flex items-center justify-center">
+                <div className="w-11 h-11 rounded-xl bg-green-50 border border-green-100 text-green-600 flex items-center justify-center">
                   <item.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-stone-400">{item.label}</p>
-                  <p className="text-stone-300">{item.value}</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400">{item.label}</p>
+                  <p className="text-gray-700">{item.value}</p>
                 </div>
               </a>
             ))}
 
             {showLeadMagnet ? (
-            <div className="rounded-2xl border border-emerald-700/40 bg-emerald-900/35 p-5 mt-2">
-              <p className="text-xs uppercase tracking-[0.16em] text-emerald-100 mb-2">Lead Magnet</p>
-              <h4 className="text-lg font-bold text-white mb-2">Free Growth Outcome Checklist</h4>
-              <p className="text-sm text-stone-300/80 mb-4">
+            <div className="rounded-2xl border border-green-200 bg-green-50 p-5 mt-2">
+              <p className="text-xs uppercase tracking-[0.16em] text-green-600 mb-2">Lead Magnet</p>
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Free Growth Outcome Checklist</h4>
+              <p className="text-sm text-gray-500 mb-4">
                 Get our practical checklist to identify bottlenecks and improve conversions, process speed, and delivery quality.
               </p>
 
@@ -226,7 +224,7 @@ export default function Contact({
                 <button
                   type="submit"
                   disabled={leadMagnetSubmitting}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-300 px-4 py-3 font-semibold text-emerald-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-300 px-4 py-3 font-semibold text-green-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
                 >
                   {leadMagnetSubmitting ? "Submitting..." : "Get Checklist"}
                 </button>
@@ -239,17 +237,17 @@ export default function Contact({
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-white/10 bg-emerald-900/50 p-7"
+            className="rounded-3xl border border-gray-100 bg-white shadow-sm p-7"
           >
             {submitStatus === "success" && (
-              <div className="mb-6 rounded-xl border border-emerald-700/40 bg-emerald-900/25 p-3 text-emerald-100 flex items-center gap-2">
+              <div className="mb-6 rounded-xl border border-green-200 bg-green-50 p-3 text-green-700 flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5" />
                 Message sent. We will reach out shortly.
               </div>
             )}
 
             {submitStatus === "error" && (
-              <div className="mb-6 rounded-xl border border-red-300/40 bg-red-400/10 p-3 text-red-100 flex items-center gap-2">
+              <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-3 text-red-700 flex items-center gap-2">
                 <AlertCircle className="w-5 h-5" />
                 Something failed while sending. Please try again.
               </div>
@@ -361,7 +359,7 @@ export default function Contact({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-lime-300 px-6 py-3.5 font-bold text-emerald-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-lime-300 px-6 py-3.5 font-bold text-green-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
               >
                 {isSubmitting ? "Sending..." : submitButtonLabel}
                 <ArrowRight className="w-4 h-4" />
@@ -377,7 +375,7 @@ export default function Contact({
 function Field({ label, children }) {
   return (
     <label className="block space-y-2">
-      <span className="text-xs uppercase tracking-[0.15em] text-stone-400">{label}</span>
+      <span className="text-xs uppercase tracking-[0.15em] text-gray-400">{label}</span>
       {children}
     </label>
   );

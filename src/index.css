@@ -12,7 +12,8 @@
   }
 
   body {
-    @apply bg-emerald-950 text-white;
+    background-color: #ffffff;
+    color: #111827;
     font-family: "Manrope", sans-serif;
     overflow-x: hidden;
   }
@@ -31,6 +32,6 @@
 
 @layer components {
   .input-base {
-    @apply w-full rounded-xl border border-white/15 bg-emerald-950/70 px-4 py-3 text-emerald-50 outline-none transition-colors placeholder:text-emerald-200/40 focus:border-lime-300/50;
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-green-400;
   }
 }

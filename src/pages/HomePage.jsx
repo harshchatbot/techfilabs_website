@@ -2,6 +2,7 @@ import {
   About,
   CapabilitiesGrid,
   CaseStudies,
+  ClientLogos,
   Contact,
   EngagementModels,
   Footer,
@@ -59,7 +60,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-emerald-950 text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <Seo
         title="TechFi Labs | Salesforce Consulting, Delivery & Managed Services"
         description="TechFi Labs helps businesses and consulting firms with Salesforce consulting, implementation support, managed services, production support, staff augmentation, Experience Cloud delivery, integrations, and delivery support from India."
@@ -78,11 +79,11 @@ export default function HomePage() {
 
       <main id="main-content">
         <Hero
-          eyebrow="Salesforce consulting and delivery"
-          headline="Salesforce Consulting, Delivery & Managed Services"
-          subtitle="TechFi Labs helps businesses and consulting firms with Salesforce implementation support, production support, managed services, staff augmentation, and delivery support from India through expert teams, flexible engagement models, and practical execution."
+          eyebrow="Salesforce Consulting Partner"
+          headline="We Help Businesses Get More From Salesforce."
+          subtitle="From implementation to ongoing support — TechFi Labs helps your team set up, manage, and grow on Salesforce. Based in India, serving clients globally."
           primaryButton={{
-            text: "Book a Salesforce Consultation",
+            text: "Talk to a Salesforce Expert",
             action: () => {
               const contactSection = document.getElementById("contact");
               if (contactSection) {
@@ -91,7 +92,7 @@ export default function HomePage() {
             },
           }}
           secondaryButton={{
-            text: "Explore Salesforce Services",
+            text: "See Our Services",
             action: () => {
               const servicesSection = document.getElementById("services");
               if (servicesSection) {
@@ -106,8 +107,8 @@ export default function HomePage() {
         <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
 
         <Services
-          title="Salesforce Services Built Around Your Delivery Needs"
-          subtitle="Whether you need a new Salesforce implementation, ongoing production support, managed services, or skilled Salesforce professionals to extend your team, TechFi Labs helps you move faster with reliable execution."
+          title="What We Do"
+          subtitle="We're a Salesforce consulting team. Here's how we help."
           services={HOMEPAGE_SERVICES_DATA}
         />
 
@@ -155,10 +156,12 @@ export default function HomePage() {
           showLinks={false}
         />
 
+        <ClientLogos />
+
         <About
-          title="Built for Teams That Need Reliable Salesforce Execution"
-          subtitle="Salesforce-specific delivery support focused on clean implementation, stable operations, maintainable customizations, and dependable release execution."
-          description="TechFi Labs supports Salesforce implementation support, managed services, production support, staff augmentation, Experience Cloud delivery, and integrations with a practical engineering approach built around Salesforce delivery quality."
+          title="A Salesforce Team You Can Rely On"
+          subtitle="We handle Salesforce so your team doesn't have to."
+          description="TechFi Labs is a Salesforce consulting partner based in India. We work with businesses and consulting firms across the US, UK, and India to implement, support, and manage Salesforce — with clean code, clear documentation, and no surprises."
           logo={SITE_CONFIG.company}
           stats={ABOUT_DATA.stats}
           features={ABOUT_DATA.features}

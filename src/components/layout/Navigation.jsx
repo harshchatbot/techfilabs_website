@@ -110,25 +110,25 @@ export default function Navigation({
           mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
         }
       : {
-          navScrolled: "bg-emerald-950/90 border-lime-300/15 backdrop-blur-xl py-3",
-          logoWrap: "border-lime-300/35 bg-white/90",
-          logoText: "text-lime-100",
-          menuActive: "text-white",
-          menuIdle: "text-stone-300 hover:text-white",
-          sentinelButton: "border-lime-200/35 text-lime-100 hover:bg-lime-200/15",
-          ctaButton: "bg-lime-300 text-emerald-950 hover:bg-lime-200",
-          mobileToggle: "text-stone-300 hover:bg-stone-300/15",
-          mobilePanel: "bg-emerald-950/95 backdrop-blur-xl",
-          mobileMenuItem: "border-lime-300/20 text-stone-300",
-          mobileSentinel: "border-lime-300/25 text-stone-300",
-          mobileCta: "bg-lime-300 text-emerald-950",
+          navScrolled: "bg-white border-gray-100 shadow-sm py-3",
+          logoWrap: "border-green-200 bg-white",
+          logoText: "text-gray-900",
+          menuActive: "text-green-600",
+          menuIdle: "text-gray-700 hover:text-green-600",
+          sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
+          ctaButton: "bg-green-600 text-white hover:bg-green-700 rounded-full px-5 py-2",
+          mobileToggle: "text-gray-700 hover:bg-gray-100",
+          mobilePanel: "bg-white/95 backdrop-blur-xl",
+          mobileMenuItem: "border-gray-100 text-gray-700",
+          mobileSentinel: "border-gray-200 text-gray-700",
+          mobileCta: "bg-green-600 text-white",
         };
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-          scrolled ? navTheme.navScrolled : "bg-transparent border-transparent py-5"
+          scrolled ? navTheme.navScrolled : "bg-white/80 border-transparent py-5 backdrop-blur-md"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5">

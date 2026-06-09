@@ -10,6 +10,7 @@ export { default as Services } from "./sections/Services";
 export { default as EngagementModels } from "./sections/EngagementModels";
 export { default as CapabilitiesGrid } from "./sections/CapabilitiesGrid";
 export { default as CaseStudies } from "./sections/CaseStudies";
+export { default as ClientLogos } from "./sections/ClientLogos";
 export { default as About } from "./sections/About";
 export { default as Testimonials } from "./sections/Testimonials";
 export { default as Contact } from "./sections/Contact";

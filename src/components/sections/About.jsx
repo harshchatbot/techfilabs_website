@@ -11,9 +11,7 @@ export default function About({
   logo,
 }) {
   return (
-    <section id="about" className="py-28 bg-gradient-to-b from-emerald-950 to-emerald-900/85 relative overflow-hidden">
-      <div className="absolute -right-20 top-20 w-80 h-80 rounded-full bg-lime-300/10 blur-3xl" />
-
+    <section id="about" className="py-28 bg-green-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-10 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -21,10 +19,10 @@ export default function About({
           transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-100 mb-4">About us</p>
-          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-4">{title}</h2>
-          <p className="text-xl text-stone-300 mb-4">{subtitle}</p>
-          <p className="text-stone-300/85 leading-relaxed mb-8">{description}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-green-600 mb-4">About us</p>
+          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-4">{title}</h2>
+          <p className="text-xl text-gray-500 mb-4">{subtitle}</p>
+          <p className="text-gray-500 leading-relaxed mb-8">{description}</p>
 
           <div className="grid sm:grid-cols-2 gap-4">
             {features.map((feature, index) => (
@@ -34,7 +32,7 @@ export default function About({
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 text-stone-300 leading-relaxed"
+                className="rounded-2xl border border-gray-100 bg-white shadow-sm p-5 text-gray-600 leading-relaxed"
               >
                 {feature}
               </motion.div>
@@ -47,27 +45,36 @@ export default function About({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="rounded-3xl border border-white/10 bg-emerald-900/35 p-7 md:p-9"
+          className="relative rounded-3xl overflow-hidden h-[420px]"
         >
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20 bg-white/90">
-              <img src={logo?.logo} alt={logo?.name || "TechFi Labs"} className="w-full h-full object-cover scale-[1.18]" />
-            </div>
-            <div>
-              <p className="text-white font-semibold">TechFi Labs Salesforce Delivery</p>
-              <p className="text-emerald-100/70 text-sm">Support, implementation, managed services</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-white/10 bg-emerald-900/35 p-4">
-                <p className="text-2xl md:text-3xl font-medium text-emerald-50">
-                  <CountUpNumber value={stat.number} duration={1200} />
-                </p>
-                <p className="text-xs uppercase tracking-[0.15em] text-emerald-100/65 mt-1">{stat.label}</p>
+          <img
+            src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80&auto=format&fit=crop"
+            alt="TechFi Labs team"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay card at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-5 border-t border-gray-100">
+            <div className="flex items-center gap-3 mb-2">
+              <img src="/techfilabs_logo_2026.png" alt="TechFi Labs" className="h-8 w-8 object-contain" />
+              <div>
+                <p className="text-gray-900 font-semibold text-sm">TechFi Labs</p>
+                <p className="text-gray-500 text-xs">Salesforce Consulting Partner · Jaipur, India</p>
               </div>
-            ))}
+            </div>
+            <div className="grid grid-cols-3 gap-3 mt-3">
+              <div className="text-center">
+                <p className="text-green-600 font-bold text-lg">50+</p>
+                <p className="text-gray-400 text-xs">Projects</p>
+              </div>
+              <div className="text-center">
+                <p className="text-green-600 font-bold text-lg">3+</p>
+                <p className="text-gray-400 text-xs">Countries</p>
+              </div>
+              <div className="text-center">
+                <p className="text-green-600 font-bold text-lg">5★</p>
+                <p className="text-gray-400 text-xs">Rated</p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
