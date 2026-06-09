@@ -2,13 +2,14 @@ import { motion } from "framer-motion";
 
 export default function TrustStrip({
   items = [],
-  eyebrow = "Salesforce Delivery Support",
 }) {
   return (
     <section className="py-10 bg-white border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <p className="text-xs uppercase tracking-[0.22em] text-green-600">Salesforce Partner • Trusted by teams across India, USA &amp; UK</p>
+          <p className="text-xs uppercase tracking-[0.22em] text-green-600">
+            Salesforce Partner • Trusted by teams across India, USA &amp; UK
+          </p>
           <div className="flex flex-wrap gap-3">
             {items.map((item, index) => (
               <motion.span

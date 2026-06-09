@@ -1,12 +1,12 @@
 import {
   About,
-  CapabilitiesGrid,
   CaseStudies,
   ClientLogos,
   Contact,
   EngagementModels,
   Footer,
   Hero,
+  MissionValues,
   Navigation,
   ProductsShowcase,
   Services,
@@ -21,10 +21,10 @@ import {
   CASE_STUDIES_DATA,
   CONTACT_INFO,
   FOOTER_DATA,
-  HOMEPAGE_CAPABILITIES,
   HOMEPAGE_ENGAGEMENT_MODELS,
   HOMEPAGE_SERVICES_DATA,
   HOMEPAGE_TRUST_STRIP,
+  MISSION_VALUES_DATA,
   PRODUCTS_DATA,
   SITE_CONFIG,
 } from "../constants/data";
@@ -106,6 +106,8 @@ export default function HomePage() {
 
         <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
 
+        <ClientLogos />
+
         <Services
           title="What We Do"
           subtitle="We're a Salesforce consulting team. Here's how we help."
@@ -139,14 +141,19 @@ export default function HomePage() {
           ]}
         />
 
+        <MissionValues
+          mission={MISSION_VALUES_DATA.mission}
+          whoWeAre={MISSION_VALUES_DATA.whoWeAre}
+          values={MISSION_VALUES_DATA.values}
+          commitment={MISSION_VALUES_DATA.commitment}
+        />
+
         <EngagementModels
           title="From Strategy to Ongoing Support"
           subtitle="We work from discovery through delivery and post-launch support with a practical, execution-first approach."
           note="TechFi Labs can work as a dedicated Salesforce resource, an extended delivery team, a managed support pod, or a project-based implementation partner."
           models={HOMEPAGE_ENGAGEMENT_MODELS}
         />
-
-        <CapabilitiesGrid capabilities={HOMEPAGE_CAPABILITIES} />
 
         <CaseStudies
           title="Representative Salesforce Delivery Experience"
@@ -156,12 +163,10 @@ export default function HomePage() {
           showLinks={false}
         />
 
-        <ClientLogos />
-
         <About
-          title="A Salesforce Team You Can Rely On"
-          subtitle="We handle Salesforce so your team doesn't have to."
-          description="TechFi Labs is a Salesforce consulting partner based in India. We work with businesses and consulting firms across the US, UK, and India to implement, support, and manage Salesforce — with clean code, clear documentation, and no surprises."
+          title="How We Help Teams Day to Day"
+          subtitle="We make Salesforce delivery easier to manage, easier to support, and easier to scale."
+          description="From implementation planning to release support and ongoing managed services, TechFi Labs works as a practical Salesforce delivery team that keeps work moving without adding unnecessary complexity."
           logo={SITE_CONFIG.company}
           stats={ABOUT_DATA.stats}
           features={ABOUT_DATA.features}

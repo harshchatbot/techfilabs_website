@@ -1,6 +1,7 @@
 export { default as Button } from "./ui/Button";
 export { default as Card } from "./ui/Card";
 export { default as Container } from "./ui/Container";
+export { default as InfiniteSlider } from "./ui/InfiniteSlider";
 
 export { default as Hero } from "./sections/Hero";
 export { default as TrustStrip } from "./sections/TrustStrip";
@@ -12,6 +13,7 @@ export { default as CapabilitiesGrid } from "./sections/CapabilitiesGrid";
 export { default as CaseStudies } from "./sections/CaseStudies";
 export { default as ClientLogos } from "./sections/ClientLogos";
 export { default as About } from "./sections/About";
+export { default as MissionValues } from "./sections/MissionValues";
 export { default as Testimonials } from "./sections/Testimonials";
 export { default as Contact } from "./sections/Contact";
 

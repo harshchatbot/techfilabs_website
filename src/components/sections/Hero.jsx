@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { ABOUT_DATA } from "../../constants/data";
+import DottedSurface from "../ui/DottedSurface";
 
 function getDeliveryText() {
   const now = new Date();
@@ -26,6 +27,7 @@ export default function Hero({
       id="home"
       className="relative min-h-screen pt-28 md:pt-32 pb-16 overflow-hidden bg-[#0f3b22]"
     >
+      <DottedSurface className="z-0 opacity-90" />
       {/* Radial gradient overlay only — no video */}
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_20%_0%,rgba(190,242,100,0.22),transparent_40%),radial-gradient(circle_at_90%_10%,rgba(34,197,94,0.15),transparent_35%)]" />
       <div className="absolute left-0 right-0 bottom-0 h-32 z-[1] bg-gradient-to-t from-[#0f3b22] to-transparent" />
@@ -96,22 +98,22 @@ export default function Hero({
             <img
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&auto=format&fit=crop"
               alt="Salesforce consultant"
-              className="rounded-2xl h-48 w-full object-cover"
+              className="rounded-2xl h-48 w-full object-cover border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
             />
             <img
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&auto=format&fit=crop"
               alt="Team collaboration"
-              className="rounded-2xl h-48 w-full object-cover mt-8"
+              className="rounded-2xl h-48 w-full object-cover mt-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
             />
             <img
               src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&q=80&auto=format&fit=crop"
               alt="Business meeting"
-              className="rounded-2xl h-48 w-full object-cover"
+              className="rounded-2xl h-48 w-full object-cover border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
             />
             <img
               src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&q=80&auto=format&fit=crop"
               alt="Partnership"
-              className="rounded-2xl h-48 w-full object-cover mt-8"
+              className="rounded-2xl h-48 w-full object-cover mt-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
             />
           </div>
         </motion.div>

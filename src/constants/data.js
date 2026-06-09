@@ -676,11 +676,42 @@ export const ABOUT_DATA = {
     { number: "Scale", label: "Flexible team extension" },
   ],
   features: [
-    "Work with Salesforce professionals who understand implementation, support, integrations, automation, and release execution.",
-    "Start with project support, staff augmentation, production support, or a managed services model based on your delivery needs.",
-    "We focus on maintainable solutions, clear documentation, stable releases, and smooth handover.",
-    "We help teams move beyond go-live with continuous support, optimization, and platform improvements.",
+    "Implementation and managed services",
+    "Production support and release readiness",
+    "Clear communication and handover",
+    "Long-term Salesforce improvement",
   ],
+};
+
+export const MISSION_VALUES_DATA = {
+  mission:
+    "Help businesses and consulting teams get dependable Salesforce execution across implementation, support, managed services, and platform improvement work.",
+  whoWeAre:
+    "TechFi Labs is a Salesforce consulting and delivery company focused on practical execution, clear communication, and maintainable solutions.",
+  values: [
+    {
+      title: "Customer-Focused Delivery",
+      description:
+        "We align Salesforce work to business goals and day-to-day operations.",
+    },
+    {
+      title: "Clear Communication",
+      description:
+        "We keep delivery transparent with clear updates and visible next steps.",
+    },
+    {
+      title: "Quality & Maintainability",
+      description:
+        "We focus on clean implementation and solutions teams can support long term.",
+    },
+    {
+      title: "Continuous Improvement",
+      description:
+        "We help teams improve Salesforce over time through support and enhancements.",
+    },
+  ],
+  commitment:
+    "Provide reliable Salesforce execution, steady communication, and delivery support from planning through long-term platform stability.",
 };
 
 export const HOMEPAGE_TRUST_STRIP = [
