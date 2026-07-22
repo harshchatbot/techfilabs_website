@@ -39,6 +39,10 @@ export default function MissionValues({
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                <div className="absolute left-4 bottom-4 rounded-2xl border border-white/40 bg-white/85 px-4 py-3 shadow-sm backdrop-blur-sm">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-green-700 mb-1">Mission in practice</p>
+                  <p className="text-sm font-medium text-gray-900">Stable delivery, clean handover, clear next steps.</p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -75,7 +79,7 @@ export default function MissionValues({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.08 }}
               viewport={{ once: true }}
-              className="rounded-[2rem] border border-green-100 bg-green-50/70 p-7"
+              className="rounded-[2rem] border border-green-100 bg-green-50/70 p-7 shadow-[0_16px_40px_rgba(22,101,52,0.05)]"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-green-700 mb-4">Our Commitment</p>
               <p className="text-base md:text-lg leading-relaxed text-gray-700 max-w-3xl">{commitment}</p>

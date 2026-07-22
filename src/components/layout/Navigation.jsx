@@ -20,6 +20,9 @@ export default function Navigation({
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [isMenuOpen]);
 
   const scrollToSection = (sectionId) => {
@@ -110,34 +113,36 @@ export default function Navigation({
           mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
         }
       : {
-          navScrolled: "bg-white border-gray-100 shadow-sm py-3",
-          logoWrap: "border-green-200 bg-white",
+          navScrolled: "bg-white/92 border-white/70 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl",
+          navIdle: "bg-white/72 border-white/40 backdrop-blur-lg",
+          logoWrap: "border-emerald-200/70 bg-white shadow-[0_10px_30px_rgba(16,185,129,0.08)]",
           logoText: "text-gray-900",
-          menuActive: "text-green-600",
-          menuIdle: "text-gray-700 hover:text-green-600",
+          menuActive: "text-emerald-700",
+          menuIdle: "text-slate-700 hover:text-emerald-700",
           sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
-          ctaButton: "bg-green-600 text-white hover:bg-green-700 rounded-full px-5 py-2",
-          mobileToggle: "text-gray-700 hover:bg-gray-100",
+          ctaButton:
+            "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
+          mobileToggle: "text-slate-700 hover:bg-slate-100",
           mobilePanel: "bg-white/95 backdrop-blur-xl",
-          mobileMenuItem: "border-gray-100 text-gray-700",
+          mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
           mobileSentinel: "border-gray-200 text-gray-700",
-          mobileCta: "bg-green-600 text-white",
+          mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
         };
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-          scrolled ? navTheme.navScrolled : "bg-white/80 border-transparent py-5 backdrop-blur-md"
-        }`}
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 sm:px-5">
         <div className="max-w-7xl mx-auto px-5">
-          <div className="flex items-center justify-between gap-6">
+          <div
+            className={`flex items-center justify-between gap-4 rounded-[1.75rem] border px-4 py-3 transition-all duration-300 sm:px-5 ${
+              scrolled ? navTheme.navScrolled : navTheme.navIdle
+            }`}
+          >
             <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3">
-              <div className={`w-12 h-12 rounded-full border overflow-hidden ${navTheme.logoWrap}`}>
-                <img src={logo.logo} alt={logo.name} className="w-full h-full object-cover scale-[1.18]" />
+              <div className={`h-11 w-11 overflow-hidden rounded-full border sm:h-12 sm:w-12 ${navTheme.logoWrap}`}>
+                <img src={logo.logo} alt={logo.name} className="h-full w-full object-cover scale-[1.14]" />
               </div>
-              <span className={`hidden md:block text-base font-semibold tracking-tight ${navTheme.logoText}`}>
+              <span className={`hidden md:block text-[15px] font-semibold tracking-tight ${navTheme.logoText}`}>
                 {logo.name}
               </span>
             </button>
@@ -147,7 +152,7 @@ export default function Navigation({
                 <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  className={`capitalize text-sm font-semibold tracking-wide transition-colors ${
+                  className={`capitalize text-sm font-semibold tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/90 ${
                     activeSection === item && location.pathname === "/"
                       ? navTheme.menuActive
                       : navTheme.menuIdle
@@ -159,7 +164,7 @@ export default function Navigation({
 
               <button
                 onClick={handleCtaClick}
-                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${navTheme.ctaButton}`}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/90 ${navTheme.ctaButton}`}
               >
                 {ctaButton.text}
                 <ArrowRight className="w-4 h-4" />
@@ -167,9 +172,10 @@ export default function Navigation({
             </div>
 
             <button
-              className={`md:hidden rounded-xl p-2 transition-colors ${navTheme.mobileToggle}`}
+              className={`md:hidden rounded-xl p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/90 ${navTheme.mobileToggle}`}
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -184,26 +190,26 @@ export default function Navigation({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className={`fixed inset-0 z-40 md:hidden pt-24 px-6 ${navTheme.mobilePanel}`}
+            className={`fixed inset-0 z-40 overflow-y-auto md:hidden px-5 pb-8 pt-28 ${navTheme.mobilePanel}`}
           >
-            <div className="space-y-4">
+            <div className="space-y-3">
               {menuItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  className={`w-full rounded-2xl border px-4 py-4 text-left text-2xl font-semibold capitalize ${navTheme.mobileMenuItem}`}
+                  className={`w-full rounded-2xl border px-4 py-4 text-left text-xl font-semibold capitalize transition-colors ${navTheme.mobileMenuItem}`}
                 >
                   {item}
                 </button>
               ))}
             </div>
 
-            <div className="mt-10 space-y-4">
+            <div className="mt-8 space-y-4">
               <button
                 onClick={() => {
                   handleCtaClick();
                 }}
-                className={`w-full rounded-2xl py-4 font-bold ${navTheme.mobileCta}`}
+                className={`w-full rounded-2xl py-4 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/95 ${navTheme.mobileCta}`}
               >
                 {ctaButton.text}
               </button>

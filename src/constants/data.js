@@ -22,7 +22,7 @@ export const SITE_CONFIG = {
   company: {
     name: "TechFi Labs",
     initials: "TF",
-    email: "thetechfilabs@gmail.com",
+    email: "harshveernirwan@techfilabs.com",
     phone: "+91 7976111087",
     address: "Jaipur, Rajasthan 302001",
     logo: "/techfilabs_logo_2026.png",
@@ -676,10 +676,12 @@ export const ABOUT_DATA = {
     { number: "Scale", label: "Flexible team extension" },
   ],
   features: [
-    "Implementation and managed services",
-    "Production support and release readiness",
+    "Founder-led delivery",
+    "Salesforce-first execution",
+    "Production support mindset",
     "Clear communication and handover",
-    "Long-term Salesforce improvement",
+    "Flexible offshore collaboration",
+    "Cost-effective delivery support",
   ],
 };
 
@@ -723,76 +725,146 @@ export const HOMEPAGE_TRUST_STRIP = [
   "Experience Cloud & Integrations",
 ];
 
+export const HOMEPAGE_ACCELERATORS = [
+  {
+    title: "FieldLens for Salesforce",
+    description:
+      "Field impact and usage analysis for admins, consultants, and delivery teams before changes go live.",
+    badge: "Delivery Accelerator",
+    value: "Release confidence",
+    icon: Database,
+  },
+  {
+    title: "Salesforce Data Migration Kit",
+    description:
+      "Dedupe checks, validation templates, rollback planning, and migration readiness for safer cutovers.",
+    badge: "Migration Asset",
+    value: "Lower migration risk",
+    icon: Zap,
+  },
+  {
+    title: "Production Support Playbook",
+    description:
+      "Structured incident, enhancement, SLA, release, and documentation process for predictable support execution.",
+    badge: "Support Framework",
+    value: "Operational stability",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Resume RAG for Staffing",
+    description:
+      "AI-powered candidate search and requirement matching to speed up Salesforce staff augmentation decisions.",
+    badge: "Talent Workflow",
+    value: "Faster staffing",
+    icon: Bot,
+  },
+];
+
+export const HOMEPAGE_USE_CASES = [
+  {
+    title: "Sales Operations",
+    description: "Pipeline visibility, lead lifecycle, workflow automation, and reporting for revenue teams.",
+  },
+  {
+    title: "Service Operations",
+    description: "Case handling, escalation workflows, SLAs, and user support processes inside Salesforce.",
+  },
+  {
+    title: "Partner & Customer Portals",
+    description: "Experience Cloud portals for external users, collaboration flows, and secure access models.",
+  },
+  {
+    title: "Healthcare & Life Sciences CRM",
+    description: "Regulated process support, care coordination, participant workflows, and compliance-aware delivery.",
+  },
+  {
+    title: "Data Migration & Cleanup",
+    description: "Mapping, deduplication, validation, and cutover preparation for cleaner CRM adoption.",
+  },
+  {
+    title: "Managed Support & Enhancements",
+    description: "Ongoing releases, fixes, enhancements, monitoring, and change execution after go-live.",
+  },
+];
+
+export const HOMEPAGE_CREDIBILITY = [
+  "12+ years IT delivery experience",
+  "6+ years Salesforce project experience",
+  "US-based Salesforce delivery exposure",
+  "Founder-led technical governance",
+  "India-based offshore delivery support",
+];
+
 export const HOMEPAGE_SERVICES_DATA = [
   {
-    title: "Salesforce Consulting",
+    title: "Salesforce Consulting & Implementation",
     description:
-      "Get practical guidance on Salesforce solution design, architecture, process improvement, and delivery planning.",
+      "Get practical guidance on Salesforce solution design, implementation planning, architecture, and delivery decisions.",
     features: [
-      "Solution direction and delivery planning",
-      "Architecture and process review",
-      "Org improvement recommendations",
-      "Practical advisory for delivery decisions",
+      "Solution design",
+      "Architecture review",
+      "Implementation planning",
+      "Delivery advisory",
     ],
     icon: Zap,
   },
   {
-    title: "Salesforce Implementation Support",
+    title: "Managed Services & Production Support",
     description:
-      "Design, customize, integrate, and deploy Salesforce solutions aligned to your business processes and user experience goals.",
+      "Keep Salesforce stable and business-ready with structured enhancements, issue handling, release support, and ongoing administration.",
     features: [
-      "Process-aligned solution implementation",
-      "Configuration, custom development, and deployment",
-      "Integration and environment coordination",
-      "User-focused delivery and rollout support",
+      "Enhancements and fixes",
+      "Release support",
+      "Incident handling",
+      "Ongoing administration",
     ],
     icon: Globe,
   },
   {
-    title: "Managed Services",
+    title: "Salesforce Staff Augmentation",
     description:
-      "Keep your Salesforce org stable, optimized, and continuously improving with ongoing support, enhancements, and release management.",
+      "Extend your Salesforce team with delivery-ready developers, admins, consultants, technical leads, and support professionals.",
     features: [
-      "Enhancements, fixes, and org administration",
-      "Backlog and release management support",
-      "Monitoring and continuous optimization",
-      "Reliable ongoing execution coverage",
+      "Developers and admins",
+      "Consultants and tech leads",
+      "Flexible team extension",
+      "Delivery capacity support",
     ],
     icon: Cpu,
   },
   {
-    title: "Production Support",
+    title: "Experience Cloud & Integrations",
     description:
-      "Resolve incidents, improve system reliability, manage change requests, and support business users with structured Salesforce support.",
+      "Build portals, automate connected workflows, and integrate Salesforce with external systems for seamless business operations.",
     features: [
-      "Incident and change request handling",
-      "Business-user and admin support",
-      "Reliability improvements and issue resolution",
-      "Release stabilization and support processes",
+      "Experience Cloud portals",
+      "Connected workflows",
+      "API integrations",
+      "External system coordination",
     ],
     icon: Database,
   },
   {
-    title: "Staff Augmentation",
+    title: "Data Migration & CRM Optimization",
     description:
-      "Extend your Salesforce team with skilled developers, admins, consultants, technical leads, and support professionals.",
+      "Improve CRM data quality, migration readiness, reporting reliability, and overall Salesforce performance.",
     features: [
-      "Developers, admins, consultants, and support roles",
-      "Flexible team extension options",
-      "Structured collaboration with your internal team",
-      "Capacity for delivery and support needs",
+      "Data migration planning",
+      "CRM cleanup",
+      "Reporting accuracy",
+      "Org optimization",
     ],
     icon: Smartphone,
   },
   {
-    title: "Experience Cloud & Integrations",
+    title: "AI Automation & Custom Engineering",
     description:
-      "Build portals, automate workflows, connect systems, and create seamless experiences across Salesforce and external platforms.",
+      "Add automation and custom engineering where standard configuration is not enough for your Salesforce delivery or business workflows.",
     features: [
-      "Portals for external users and stakeholders",
-      "Workflow automation and connected processes",
-      "System integration across Salesforce and external tools",
-      "Experience design for seamless user journeys",
+      "Workflow automation",
+      "Custom engineering",
+      "Business process acceleration",
+      "Platform extensions",
     ],
     icon: MessageCircle,
   },
@@ -800,7 +872,7 @@ export const HOMEPAGE_SERVICES_DATA = [
 
 export const HOMEPAGE_ENGAGEMENT_MODELS = [
   {
-    title: "Understand",
+    title: "Discover",
     description:
       "We begin by understanding your business process, Salesforce landscape, delivery goals, and current challenges.",
   },
@@ -810,12 +882,12 @@ export const HOMEPAGE_ENGAGEMENT_MODELS = [
       "We define the right solution approach, delivery plan, architecture, and team model.",
   },
   {
-    title: "Implement",
+    title: "Build & Validate",
     description:
       "We build, configure, integrate, test, and deploy Salesforce capabilities with a focus on quality and maintainability.",
   },
   {
-    title: "Support",
+    title: "Deploy & Support",
     description:
       "We help stabilize, optimize, and continuously improve your Salesforce environment after go-live.",
   },

@@ -501,25 +501,28 @@ export default function Services({
   const reduceMotion = prefersReducedMotion();
 
   return (
-    <section
-      id="services"
-      className="py-28 bg-white relative overflow-hidden"
-    >
+    <section id="services" className="relative overflow-hidden bg-[linear-gradient(180deg,#f6fbf8_0%,#ffffff_100%)] py-20 md:py-28">
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#eef9f2] via-[#f6fbf8] to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(167,243,208,0.14),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(134,239,172,0.10),transparent_32%)]" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="mb-10 text-center md:mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-gray-900 mb-4">
+          <div className="mx-auto mb-6 h-px w-24 bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
+          <p className="text-xs uppercase tracking-[0.22em] text-green-600 mb-4">
+            Salesforce Services
+          </p>
+          <h2 className="text-3xl md:text-6xl font-semibold tracking-tight text-gray-900 mb-4">
             {title}
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">{subtitle}</p>
+          <p className="mx-auto max-w-3xl text-base text-slate-600 md:text-lg">{subtitle}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => (
             <motion.article
               key={service.title}
@@ -533,49 +536,75 @@ export default function Services({
               whileHover={reduceMotion ? {} : { y: -6 }}
               onMouseEnter={() => !reduceMotion && setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="h-full rounded-3xl border border-gray-100 bg-white shadow-sm overflow-hidden hover:shadow-md hover:border-green-100 transition-all duration-300"
+              className="group h-full overflow-hidden rounded-[1.75rem] md:rounded-[2rem] border border-gray-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-green-100 hover:shadow-[0_28px_70px_rgba(22,101,52,0.1)]"
             >
-              {/* Illustration banner */}
-              <div className="w-full h-32 bg-green-50 border-b border-gray-100 flex items-center justify-center px-8 py-4">
-                {ILLUSTRATIONS[index] || ILLUSTRATIONS[0]}
+              <div className="relative min-h-[180px] md:min-h-[220px] border-b border-gray-100 bg-gradient-to-br from-emerald-950 via-emerald-900 to-[#0b3f2d] px-6 py-5 md:px-8 md:py-6">
+                <div
+                  className={`absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(190,242,100,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(52,211,153,0.16),transparent_34%)] transition-transform duration-500 ${
+                    hoveredIndex === index ? "scale-110" : "scale-100"
+                  }`}
+                />
+                <div className="relative mb-5 flex items-start justify-between gap-3 md:mb-6 md:gap-4">
+                  <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-50/90 md:text-[11px] md:tracking-[0.18em]">
+                    {service.title}
+                  </span>
+                  <span className="rounded-full border border-lime-200/20 bg-lime-300/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-lime-100 md:text-[11px] md:tracking-[0.18em]">
+                    TechFi Labs
+                  </span>
+                </div>
+                <div
+                  className={`relative mx-auto h-[104px] md:h-[128px] w-full max-w-[210px] md:max-w-[230px] transition-transform duration-500 ${
+                    hoveredIndex === index && !reduceMotion ? "translate-y-[-6px] scale-[1.04]" : ""
+                  }`}
+                >
+                  {ILLUSTRATIONS[index] || ILLUSTRATIONS[0]}
+                </div>
               </div>
 
-              <div className="p-7">
+              <div className="flex h-full flex-col p-5 md:p-7">
                 <div
-                  className={`w-12 h-12 rounded-2xl border border-green-100 bg-green-50 flex items-center justify-center mb-6 transition-colors duration-300`}
+                  className="mb-5 flex h-11 w-11 md:h-12 md:w-12 items-center justify-center rounded-2xl border border-green-100 bg-green-50 transition-colors duration-300"
                 >
                   {service.icon ? (
-                    <service.icon className="w-6 h-6 text-green-600" />
+                    <service.icon className="h-5 w-5 md:h-6 md:w-6 text-green-600" />
                   ) : null}
                 </div>
 
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                <h3 className="mb-3 text-xl md:text-2xl font-semibold text-gray-900">
                   {service.title}
                 </h3>
-                <p className="text-gray-500 mb-6 leading-relaxed">
+                <p className="mb-5 min-h-0 text-slate-600 leading-relaxed md:mb-6 md:min-h-[72px]">
                   {service.description}
                 </p>
 
-                <ul className="space-y-3 pt-5 border-t border-gray-100">
-                  {service.features.map((feature) => (
-                    <li
+                <div className="mb-5 flex flex-wrap gap-2 md:mb-6">
+                  {service.features.slice(0, 3).map((feature) => (
+                    <div
                       key={feature}
-                      className="flex items-start gap-3 text-sm text-gray-600"
+                      className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs md:text-sm text-gray-600"
                     >
-                      <Check className="w-4 h-4 mt-0.5 text-green-500 shrink-0" />
-                      <span>{feature}</span>
-                    </li>
+                      {feature}
+                    </div>
                   ))}
-                </ul>
+                </div>
 
                 {service.slug && (
-                  <Link
-                    to={`/services/${service.slug}`}
-                    className="mt-6 inline-flex items-center gap-2 rounded-full border border-green-200 px-4 py-2 text-sm font-semibold text-green-700 hover:bg-green-50 transition-colors"
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="mt-auto flex flex-col items-start justify-between gap-3 border-t border-gray-100 pt-4 md:flex-row md:items-center md:gap-4 md:pt-5">
+                    <div className="flex items-center gap-2 text-xs md:text-sm text-green-700">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700">
+                        <Check className="w-3.5 h-3.5" />
+                      </span>
+                      <span>Practical Salesforce execution</span>
+                    </div>
+
+                    <Link
+                      to={`/services/${service.slug}`}
+                      className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-semibold text-green-700 transition-colors hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2"
+                    >
+                      Explore Service
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 )}
               </div>
             </motion.article>

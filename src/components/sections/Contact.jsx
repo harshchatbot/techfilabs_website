@@ -25,7 +25,7 @@ export default function Contact({
   subtitle = "Whether you need one Salesforce resource, a managed support pod, or implementation support, TechFi Labs can help you scale with confidence.",
   contactInfo = {
     phone: "+91 7976111087",
-    email: "thetechfilabs@gmail.com",
+    email: "harshveernirwan@techfilabs.com",
     address: "Jaipur, Rajasthan 302001",
   },
   products = [],
@@ -37,6 +37,8 @@ export default function Contact({
   messagePlaceholder = "Describe the Salesforce support or delivery help you need.",
   submitButtonLabel = "Schedule a Quick Call",
   showLeadMagnet = true,
+  quickActions = [],
+  responsePromise = "",
 }) {
   const resolvedInterestOptions = interestOptions.length ? interestOptions : products.map((product) => product.name);
   const resolvedProjectTypes = projectTypes.length
@@ -149,26 +151,32 @@ export default function Contact({
   };
 
   return (
-    <section id="contact" className="py-28 bg-green-50 relative overflow-hidden">
+    <section id="contact" className="py-22 md:py-28 bg-[linear-gradient(180deg,#f7fcf9_0%,#ffffff_100%)] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.08),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.06),transparent_28%)]" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center mb-10 md:mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-4">{title}</h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">{subtitle}</p>
+          <h2 className="mb-4 text-3xl md:text-6xl font-semibold text-gray-900 tracking-tight">{title}</h2>
+          <p className="mx-auto max-w-2xl text-base md:text-lg text-slate-600">{subtitle}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-7 items-start">
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] md:gap-7 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-gray-100 bg-white shadow-sm p-7 space-y-6"
+            className="rounded-[1.75rem] md:rounded-3xl border border-white/10 bg-white/95 shadow-[0_18px_50px_rgba(0,0,0,0.18)] p-5 md:p-7 space-y-6"
           >
-            <h3 className="text-2xl font-semibold text-gray-900">Talk to the team</h3>
+            <div>
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-900">Talk to the team</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Get direct access to a founder-led Salesforce delivery team for implementation support, managed services, staffing, and production support discussions.
+              </p>
+            </div>
 
             {[
               { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
@@ -186,8 +194,34 @@ export default function Contact({
               </a>
             ))}
 
+            {quickActions.length ? (
+              <div className="space-y-3">
+                <p className="text-xs uppercase tracking-[0.16em] text-gray-500">Quick contact options</p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  {quickActions.map((action) => (
+                    <a
+                      key={action.label}
+                      href={action.href}
+                      target={action.href.startsWith("http") ? "_blank" : undefined}
+                      rel={action.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2.5 text-sm font-semibold text-green-700 transition-colors hover:bg-green-100"
+                    >
+                      {action.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {responsePromise ? (
+              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 px-4 py-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-emerald-700">Response Promise</p>
+                <p className="mt-1 text-sm font-medium text-gray-900">{responsePromise}</p>
+              </div>
+            ) : null}
+
             {showLeadMagnet ? (
-            <div className="rounded-2xl border border-green-200 bg-green-50 p-5 mt-2">
+            <div className="mt-2 rounded-2xl border border-green-200 bg-green-50 p-4 md:p-5">
               <p className="text-xs uppercase tracking-[0.16em] text-green-600 mb-2">Lead Magnet</p>
               <h4 className="text-lg font-semibold text-gray-900 mb-2">Free Growth Outcome Checklist</h4>
               <p className="text-sm text-gray-500 mb-4">
@@ -195,7 +229,7 @@ export default function Contact({
               </p>
 
               {leadMagnetStatus === "success" && (
-                <p className="text-sm text-lime-100 mb-3">
+                <p className="mb-3 text-sm text-green-700">
                   Thanks. Check your inbox for the checklist. If not received, use this direct download:
                   {" "}
                   <a
@@ -209,7 +243,7 @@ export default function Contact({
                 </p>
               )}
               {leadMagnetStatus === "error" && (
-                <p className="text-sm text-red-200 mb-3">Could not submit right now. Please try again.</p>
+                <p className="mb-3 text-sm text-red-600">Could not submit right now. Please try again.</p>
               )}
 
               <form onSubmit={handleLeadMagnetSubmit} className="flex flex-col sm:flex-row gap-2">
@@ -224,7 +258,7 @@ export default function Contact({
                 <button
                   type="submit"
                   disabled={leadMagnetSubmitting}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-300 px-4 py-3 font-semibold text-green-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white shadow-[0_14px_32px_rgba(5,150,105,0.18)] transition-colors hover:bg-emerald-700 disabled:opacity-60"
                 >
                   {leadMagnetSubmitting ? "Submitting..." : "Get Checklist"}
                 </button>
@@ -237,7 +271,7 @@ export default function Contact({
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-gray-100 bg-white shadow-sm p-7"
+            className="rounded-[1.75rem] md:rounded-3xl border border-white/10 bg-white/95 shadow-[0_18px_50px_rgba(0,0,0,0.18)] p-5 md:p-7"
           >
             {submitStatus === "success" && (
               <div className="mb-6 rounded-xl border border-green-200 bg-green-50 p-3 text-green-700 flex items-center gap-2">
@@ -359,7 +393,7 @@ export default function Contact({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-lime-300 px-6 py-3.5 font-bold text-green-950 hover:bg-lime-200 transition-colors disabled:opacity-60"
+                className="w-full inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 font-bold text-white shadow-[0_16px_40px_rgba(5,150,105,0.22)] transition-colors hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 disabled:opacity-60"
               >
                 {isSubmitting ? "Sending..." : submitButtonLabel}
                 <ArrowRight className="w-4 h-4" />
@@ -375,7 +409,7 @@ export default function Contact({
 function Field({ label, children }) {
   return (
     <label className="block space-y-2">
-      <span className="text-xs uppercase tracking-[0.15em] text-gray-400">{label}</span>
+      <span className="text-xs uppercase tracking-[0.15em] text-gray-500">{label}</span>
       {children}
     </label>
   );

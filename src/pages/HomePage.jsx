@@ -3,12 +3,15 @@ import {
   CaseStudies,
   ClientLogos,
   Contact,
+  CredibilityBlock,
   EngagementModels,
   Footer,
   Hero,
   MissionValues,
   Navigation,
   ProductsShowcase,
+  SalesforceAccelerators,
+  SalesforceUseCases,
   Services,
   TrustStrip,
   WhoWeHelp,
@@ -21,9 +24,12 @@ import {
   CASE_STUDIES_DATA,
   CONTACT_INFO,
   FOOTER_DATA,
+  HOMEPAGE_ACCELERATORS,
+  HOMEPAGE_CREDIBILITY,
   HOMEPAGE_ENGAGEMENT_MODELS,
   HOMEPAGE_SERVICES_DATA,
   HOMEPAGE_TRUST_STRIP,
+  HOMEPAGE_USE_CASES,
   MISSION_VALUES_DATA,
   PRODUCTS_DATA,
   SITE_CONFIG,
@@ -46,7 +52,7 @@ export default function HomePage() {
     url: "https://techfilabs.com/",
     image: "https://techfilabs.com/techfilabs_logo_2026.png",
     telephone: "+91 7976111087",
-    email: "thetechfilabs@gmail.com",
+    email: "harshveernirwan@techfilabs.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jaipur, Rajasthan",
@@ -79,11 +85,11 @@ export default function HomePage() {
 
       <main id="main-content">
         <Hero
-          eyebrow="Salesforce Consulting Partner"
+          eyebrow="Salesforce Consulting & Offshore Delivery"
           headline="We Help Businesses Get More From Salesforce."
-          subtitle="From implementation to ongoing support — TechFi Labs helps your team set up, manage, and grow on Salesforce. Based in India, serving clients globally."
+          subtitle="From implementation to ongoing support TechFi Labs helps your team set up, manage, and grow on Salesforce. Based in India, serving clients globally."
           primaryButton={{
-            text: "Talk to a Salesforce Expert",
+            text: "Book a Consultation",
             action: () => {
               const contactSection = document.getElementById("contact");
               if (contactSection) {
@@ -92,7 +98,7 @@ export default function HomePage() {
             },
           }}
           secondaryButton={{
-            text: "See Our Services",
+            text: "Explore Services",
             action: () => {
               const servicesSection = document.getElementById("services");
               if (servicesSection) {
@@ -110,9 +116,13 @@ export default function HomePage() {
 
         <Services
           title="What We Do"
-          subtitle="We're a Salesforce consulting team. Here's how we help."
+          subtitle="Salesforce consulting, implementation support, managed services, production support, and staff augmentation designed for reliable delivery."
           services={HOMEPAGE_SERVICES_DATA}
         />
+
+        <SalesforceAccelerators items={HOMEPAGE_ACCELERATORS} />
+
+        <SalesforceUseCases items={HOMEPAGE_USE_CASES} />
 
         <WhoWeHelp
           title="Who we work with"
@@ -149,8 +159,8 @@ export default function HomePage() {
         />
 
         <EngagementModels
-          title="From Strategy to Ongoing Support"
-          subtitle="We work from discovery through delivery and post-launch support with a practical, execution-first approach."
+          title="Delivery Process"
+          subtitle="From discovery to post-go-live support, we run Salesforce work with structured execution, communication, and accountability."
           note="TechFi Labs can work as a dedicated Salesforce resource, an extended delivery team, a managed support pod, or a project-based implementation partner."
           models={HOMEPAGE_ENGAGEMENT_MODELS}
         />
@@ -163,10 +173,12 @@ export default function HomePage() {
           showLinks={false}
         />
 
+        <CredibilityBlock items={HOMEPAGE_CREDIBILITY} />
+
         <About
-          title="How We Help Teams Day to Day"
-          subtitle="We make Salesforce delivery easier to manage, easier to support, and easier to scale."
-          description="From implementation planning to release support and ongoing managed services, TechFi Labs works as a practical Salesforce delivery team that keeps work moving without adding unnecessary complexity."
+          title="Why Choose TechFi Labs"
+          subtitle="A practical Salesforce delivery team built for implementation support, managed services, and ongoing business execution."
+          description="We bring together Salesforce consulting, build execution, release support, and long-term platform care so your team gets dependable delivery without extra operational friction."
           logo={SITE_CONFIG.company}
           stats={ABOUT_DATA.stats}
           features={ABOUT_DATA.features}
@@ -176,9 +188,14 @@ export default function HomePage() {
 
         <Contact
           title="Need Salesforce delivery support?"
-          subtitle="Let’s discuss your Salesforce roadmap, support needs, or talent requirements."
+          subtitle="Speak directly with a founder-led Salesforce delivery team about your roadmap, support needs, or team capacity requirements."
           contactInfo={CONTACT_INFO}
           products={PRODUCTS_DATA}
+          quickActions={[
+            { label: "Chat on WhatsApp", href: "https://wa.me/917976111087" },
+            { label: "Email TechFi Labs", href: "mailto:harshveernirwan@techfilabs.com" },
+          ]}
+          responsePromise="We usually respond within 1 business day."
           interestOptions={[
             "Salesforce Consulting",
             "Salesforce Staff Augmentation",

@@ -20,8 +20,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Manrope", "sans-serif"],
-        display: ["Inter", "sans-serif"],
+        sans: ["InterVariable", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["ManropeVariable", "Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         tighter: "-0.05em",

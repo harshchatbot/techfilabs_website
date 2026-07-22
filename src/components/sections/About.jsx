@@ -1,30 +1,30 @@
 import { motion } from "framer-motion";
 import CountUpNumber from "../ui/CountUpNumber";
-import { fadeSlideUpVariants, getAnimationConfig, prefersReducedMotion } from "../../utils/motionConfig";
 
 export default function About({
-  title = "Why growth-focused teams choose TechFi Labs",
-  subtitle = "We combine strategy and execution to turn business goals into measurable results.",
-  description = "Our approach is simple: identify bottlenecks, build the right system, and optimize continuously until your business sees clear outcome improvements.",
+  title = "Why Choose TechFi Labs",
+  subtitle = "A practical Salesforce delivery team built for implementation support, managed services, and ongoing business execution.",
+  description = "We bring together Salesforce consulting, build execution, release support, and long-term platform care so your team gets dependable delivery without extra operational friction.",
   stats = [],
   features = [],
   logo,
 }) {
   return (
-    <section id="about" className="py-28 bg-green-50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+    <section id="about" className="py-22 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.08),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.06),transparent_28%)]" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 md:gap-10 items-start">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-green-600 mb-4">About us</p>
-          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-4">{title}</h2>
-          <p className="text-xl text-gray-500 mb-4">{subtitle}</p>
-          <p className="text-gray-500 leading-relaxed max-w-2xl mb-8">{description}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-green-600 mb-4">Why Choose TechFi Labs</p>
+          <h2 className="mb-4 text-3xl md:text-6xl font-semibold text-gray-900 tracking-tight">{title}</h2>
+          <p className="mb-4 text-lg md:text-xl text-slate-700">{subtitle}</p>
+          <p className="text-slate-600 leading-relaxed max-w-2xl mb-8">{description}</p>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             {features.map((feature, index) => (
               <motion.div
                 key={feature}
@@ -32,7 +32,7 @@ export default function About({
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="rounded-full border border-green-100 bg-white px-4 py-2.5 text-sm text-gray-600 shadow-sm"
+                className="rounded-2xl border border-green-100 bg-green-50/65 px-4 py-3 text-sm font-medium text-gray-900 shadow-sm"
               >
                 {feature}
               </motion.div>
@@ -41,35 +41,18 @@ export default function About({
         </motion.div>
 
         <motion.div
-          variants={getAnimationConfig(fadeSlideUpVariants, { visible: () => ({ opacity: 1, y: 0 }) })}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
           viewport={{ once: true }}
-          className="relative grid gap-4"
+          className="relative"
         >
-          <div className="relative rounded-3xl overflow-hidden h-[320px] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-            <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80&auto=format&fit=crop"
-              alt="Salesforce delivery workshop"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent" />
-            <div className="absolute left-5 top-5 rounded-2xl border border-white/60 bg-white/85 px-4 py-3 backdrop-blur-sm shadow-sm">
+          <div className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#f7fcf9_0%,#ffffff_100%)] p-5 shadow-[0_16px_40px_rgba(15,23,42,0.06)] md:p-6">
+            <div className="mb-4 rounded-[1.5rem] border border-green-100 bg-green-50/70 px-4 py-4 md:px-5">
               <p className="text-[11px] uppercase tracking-[0.16em] text-green-700 mb-1">Delivery Style</p>
               <p className="text-sm font-medium text-gray-900">Calm process, clear ownership, stable execution</p>
             </div>
-          </div>
-
-          <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-4">
-            <div className="relative rounded-3xl overflow-hidden min-h-[220px] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-              <img
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80&auto=format&fit=crop"
-                alt="Salesforce support collaboration"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="rounded-3xl border border-gray-100 bg-white shadow-sm p-5">
+            <div className="rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.04)] md:p-5">
               <div className="flex items-center gap-3 mb-3">
                 <img src="/techfilabs_logo_2026.png" alt="TechFi Labs" className="h-8 w-8 object-contain" />
                 <div>

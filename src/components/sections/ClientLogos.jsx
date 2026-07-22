@@ -33,7 +33,7 @@ export default function ClientLogos() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           viewport={{ once: true }}
-          className="rounded-[2rem] border border-gray-100 bg-gradient-to-b from-white via-gray-50/80 to-white p-6 md:p-8"
+          className="rounded-[2rem] border border-gray-100 bg-gradient-to-b from-white via-gray-50/80 to-white p-6 md:p-8 shadow-[0_18px_50px_rgba(15,23,42,0.04)]"
         >
           <div className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
             <InfiniteSlider gap={40} reverse speed={72} speedOnHover={28} className="py-2">
