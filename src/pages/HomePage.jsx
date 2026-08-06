@@ -1,42 +1,33 @@
 import {
   About,
-  CaseStudies,
-  ClientLogos,
   Contact,
   CredibilityBlock,
-  EngagementModels,
+  ExpertiseSection,
   Footer,
   Hero,
-  MissionValues,
   Navigation,
-  ProductsShowcase,
+  OrganizationsServed,
   SalesforceAccelerators,
-  SalesforceUseCases,
   Services,
-  TrustStrip,
-  WhoWeHelp,
+  WorkflowShowcase,
 } from "../components";
 import WhatsAppChatButton from "../components/WhatsAppChatButton";
 import Schema from "../components/Schema";
 import Seo from "../components/Seo";
 import {
   ABOUT_DATA,
-  CASE_STUDIES_DATA,
   CONTACT_INFO,
   FOOTER_DATA,
   HOMEPAGE_ACCELERATORS,
   HOMEPAGE_CREDIBILITY,
-  HOMEPAGE_ENGAGEMENT_MODELS,
+  HOMEPAGE_EXPERTISE_POINTS,
+  HOMEPAGE_EXPERTISE_TOOLS,
   HOMEPAGE_SERVICES_DATA,
-  HOMEPAGE_TRUST_STRIP,
-  HOMEPAGE_USE_CASES,
-  MISSION_VALUES_DATA,
   PRODUCTS_DATA,
   SITE_CONFIG,
 } from "../constants/data";
 
 export default function HomePage() {
-  const innovationProducts = PRODUCTS_DATA.filter((product) => ["Live", "Beta"].includes(product.status)).slice(0, 3);
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -61,18 +52,18 @@ export default function HomePage() {
       postalCode: "302001",
       addressCountry: "IN",
     },
-    areaServed: ["Ajmer", "Jaipur", "India", "USA", "UK", "UAE"],
+    areaServed: ["Jaipur", "India", "USA", "UK", "UAE"],
     sameAs: ["https://www.linkedin.com/company/the-technology-fiction/"],
   };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Seo
-        title="TechFi Labs | Salesforce Consulting, Delivery & Managed Services"
-        description="TechFi Labs helps businesses and consulting firms with Salesforce consulting, implementation support, managed services, production support, staff augmentation, Experience Cloud delivery, integrations, and delivery support from India."
+        title="TechFi Labs | AI Automation Studio with Salesforce Delivery Expertise"
+        description="TechFi Labs builds AI agents, WhatsApp and email automations, Salesforce workflows, managed support solutions, data migration services, and custom tools for growing business teams."
         canonical="https://techfilabs.com/"
         type="website"
-        keywords="Salesforce consulting, Salesforce implementation support, Salesforce managed services, Salesforce production support, Salesforce staff augmentation, offshore Salesforce delivery from India, Experience Cloud, Salesforce integrations, Apex LWC Flows, Salesforce support company, TechFi Labs"
+        keywords="AI automation studio, AI agents, WhatsApp automation, email automation, Salesforce consulting, Salesforce support, managed services, production support, data migration, custom engineering, TechFi Labs"
       />
       <Schema id="website-schema" data={websiteSchema} />
       <Schema id="local-business-schema" data={localBusinessSchema} />
@@ -85,110 +76,56 @@ export default function HomePage() {
 
       <main id="main-content">
         <Hero
-          eyebrow="Salesforce Consulting & Offshore Delivery"
-          headline="We Help Businesses Get More From Salesforce."
-          subtitle="From implementation to ongoing support TechFi Labs helps your team set up, manage, and grow on Salesforce. Based in India, serving clients globally."
+          eyebrow="AI Automation • Salesforce • Custom Engineering"
+          headline="AI Agents & Automation for Growing Business Teams"
+          subtitle="AI agents, Salesforce workflows, and custom tools that reduce manual work."
+          chips={["AI Agents", "WhatsApp + Email", "Salesforce", "Custom Engineering"]}
           primaryButton={{
-            text: "Book a Consultation",
+            text: "Build Your AI Workflow",
             action: () => {
               const contactSection = document.getElementById("contact");
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: "smooth" });
-              }
+              if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
             },
           }}
           secondaryButton={{
             text: "Explore Services",
             action: () => {
               const servicesSection = document.getElementById("services");
-              if (servicesSection) {
-                servicesSection.scrollIntoView({ behavior: "smooth" });
-              }
+              if (servicesSection) servicesSection.scrollIntoView({ behavior: "smooth" });
             },
           }}
-          stats={ABOUT_DATA.stats}
           scrollTarget="services"
         />
 
-        <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
-
-        <ClientLogos />
+        <OrganizationsServed />
 
         <Services
-          title="What We Do"
-          subtitle="Salesforce consulting, implementation support, managed services, production support, and staff augmentation designed for reliable delivery."
+          title="What We Build"
+          subtitle="AI automation, Salesforce delivery, and custom tools for teams that want less manual work."
           services={HOMEPAGE_SERVICES_DATA}
         />
 
-        <SalesforceAccelerators items={HOMEPAGE_ACCELERATORS} />
+        <WorkflowShowcase />
 
-        <SalesforceUseCases items={HOMEPAGE_USE_CASES} />
-
-        <WhoWeHelp
-          title="Who we work with"
-          subtitle="We support consulting firms, business teams, and delivery organizations that need reliable Salesforce execution capacity."
-          items={[
-            {
-              title: "Consulting Firms",
-              description:
-                "Add implementation, engineering, and support bandwidth without stretching internal teams too thin.",
-            },
-            {
-              title: "Business Teams",
-              description:
-                "Get help designing, improving, and supporting Salesforce when the in-house team needs experienced delivery backing.",
-            },
-            {
-              title: "Growth-Stage Companies",
-              description:
-                "Move Salesforce work forward with practical support across build, integration, issue resolution, and ongoing improvements.",
-            },
-            {
-              title: "Delivery Teams",
-              description:
-                "Work with a Salesforce delivery company that can add team capacity, support execution, and help maintain momentum across active programs.",
-            },
-          ]}
+        <ExpertiseSection
+          points={HOMEPAGE_EXPERTISE_POINTS}
+          tools={HOMEPAGE_EXPERTISE_TOOLS}
         />
 
-        <MissionValues
-          mission={MISSION_VALUES_DATA.mission}
-          whoWeAre={MISSION_VALUES_DATA.whoWeAre}
-          values={MISSION_VALUES_DATA.values}
-          commitment={MISSION_VALUES_DATA.commitment}
-        />
-
-        <EngagementModels
-          title="Delivery Process"
-          subtitle="From discovery to post-go-live support, we run Salesforce work with structured execution, communication, and accountability."
-          note="TechFi Labs can work as a dedicated Salesforce resource, an extended delivery team, a managed support pod, or a project-based implementation partner."
-          models={HOMEPAGE_ENGAGEMENT_MODELS}
-        />
-
-        <CaseStudies
-          title="Representative Salesforce Delivery Experience"
-          subtitle="Examples of Salesforce delivery experience across regulated environments, portals, and field operations programs."
-          disclaimer="Representative examples based on Salesforce delivery experience across enterprise engagements. Client names and confidential details are intentionally omitted."
-          studies={CASE_STUDIES_DATA}
-          showLinks={false}
+        <About
+          eyebrow="Why TechFi Labs"
+          title="Why Businesses Choose TechFi Labs"
+          subtitle="We automate real workflows with strong Salesforce delivery support."
+          items={ABOUT_DATA.reasons}
         />
 
         <CredibilityBlock items={HOMEPAGE_CREDIBILITY} />
 
-        <About
-          title="Why Choose TechFi Labs"
-          subtitle="A practical Salesforce delivery team built for implementation support, managed services, and ongoing business execution."
-          description="We bring together Salesforce consulting, build execution, release support, and long-term platform care so your team gets dependable delivery without extra operational friction."
-          logo={SITE_CONFIG.company}
-          stats={ABOUT_DATA.stats}
-          features={ABOUT_DATA.features}
-        />
-
-        <ProductsShowcase products={innovationProducts} />
+        <SalesforceAccelerators items={HOMEPAGE_ACCELERATORS} />
 
         <Contact
-          title="Need Salesforce delivery support?"
-          subtitle="Speak directly with a founder-led Salesforce delivery team about your roadmap, support needs, or team capacity requirements."
+          title="Need AI automation or Salesforce support?"
+          subtitle="Tell us what you want to automate, improve, or support."
           contactInfo={CONTACT_INFO}
           products={PRODUCTS_DATA}
           quickActions={[
@@ -197,37 +134,36 @@ export default function HomePage() {
           ]}
           responsePromise="We usually respond within 1 business day."
           interestOptions={[
-            "Salesforce Consulting",
-            "Salesforce Staff Augmentation",
-            "Salesforce Production Support",
-            "Salesforce Managed Services",
-            "Salesforce Implementation Support",
-            "Experience Cloud & Integrations",
+            "AI Agents & Automation",
+            "WhatsApp & Email Automation",
+            "Salesforce Consulting & Delivery",
+            "Managed Services & Production Support",
+            "Data Migration & Custom Engineering",
           ]}
           projectTypes={[
-            "Consulting Support",
-            "Implementation Project",
-            "Managed Services",
-            "Production Support",
-            "Staff Augmentation",
+            "Discovery / Strategy",
+            "Workflow Build",
+            "Salesforce Delivery",
+            "Managed Support",
           ]}
-          interestLabel="Service Needed"
-          projectTypeLabel="Engagement Model"
-          messageLabel="Support Requirement"
-          messagePlaceholder="Tell us about your Salesforce roadmap, support needs, or team extension requirement."
-          submitButtonLabel="Discuss Salesforce Support Needs"
+          interestLabel="What do you need help with?"
+          projectTypeLabel="Engagement Type"
+          messageLabel="Project Brief"
+          messagePlaceholder="Tell us which workflow, process, or Salesforce challenge you want to improve."
+          submitButtonLabel="Discuss Your Workflow"
           showLeadMagnet={false}
         />
       </main>
 
       <Footer
         logo={SITE_CONFIG.company}
+        description="TechFi Labs builds AI agents, workflow automations, and Salesforce-connected systems for modern business teams."
         services={FOOTER_DATA.services}
         company={FOOTER_DATA.company}
         socialLinks={FOOTER_DATA.socialLinks}
       />
 
-      <WhatsAppChatButton />
+      <WhatsAppChatButton text="Hi! I want to discuss an AI automation workflow." />
     </div>
   );
 }

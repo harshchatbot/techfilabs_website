@@ -5,7 +5,7 @@ import { fadeSlideUpVariants, hoverLiftVariants, getAnimationConfig, prefersRedu
 
 export default function Testimonials({
   title = "Client & Partner Feedback",
-  subtitle = "Testimonials coming soon. Until then, explore representative delivery experience and engagement models.",
+  subtitle = "Explore representative delivery experience and engagement models.",
   testimonials = [],
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -70,7 +70,7 @@ export default function Testimonials({
             className="max-w-4xl mx-auto rounded-3xl border border-white/10 bg-emerald-900/55 p-8 text-center"
           >
             <p className="text-white text-lg leading-relaxed">
-              Testimonials coming soon. Until then, explore representative delivery experience and engagement models.
+              Explore representative delivery experience and engagement models.
             </p>
           </motion.div>
         )}

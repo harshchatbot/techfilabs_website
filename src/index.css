@@ -7,6 +7,14 @@
 @layer base {
   :root {
     font-family: "InterVariable", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --brand-green: #064e2f;
+    --brand-dark-green: #03291d;
+    --brand-emerald: #059669;
+    --brand-bright: #10b981;
+    --mint-bg: #ecfdf5;
+    --mint-card: #f7fefa;
+    --green-border: rgba(6, 95, 70, 0.14);
+    --text-dark: #0f172a;
   }
 
   html {
@@ -17,7 +25,7 @@
   }
 
   body {
-    background-color: #ffffff;
+    background-color: var(--mint-bg);
     color: #111827;
     font-family: "InterVariable", "Inter", ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
@@ -45,7 +53,14 @@
 
 @layer components {
   .input-base {
-    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-green-400;
+    @apply w-full rounded-xl border px-4 py-3 text-gray-900 outline-none transition-colors placeholder:text-slate-400;
+    border-color: var(--green-border);
+    background-color: var(--mint-card);
+  }
+
+  .input-base:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
   }
 }
 

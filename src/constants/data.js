@@ -28,9 +28,9 @@ export const SITE_CONFIG = {
     logo: "/techfilabs_logo_2026.png",
   },
   navigation: {
-    menuItems: ["home", "products", "services", "case-studies", "about", "contact"],
+    menuItems: ["home", "services", "products", "about", "contact"],
     ctaButton: {
-      text: "Book a Salesforce Consultation",
+      text: "Build Your AI Workflow",
       action: () => scrollToSection("contact"),
     },
   },
@@ -669,19 +669,43 @@ export const CASE_STUDIES_DATA = [
 ];
 
 export const ABOUT_DATA = {
-  stats: [
-    { number: "Consult", label: "Advisory and planning" },
-    { number: "Build", label: "Implementation delivery" },
-    { number: "Support", label: "Managed services and ops" },
-    { number: "Scale", label: "Flexible team extension" },
-  ],
-  features: [
-    "Founder-led delivery",
-    "Salesforce-first execution",
-    "Production support mindset",
-    "Clear communication and handover",
-    "Flexible offshore collaboration",
-    "Cost-effective delivery support",
+  reasons: [
+    {
+      number: "01/",
+      title: "Practical AI Automation",
+      description:
+        "Real workflows, not abstract demos.",
+    },
+    {
+      number: "02/",
+      title: "WhatsApp, Email & CRM Integrations",
+      description:
+        "AI connected to everyday business tools.",
+    },
+    {
+      number: "03/",
+      title: "Salesforce Expertise Built In",
+      description:
+        "Salesforce delivery, data, security, and support experience.",
+    },
+    {
+      number: "04/",
+      title: "Delivery Ownership",
+      description:
+        "From discovery to deployment and support.",
+    },
+    {
+      number: "05/",
+      title: "Secure, Scalable & Maintainable",
+      description:
+        "Human review, logging, access control, monitoring.",
+    },
+    {
+      number: "06/",
+      title: "Long-Term Support Mindset",
+      description:
+        "Improve and scale workflows after launch.",
+    },
   ],
 };
 
@@ -717,157 +741,179 @@ export const MISSION_VALUES_DATA = {
 };
 
 export const HOMEPAGE_TRUST_STRIP = [
-  "Staff Augmentation",
-  "Production Support",
-  "Salesforce Consulting",
-  "Implementation Support",
-  "Managed Services",
-  "Experience Cloud & Integrations",
+  "AI Agents",
+  "WhatsApp AI",
+  "Email Automation",
+  "n8n Workflows",
+  "Salesforce AI",
+  "Managed Support",
 ];
 
 export const HOMEPAGE_ACCELERATORS = [
   {
     title: "FieldLens for Salesforce",
     description:
-      "Field impact and usage analysis for admins, consultants, and delivery teams before changes go live.",
-    badge: "Delivery Accelerator",
-    value: "Release confidence",
+      "A Salesforce utility that helps teams understand field impact before making changes.",
+    badge: "Salesforce Accelerator",
+    value: "Dependency visibility inside Salesforce",
     icon: Database,
+    href: "/products/fieldlens-for-salesforce",
+    ctaLabel: "View FieldLens",
   },
   {
-    title: "Salesforce Data Migration Kit",
+    title: "RangManch AI",
     description:
-      "Dedupe checks, validation templates, rollback planning, and migration readiness for safer cutovers.",
-    badge: "Migration Asset",
-    value: "Lower migration risk",
-    icon: Zap,
+      "A creative AI platform for content workflows, digital experiences, and faster content production.",
+    badge: "AI Product / Creative Automation",
+    value: "AI-assisted content and workflow creation",
+    icon: Sparkles,
+    href: "/products/rangmanch-ai",
+    ctaLabel: "View RangManch AI",
+  },
+  {
+    title: "Sentinel",
+    description:
+      "An automation concept for tracking important updates and helping teams respond faster.",
+    badge: "AI Automation / Monitoring",
+    value: "Smarter monitoring and faster response",
+    icon: ShieldCheck,
+    href: "/products/sentinel-society-management",
+    ctaLabel: "View Sentinel",
   },
   {
     title: "Production Support Playbook",
     description:
-      "Structured incident, enhancement, SLA, release, and documentation process for predictable support execution.",
-    badge: "Support Framework",
-    value: "Operational stability",
+      "A practical support framework for incidents, enhancements, releases, and service tracking.",
+    badge: "Delivery Framework",
+    value: "Repeatable managed support execution",
     icon: ShieldCheck,
+    href: "/#contact",
+    ctaLabel: "Discuss this work",
+  },
+  {
+    title: "AI Workflow Starter Kit",
+    description:
+      "A reusable starting point for inbound automation, message handling, drafting, and escalation.",
+    badge: "Automation Kit",
+    value: "Faster AI workflow launch",
+    icon: Bot,
+    href: "/#contact",
+    ctaLabel: "Discuss this work",
   },
   {
     title: "Resume RAG for Staffing",
     description:
-      "AI-powered candidate search and requirement matching to speed up Salesforce staff augmentation decisions.",
-    badge: "Talent Workflow",
-    value: "Faster staffing",
-    icon: Bot,
+      "A staffing utility that helps teams search candidate profiles and match them to requirements faster.",
+    badge: "AI Staffing Utility",
+    value: "Faster candidate shortlisting",
+    icon: Cpu,
+    href: "/#contact",
+    ctaLabel: "Discuss this work",
   },
 ];
 
 export const HOMEPAGE_USE_CASES = [
   {
-    title: "Sales Operations",
-    description: "Pipeline visibility, lead lifecycle, workflow automation, and reporting for revenue teams.",
+    title: "AI workflow triage",
+    description: "WhatsApp, email, CRM, and sheet-based automation for day-to-day business operations.",
   },
   {
-    title: "Service Operations",
-    description: "Case handling, escalation workflows, SLAs, and user support processes inside Salesforce.",
-  },
-  {
-    title: "Partner & Customer Portals",
-    description: "Experience Cloud portals for external users, collaboration flows, and secure access models.",
-  },
-  {
-    title: "Healthcare & Life Sciences CRM",
-    description: "Regulated process support, care coordination, participant workflows, and compliance-aware delivery.",
-  },
-  {
-    title: "Data Migration & Cleanup",
-    description: "Mapping, deduplication, validation, and cutover preparation for cleaner CRM adoption.",
-  },
-  {
-    title: "Managed Support & Enhancements",
-    description: "Ongoing releases, fixes, enhancements, monitoring, and change execution after go-live.",
+    title: "Agent handoff and routing",
+    description: "Human review, approval paths, escalation rules, and exception handling across AI workflows.",
   },
 ];
 
 export const HOMEPAGE_CREDIBILITY = [
   "12+ years IT delivery experience",
   "6+ years Salesforce project experience",
-  "US-based Salesforce delivery exposure",
-  "Founder-led technical governance",
-  "India-based offshore delivery support",
+  "US-based delivery exposure",
+  "Delivery ownership from design to support",
+  "India-based offshore delivery",
 ];
 
 export const HOMEPAGE_SERVICES_DATA = [
   {
-    title: "Salesforce Consulting & Implementation",
+    title: "AI Agents & Automation",
     description:
-      "Get practical guidance on Salesforce solution design, implementation planning, architecture, and delivery decisions.",
-    features: [
-      "Solution design",
-      "Architecture review",
-      "Implementation planning",
-      "Delivery advisory",
-    ],
-    icon: Zap,
+      "Automate repetitive work across teams and tools.",
+    points: ["Task routing", "Reply drafting", "Internal support"],
+    visuals: ["Smart actions", "Human handoff", "Workflow control"],
+    badge: "Automation",
+    icon: Bot,
+    size: "wide",
+    slug: "ai-agents-automation",
+    surface: "bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.10),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(56,189,248,0.08),transparent_36%)]",
+  },
+  {
+    title: "WhatsApp & Email Automation",
+    description:
+      "Capture, classify, reply, and route messages faster.",
+    points: ["Inbox routing", "Lead follow-up", "Customer updates"],
+    visuals: ["WhatsApp", "Email", "Escalations"],
+    badge: "Channel automation",
+    icon: MessageCircle,
+    slug: "whatsapp-automation-solutions",
+  },
+  {
+    title: "Salesforce Consulting & Delivery",
+    description:
+      "Improve Salesforce setup, automation, and integrations.",
+    points: ["Implementation", "CRM automation", "User workflows"],
+    visuals: ["Salesforce", "Flows", "FieldLens"],
+    badge: "CRM delivery",
+    icon: Database,
+    size: "wide",
+    slug: "salesforce-consulting",
   },
   {
     title: "Managed Services & Production Support",
     description:
-      "Keep Salesforce stable and business-ready with structured enhancements, issue handling, release support, and ongoing administration.",
-    features: [
-      "Enhancements and fixes",
-      "Release support",
-      "Incident handling",
-      "Ongoing administration",
-    ],
-    icon: Globe,
-  },
-  {
-    title: "Salesforce Staff Augmentation",
-    description:
-      "Extend your Salesforce team with delivery-ready developers, admins, consultants, technical leads, and support professionals.",
-    features: [
-      "Developers and admins",
-      "Consultants and tech leads",
-      "Flexible team extension",
-      "Delivery capacity support",
-    ],
+      "Keep systems stable with fixes, releases, and improvements.",
+    points: ["Incident handling", "Release support", "Enhancements"],
+    visuals: ["Tickets", "SLA", "Monitoring"],
+    badge: "Ongoing support",
     icon: Cpu,
+    slug: "salesforce-consulting",
   },
   {
-    title: "Experience Cloud & Integrations",
+    title: "Data Migration & Custom Engineering",
     description:
-      "Build portals, automate connected workflows, and integrate Salesforce with external systems for seamless business operations.",
-    features: [
-      "Experience Cloud portals",
-      "Connected workflows",
-      "API integrations",
-      "External system coordination",
-    ],
-    icon: Database,
+      "Move, clean, validate, and connect business data.",
+    points: ["Data migration", "Custom tools", "System integrations"],
+    visuals: ["Data mapping", "APIs", "Custom apps"],
+    badge: "Custom build",
+    icon: Globe,
+    slug: "web-application-development",
+  },
+];
+
+export const HOMEPAGE_EXPERTISE_POINTS = [
+  {
+    title: "Salesforce implementation",
+    description: "Setup, customization, automation, and org improvements aligned to how teams actually work.",
   },
   {
-    title: "Data Migration & CRM Optimization",
-    description:
-      "Improve CRM data quality, migration readiness, reporting reliability, and overall Salesforce performance.",
-    features: [
-      "Data migration planning",
-      "CRM cleanup",
-      "Reporting accuracy",
-      "Org optimization",
-    ],
-    icon: Smartphone,
+    title: "CRM automation",
+    description: "Automations that update records, trigger actions, and keep customer operations moving.",
   },
   {
-    title: "AI Automation & Custom Engineering",
-    description:
-      "Add automation and custom engineering where standard configuration is not enough for your Salesforce delivery or business workflows.",
-    features: [
-      "Workflow automation",
-      "Custom engineering",
-      "Business process acceleration",
-      "Platform extensions",
-    ],
-    icon: MessageCircle,
+    title: "Managed services",
+    description: "Steady support for admin work, enhancements, release coordination, and ongoing improvements.",
   },
+  {
+    title: "Production support",
+    description: "Issue resolution, release support, escalation handling, and post-go-live stability.",
+  },
+];
+
+export const HOMEPAGE_EXPERTISE_TOOLS = [
+  "Salesforce",
+  "Flows",
+  "Apex",
+  "LWC",
+  "Integrations",
+  "Data migration",
+  "FieldLens",
 ];
 
 export const HOMEPAGE_ENGAGEMENT_MODELS = [
@@ -920,15 +966,15 @@ export const CONTACT_INFO = {
 
 export const FOOTER_DATA = {
   services: [
-    "Salesforce Staff Augmentation",
-    "Salesforce Production Support",
-    "Salesforce Managed Services",
-    "Salesforce Implementation Support",
+    "AI Agents",
+    "WhatsApp AI Integrations",
+    "Email AI Automation",
+    "Salesforce AI & CRM Delivery",
   ],
   company: [
-    { name: "Products", href: "#products" },
-    { name: "Case Studies", href: "#case-studies" },
-    { name: "About", href: "#about" },
+    { name: "What We Build", href: "#services" },
+    { name: "Selected Work", href: "#products" },
+    { name: "Why TechFi Labs", href: "#about" },
     { name: "Contact", href: "/#contact" },
   ],
   socialLinks: [

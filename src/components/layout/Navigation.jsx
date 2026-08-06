@@ -113,17 +113,20 @@ export default function Navigation({
           mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
         }
       : {
-          navScrolled: "bg-white/92 border-white/70 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl",
-          navIdle: "bg-white/72 border-white/40 backdrop-blur-lg",
-          logoWrap: "border-emerald-200/70 bg-white shadow-[0_10px_30px_rgba(16,185,129,0.08)]",
-          logoText: "text-gray-900",
-          menuActive: "text-emerald-700",
-          menuIdle: "text-slate-700 hover:text-emerald-700",
+          navScrolled: "bg-[#f7fefa]/92 border-white/80 shadow-[0_20px_44px_rgba(3,41,29,0.12)] backdrop-blur-xl",
+          navIdle: "bg-[#f7fefa]/82 border-white/70 shadow-[0_16px_36px_rgba(3,41,29,0.10)] backdrop-blur-xl",
+          logoWrap: "border-emerald-200/75 bg-white shadow-[0_12px_30px_rgba(16,185,129,0.10)]",
+          logoText: "text-white",
+          logoTextScrolled: "text-gray-900",
+          menuActive: "text-emerald-100",
+          menuActiveScrolled: "text-emerald-700",
+          menuIdle: "text-white hover:text-emerald-100",
+          menuIdleScrolled: "text-slate-800 hover:text-emerald-700",
           sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
           ctaButton:
             "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
-          mobileToggle: "text-slate-700 hover:bg-slate-100",
-          mobilePanel: "bg-white/95 backdrop-blur-xl",
+          mobileToggle: "text-slate-800 hover:bg-emerald-50/80",
+          mobilePanel: "bg-[#f7fefa]/96 backdrop-blur-xl",
           mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
           mobileSentinel: "border-gray-200 text-gray-700",
           mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
@@ -131,31 +134,40 @@ export default function Navigation({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 sm:px-5">
-        <div className="max-w-7xl mx-auto px-5">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 sm:px-5 sm:pt-4">
+        <div className="mx-auto max-w-7xl px-3 sm:px-5">
           <div
             className={`flex items-center justify-between gap-4 rounded-[1.75rem] border px-4 py-3 transition-all duration-300 sm:px-5 ${
               scrolled ? navTheme.navScrolled : navTheme.navIdle
             }`}
           >
-            <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3">
+            <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa]">
               <div className={`h-11 w-11 overflow-hidden rounded-full border sm:h-12 sm:w-12 ${navTheme.logoWrap}`}>
                 <img src={logo.logo} alt={logo.name} className="h-full w-full object-cover scale-[1.14]" />
               </div>
-              <span className={`hidden md:block text-[15px] font-semibold tracking-tight ${navTheme.logoText}`}>
+              <span
+                className={`hidden sm:block text-[15px] font-semibold tracking-tight ${
+                  scrolled ? navTheme.logoTextScrolled || navTheme.logoText : navTheme.logoText
+                }`}
+              >
                 {logo.name}
               </span>
             </button>
 
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-5 xl:gap-8">
               {menuItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => handleMenuClick(item)}
-                  className={`capitalize text-sm font-semibold tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/90 ${
+                  aria-current={activeSection === item && location.pathname === "/" ? "page" : undefined}
+                  className={`rounded-full px-3 py-2 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
                     activeSection === item && location.pathname === "/"
-                      ? navTheme.menuActive
-                      : navTheme.menuIdle
+                      ? scrolled
+                        ? `${navTheme.menuActiveScrolled || navTheme.menuActive} bg-emerald-50 border border-emerald-100/80`
+                        : `${navTheme.menuActive} bg-white/[0.10] border border-white/10`
+                      : scrolled
+                        ? navTheme.menuIdleScrolled || navTheme.menuIdle
+                        : navTheme.menuIdle
                   }`}
                 >
                   {item}
@@ -164,7 +176,7 @@ export default function Navigation({
 
               <button
                 onClick={handleCtaClick}
-                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/90 ${navTheme.ctaButton}`}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.ctaButton}`}
               >
                 {ctaButton.text}
                 <ArrowRight className="w-4 h-4" />
@@ -172,7 +184,7 @@ export default function Navigation({
             </div>
 
             <button
-              className={`md:hidden rounded-xl p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/90 ${navTheme.mobileToggle}`}
+              className={`lg:hidden rounded-xl p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.mobileToggle}`}
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
@@ -190,7 +202,7 @@ export default function Navigation({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className={`fixed inset-0 z-40 overflow-y-auto md:hidden px-5 pb-8 pt-28 ${navTheme.mobilePanel}`}
+            className={`fixed inset-0 z-40 overflow-y-auto lg:hidden px-5 pb-8 pt-24 ${navTheme.mobilePanel}`}
           >
             <div className="space-y-3">
               {menuItems.map((item) => (

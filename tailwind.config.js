@@ -7,6 +7,16 @@ export default {
         bg: "#052e16",
         surface: "#064e3b",
         text: "#ecfdf5",
+        techfi: {
+          dark: "#064E3B",
+          brand: "#059669",
+          bright: "#10B981",
+          mintBg: "#ECFDF5",
+          mintCard: "#F7FEFA",
+          darkSurface: "#061B16",
+          textMain: "#0F172A",
+          textMuted: "#475569",
+        },
         brand: {
           DEFAULT: "#bef264",
           dark: "#84cc16",

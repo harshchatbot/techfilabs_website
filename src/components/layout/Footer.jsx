@@ -32,8 +32,8 @@ export default function Footer({
           bottomBar: "border-[#d7c8ae]/20 text-[#d7c8ae]",
         }
       : {
-          root: "bg-[#052e16] border-lime-200/15",
-          glow: "bg-[radial-gradient(circle_at_90%_20%,rgba(132,204,22,0.14),transparent_45%)]",
+          root: "bg-[linear-gradient(180deg,#064e2f_0%,#05472b_72%,#03291d_100%)] border-emerald-200/15",
+          glow: "bg-[radial-gradient(circle_at_90%_20%,rgba(52,211,153,0.16),transparent_45%),radial-gradient(circle_at_12%_100%,rgba(3,41,29,0.26),transparent_38%)]",
           logoWrap: "border-lime-300/30 bg-white/90",
           logoText: "text-lime-100",
           bodyText: "text-stone-300",

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { AlertCircle, ArrowRight, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
+import { AlertCircle, ArrowRight, CheckCircle2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import LiquidMetalButton from "../ui/LiquidMetalButton";
 
 const EMAILJS_SERVICE_ID = "service_n22qsrq";
 const EMAILJS_NOTIFY_TEMPLATE_ID = "template_akdqils";
@@ -21,8 +22,8 @@ const initialFormState = {
 };
 
 export default function Contact({
-  title = "Need reliable Salesforce delivery support?",
-  subtitle = "Whether you need one Salesforce resource, a managed support pod, or implementation support, TechFi Labs can help you scale with confidence.",
+  title = "Need AI automation or Salesforce support?",
+  subtitle = "Tell us what you want to automate, improve, or support.",
   contactInfo = {
     phone: "+91 7976111087",
     email: "harshveernirwan@techfilabs.com",
@@ -34,16 +35,17 @@ export default function Contact({
   interestLabel = "Service Needed",
   projectTypeLabel = "Engagement Type",
   messageLabel = "Project Brief",
-  messagePlaceholder = "Describe the Salesforce support or delivery help you need.",
+  messagePlaceholder = "Describe the workflow, AI use case, or CRM process you want to automate.",
   submitButtonLabel = "Schedule a Quick Call",
-  showLeadMagnet = true,
+  showLeadMagnet = false,
   quickActions = [],
   responsePromise = "",
 }) {
   const resolvedInterestOptions = interestOptions.length ? interestOptions : products.map((product) => product.name);
   const resolvedProjectTypes = projectTypes.length
     ? projectTypes
-    : ["Product demo", "New app build", "Web platform", "AI automation", "Salesforce consulting"];
+    : ["AI agent", "Workflow automation", "Salesforce delivery", "Managed support"];
+
   const [formData, setFormData] = useState({
     ...initialFormState,
     productInterest: resolvedInterestOptions[0] || "",
@@ -110,8 +112,7 @@ export default function Contact({
     const templateParams = {
       user_name: "Lead Magnet Request",
       user_email: leadMagnetEmail,
-      user_message:
-        "Requested lead magnet: Free Product + Salesforce Growth Checklist (2026 edition).",
+      user_message: "Requested lead magnet: Free Product + Salesforce Growth Checklist (2026 edition).",
       to_name: "TechFi Labs Team",
       website_source: "TechFi Website Lead Magnet",
       subject: "New Lead Magnet Signup",
@@ -150,142 +151,120 @@ export default function Contact({
     }
   };
 
-  return (
-    <section id="contact" className="py-22 md:py-28 bg-[linear-gradient(180deg,#f7fcf9_0%,#ffffff_100%)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.08),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.06),transparent_28%)]" />
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 md:mb-14"
-        >
-          <h2 className="mb-4 text-3xl md:text-6xl font-semibold text-gray-900 tracking-tight">{title}</h2>
-          <p className="mx-auto max-w-2xl text-base md:text-lg text-slate-600">{subtitle}</p>
-        </motion.div>
+  const contactRows = [
+    { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
+    { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+    { icon: MapPin, label: "Location", value: contactInfo.address, href: "#" },
+  ];
 
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] md:gap-7 items-start">
+  return (
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#064e2f_0%,#055536_68%,#03291d_100%)] py-20 text-white md:py-24"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.16),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(3,41,29,0.28),transparent_30%)]" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="grid gap-10 lg:grid-cols-[0.84fr_1.16fr] lg:items-start lg:gap-14">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-[1.75rem] md:rounded-3xl border border-white/10 bg-white/95 shadow-[0_18px_50px_rgba(0,0,0,0.18)] p-5 md:p-7 space-y-6"
+            className="max-w-2xl"
           >
-            <div>
-              <h3 className="text-xl md:text-2xl font-semibold text-gray-900">Talk to the team</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Get direct access to a founder-led Salesforce delivery team for implementation support, managed services, staffing, and production support discussions.
-              </p>
+            <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">[ Contact ]</p>
+            <h2 className="max-w-[10ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{title}</h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
+
+            <div className="mt-8 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-3">
+              {contactRows.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors hover:bg-white/[0.06]"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-300/16 bg-emerald-300/10 text-emerald-200">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{item.label}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-100">{item.value}</p>
+                </a>
+              ))}
             </div>
 
-            {[
-              { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
-              { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
-              { icon: MapPin, label: "Location", value: contactInfo.address, href: "#" },
-            ].map((item) => (
-              <a key={item.label} href={item.href} className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl bg-green-50 border border-green-100 text-green-600 flex items-center justify-center">
-                  <item.icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-400">{item.label}</p>
-                  <p className="text-gray-700">{item.value}</p>
-                </div>
-              </a>
-            ))}
-
-            {quickActions.length ? (
-              <div className="space-y-3">
-                <p className="text-xs uppercase tracking-[0.16em] text-gray-500">Quick contact options</p>
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  {quickActions.map((action) => (
-                    <a
-                      key={action.label}
-                      href={action.href}
-                      target={action.href.startsWith("http") ? "_blank" : undefined}
-                      rel={action.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2.5 text-sm font-semibold text-green-700 transition-colors hover:bg-green-100"
-                    >
-                      {action.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {responsePromise ? (
-              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 px-4 py-4">
-                <p className="text-xs uppercase tracking-[0.16em] text-emerald-700">Response Promise</p>
-                <p className="mt-1 text-sm font-medium text-gray-900">{responsePromise}</p>
-              </div>
-            ) : null}
 
             {showLeadMagnet ? (
-            <div className="mt-2 rounded-2xl border border-green-200 bg-green-50 p-4 md:p-5">
-              <p className="text-xs uppercase tracking-[0.16em] text-green-600 mb-2">Lead Magnet</p>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Free Growth Outcome Checklist</h4>
-              <p className="text-sm text-gray-500 mb-4">
-                Get our practical checklist to identify bottlenecks and improve conversions, process speed, and delivery quality.
-              </p>
-
-              {leadMagnetStatus === "success" && (
-                <p className="mb-3 text-sm text-green-700">
-                  Thanks. Check your inbox for the checklist. If not received, use this direct download:
-                  {" "}
-                  <a
-                    href={LEAD_MAGNET_DOWNLOAD_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline underline-offset-2"
-                  >
-                    Download checklist
-                  </a>
+              <div className="mt-6 rounded-[1.7rem] border border-white/10 bg-white/[0.04] p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Lead magnet</p>
+                <h3 className="mt-3 text-xl font-semibold text-white">Free Growth Outcome Checklist</h3>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300">
+                  Get our practical checklist to identify bottlenecks and improve conversions, process speed, and delivery quality.
                 </p>
-              )}
-              {leadMagnetStatus === "error" && (
-                <p className="mb-3 text-sm text-red-600">Could not submit right now. Please try again.</p>
-              )}
 
-              <form onSubmit={handleLeadMagnetSubmit} className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="email"
-                  value={leadMagnetEmail}
-                  onChange={(event) => setLeadMagnetEmail(event.target.value)}
-                  required
-                  className="input-base"
-                  placeholder="Enter your work email"
-                />
-                <button
-                  type="submit"
-                  disabled={leadMagnetSubmitting}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white shadow-[0_14px_32px_rgba(5,150,105,0.18)] transition-colors hover:bg-emerald-700 disabled:opacity-60"
-                >
-                  {leadMagnetSubmitting ? "Submitting..." : "Get Checklist"}
-                </button>
-              </form>
-            </div>
+                {leadMagnetStatus === "success" ? (
+                  <p className="mt-4 text-sm text-emerald-200">
+                    Thanks. Check your inbox for the checklist. If not received, use this direct download:{" "}
+                    <a
+                      href={LEAD_MAGNET_DOWNLOAD_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2"
+                    >
+                      Download checklist
+                    </a>
+                  </p>
+                ) : null}
+                {leadMagnetStatus === "error" ? (
+                  <p className="mt-4 text-sm text-red-300">Could not submit right now. Please try again.</p>
+                ) : null}
+
+                <form onSubmit={handleLeadMagnetSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+                  <input
+                    type="email"
+                    value={leadMagnetEmail}
+                    onChange={(event) => setLeadMagnetEmail(event.target.value)}
+                    required
+                    className="input-base"
+                    placeholder="Enter your work email"
+                  />
+                  <button
+                    type="submit"
+                    disabled={leadMagnetSubmitting}
+                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white shadow-[0_14px_32px_rgba(5,150,105,0.18)] transition-colors hover:bg-emerald-700 disabled:opacity-60"
+                  >
+                    {leadMagnetSubmitting ? "Submitting..." : "Get Checklist"}
+                  </button>
+                </form>
+              </div>
             ) : null}
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-[1.75rem] md:rounded-3xl border border-white/10 bg-white/95 shadow-[0_18px_50px_rgba(0,0,0,0.18)] p-5 md:p-7"
+            className="rounded-[2rem] border border-emerald-900/12 bg-[linear-gradient(180deg,#f7fefa_0%,#effcf5_100%)] p-5 shadow-[0_20px_56px_rgba(6,95,70,0.10)] md:p-7"
           >
-            {submitStatus === "success" && (
-              <div className="mb-6 rounded-xl border border-green-200 bg-green-50 p-3 text-green-700 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5" />
+            <div className="mb-6 border-b border-emerald-900/10 pb-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">Project intake</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">Share what you want to improve.</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                Send the workflow, support need, or Salesforce challenge you are dealing with. We will help shape the right next step.
+              </p>
+            </div>
+
+            {submitStatus === "success" ? (
+              <div className="mb-6 flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 p-3 text-green-700">
+                <CheckCircle2 className="h-5 w-5" />
                 Message sent. We will reach out shortly.
               </div>
-            )}
+            ) : null}
 
-            {submitStatus === "error" && (
-              <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-3 text-red-700 flex items-center gap-2">
-                <AlertCircle className="w-5 h-5" />
+            {submitStatus === "error" ? (
+              <div className="mb-6 flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-red-700">
+                <AlertCircle className="h-5 w-5" />
                 Something failed while sending. Please try again.
               </div>
-            )}
+            ) : null}
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <input
@@ -298,7 +277,7 @@ export default function Contact({
                 autoComplete="off"
               />
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
                 <Field label="Full Name">
                   <input
                     type="text"
@@ -323,7 +302,7 @@ export default function Contact({
                 </Field>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
                 <Field label="Phone">
                   <input
                     type="tel"
@@ -346,7 +325,7 @@ export default function Contact({
                 </Field>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
                 <Field label={interestLabel}>
                   <select
                     name="productInterest"
@@ -390,14 +369,15 @@ export default function Contact({
                 />
               </Field>
 
-              <button
+              <LiquidMetalButton
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 font-bold text-white shadow-[0_16px_40px_rgba(5,150,105,0.22)] transition-colors hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 disabled:opacity-60"
+                className="w-full focus:ring-offset-[#f7fefa]"
+                aria-label={submitButtonLabel}
               >
-                {isSubmitting ? "Sending..." : submitButtonLabel}
-                <ArrowRight className="w-4 h-4" />
-              </button>
+                <span>{isSubmitting ? "Sending..." : submitButtonLabel}</span>
+                <ArrowRight className="h-4 w-4" />
+              </LiquidMetalButton>
             </form>
           </motion.div>
         </div>
@@ -409,7 +389,7 @@ export default function Contact({
 function Field({ label, children }) {
   return (
     <label className="block space-y-2">
-      <span className="text-xs uppercase tracking-[0.15em] text-gray-500">{label}</span>
+      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</span>
       {children}
     </label>
   );
