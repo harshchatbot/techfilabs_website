@@ -22,6 +22,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
 
   body {
@@ -29,7 +30,11 @@
     color: #111827;
     font-family: "InterVariable", "Inter", ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
-    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  #root {
+    overflow-x: clip;
   }
 
   h1,
@@ -48,6 +53,27 @@
   textarea,
   select {
     font: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  button,
+  label {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
   }
 }
 

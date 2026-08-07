@@ -41,7 +41,7 @@ export default function ProductsShowcase({ products = [] }) {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-80px" }}
-              className="rounded-3xl border border-gray-100 bg-white shadow-sm p-7 flex flex-col"
+              className="flex min-w-0 flex-col rounded-3xl border border-gray-100 bg-white p-7 shadow-sm"
             >
               <div className="flex items-center justify-between gap-4 mb-5">
                 <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-gray-400">
@@ -53,7 +53,7 @@ export default function ProductsShowcase({ products = [] }) {
                 </span>
               </div>
 
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">{product.name}</h3>
+              <h3 className="mb-2 break-words text-2xl font-semibold text-gray-900">{product.name}</h3>
               <div className="mb-3">
                 <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-green-700">
                   {product.category}
@@ -73,7 +73,7 @@ export default function ProductsShowcase({ products = [] }) {
               <div className="flex flex-wrap gap-3 mt-auto">
                 <Link
                   to={`/products/${product.slug}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-4 py-2.5 text-sm font-semibold text-green-950 hover:bg-lime-200 transition-colors"
+                  className="inline-flex max-w-full items-center gap-2 rounded-full bg-lime-300 px-4 py-2.5 text-center text-sm font-semibold leading-tight text-green-950 transition-colors hover:bg-lime-200"
                 >
                   View Product
                   <ArrowRight className="w-4 h-4" />
@@ -84,7 +84,7 @@ export default function ProductsShowcase({ products = [] }) {
                     href={product.links.playStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="inline-flex max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
                       <path fill="#34A853" d="M3 3l10.5 9L3 21z" />
@@ -102,7 +102,7 @@ export default function ProductsShowcase({ products = [] }) {
                     href={product.links.chromeWebStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="inline-flex max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
                       <path
@@ -129,7 +129,7 @@ export default function ProductsShowcase({ products = [] }) {
                     href={product.links.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="inline-flex max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     Visit Website
                     <ExternalLink className="w-3.5 h-3.5" />

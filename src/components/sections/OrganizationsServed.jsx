@@ -40,12 +40,18 @@ export default function OrganizationsServed() {
               {CLIENTS.map((client) => (
                 <div
                   key={client.name}
-                  className="flex h-14 min-w-[156px] items-center justify-center rounded-[1.1rem] border border-emerald-900/10 bg-[#f7fefa] px-5 shadow-[0_10px_22px_rgba(6,95,70,0.04)] md:h-16 md:min-w-[172px]"
+                  className={`flex h-14 min-w-[156px] items-center justify-center rounded-[1.1rem] border px-5 shadow-[0_10px_22px_rgba(6,95,70,0.04)] md:h-16 md:min-w-[172px] ${
+                    client.name === "Wipro"
+                      ? "border-slate-700/20 bg-slate-900/95"
+                      : "border-emerald-900/10 bg-[#f7fefa]"
+                  }`}
                 >
                   <img
                     src={`/client-logos/${client.file}`}
                     alt={client.name}
-                    className="pointer-events-none h-7 w-auto select-none object-contain opacity-95 md:h-8"
+                    className={`pointer-events-none h-7 w-auto select-none object-contain md:h-8 ${
+                      client.name === "Wipro" ? "opacity-100" : "opacity-95"
+                    }`}
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}

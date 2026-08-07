@@ -226,7 +226,7 @@ export default function SalesforceAccelerators({
                 <div className="absolute inset-[1px] rounded-[2.05rem] border border-white/6 opacity-80" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.16),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(3,41,29,0.22),transparent_26%)]" />
                 <div className="relative z-10 grid gap-6 lg:grid-cols-[0.96fr_1.04fr] lg:items-end">
-                  <div>
+                  <div className="min-w-0">
                     <div className="mb-4 flex items-center justify-between gap-4">
                       <span className="rounded-full border border-white/10 bg-white/[0.07] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-300">
                         {featured.badge}
@@ -237,7 +237,7 @@ export default function SalesforceAccelerators({
                         </div>
                       ) : null}
                     </div>
-                    <h3 className="text-2xl font-semibold text-white md:text-[2rem]">{featured.title}</h3>
+                    <h3 className="break-words text-2xl font-semibold text-white md:text-[2rem]">{featured.title}</h3>
                     <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 md:text-[15px]">{featured.description}</p>
                     <div className="mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">Outcome</p>
@@ -248,7 +248,7 @@ export default function SalesforceAccelerators({
                       {featured.href ? (
                         <Link
                           to={featured.href}
-                          className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[linear-gradient(90deg,#34d399_0%,#10b981_55%,#059669_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_36px_rgba(16,185,129,0.22)] transition-transform duration-300 hover:-translate-y-0.5"
+                          className="inline-flex min-h-[48px] w-full max-w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(90deg,#34d399_0%,#10b981_55%,#059669_100%)] px-5 py-3 text-center text-sm font-semibold leading-tight text-white shadow-[0_14px_36px_rgba(16,185,129,0.22)] transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto"
                         >
                           {featured.ctaLabel || "Explore selected work"}
                           <ArrowRight className="h-4 w-4" />
@@ -257,14 +257,24 @@ export default function SalesforceAccelerators({
                     </div>
                   </div>
 
-                  <div className="grid gap-4">
+                  <div className="grid min-w-0 gap-4">
                     <div>{getCardVisual(featured.title)}</div>
-                    <div className="rounded-[1.6rem] border border-dashed border-emerald-300/18 bg-white/[0.04] p-5">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">Asset preview</p>
-                      <p className="mt-4 text-2xl font-semibold text-white">Product story slot</p>
+                    <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">Release workflow fit</p>
+                      <p className="mt-4 text-2xl font-semibold text-white">Where FieldLens adds confidence</p>
                       <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                        Add screenshots, a short product video, launch visuals, interface walkthroughs, or architecture diagrams here when ready.
+                        Useful before cleanup, field retirement, schema changes, and release reviews where hidden dependencies can create avoidable risk.
                       </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {["Impact checks", "Org cleanup", "Release reviews"].map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -284,7 +294,7 @@ export default function SalesforceAccelerators({
                     {item.title === "RangManch AI" ? <BorderBeam size={200} duration={9} delay={0.35} colorFrom="#10B981" colorTo="#A7F3D0" opacity={0.45} /> : null}
                     {item.title === "Sentinel" ? <BorderBeam size={180} duration={10} delay={0.6} colorFrom="#064E2F" colorTo="#10B981" opacity={0.38} /> : null}
                     <div className="absolute inset-[1px] rounded-[1.55rem] border border-white/10 opacity-70" />
-                    <div className="relative z-10">
+                    <div className="relative z-10 min-w-0">
                       <div className="mb-4 flex items-start justify-between gap-3">
                         <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-200">
                           {item.badge}
@@ -295,11 +305,11 @@ export default function SalesforceAccelerators({
                           </div>
                         ) : null}
                       </div>
-                      <h3 className="mb-2 text-lg font-semibold text-white">{item.title}</h3>
+                      <h3 className="mb-2 break-words text-lg font-semibold text-white">{item.title}</h3>
                       <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
                       <div className="mt-4">{getCardVisual(item.title) || <div className="h-[80px]" />}</div>
                     </div>
-                    <div className="relative z-10 mt-4 flex items-end justify-between gap-3 border-t border-white/10 pt-4">
+                    <div className="relative z-10 mt-4 flex flex-col items-start gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
                       <div className="flex-1">
                         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-200/80">Outcome</p>
                         <p className="mt-1 text-sm font-medium text-white">{item.value}</p>
@@ -307,7 +317,7 @@ export default function SalesforceAccelerators({
                       {item.href ? (
                         <Link
                           to={item.href}
-                          className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2"
+                          className="inline-flex min-h-[40px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-3.5 py-2 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
                         >
                           {item.ctaLabel || "View work"}
                           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

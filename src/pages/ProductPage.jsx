@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { Footer, Navigation } from "../components";
 import Seo from "../components/Seo";
 import Schema from "../components/Schema";
-import Mascot from "../components/ui/Mascot";
 import {
   FOOTER_DATA,
   PRODUCT_PAGE_FALLBACK,
@@ -151,7 +150,7 @@ export default function ProductPage() {
                   {product.status}
                 </span>
               </div>
-              <h1 className={`text-4xl md:text-6xl font-black tracking-tight mb-4 ${theme.title}`}>{heroTitle}</h1>
+              <h1 className={`mb-4 break-words text-4xl font-black tracking-tight md:text-6xl ${theme.title}`}>{heroTitle}</h1>
               <p className={`text-xl mb-4 ${theme.subtitle}`}>{heroSubtext}</p>
               <p className={`text-base sm:text-lg leading-relaxed mb-8 ${theme.body}`}>{product.summary}</p>
 
@@ -167,7 +166,7 @@ export default function ProductPage() {
               <div className="flex flex-wrap gap-3">
                 <a
                   href={product.ctas.primary.href}
-                  className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition-colors ${theme.ctaPrimary}`}
+                  className={`inline-flex max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
                 >
                   {product.ctas.primary.label}
                   <ArrowRight className="w-4 h-4" />
@@ -176,7 +175,7 @@ export default function ProductPage() {
                   href={product.ctas.secondary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-colors ${theme.ctaSecondary}`}
+                  className={`inline-flex max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
                 >
                   {product.ctas.secondary.label}
                   <ExternalLink className="w-4 h-4" />
@@ -186,7 +185,7 @@ export default function ProductPage() {
                     href={product.links.playStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-3 rounded-xl border px-4 py-2.5 transition-colors ${theme.ctaSecondary}`}
+                    className={`inline-flex max-w-full items-center gap-3 rounded-xl border px-4 py-2.5 text-left transition-colors ${theme.ctaSecondary}`}
                     aria-label={`Get ${product.name} on Google Play`}
                   >
                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-md bg-white/10">
@@ -208,7 +207,7 @@ export default function ProductPage() {
                     href={product.links.chromeWebStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-3 rounded-xl border px-4 py-2.5 transition-colors ${theme.ctaSecondary}`}
+                    className={`inline-flex max-w-full items-center gap-3 rounded-xl border px-4 py-2.5 text-left transition-colors ${theme.ctaSecondary}`}
                     aria-label={`Add ${product.name} to Chrome`}
                   >
                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-md bg-white/10">
@@ -239,16 +238,16 @@ export default function ProductPage() {
                     href={product.links.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-colors ${theme.ctaSecondary}`}
-                  >
-                    Visit Product Website
-                    <ExternalLink className="w-4 h-4" />
+                  className={`inline-flex max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
+                >
+                  Visit Product Website
+                  <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
               </div>
             </div>
 
-            <div className={`rounded-3xl border p-4 sm:p-6 min-h-[420px] relative overflow-hidden ${theme.mediaCard}`}>
+            <div className={`relative min-h-[420px] overflow-hidden rounded-3xl border p-4 sm:p-6 ${theme.mediaCard}`}>
               <div className={`absolute inset-0 ${theme.mediaGlow}`} />
               <div className="relative z-10">
                 {product.screenshots?.length ? (
@@ -269,10 +268,21 @@ export default function ProductPage() {
                   </div>
                 ) : (
                   <div className="min-h-[360px] flex items-center justify-center text-center">
-                    <div>
-                      <Mascot size="md" className="mx-auto mb-5" />
-                      <p className={`text-sm max-w-xs mx-auto ${theme.subtitle}`}>
-                        Add product screenshots or demo video links here to enrich this page.
+                    <div className="max-w-md">
+                      <p className={`text-xs uppercase tracking-[0.18em] ${theme.sectionLabel}`}>Product overview</p>
+                      <h3 className={`mt-4 text-2xl font-semibold ${theme.title}`}>Preview highlights</h3>
+                      <div className="mt-5 flex flex-wrap justify-center gap-2">
+                        {(product.highlights || []).map((highlight) => (
+                          <span
+                            key={highlight.label}
+                            className={`rounded-full border px-4 py-2 text-sm font-medium ${theme.featureCard}`}
+                          >
+                            {highlight.label}
+                          </span>
+                        ))}
+                      </div>
+                      <p className={`mx-auto mt-5 max-w-sm text-sm leading-relaxed ${theme.subtitle}`}>
+                        {product.summary}
                       </p>
                     </div>
                   </div>
@@ -354,7 +364,7 @@ export default function ProductPage() {
                 href={product.ctas.primary.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition-colors ${theme.ctaPrimary}`}
+                className={`inline-flex max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
               >
                 {product.ctas.primary.label}
                 <ArrowRight className="w-4 h-4" />

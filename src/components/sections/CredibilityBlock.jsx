@@ -29,9 +29,9 @@ export default function CredibilityBlock({
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="rounded-[1.35rem] border border-emerald-900/10 bg-[#f7fefa] px-4 py-4 shadow-[0_14px_32px_rgba(6,95,70,0.05)]"
+                className="min-w-0 rounded-[1.35rem] border border-emerald-900/10 bg-[#f7fefa] px-4 py-4 shadow-[0_14px_32px_rgba(6,95,70,0.05)]"
               >
-                <p className="text-sm font-medium leading-relaxed text-gray-900">{item}</p>
+                <p className="break-words text-sm font-medium leading-relaxed text-gray-900">{item}</p>
               </motion.div>
             ))}
           </div>

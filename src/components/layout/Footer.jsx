@@ -45,13 +45,13 @@ export default function Footer({
         };
 
   return (
-    <footer className={`pt-20 pb-16 border-t relative overflow-hidden ${footerTheme.root}`}>
+    <footer className={`relative overflow-visible border-t pt-20 pb-16 ${footerTheme.root}`}>
       <div className={`absolute inset-0 ${footerTheme.glow}`} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-12 gap-10 mb-14">
           <div className="md:col-span-5">
-            <div className="flex items-center gap-3 mb-5">
+            <div className="relative z-10 mb-5 flex items-center gap-3">
               <div className={`w-14 h-14 rounded-full border overflow-hidden ${footerTheme.logoWrap}`}>
                 <img src={logo.logo} alt={logo.name} className="w-full h-full object-cover scale-[1.18]" />
               </div>

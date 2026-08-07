@@ -6,23 +6,23 @@ import { prefersReducedMotion } from "../../utils/motionConfig";
 
 const PLACEHOLDER_COPY = {
   "WhatsApp & Email Automation": {
-    label: "Channel workflow view",
-    helper: "WhatsApp and email flows, inbox states, or automation clips.",
+    label: "Channel automation layer",
+    helper: "Capture, classify, draft, and route messages with less manual inbox work.",
     chips: ["WhatsApp", "Email", "Follow-up"],
   },
   "Salesforce Consulting & Delivery": {
-    label: "Salesforce workflow view",
-    helper: "CRM screens, implementation flows, or architecture views.",
+    label: "CRM execution layer",
+    helper: "Connect Salesforce changes, approvals, and follow-up actions to day-to-day work.",
     chips: ["Implementation", "CRM", "Automation"],
   },
   "Managed Services & Production Support": {
-    label: "Support operations view",
-    helper: "Support dashboards, release views, or monitoring snapshots.",
+    label: "Support operations layer",
+    helper: "Keep releases, incidents, fixes, and service improvements running in one rhythm.",
     chips: ["Support", "Releases", "Monitoring"],
   },
   "Data Migration & Custom Engineering": {
-    label: "Engineering system view",
-    helper: "Data flows, migration plans, or custom system visuals.",
+    label: "Data and systems layer",
+    helper: "Move, validate, and connect business data across custom workflows and tools.",
     chips: ["Migration", "Integrations", "Custom build"],
   },
 };
@@ -70,8 +70,8 @@ function ServiceMedia({ service }) {
   }
 
   const placeholder = PLACEHOLDER_COPY[service.title] || {
-    label: "Service visual",
-    helper: "Add image, video, illustration, or product visual here.",
+    label: "Service focus",
+    helper: "Workflow, systems, and delivery support aligned to this capability.",
     chips: service.points || [],
   };
 
@@ -80,7 +80,7 @@ function ServiceMedia({ service }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(52,211,153,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(6,78,47,0.18),transparent_38%)]" />
       <div className="absolute inset-[1px] rounded-[1.9rem] border border-white/8" />
       <div className="absolute left-5 top-5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-200">
-        Selected visual
+        Service focus
       </div>
       <div className="relative z-10 flex h-full flex-col justify-between rounded-[1.55rem] border border-dashed border-emerald-300/20 bg-white/[0.03] p-5 md:p-6">
         <div>

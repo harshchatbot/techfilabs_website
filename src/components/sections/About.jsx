@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Minus, Plus, Play } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 const PANEL_MEDIA = [
@@ -75,15 +75,28 @@ const PANEL_MEDIA = [
   },
 ];
 
-function MediaFallback({ filename, type }) {
+function MediaFallback({ item }) {
   return (
     <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.8rem] border border-dashed border-emerald-300/18 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 md:min-h-[360px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.14),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(167,243,208,0.06),transparent_28%)]" />
       <div className="relative z-10 max-w-sm text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">Asset preview</p>
-        <p className="mt-4 text-2xl font-semibold text-white">Add media: {filename}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">{item.eyebrow}</p>
+        <p className="mt-4 text-2xl font-semibold text-white">{item.title}</p>
         <p className="mt-3 text-sm leading-relaxed text-slate-300">
-          Drop a local {type === "video" ? "video" : "image"} file at this path to replace this fallback automatically.
+          {item.description}
+        </p>
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          {item.tags.slice(0, 3).map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <p className="mt-4 text-xs uppercase tracking-[0.18em] text-emerald-100/80">
+          Workflow preview
         </p>
       </div>
     </div>
@@ -109,7 +122,7 @@ function MediaPanel({ item, isMissing, onMediaError }) {
   };
 
   if (isMissing) {
-    return <MediaFallback filename={item.filename} type={item.type} />;
+    return <MediaFallback item={item} />;
   }
 
   if (item.type === "video") {

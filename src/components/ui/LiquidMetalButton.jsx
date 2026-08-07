@@ -12,9 +12,9 @@ export default function LiquidMetalButton({
   const reduceMotion = prefersReducedMotion();
 
   const sharedClassName = [
-    "group relative inline-flex min-h-[54px] items-center justify-center gap-2 overflow-hidden rounded-full",
+    "group relative inline-flex min-h-[54px] max-w-full items-center justify-center gap-2 overflow-hidden rounded-full",
     "border border-emerald-200/25 bg-[linear-gradient(135deg,#064e2f_0%,#059669_58%,#10b981_100%)]",
-    "px-6 py-3.5 font-bold text-emerald-50 shadow-[0_18px_42px_rgba(5,150,105,0.26)]",
+    "px-6 py-3.5 text-center font-bold text-emerald-50 shadow-[0_18px_42px_rgba(5,150,105,0.26)]",
     "transition-all duration-300 hover:translate-y-[-1px] hover:shadow-[0_24px_54px_rgba(5,150,105,0.32)]",
     "focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2",
     "disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0",
@@ -49,7 +49,7 @@ export default function LiquidMetalButton({
           />
         </>
       ) : null}
-      <span className="relative z-10 flex items-center gap-2 [text-shadow:0_1px_10px_rgba(3,41,29,0.35)]">
+      <span className="relative z-10 flex max-w-full flex-wrap items-center justify-center gap-2 whitespace-normal leading-tight [text-shadow:0_1px_10px_rgba(3,41,29,0.35)]">
         {children}
       </span>
     </>
