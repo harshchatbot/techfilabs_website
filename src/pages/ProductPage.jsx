@@ -68,6 +68,7 @@ export default function ProductPage() {
   const brandName = product.brandName || product.name;
 
   const isSentinelTheme = product.theme === "sentinel";
+  const galleryAspectClass = isSentinelTheme ? "aspect-[9/16]" : "aspect-[16/10]";
   const theme = isSentinelTheme
     ? {
         pageBg: "bg-[#2b1c15] text-[#f3ead9]",
@@ -136,7 +137,7 @@ export default function ProductPage() {
         <section className="max-w-7xl mx-auto px-6">
           <Link
             to="/"
-            className={`inline-flex items-center gap-2 transition-colors ${theme.backLink}`}
+            className={`inline-flex min-h-[44px] items-center gap-2 rounded-full px-3 py-2 transition-colors ${theme.backLink}`}
           >
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </Link>
@@ -166,7 +167,7 @@ export default function ProductPage() {
               <div className="flex flex-wrap gap-3">
                 <a
                   href={product.ctas.primary.href}
-                  className={`inline-flex max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
+                  className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
                 >
                   {product.ctas.primary.label}
                   <ArrowRight className="w-4 h-4" />
@@ -175,7 +176,7 @@ export default function ProductPage() {
                   href={product.ctas.secondary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
+                  className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
                 >
                   {product.ctas.secondary.label}
                   <ExternalLink className="w-4 h-4" />
@@ -185,7 +186,7 @@ export default function ProductPage() {
                     href={product.links.playStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex max-w-full items-center gap-3 rounded-xl border px-4 py-2.5 text-left transition-colors ${theme.ctaSecondary}`}
+                    className={`inline-flex min-h-[48px] max-w-full items-center gap-3 rounded-xl border px-4 py-2.5 text-left transition-colors ${theme.ctaSecondary}`}
                     aria-label={`Get ${product.name} on Google Play`}
                   >
                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-md bg-white/10">
@@ -207,7 +208,7 @@ export default function ProductPage() {
                     href={product.links.chromeWebStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex max-w-full items-center gap-3 rounded-xl border px-4 py-2.5 text-left transition-colors ${theme.ctaSecondary}`}
+                    className={`inline-flex min-h-[48px] max-w-full items-center gap-3 rounded-xl border px-4 py-2.5 text-left transition-colors ${theme.ctaSecondary}`}
                     aria-label={`Add ${product.name} to Chrome`}
                   >
                     <span className="inline-flex w-8 h-8 items-center justify-center rounded-md bg-white/10">
@@ -238,10 +239,10 @@ export default function ProductPage() {
                     href={product.links.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                  className={`inline-flex max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
-                >
-                  Visit Product Website
-                  <ExternalLink className="w-4 h-4" />
+                    className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
+                  >
+                    Visit Product Website
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
               </div>
@@ -251,17 +252,17 @@ export default function ProductPage() {
               <div className={`absolute inset-0 ${theme.mediaGlow}`} />
               <div className="relative z-10">
                 {product.screenshots?.length ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[560px] overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 gap-3 pr-1 sm:grid-cols-2">
                     {product.screenshots.map((src, index) => (
                       <div
                         key={src}
-                        className={`w-full h-[360px] sm:h-[420px] rounded-2xl border p-2 ${theme.shotCard}`}
+                        className={`w-full ${galleryAspectClass} overflow-hidden rounded-2xl border p-2 ${theme.shotCard}`}
                       >
                         <img
                           src={src}
                           alt={`${product.name} screenshot ${index + 1}`}
                           loading="lazy"
-                          className="w-full h-full object-contain rounded-xl"
+                          className="h-full w-full rounded-xl object-cover object-top"
                         />
                       </div>
                     ))}
@@ -364,7 +365,7 @@ export default function ProductPage() {
                 href={product.ctas.primary.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
+                className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
               >
                 {product.ctas.primary.label}
                 <ArrowRight className="w-4 h-4" />
@@ -373,7 +374,7 @@ export default function ProductPage() {
                 href={product.ctas.secondary.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-colors ${theme.ctaSecondary}`}
+                className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
               >
                 {product.ctas.secondary.label}
                 <ExternalLink className="w-4 h-4" />

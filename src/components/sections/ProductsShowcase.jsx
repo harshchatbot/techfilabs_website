@@ -73,7 +73,7 @@ export default function ProductsShowcase({ products = [] }) {
               <div className="flex flex-wrap gap-3 mt-auto">
                 <Link
                   to={`/products/${product.slug}`}
-                  className="inline-flex max-w-full items-center gap-2 rounded-full bg-lime-300 px-4 py-2.5 text-center text-sm font-semibold leading-tight text-green-950 transition-colors hover:bg-lime-200"
+                  className="inline-flex min-h-[44px] max-w-full items-center gap-2 rounded-full bg-lime-300 px-4 py-2.5 text-center text-sm font-semibold leading-tight text-green-950 transition-colors hover:bg-lime-200"
                 >
                   View Product
                   <ArrowRight className="w-4 h-4" />
@@ -84,7 +84,7 @@ export default function ProductsShowcase({ products = [] }) {
                     href={product.links.playStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
+                    className="inline-flex min-h-[44px] max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2.5 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
                       <path fill="#34A853" d="M3 3l10.5 9L3 21z" />
@@ -102,7 +102,7 @@ export default function ProductsShowcase({ products = [] }) {
                     href={product.links.chromeWebStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
+                    className="inline-flex min-h-[44px] max-w-full items-center gap-2 rounded-xl border border-gray-200 px-3 py-2.5 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
                       <path

@@ -100,7 +100,7 @@ export default function Hero({
           >
             <LiquidMetalButton
               onClick={primaryButton.action}
-              className="text-base focus:ring-offset-[#052e1f] sm:min-w-[228px] sm:px-7"
+              className="min-h-[56px] text-base focus:ring-offset-[#052e1f] sm:min-w-[228px] sm:px-7"
               aria-label={primaryButton.text}
             >
               <span>{primaryButton.text}</span>

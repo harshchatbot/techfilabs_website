@@ -45,11 +45,11 @@ export default function Footer({
         };
 
   return (
-    <footer className={`relative overflow-visible border-t pt-20 pb-16 ${footerTheme.root}`}>
+    <footer className={`relative overflow-visible border-t pb-12 pt-16 sm:pb-14 sm:pt-18 md:pt-20 md:pb-16 ${footerTheme.root}`}>
       <div className={`absolute inset-0 ${footerTheme.glow}`} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-12 gap-10 mb-14">
+        <div className="mb-10 grid gap-9 sm:mb-12 sm:gap-10 md:mb-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="relative z-10 mb-5 flex items-center gap-3">
               <div className={`w-14 h-14 rounded-full border overflow-hidden ${footerTheme.logoWrap}`}>
@@ -58,9 +58,9 @@ export default function Footer({
               <span className={`text-xl font-bold tracking-tight ${footerTheme.logoText}`}>{logo.name}</span>
             </div>
 
-            <p className={`max-w-sm mb-6 ${footerTheme.bodyText}`}>{description}</p>
+            <p className={`mb-5 max-w-sm ${footerTheme.bodyText}`}>{description}</p>
 
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               {FOOTER_DATA.socialLinks.map((social) => {
                 const Icon = getIcon(social.icon);
                 return (
@@ -69,7 +69,7 @@ export default function Footer({
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-10 h-10 rounded-full border flex items-center justify-center transition-colors ${footerTheme.social}`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full border transition-colors ${footerTheme.social}`}
                     aria-label={social.name}
                   >
                     <Icon className="w-4 h-4" />
@@ -80,8 +80,8 @@ export default function Footer({
           </div>
 
           <div className="md:col-span-3">
-            <h4 className={`font-semibold mb-4 ${footerTheme.heading}`}>Services</h4>
-            <ul className={`space-y-3 ${footerTheme.list}`}>
+            <h4 className={`mb-3 font-semibold ${footerTheme.heading}`}>Services</h4>
+            <ul className={`space-y-2.5 ${footerTheme.list}`}>
               {FOOTER_DATA.services.map((service) => (
                 <li key={service}>{service}</li>
               ))}
@@ -89,11 +89,14 @@ export default function Footer({
           </div>
 
           <div className="md:col-span-4">
-            <h4 className={`font-semibold mb-4 ${footerTheme.heading}`}>Company</h4>
-            <ul className={`space-y-3 ${footerTheme.list}`}>
+            <h4 className={`mb-3 font-semibold ${footerTheme.heading}`}>Company</h4>
+            <ul className={`space-y-2 ${footerTheme.list}`}>
               {FOOTER_DATA.company.map((item) => (
                 <li key={item.name}>
-                  <a href={item.href} className={`transition-colors ${footerTheme.linkHover}`}>
+                  <a
+                    href={item.href}
+                    className={`inline-flex min-h-[44px] items-center rounded-lg py-1 transition-colors ${footerTheme.linkHover}`}
+                  >
                     {item.name}
                   </a>
                 </li>
@@ -102,8 +105,8 @@ export default function Footer({
           </div>
         </div>
 
-        <div className={`pt-8 border-t text-sm flex flex-col md:flex-row items-center justify-between gap-4 ${footerTheme.bottomBar}`}>
-          <p>
+        <div className={`flex flex-col items-start justify-between gap-3 border-t pt-6 text-sm md:flex-row md:items-center md:gap-4 md:pt-8 ${footerTheme.bottomBar}`}>
+          <p className="leading-relaxed">
             © 2025 TechFi Labs. All rights reserved.
             <span className="block md:inline md:ml-1">
               A unit of{" "}
@@ -111,7 +114,7 @@ export default function Footer({
                 href="https://thetechnologyfiction.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`font-semibold transition-colors ${footerTheme.linkHover}`}
+                className={`inline-flex min-h-[44px] items-center rounded-lg py-1 font-semibold transition-colors ${footerTheme.linkHover}`}
               >
                 The Technology Fiction
               </a>
@@ -122,7 +125,7 @@ export default function Footer({
             href="https://thetechnologyfiction.com/blog/privacy-policy/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`transition-colors ${footerTheme.linkHover}`}
+            className={`inline-flex min-h-[44px] items-center rounded-lg py-1 transition-colors ${footerTheme.linkHover}`}
           >
             Privacy Policy
           </a>

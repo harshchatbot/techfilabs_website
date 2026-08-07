@@ -207,15 +207,15 @@ export default function About({
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="overflow-hidden rounded-[2rem] border border-emerald-200/12 bg-white/[0.03] shadow-[0_24px_64px_rgba(3,41,29,0.16)] backdrop-blur-sm">
+            <div className="space-y-2">
               {items.map((item, index) => {
                 const isOpen = openIndex === index;
 
                 return (
                   <div
                     key={item.number || item.title}
-                    className={`border-b border-emerald-100/10 last:border-b-0 transition-colors duration-300 ${
-                      isOpen ? "bg-white/[0.055]" : "hover:bg-white/[0.025]"
+                    className={`overflow-hidden rounded-[2rem] border border-emerald-200/12 shadow-[0_24px_64px_rgba(3,41,29,0.16)] backdrop-blur-sm transition-colors duration-300 ${
+                      isOpen ? "bg-white/[0.055]" : "bg-white/[0.03] hover:bg-white/[0.025]"
                     }`}
                   >
                     <button

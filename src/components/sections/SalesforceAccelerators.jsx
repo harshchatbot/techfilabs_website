@@ -317,7 +317,7 @@ export default function SalesforceAccelerators({
                       {item.href ? (
                         <Link
                           to={item.href}
-                          className="inline-flex min-h-[40px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-3.5 py-2 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
+                          className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-3.5 py-2.5 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
                         >
                           {item.ctaLabel || "View work"}
                           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

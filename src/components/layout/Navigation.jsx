@@ -160,7 +160,7 @@ export default function Navigation({
                   key={item}
                   onClick={() => handleMenuClick(item)}
                   aria-current={activeSection === item && location.pathname === "/" ? "page" : undefined}
-                  className={`rounded-full px-3 py-2 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
+                  className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2.5 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
                     activeSection === item && location.pathname === "/"
                       ? scrolled
                         ? `${navTheme.menuActiveScrolled || navTheme.menuActive} bg-emerald-50 border border-emerald-100/80`
@@ -176,7 +176,7 @@ export default function Navigation({
 
               <button
                 onClick={handleCtaClick}
-                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.ctaButton}`}
+                className={`inline-flex min-h-[46px] items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.ctaButton}`}
               >
                 {ctaButton.text}
                 <ArrowRight className="w-4 h-4" />

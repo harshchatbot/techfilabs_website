@@ -19,10 +19,10 @@ import {
   CONTACT_INFO,
   FOOTER_DATA,
   HOMEPAGE_ACCELERATORS,
+  HOMEPAGE_BUILD_STACK,
   HOMEPAGE_CREDIBILITY,
   HOMEPAGE_EXPERTISE_POINTS,
   HOMEPAGE_EXPERTISE_TOOLS,
-  HOMEPAGE_SERVICES_DATA,
   PRODUCTS_DATA,
   SITE_CONFIG,
 } from "../constants/data";
@@ -102,7 +102,7 @@ export default function HomePage() {
         <Services
           title="What We Build"
           subtitle="AI automation, Salesforce delivery, and custom tools for teams that want less manual work."
-          services={HOMEPAGE_SERVICES_DATA}
+          services={HOMEPAGE_BUILD_STACK}
         />
 
         <WorkflowShowcase />
