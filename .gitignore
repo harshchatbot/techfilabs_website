@@ -9,13 +9,17 @@ lerna-debug.log*
 # Dependencies
 node_modules/
 
-# Build output
+# Next.js & Build output
+.next/
+out/
 dist/
 dist-ssr/
 .vite/
+*.tsbuildinfo
 
 # Local env files
 *.local
+.env*.local
 
 # Archives
 *.zip
