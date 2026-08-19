@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { AlertCircle, ArrowRight, CheckCircle2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { sendGAEvent } from "@next/third-parties/google";
 import LiquidMetalButton from "../ui/LiquidMetalButton";
 
 const EMAILJS_SERVICE_ID = "service_n22qsrq";
@@ -65,10 +66,33 @@ export default function Contact({
   isPageHeader = false,
 }: ContactProps) {
   const HeadingTag = isPageHeader ? "h1" : "h2";
-  const resolvedInterestOptions = interestOptions.length ? interestOptions : products.map((product) => product.name);
+  const defaultInterestOptions = [
+    "AI Agents & Workflow Automation",
+    "WhatsApp AI Integration",
+    "Email AI Automation",
+    "Salesforce Consulting & Delivery",
+    "Salesforce Data Migration",
+    "Mobile App Development",
+    "Sentinel Society Management",
+    "FieldLens for Salesforce",
+    "OpsFlow Control Center",
+  ];
+
+  const resolvedInterestOptions = interestOptions.length
+    ? interestOptions
+    : products.length
+    ? products.map((product) => product.name)
+    : defaultInterestOptions;
+
   const resolvedProjectTypes = projectTypes.length
     ? projectTypes
-    : ["AI agent", "Workflow automation", "Salesforce delivery", "Managed support"];
+    : [
+        "AI Agent Development",
+        "Workflow Automation (n8n)",
+        "Salesforce Delivery & Support",
+        "Custom Engine / API",
+        "Managed Support / Retainer",
+      ];
 
   const [formData, setFormData] = useState({
     ...initialFormState,
@@ -113,6 +137,16 @@ export default function Contact({
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
       setSubmitStatus("success");
+
+      sendGAEvent({
+        event: "generate_lead",
+        value: 1,
+        event_category: "Contact Form",
+        event_label: formData.productInterest || "General Inquiry",
+        service_needed: formData.productInterest,
+        engagement_type: formData.projectType,
+      });
+
       setFormData({
         ...initialFormState,
         productInterest: resolvedInterestOptions[0] || "",
@@ -166,6 +200,14 @@ export default function Contact({
       }
 
       setLeadMagnetStatus("success");
+
+      sendGAEvent({
+        event: "generate_lead",
+        value: 1,
+        event_category: "Lead Magnet",
+        event_label: "Free Growth Outcome Checklist",
+      });
+
       setLeadMagnetEmail("");
     } catch (error) {
       console.error("Lead magnet signup failed:", error);
@@ -355,10 +397,10 @@ export default function Contact({
                     name="productInterest"
                     value={formData.productInterest}
                     onChange={handleInputChange}
-                    className="input-base"
+                    className="input-base bg-white text-slate-900 font-medium"
                   >
                     {resolvedInterestOptions.map((option) => (
-                      <option key={option} value={option}>
+                      <option key={option} value={option} className="bg-white text-slate-900">
                         {option}
                       </option>
                     ))}
@@ -370,10 +412,10 @@ export default function Contact({
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleInputChange}
-                    className="input-base"
+                    className="input-base bg-white text-slate-900 font-medium"
                   >
                     {resolvedProjectTypes.map((option) => (
-                      <option key={option} value={option}>
+                      <option key={option} value={option} className="bg-white text-slate-900">
                         {option}
                       </option>
                     ))}
