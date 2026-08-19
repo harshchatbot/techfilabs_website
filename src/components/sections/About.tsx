@@ -83,6 +83,7 @@ interface AboutProps {
   subtitle?: string;
   reasons?: any[];
   items?: any[];
+  isPageHeader?: boolean;
 }
 
 function MediaFallback({ item }: { item: any }) {
@@ -177,6 +178,7 @@ export default function About({
   subtitle = "We help businesses simplify work, improve response times, and run more reliably with practical AI automation, Salesforce expertise, and long-term delivery support.",
   reasons,
   items = reasons || [],
+  isPageHeader = false,
 }: AboutProps) {
   const [openIndex, setOpenIndex] = useState(0);
   const [missingAssets, setMissingAssets] = useState<Record<number, boolean>>({});
@@ -185,6 +187,8 @@ export default function About({
   const markMissing = (index: number) => {
     setMissingAssets((prev) => (prev[index] ? prev : { ...prev, [index]: true }));
   };
+
+  const HeadingTag = isPageHeader ? "h1" : "h2";
 
   return (
     <section
@@ -204,9 +208,9 @@ export default function About({
           className="mb-10 max-w-3xl md:mb-12"
         >
           <p className="mb-4 text-xs uppercase tracking-[0.22em] text-emerald-300">{eyebrow}</p>
-          <h2 className="mb-5 max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <HeadingTag className="mb-5 max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
             {title}
-          </h2>
+          </HeadingTag>
           <p className="text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
         </motion.div>
 

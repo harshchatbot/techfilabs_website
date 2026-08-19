@@ -40,6 +40,7 @@ interface ContactProps {
   responsePromise?: string;
   options?: any;
   formAction?: any;
+  isPageHeader?: boolean;
 }
 
 export default function Contact({
@@ -47,7 +48,7 @@ export default function Contact({
   subtitle = "Tell us what you want to automate, improve, or support.",
   contactInfo = {
     phone: "+91 7976111087",
-    email: "harshveernirwan@techfilabs.com",
+    email: "contact.team@techfilabs.com",
     address: "Jaipur, Rajasthan 302001",
   },
   products = [],
@@ -61,7 +62,9 @@ export default function Contact({
   showLeadMagnet = false,
   quickActions = [],
   responsePromise = "",
+  isPageHeader = false,
 }: ContactProps) {
+  const HeadingTag = isPageHeader ? "h1" : "h2";
   const resolvedInterestOptions = interestOptions.length ? interestOptions : products.map((product) => product.name);
   const resolvedProjectTypes = projectTypes.length
     ? projectTypes
@@ -193,7 +196,7 @@ export default function Contact({
             className="max-w-2xl"
           >
             <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">[ Contact ]</p>
-            <h2 className="max-w-[10ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{title}</h2>
+            <HeadingTag className="max-w-[10ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{title}</HeadingTag>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
 
             <div className="mt-8 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-3">

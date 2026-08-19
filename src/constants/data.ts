@@ -10,6 +10,7 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
 import type {
   Product,
   Service,
@@ -31,12 +32,12 @@ const scrollToSection = (id: string) => {
 
 export const SITE_CONFIG: SiteConfig = {
   company: {
-    name: "TechFi Labs",
-    initials: "TF",
-    email: "harshveernirwan@techfilabs.com",
-    phone: "+91 7976111087",
-    address: "Jaipur, Rajasthan 302001",
-    logo: "/techfilabs_logo_2026.png",
+    name: ORGANIZATION_CONFIG.name,
+    initials: ORGANIZATION_CONFIG.initials,
+    email: ORGANIZATION_CONFIG.contact.email,
+    phone: ORGANIZATION_CONFIG.contact.phone,
+    address: ORGANIZATION_CONFIG.contact.streetAddress,
+    logo: ORGANIZATION_CONFIG.logo,
   },
   navigation: {
     menuItems: ["home", "services", "products", "about", "contact"],
@@ -998,16 +999,16 @@ export const FOOTER_DATA = {
     { name: "Contact", href: "/#contact" },
   ],
   socialLinks: [
-    { name: "Instagram", icon: "instagram", href: "#" },
+    { name: "Instagram", icon: "instagram", href: ORGANIZATION_CONFIG.social.instagram },
     {
       name: "Facebook",
       icon: "facebook",
-      href: "https://www.facebook.com/thetechnologyfiction/",
+      href: ORGANIZATION_CONFIG.social.facebook,
     },
     {
       name: "LinkedIn",
       icon: "linkedin",
-      href: "https://www.linkedin.com/company/the-technology-fiction/",
+      href: ORGANIZATION_CONFIG.social.linkedin,
     },
   ],
 };

@@ -7,6 +7,46 @@ import { usePathname, useRouter } from "next/navigation";
 
 const HOME_SECTIONS = new Set(["home", "products", "services", "case-studies", "about", "contact", "testimonials"]);
 
+const NAV_THEMES: Record<string, Record<string, string>> = {
+  sentinel: {
+    navScrolled: "bg-[#3d2a1f]/90 border-[#d7c8ae]/30 backdrop-blur-xl py-3",
+    navIdle: "bg-[#3d2a1f]/80 border-[#d7c8ae]/20 backdrop-blur-xl py-3",
+    logoWrap: "border-[#e6d8c1]/60 bg-[#f8f3e8]",
+    logoText: "text-[#f3ead9]",
+    logoTextScrolled: "text-[#f3ead9]",
+    menuActive: "text-[#f3ead9]",
+    menuActiveScrolled: "text-[#f3ead9]",
+    menuIdle: "text-[#d7c8ae]/90 hover:text-[#fff6e8]",
+    menuIdleScrolled: "text-[#d7c8ae]/90 hover:text-[#fff6e8]",
+    sentinelButton: "border-[#e6d8c1]/45 text-[#f3ead9] hover:bg-[#f3ead9]/10",
+    ctaButton: "bg-[#f3ead9] text-[#3d2a1f] hover:bg-[#fff6e8]",
+    mobileToggle: "text-[#f3ead9] hover:bg-[#f3ead9]/15",
+    mobilePanel: "bg-[#3d2a1f]/95 backdrop-blur-xl",
+    mobileMenuItem: "border-[#d7c8ae]/25 text-[#f3ead9]",
+    mobileSentinel: "border-[#d7c8ae]/35 text-[#f3ead9]",
+    mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
+  },
+  green: {
+    navScrolled: "bg-[#f7fefa]/92 border-white/80 shadow-[0_20px_44px_rgba(3,41,29,0.12)] backdrop-blur-xl",
+    navIdle: "bg-[#f7fefa]/82 border-white/70 shadow-[0_16px_36px_rgba(3,41,29,0.10)] backdrop-blur-xl",
+    logoWrap: "border-emerald-200/75 bg-white shadow-[0_12px_30px_rgba(16,185,129,0.10)]",
+    logoText: "text-slate-900",
+    logoTextScrolled: "text-slate-900",
+    menuActive: "text-emerald-700",
+    menuActiveScrolled: "text-emerald-700",
+    menuIdle: "text-slate-800 hover:text-emerald-700",
+    menuIdleScrolled: "text-slate-800 hover:text-emerald-700",
+    sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
+    ctaButton:
+      "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
+    mobileToggle: "text-slate-800 hover:bg-emerald-50/80",
+    mobilePanel: "bg-[#f7fefa]/96 backdrop-blur-xl",
+    mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
+    mobileSentinel: "border-gray-200 text-gray-700",
+    mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
+  },
+};
+
 interface NavigationProps {
   logo?: { name: string; logo: string };
   menuItems?: string[];
@@ -103,45 +143,7 @@ export default function Navigation({
     return () => window.removeEventListener("scroll", onScroll);
   }, [menuItems, pathname]);
 
-  const navTheme =
-    themeVariant === "sentinel"
-      ? {
-          navScrolled: "bg-[#3d2a1f]/90 border-[#d7c8ae]/30 backdrop-blur-xl py-3",
-          navIdle: "bg-[#3d2a1f]/80 border-[#d7c8ae]/20 backdrop-blur-xl py-3",
-          logoWrap: "border-[#e6d8c1]/60 bg-[#f8f3e8]",
-          logoText: "text-[#f3ead9]",
-          logoTextScrolled: "text-[#f3ead9]",
-          menuActive: "text-[#f3ead9]",
-          menuActiveScrolled: "text-[#f3ead9]",
-          menuIdle: "text-[#d7c8ae]/90 hover:text-[#fff6e8]",
-          menuIdleScrolled: "text-[#d7c8ae]/90 hover:text-[#fff6e8]",
-          sentinelButton: "border-[#e6d8c1]/45 text-[#f3ead9] hover:bg-[#f3ead9]/10",
-          ctaButton: "bg-[#f3ead9] text-[#3d2a1f] hover:bg-[#fff6e8]",
-          mobileToggle: "text-[#f3ead9] hover:bg-[#f3ead9]/15",
-          mobilePanel: "bg-[#3d2a1f]/95 backdrop-blur-xl",
-          mobileMenuItem: "border-[#d7c8ae]/25 text-[#f3ead9]",
-          mobileSentinel: "border-[#d7c8ae]/35 text-[#f3ead9]",
-          mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
-        }
-      : {
-          navScrolled: "bg-[#f7fefa]/92 border-white/80 shadow-[0_20px_44px_rgba(3,41,29,0.12)] backdrop-blur-xl",
-          navIdle: "bg-[#f7fefa]/82 border-white/70 shadow-[0_16px_36px_rgba(3,41,29,0.10)] backdrop-blur-xl",
-          logoWrap: "border-emerald-200/75 bg-white shadow-[0_12px_30px_rgba(16,185,129,0.10)]",
-          logoText: "text-slate-900",
-          logoTextScrolled: "text-slate-900",
-          menuActive: "text-emerald-700",
-          menuActiveScrolled: "text-emerald-700",
-          menuIdle: "text-slate-800 hover:text-emerald-700",
-          menuIdleScrolled: "text-slate-800 hover:text-emerald-700",
-          sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
-          ctaButton:
-            "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
-          mobileToggle: "text-slate-800 hover:bg-emerald-50/80",
-          mobilePanel: "bg-[#f7fefa]/96 backdrop-blur-xl",
-          mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
-          mobileSentinel: "border-gray-200 text-gray-700",
-          mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
-        };
+  const navTheme = NAV_THEMES[themeVariant] || NAV_THEMES.green;
 
   return (
     <>

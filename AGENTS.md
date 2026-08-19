@@ -71,6 +71,18 @@ Do not use the skill to override TechFi Labs brand rules.
 
 Brand rules in this AGENTS.md take priority over generic skill suggestions.
 
+## SEO Audit Skill Usage
+
+The `seo-audit` skill is installed in this repository under `.agents/skills/seo-audit`.
+
+Use the skill for:
+- Technical SEO auditing, indexability, canonicalization, and XML sitemaps
+- On-page meta tags (titles, meta descriptions, OpenGraph, Twitter Cards)
+- Heading structure validation (single H1 per page, H2/H3 logical hierarchy)
+- Generative Engine Optimization (GEO) & Local Business JSON-LD schema markup (`LocalBusiness`, `ProfessionalService`, `Organization`, `WebSite`, `Service`, `FAQPage`)
+- Geographic location signals (`geo.region`, `geo.placename`, `geo.position`, `ICBM`)
+- Content E-E-A-T alignment for AI search engines and traditional search engines
+
 Preferred instruction before design tasks:
 “Use UI/UX Pro Max as design guidance only. Follow AGENTS.md as the source of truth.”
 

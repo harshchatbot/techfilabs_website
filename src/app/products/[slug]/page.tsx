@@ -5,6 +5,53 @@ import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import Schema from "@/components/Schema";
 import { PRODUCTS_DATA, PRODUCT_PAGE_FALLBACK } from "@/constants/data";
 
+const PRODUCT_THEMES: Record<string, Record<string, string>> = {
+  sentinel: {
+    pageBg: "bg-[#2b1c15] text-[#f3ead9]",
+    backLink: "text-[#e7d8be] hover:text-[#fff7ea]",
+    tag: "text-[#e7d8be]",
+    title: "text-[#fff7ea]",
+    subtitle: "text-[#f1e3cc]",
+    body: "text-[#d9c8ad]",
+    highlightCard: "border-[#d7c8ae]/30 bg-[#f3ead9]/5",
+    highlightLabel: "text-[#c9b79a]",
+    highlightValue: "text-[#fff2dc]",
+    ctaPrimary: "bg-[#f3ead9] text-[#3d2a1f] hover:bg-[#fff7ea]",
+    ctaSecondary: "border-[#d7c8ae]/40 text-[#f3ead9] hover:bg-[#f3ead9]/10",
+    mediaCard: "border-[#d7c8ae]/35 bg-gradient-to-b from-[#5b3c2d]/50 to-[#2b1c15]",
+    mediaGlow:
+      "bg-[radial-gradient(circle_at_20%_20%,rgba(243,234,217,0.2),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(190,166,132,0.18),transparent_55%)]",
+    shotCard: "border-[#d7c8ae]/30 bg-[#2b1c15]/60",
+    featureWrap: "border-[#d7c8ae]/25 bg-[#f3ead9]/5",
+    featureCard: "border-[#d7c8ae]/25 bg-[#2b1c15]/45 text-[#f1e4cf]",
+    surfaceCard: "border-[#d7c8ae]/25 bg-[#2b1c15]/45",
+    sectionLabel: "text-[#e7d8be]",
+    muted: "text-[#d9c8ad]",
+  },
+  default: {
+    pageBg: "bg-emerald-950 text-white",
+    backLink: "text-lime-200 hover:text-white",
+    tag: "text-lime-200",
+    title: "text-white",
+    subtitle: "text-lime-100/90",
+    body: "text-emerald-100/80",
+    highlightCard: "border-white/15 bg-white/5",
+    highlightLabel: "text-emerald-100/70",
+    highlightValue: "text-lime-100",
+    ctaPrimary: "bg-lime-300 text-emerald-950 hover:bg-lime-200",
+    ctaSecondary: "border-white/20 text-white hover:bg-white/10",
+    mediaCard: "border-lime-200/30 bg-gradient-to-b from-emerald-800/70 to-emerald-950",
+    mediaGlow:
+      "bg-[radial-gradient(circle_at_20%_20%,rgba(190,242,100,0.25),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(74,222,128,0.18),transparent_55%)]",
+    shotCard: "border-white/20 bg-emerald-950/40",
+    featureWrap: "border-white/10 bg-emerald-900/30",
+    featureCard: "border-white/10 bg-white/5 text-emerald-50/90",
+    surfaceCard: "border-white/10 bg-white/5",
+    sectionLabel: "text-lime-200",
+    muted: "text-emerald-100/75",
+  },
+};
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -63,51 +110,7 @@ export default async function ProductPage({ params }: Props) {
 
   const isSentinelTheme = product.theme === "sentinel";
   const galleryAspectClass = isSentinelTheme ? "aspect-[9/16]" : "aspect-[16/10]";
-  const theme = isSentinelTheme
-    ? {
-        pageBg: "bg-[#2b1c15] text-[#f3ead9]",
-        backLink: "text-[#e7d8be] hover:text-[#fff7ea]",
-        tag: "text-[#e7d8be]",
-        title: "text-[#fff7ea]",
-        subtitle: "text-[#f1e3cc]",
-        body: "text-[#d9c8ad]",
-        highlightCard: "border-[#d7c8ae]/30 bg-[#f3ead9]/5",
-        highlightLabel: "text-[#c9b79a]",
-        highlightValue: "text-[#fff2dc]",
-        ctaPrimary: "bg-[#f3ead9] text-[#3d2a1f] hover:bg-[#fff7ea]",
-        ctaSecondary: "border-[#d7c8ae]/40 text-[#f3ead9] hover:bg-[#f3ead9]/10",
-        mediaCard: "border-[#d7c8ae]/35 bg-gradient-to-b from-[#5b3c2d]/50 to-[#2b1c15]",
-        mediaGlow:
-          "bg-[radial-gradient(circle_at_20%_20%,rgba(243,234,217,0.2),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(190,166,132,0.18),transparent_55%)]",
-        shotCard: "border-[#d7c8ae]/30 bg-[#2b1c15]/60",
-        featureWrap: "border-[#d7c8ae]/25 bg-[#f3ead9]/5",
-        featureCard: "border-[#d7c8ae]/25 bg-[#2b1c15]/45 text-[#f1e4cf]",
-        surfaceCard: "border-[#d7c8ae]/25 bg-[#2b1c15]/45",
-        sectionLabel: "text-[#e7d8be]",
-        muted: "text-[#d9c8ad]",
-      }
-    : {
-        pageBg: "bg-emerald-950 text-white",
-        backLink: "text-lime-200 hover:text-white",
-        tag: "text-lime-200",
-        title: "text-white",
-        subtitle: "text-lime-100/90",
-        body: "text-emerald-100/80",
-        highlightCard: "border-white/15 bg-white/5",
-        highlightLabel: "text-emerald-100/70",
-        highlightValue: "text-lime-100",
-        ctaPrimary: "bg-lime-300 text-emerald-950 hover:bg-lime-200",
-        ctaSecondary: "border-white/20 text-white hover:bg-white/10",
-        mediaCard: "border-lime-200/30 bg-gradient-to-b from-emerald-800/70 to-emerald-950",
-        mediaGlow:
-          "bg-[radial-gradient(circle_at_20%_20%,rgba(190,242,100,0.25),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(74,222,128,0.18),transparent_55%)]",
-        shotCard: "border-white/20 bg-emerald-950/40",
-        featureWrap: "border-white/10 bg-emerald-900/30",
-        featureCard: "border-white/10 bg-white/5 text-emerald-50/90",
-        surfaceCard: "border-white/10 bg-white/5",
-        sectionLabel: "text-lime-200",
-        muted: "text-emerald-100/75",
-      };
+  const theme = PRODUCT_THEMES[product.theme] || PRODUCT_THEMES.default;
 
   return (
     <div className={`min-h-screen ${theme.pageBg} pt-28 pb-20`}>
