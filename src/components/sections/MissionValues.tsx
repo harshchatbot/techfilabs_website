@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Handshake, RefreshCw, ShieldCheck, Target } from "lucide-react";
+import Image from "next/image";
 
 const ICONS = [Target, Handshake, ShieldCheck, RefreshCw];
 
@@ -42,9 +43,11 @@ export default function MissionValues({
               </div>
 
               <div className="relative overflow-hidden rounded-3xl aspect-[4/3] border border-gray-200 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80&auto=format&fit=crop"
                   alt="Salesforce team planning together"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />

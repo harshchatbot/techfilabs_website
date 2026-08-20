@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { prefersReducedMotion } from "../../utils/motionConfig";
 
 const CAPABILITIES = [
@@ -80,12 +81,13 @@ function ArchitectureCard() {
           </div>
         </div>
       ) : (
-        <div className="relative">
-          <img
+        <div className="relative h-[280px] w-full md:h-[340px]">
+          <Image
             src={mediaSrc}
             alt={ARCHITECTURE_MEDIA.alt}
-            className="h-[280px] w-full object-cover md:h-[340px]"
-            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="h-full w-full object-cover"
             onError={handleError}
           />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(6,78,47,0.08)_0%,rgba(4,56,38,0.18)_48%,rgba(4,56,38,0.82)_100%)]" />

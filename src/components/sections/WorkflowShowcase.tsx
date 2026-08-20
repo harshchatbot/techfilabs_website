@@ -1,7 +1,11 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { Bot, FileText, Mail, MessageCircle, RefreshCw, ShieldCheck, Sheet, Users } from "lucide-react";
+
+
+import { WORKFLOW_SHOWCASE_CONTENT } from "@/constants";
 
 const DETAIL_INPUTS = [
   { label: "WhatsApp", icon: MessageCircle },
@@ -15,7 +19,7 @@ const DETAIL_OUTPUTS = [
   { label: "Response Ready", icon: RefreshCw },
 ];
 
-const DETAIL_STEPS = ["Classify", "Summarize", "Draft Reply", "Route", "Log"];
+const DETAIL_STEPS = WORKFLOW_SHOWCASE_CONTENT.agentCard.steps;
 const DETAIL_PARTICLES = [
   { id: "wa-in", start: { x: 60, y: 76 }, mid: { x: 188, y: 100 }, end: { x: 300, y: 154 }, delay: 0.2 },
   { id: "email-in", start: { x: 74, y: 210 }, mid: { x: 198, y: 194 }, end: { x: 300, y: 170 }, delay: 0.85 },
@@ -29,7 +33,10 @@ interface WorkflowShowcaseProps {
   workflows?: any[];
 }
 
-export default function WorkflowShowcase({ title, subtitle, workflows }: WorkflowShowcaseProps = {}) {
+export default function WorkflowShowcase({
+  title = WORKFLOW_SHOWCASE_CONTENT.title,
+  subtitle = WORKFLOW_SHOWCASE_CONTENT.subtitle,
+}: WorkflowShowcaseProps = {}) {
   return (
     <section
       className="relative overflow-hidden bg-[linear-gradient(180deg,#064e2f_0%,#055536_72%,#03291d_100%)] py-20 text-white md:py-26"
@@ -43,21 +50,22 @@ export default function WorkflowShowcase({ title, subtitle, workflows }: Workflo
           viewport={{ once: true }}
           className="mb-10 max-w-3xl md:mb-12"
         >
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-emerald-300">AI Automation Workflows</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-emerald-300">
+            {WORKFLOW_SHOWCASE_CONTENT.eyebrow}
+          </p>
           <h2 className="mb-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
-            AI workflows that connect messages, systems, and business actions.
+            {title}
           </h2>
           <p className="text-base leading-relaxed text-slate-300 md:text-lg">
-            We connect incoming requests to one workflow that can sort messages, summarize context, draft responses, update Salesforce, write to sheets, and send exceptions for human review.
+            {subtitle}
           </p>
           <div className="mt-5 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-xs font-medium text-slate-200">
-            <span>WhatsApp / Email</span>
-            <span className="text-emerald-300">→</span>
-            <span>AI Agent</span>
-            <span className="text-emerald-300">→</span>
-            <span>Classify / Summarize / Draft Reply</span>
-            <span className="text-emerald-300">→</span>
-            <span>Salesforce / Sheets / Human Review</span>
+            {WORKFLOW_SHOWCASE_CONTENT.flowPills.map((pill, idx) => (
+              <React.Fragment key={idx}>
+                {idx > 0 && <span className="text-emerald-300">→</span>}
+                <span>{pill.label}</span>
+              </React.Fragment>
+            ))}
           </div>
         </motion.div>
 
@@ -65,14 +73,19 @@ export default function WorkflowShowcase({ title, subtitle, workflows }: Workflo
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(52,211,153,0.08),transparent_36%,rgba(3,41,29,0.12)_100%)]" />
           <div className="relative z-10 flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Workflow Graph</p>
-              <p className="mt-1 text-sm font-medium text-white md:text-base">Detailed AI orchestration across channels, CRM, and review</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                {WORKFLOW_SHOWCASE_CONTENT.graphHeader.eyebrow}
+              </p>
+              <p className="mt-1 text-sm font-medium text-white md:text-base">
+                {WORKFLOW_SHOWCASE_CONTENT.graphHeader.subtitle}
+              </p>
             </div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs text-slate-200">
               <Bot className="h-3.5 w-3.5 text-emerald-300" />
-              Live workflow
+              {WORKFLOW_SHOWCASE_CONTENT.graphHeader.liveBadge}
             </div>
           </div>
+
 
           <div className="relative mt-6 grid gap-6 md:grid-cols-[0.92fr_1.05fr_0.92fr] md:items-center">
             <svg

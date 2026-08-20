@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { NAV_CONFIG } from "@/constants";
 
 const HOME_SECTIONS = new Set(["home", "products", "services", "case-studies", "about", "contact", "testimonials"]);
+
 
 const NAV_THEMES: Record<string, Record<string, string>> = {
   sentinel: {
@@ -55,11 +59,12 @@ interface NavigationProps {
 }
 
 export default function Navigation({
-  logo = { name: "TechFi Labs", logo: "/techfilabs_logo_2026.png" },
-  menuItems = ["home", "products", "services", "about", "contact"],
-  ctaButton = { text: "Book a Strategy Call", action: "contact" },
+  logo = NAV_CONFIG.logo,
+  menuItems = NAV_CONFIG.menuItems,
+  ctaButton = NAV_CONFIG.ctaButton,
   themeVariant = "green",
 }: NavigationProps) {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -74,74 +79,48 @@ export default function Navigation({
     };
   }, [isMenuOpen]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (!element) return;
-    const yOffset = -80;
-    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
   const handleMenuClick = (item: string) => {
     setIsMenuOpen(false);
 
-    if (HOME_SECTIONS.has(item)) {
-      if (item === "home") {
-        if (pathname === "/") {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          return;
-        }
-        router.push("/");
+    if (item === "home") {
+      if (pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
-
-      if (pathname === "/") {
-        scrollToSection(item);
-      } else {
-        if (item === "contact") {
-          router.push("/#contact");
-        } else {
-          router.push("/");
-          setTimeout(() => scrollToSection(item), 150);
-        }
-      }
+      router.push("/");
       return;
     }
 
-    router.push(`/${item}`);
+    const routeMap: Record<string, string> = {
+      products: "/products",
+      services: "/services",
+      about: "/about",
+      contact: "/contact",
+    };
+
+    const targetRoute = routeMap[item] || `/${item}`;
+    router.push(targetRoute);
   };
 
   const handleCtaClick = () => {
     setIsMenuOpen(false);
+    router.push("/contact");
+  };
 
-    if (pathname === "/") {
-      scrollToSection("contact");
-      return;
-    }
-
-    router.push("/#contact");
+  const isItemActive = (item: string) => {
+    if (item === "home") return pathname === "/";
+    return pathname.startsWith(`/${item}`);
   };
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
-      if (pathname !== "/") return;
-
-      for (const section of menuItems) {
-        const element = document.getElementById(section);
-        if (!element) continue;
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= 140 && rect.bottom >= 140) {
-          setActiveSection(section);
-          break;
-        }
-      }
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [menuItems, pathname]);
+  }, []);
 
   const navTheme = NAV_THEMES[themeVariant] || NAV_THEMES.green;
 
@@ -154,9 +133,9 @@ export default function Navigation({
               scrolled ? navTheme.navScrolled : navTheme.navIdle
             }`}
           >
-            <button onClick={() => handleMenuClick("home")} className="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa]">
-              <div className={`h-11 w-11 overflow-hidden rounded-full border sm:h-12 sm:w-12 ${navTheme.logoWrap}`}>
-                <img src={logo.logo} alt={logo.name} className="h-full w-full object-cover scale-[1.14]" />
+            <Link href="/" className="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa]">
+              <div className={`h-11 w-11 overflow-hidden rounded-full border sm:h-12 sm:w-12 relative ${navTheme.logoWrap}`}>
+                <Image src={logo.logo} alt={logo.name} width={48} height={48} className="h-full w-full object-cover scale-[1.14]" />
               </div>
               <span
                 className={`hidden sm:block text-[15px] font-semibold tracking-tight ${
@@ -165,27 +144,30 @@ export default function Navigation({
               >
                 {logo.name}
               </span>
-            </button>
+            </Link>
 
             <div className="hidden lg:flex items-center gap-5 xl:gap-8">
-              {menuItems.map((item) => (
-                <button
-                  key={item}
-                  onClick={() => handleMenuClick(item)}
-                  aria-current={activeSection === item && pathname === "/" ? "page" : undefined}
-                  className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2.5 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
-                    activeSection === item && pathname === "/"
-                      ? scrolled
-                        ? `${navTheme.menuActiveScrolled || navTheme.menuActive} bg-emerald-50 border border-emerald-100/80`
-                        : `${navTheme.menuActive} bg-white/[0.10] border border-white/10`
-                      : scrolled
-                        ? navTheme.menuIdleScrolled || navTheme.menuIdle
-                        : navTheme.menuIdle
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
+              {menuItems.map((item) => {
+                const active = isItemActive(item);
+                return (
+                  <button
+                    key={item}
+                    onClick={() => handleMenuClick(item)}
+                    aria-current={active ? "page" : undefined}
+                    className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2.5 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
+                      active
+                        ? scrolled
+                          ? `${navTheme.menuActiveScrolled || navTheme.menuActive} bg-emerald-50 border border-emerald-100/80`
+                          : `${navTheme.menuActive} bg-white/[0.10] border border-white/10`
+                        : scrolled
+                          ? navTheme.menuIdleScrolled || navTheme.menuIdle
+                          : navTheme.menuIdle
+                    }`}
+                  >
+                    {item}
+                  </button>
+                );
+              })}
 
               <button
                 onClick={handleCtaClick}

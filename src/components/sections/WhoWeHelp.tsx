@@ -1,6 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+
+import { WHO_WE_HELP_CONTENT } from "@/constants";
 
 interface WhoWeHelpProps {
   title?: string;
@@ -9,8 +12,8 @@ interface WhoWeHelpProps {
 }
 
 export default function WhoWeHelp({
-  title = "Who we help",
-  subtitle = "We support consulting firms and businesses that need dependable Salesforce delivery capacity.",
+  title = WHO_WE_HELP_CONTENT.title,
+  subtitle = WHO_WE_HELP_CONTENT.subtitle,
   items = [],
 }: WhoWeHelpProps) {
   return (
@@ -24,7 +27,7 @@ export default function WhoWeHelp({
             viewport={{ once: true }}
             className="max-w-3xl"
           >
-            <p className="text-xs uppercase tracking-[0.22em] text-green-600 mb-4">Who We Help</p>
+            <p className="text-xs uppercase tracking-[0.22em] text-green-600 mb-4">{WHO_WE_HELP_CONTENT.badge}</p>
             <h2 className="mb-4 text-3xl md:text-6xl font-semibold tracking-tight text-gray-900">{title}</h2>
             <p className="text-base md:text-lg text-slate-600">{subtitle}</p>
           </motion.div>
@@ -37,19 +40,22 @@ export default function WhoWeHelp({
             className="rounded-[2rem] border border-white/70 bg-white/80 p-4 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
           >
             <div className="relative overflow-hidden rounded-[1.5rem] aspect-[16/8]">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80&auto=format&fit=crop"
                 alt="Salesforce and consulting delivery team collaborating"
+                fill
+                sizes="(max-width: 1200px) 100vw, 50vw"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
               <div className="absolute left-4 bottom-4 max-w-[260px] rounded-2xl border border-white/40 bg-white/85 px-4 py-3 shadow-sm backdrop-blur-sm">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-green-700 mb-1">Who we support</p>
-                <p className="text-sm font-medium text-gray-900">Consulting firms, business teams, and delivery partners.</p>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-green-700 mb-1">{WHO_WE_HELP_CONTENT.cardBadge}</p>
+                <p className="text-sm font-medium text-gray-900">{WHO_WE_HELP_CONTENT.cardText}</p>
               </div>
             </div>
           </motion.div>
         </div>
+
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4 md:gap-5">
           {items.map((item, index) => (

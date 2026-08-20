@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface EngagementModelsProps {
   title?: string;
@@ -45,9 +46,11 @@ export default function EngagementModels({
             className="relative overflow-hidden rounded-[1.75rem] md:rounded-[2rem] border border-gray-200 bg-white p-3 md:p-4 shadow-[0_16px_40px_rgba(15,23,42,0.05)]"
           >
             <div className="relative overflow-hidden rounded-[1.5rem] aspect-[16/10]">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80&auto=format&fit=crop"
                 alt="Salesforce delivery process and client discussion"
+                fill
+                sizes="(max-width: 1200px) 100vw, 50vw"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />

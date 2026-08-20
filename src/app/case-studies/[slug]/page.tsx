@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Schema from "@/components/Schema";
 import { CASE_STUDIES_DATA } from "@/constants/data";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,15 +22,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!study) {
     return {
-      title: "Case Study Not Found | TechFi Labs",
+      title: `Case Study Not Found | ${ORGANIZATION_CONFIG.name}`,
     };
   }
 
   return {
-    title: `${study.title} | Salesforce Case Study | TechFi Labs`,
+    title: `${study.title} | Salesforce Case Study | ${ORGANIZATION_CONFIG.name}`,
     description: study.summary,
     alternates: {
-      canonical: `https://techfilabs.com/case-studies/${study.slug}`,
+      canonical: `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`,
     },
   };
 }
@@ -44,21 +45,48 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: study.title,
-    about: study.keywords,
-    datePublished: "2025-01-01",
-    author: {
-      "@type": "Organization",
-      name: "TechFi Labs",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "TechFi Labs",
-      url: "https://techfilabs.com/",
-    },
-    mainEntityOfPage: `https://techfilabs.com/case-studies/${study.slug}`,
-    description: study.summary,
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: study.title,
+        about: study.keywords,
+        datePublished: "2025-01-01",
+        author: {
+          "@type": "Organization",
+          name: ORGANIZATION_CONFIG.name,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: ORGANIZATION_CONFIG.name,
+          url: ORGANIZATION_CONFIG.url,
+        },
+        mainEntityOfPage: `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`,
+        description: study.summary,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: ORGANIZATION_CONFIG.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Case Studies",
+            item: `${ORGANIZATION_CONFIG.url}/#case-studies`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: study.title,
+            item: `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (

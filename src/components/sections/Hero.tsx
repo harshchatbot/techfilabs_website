@@ -6,9 +6,11 @@ import LiquidMetalButton from "../ui/LiquidMetalButton";
 import { prefersReducedMotion } from "../../utils/motionConfig";
 import DottedSurface from "../ui/DottedSurface";
 
+import { HERO_CONTENT } from "@/constants";
+
 function getDeliveryText() {
   const now = new Date();
-  return `AI automation systems • ${now.getFullYear()}`;
+  return `${HERO_CONTENT.eyebrowPrefix} • ${now.getFullYear()}`;
 }
 
 interface HeroProps {
@@ -22,12 +24,13 @@ interface HeroProps {
 
 export default function Hero({
   eyebrow = getDeliveryText(),
-  headline = "AI Agents & Automation for Modern Business Teams",
-  subtitle = "We build AI agents, WhatsApp and email automations, and Salesforce-connected workflows that reduce manual work and help teams respond faster.",
-  primaryButton = { text: "Build Your AI Workflow", action: () => {} },
+  headline = HERO_CONTENT.headline,
+  subtitle = HERO_CONTENT.subtitle,
+  primaryButton = { text: HERO_CONTENT.primaryButtonLabel, action: () => {} },
   secondaryButton = null,
-  chips = ["AI Agents", "WhatsApp + Email", "Salesforce + n8n"],
+  chips = HERO_CONTENT.chips,
 }: HeroProps) {
+
   const reduceMotion = prefersReducedMotion();
 
   return (
@@ -141,9 +144,10 @@ export default function Hero({
             </span>
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                Live AI workflow layer
+                {HERO_CONTENT.liveLayerBadge}
               </p>
-              <p className="mt-1 text-sm text-white/80">WhatsApp • Email • Salesforce</p>
+              <p className="mt-1 text-sm text-white/80">{HERO_CONTENT.liveLayerChannels}</p>
+
             </div>
           </motion.div>
         </div>

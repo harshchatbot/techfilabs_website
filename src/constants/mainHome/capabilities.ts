@@ -1,0 +1,18 @@
+export const HOMEPAGE_CAPABILITIES = [
+  "Apex",
+  "LWC",
+  "Flows",
+  "SOQL",
+  "Sales Cloud",
+  "Service Cloud",
+  "Experience Cloud",
+  "Health Cloud",
+  "CPQ",
+  "Data Cloud",
+  "CRM Analytics",
+  "Integrations",
+  "Data Migration",
+  "Reports & Dashboards",
+  "Production Support",
+  "Release Support",
+];

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import Schema from "@/components/Schema";
 import { PRODUCTS_DATA, PRODUCT_PAGE_FALLBACK } from "@/constants/data";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
 
 const PRODUCT_THEMES: Record<string, Record<string, string>> = {
   sentinel: {
@@ -68,15 +70,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: `${PRODUCT_PAGE_FALLBACK.title} | TechFi Labs`,
+      title: `${PRODUCT_PAGE_FALLBACK.title} | ${ORGANIZATION_CONFIG.name}`,
     };
   }
 
   return {
-    title: `${product.name} | TechFi Labs`,
+    title: `${product.name} | ${ORGANIZATION_CONFIG.name}`,
     description: product.summary,
     alternates: {
-      canonical: `https://techfilabs.com/products/${product.slug}`,
+      canonical: `${ORGANIZATION_CONFIG.url}/products/${product.slug}`,
     },
   };
 }
@@ -97,7 +99,7 @@ export default async function ProductPage({ params }: Props) {
     operatingSystem: product.platforms.join(", "),
     description: product.summary,
     offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-    brand: { "@type": "Organization", name: "TechFi Labs" },
+    brand: { "@type": "Organization", name: ORGANIZATION_CONFIG.name, url: ORGANIZATION_CONFIG.url },
   };
 
   const descriptionParagraphs = product.description
@@ -239,12 +241,13 @@ export default async function ProductPage({ params }: Props) {
                     {product.screenshots.map((src, index) => (
                       <div
                         key={src}
-                        className={`w-full ${galleryAspectClass} overflow-hidden rounded-2xl border p-2 ${theme.shotCard}`}
+                        className={`w-full ${galleryAspectClass} overflow-hidden rounded-2xl border p-2 relative ${theme.shotCard}`}
                       >
-                        <img
+                        <Image
                           src={src}
                           alt={`${product.name} screenshot ${index + 1}`}
-                          loading="lazy"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
                           className="h-full w-full rounded-xl object-cover object-top"
                         />
                       </div>

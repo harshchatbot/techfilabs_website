@@ -3,79 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { ABOUT_SECTION_CONTENT, ABOUT_DATA } from "@/constants";
 
-const PANEL_MEDIA = [
-  {
-    eyebrow: "Execution architecture",
-    title: "Practical AI automation for real business workflows",
-    description:
-      "Automation should simplify work, shorten response time, and still leave room for human review when it matters.",
-    secondaryPill: "Request to action flow",
-    tags: ["AI Agents", "Summaries", "Task Routing", "Human Review"],
-    type: "video",
-    src: "/assets/media/why-ai-automation.mp4",
-    filename: "why-ai-automation.mp4",
-  },
-  {
-    eyebrow: "Integration layer",
-    title: "Connected workflows across the tools your team already uses",
-    description:
-      "WhatsApp, email, CRM, spreadsheets, and APIs work better when automation connects them without adding another manual layer.",
-    secondaryPill: "Channels + systems",
-    tags: ["WhatsApp", "Email", "Salesforce", "Sheets", "API"],
-    type: "video",
-    src: "/assets/media/why-integrations.mp4",
-    filename: "why-integrations.mp4",
-  },
-  {
-    eyebrow: "Salesforce foundation",
-    title: "CRM-aware automation built with delivery realities in mind",
-    description:
-      "Salesforce work needs clean data handling, reliable automation, and support thinking that holds up after go-live.",
-    secondaryPill: "CRM execution",
-    tags: ["Salesforce", "Flows", "Apex", "LWC", "Support"],
-    type: "image",
-    src: "/assets/media/why-salesforce.jpg",
-    fallbackSrc: "/assets/media/why-salesforce.webp",
-    filename: "why-salesforce.jpg",
-  },
-  {
-    eyebrow: "Delivery ownership",
-    title: "Clear progress from discovery through deployment",
-    description:
-      "Delivery works better when the build, testing, rollout, and support plan stay connected from the start.",
-    secondaryPill: "Discovery to support",
-    tags: ["Discovery", "Design", "Build", "Testing", "Deployment"],
-    type: "image",
-    src: "/assets/media/why-delivery.jpg",
-    fallbackSrc: "/assets/media/why-delivery.webp",
-    filename: "why-delivery.jpg",
-  },
-  {
-    eyebrow: "Governance layer",
-    title: "Security, logging, and oversight built into the workflow",
-    description:
-      "Reliable automation needs controls for access, error handling, approvals, and monitoring before it reaches production.",
-    secondaryPill: "Operational controls",
-    tags: ["Security", "Logs", "Monitoring", "Error Handling", "Review"],
-    type: "image",
-    src: "/assets/media/why-security.jpg",
-    fallbackSrc: "/assets/media/why-security.webp",
-    filename: "why-security.jpg",
-  },
-  {
-    eyebrow: "Support lifecycle",
-    title: "A long-term support mindset instead of one-time delivery",
-    description:
-      "Good systems improve through fixes, enhancements, release support, and steady monitoring after launch.",
-    secondaryPill: "Continuous improvement",
-    tags: ["Fixes", "Enhancements", "Releases", "Monitoring", "Improvements"],
-    type: "image",
-    src: "/assets/media/why-support.jpg",
-    fallbackSrc: "/assets/media/why-support.webp",
-    filename: "why-support.jpg",
-  },
-];
+const PANEL_MEDIA = ABOUT_SECTION_CONTENT.panelMedia;
 
 interface AboutProps {
   eyebrow?: string;
@@ -159,12 +90,13 @@ function MediaPanel({ item, isMissing, onMediaError }: { item: any; isMissing: b
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[#041c14] shadow-[0_24px_60px_rgba(3,41,29,0.22)]">
-      <img
+    <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[#041c14] shadow-[0_24px_60px_rgba(3,41,29,0.22)] h-[280px] md:h-[360px]">
+      <Image
         src={mediaSrc}
         alt={`${item.title} visual for TechFi Labs`}
-        className="h-[280px] w-full object-cover md:h-[360px]"
-        loading="lazy"
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="h-full w-full object-cover"
         onError={handleMediaError}
       />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(6,78,47,0.08)_0%,rgba(4,56,38,0.06)_38%,rgba(4,56,38,0.72)_100%)]" />

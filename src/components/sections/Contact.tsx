@@ -7,11 +7,14 @@ import emailjs from "@emailjs/browser";
 import { sendGAEvent } from "@next/third-parties/google";
 import LiquidMetalButton from "../ui/LiquidMetalButton";
 
+import { CONTACT_SECTION_CONTENT, CONTACT_INFO } from "@/constants";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
+
 const EMAILJS_SERVICE_ID = "service_n22qsrq";
 const EMAILJS_NOTIFY_TEMPLATE_ID = "template_akdqils";
 const EMAILJS_PUBLIC_KEY = "6ICiKx6wEuxS-3WZ5";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_leadmagnet_autoreply";
-const LEAD_MAGNET_DOWNLOAD_URL = "https://techfilabs.com/lead-magnets/product-salesforce-growth-checklist-2026.pdf";
+const LEAD_MAGNET_DOWNLOAD_URL = `${ORGANIZATION_CONFIG.url}/lead-magnets/product-salesforce-growth-checklist-2026.pdf`;
 
 const initialFormState = {
   name: "",
@@ -45,26 +48,23 @@ interface ContactProps {
 }
 
 export default function Contact({
-  title = "Need AI automation or Salesforce support?",
-  subtitle = "Tell us what you want to automate, improve, or support.",
-  contactInfo = {
-    phone: "+91 7976111087",
-    email: "contact.team@techfilabs.com",
-    address: "Jaipur, Rajasthan 302001",
-  },
+  title = CONTACT_SECTION_CONTENT.title,
+  subtitle = CONTACT_SECTION_CONTENT.subtitle,
+  contactInfo = CONTACT_INFO,
   products = [],
   interestOptions = [],
   projectTypes = [],
-  interestLabel = "Service Needed",
-  projectTypeLabel = "Engagement Type",
-  messageLabel = "Project Brief",
-  messagePlaceholder = "Describe the workflow, AI use case, or CRM process you want to automate.",
-  submitButtonLabel = "Schedule a Quick Call",
+  interestLabel = CONTACT_SECTION_CONTENT.formLabels.serviceNeeded,
+  projectTypeLabel = CONTACT_SECTION_CONTENT.formLabels.engagementType,
+  messageLabel = CONTACT_SECTION_CONTENT.formLabels.projectBrief,
+  messagePlaceholder = CONTACT_SECTION_CONTENT.formLabels.messagePlaceholder,
+  submitButtonLabel = CONTACT_SECTION_CONTENT.formLabels.submitButton,
   showLeadMagnet = false,
   quickActions = [],
   responsePromise = "",
   isPageHeader = false,
 }: ContactProps) {
+
   const HeadingTag = isPageHeader ? "h1" : "h2";
   const defaultInterestOptions = [
     "AI Agents & Workflow Automation",
@@ -237,7 +237,9 @@ export default function Contact({
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">[ Contact ]</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">
+              {CONTACT_SECTION_CONTENT.badge}
+            </p>
             <HeadingTag className="max-w-[10ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{title}</HeadingTag>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
 
@@ -260,15 +262,19 @@ export default function Contact({
 
             {showLeadMagnet ? (
               <div className="mt-6 rounded-[1.7rem] border border-white/10 bg-white/[0.04] p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Lead magnet</p>
-                <h3 className="mt-3 text-xl font-semibold text-white">Free Growth Outcome Checklist</h3>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                  {CONTACT_SECTION_CONTENT.leadMagnet.badge}
+                </p>
+                <h3 className="mt-3 text-xl font-semibold text-white">
+                  {CONTACT_SECTION_CONTENT.leadMagnet.title}
+                </h3>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300">
-                  Get our practical checklist to identify bottlenecks and improve conversions, process speed, and delivery quality.
+                  {CONTACT_SECTION_CONTENT.leadMagnet.description}
                 </p>
 
                 {leadMagnetStatus === "success" ? (
                   <p className="mt-4 text-sm text-emerald-200">
-                    Thanks. Check your inbox for the checklist. If not received, use this direct download:{" "}
+                    {CONTACT_SECTION_CONTENT.leadMagnet.successMsg}{" "}
                     <a
                       href={LEAD_MAGNET_DOWNLOAD_URL}
                       target="_blank"
@@ -280,7 +286,9 @@ export default function Contact({
                   </p>
                 ) : null}
                 {leadMagnetStatus === "error" ? (
-                  <p className="mt-4 text-sm text-red-300">Could not submit right now. Please try again.</p>
+                  <p className="mt-4 text-sm text-red-300">
+                    {CONTACT_SECTION_CONTENT.leadMagnet.errorMsg}
+                  </p>
                 ) : null}
 
                 <form onSubmit={handleLeadMagnetSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -290,14 +298,16 @@ export default function Contact({
                     onChange={(event) => setLeadMagnetEmail(event.target.value)}
                     required
                     className="input-base"
-                    placeholder="Enter your work email"
+                    placeholder={CONTACT_SECTION_CONTENT.leadMagnet.placeholder}
                   />
                   <button
                     type="submit"
                     disabled={leadMagnetSubmitting}
                     className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white shadow-[0_14px_32px_rgba(5,150,105,0.18)] transition-colors hover:bg-emerald-700 disabled:opacity-60"
                   >
-                    {leadMagnetSubmitting ? "Submitting..." : "Get Checklist"}
+                    {leadMagnetSubmitting
+                      ? CONTACT_SECTION_CONTENT.leadMagnet.submittingButton
+                      : CONTACT_SECTION_CONTENT.leadMagnet.submitButton}
                   </button>
                 </form>
               </div>
@@ -311,26 +321,31 @@ export default function Contact({
             className="rounded-[2rem] border border-emerald-900/12 bg-[linear-gradient(180deg,#f7fefa_0%,#effcf5_100%)] p-5 shadow-[0_20px_56px_rgba(6,95,70,0.10)] md:p-7"
           >
             <div className="mb-6 border-b border-emerald-900/10 pb-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">Project intake</p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">Share what you want to improve.</h3>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                {CONTACT_SECTION_CONTENT.intakeHeader.badge}
+              </p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+                {CONTACT_SECTION_CONTENT.intakeHeader.title}
+              </h3>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-                Send the workflow, support need, or Salesforce challenge you are dealing with. We will help shape the right next step.
+                {CONTACT_SECTION_CONTENT.intakeHeader.subtitle}
               </p>
             </div>
 
             {submitStatus === "success" ? (
               <div className="mb-6 flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 p-3 text-green-700">
                 <CheckCircle2 className="h-5 w-5" />
-                Message sent. We will reach out shortly.
+                {CONTACT_SECTION_CONTENT.statuses.success}
               </div>
             ) : null}
 
             {submitStatus === "error" ? (
               <div className="mb-6 flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-red-700">
                 <AlertCircle className="h-5 w-5" />
-                Something failed while sending. Please try again.
+                {CONTACT_SECTION_CONTENT.statuses.error}
               </div>
             ) : null}
+
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <input

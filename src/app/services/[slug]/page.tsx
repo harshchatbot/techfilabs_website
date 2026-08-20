@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Schema from "@/components/Schema";
 import { SERVICE_LANDING_DATA } from "@/constants/data";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!service) {
     return {
-      title: "Service Not Found | TechFi Labs",
+      title: `Service Not Found | ${ORGANIZATION_CONFIG.name}`,
     };
   }
 
   return {
-    title: `${service.seoTitle} | TechFi Labs`,
+    title: `${service.seoTitle} | ${ORGANIZATION_CONFIG.name}`,
     description: service.seoDescription,
     alternates: {
       canonical: service.canonical,
@@ -44,17 +45,36 @@ export default async function ServicePage({ params }: Props) {
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    provider: {
-      "@type": "Organization",
-      name: "TechFi Labs",
-      url: "https://techfilabs.com/",
-    },
-    areaServed: ["Ajmer", "Jaipur", "India", "USA", "UK", "UAE"],
-    description: service.heroSubtitle,
-    serviceType: service.title,
-    url: service.canonical,
+    "@graph": [
+      {
+        "@type": "Service",
+        name: service.title,
+        provider: {
+          "@type": "Organization",
+          name: ORGANIZATION_CONFIG.name,
+          url: ORGANIZATION_CONFIG.url,
+        },
+        areaServed: ORGANIZATION_CONFIG.areasServed,
+        description: service.heroSubtitle,
+        serviceType: service.title,
+        url: service.canonical,
+      },
+      ...(service.faq && service.faq.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: service.faq.map((item) => ({
+                "@type": "Question",
+                name: item.q,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.a,
+                },
+              })),
+            },
+          ]
+        : []),
+    ],
   };
 
   return (

@@ -1,6 +1,7 @@
 import { Facebook, Globe, Instagram, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
-import { FOOTER_DATA } from "../../constants/data";
+import Image from "next/image";
+import { FOOTER_DATA, FOOTER_LEGAL_DATA } from "@/constants";
 
 const getIcon = (iconName: string) => {
   if (!iconName) return Globe;
@@ -59,8 +60,8 @@ export default function Footer({
         <div className="mb-10 grid gap-9 sm:mb-12 sm:gap-10 md:mb-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="relative z-10 mb-5 flex items-center gap-3">
-              <div className={`w-14 h-14 rounded-full border overflow-hidden ${footerTheme.logoWrap}`}>
-                <img src={logo.logo} alt={logo.name} className="w-full h-full object-cover scale-[1.18]" />
+              <div className={`w-14 h-14 rounded-full border overflow-hidden relative ${footerTheme.logoWrap}`}>
+                <Image src={logo.logo} alt={logo.name} width={56} height={56} className="w-full h-full object-cover scale-[1.18]" />
               </div>
               <span className={`text-xl font-bold tracking-tight ${footerTheme.logoText}`}>{logo.name}</span>
             </div>
@@ -114,30 +115,31 @@ export default function Footer({
 
         <div className={`flex flex-col items-start justify-between gap-3 border-t pt-6 text-sm md:flex-row md:items-center md:gap-4 md:pt-8 ${footerTheme.bottomBar}`}>
           <p className="leading-relaxed">
-            © 2025 TechFi Labs. All rights reserved.
+            {FOOTER_LEGAL_DATA.copyright}
             <span className="block md:inline md:ml-1">
-              A unit of{" "}
+              {FOOTER_LEGAL_DATA.parentCompanyPrefix}{" "}
               <a
-                href="https://thetechnologyfiction.com/"
+                href={FOOTER_LEGAL_DATA.parentCompanyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex min-h-[44px] items-center rounded-lg py-1 font-semibold transition-colors ${footerTheme.linkHover}`}
               >
-                The Technology Fiction
+                {FOOTER_LEGAL_DATA.parentCompanyName}
               </a>
               .
             </span>
           </p>
           <a
-            href="https://thetechnologyfiction.com/blog/privacy-policy/"
+            href={FOOTER_LEGAL_DATA.privacyPolicyUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex min-h-[44px] items-center rounded-lg py-1 transition-colors ${footerTheme.linkHover}`}
           >
-            Privacy Policy
+            {FOOTER_LEGAL_DATA.privacyPolicyLabel}
           </a>
         </div>
       </div>
     </footer>
   );
 }
+

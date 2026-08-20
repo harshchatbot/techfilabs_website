@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import InfiniteSlider from "../ui/InfiniteSlider";
 
 const CLIENTS = [
@@ -49,13 +50,12 @@ export default function ClientLogos({ logos }: ClientLogosProps = {}) {
                   className="group flex h-24 min-w-[220px] items-center justify-center rounded-2xl border border-gray-100 bg-white px-8 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1"
                 >
                   <div className="flex flex-col items-center gap-2">
-                    <img
+                    <Image
                       src={`/client-logos/${client.file}`}
                       alt={client.name}
+                      width={160}
+                      height={44}
                       className="pointer-events-none h-10 w-auto select-none object-contain opacity-95 transition-all duration-300 md:h-11"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                      }}
                     />
                     <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-gray-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       {client.name}

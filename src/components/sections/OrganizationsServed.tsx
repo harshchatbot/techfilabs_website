@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import InfiniteSlider from "../ui/InfiniteSlider";
 
 const CLIENTS = [
@@ -52,15 +53,14 @@ export default function OrganizationsServed({ organizations }: OrganizationsServ
                       : "border-emerald-900/10 bg-[#f7fefa]"
                   }`}
                 >
-                  <img
+                  <Image
                     src={`/client-logos/${client.file}`}
                     alt={client.name}
+                    width={120}
+                    height={32}
                     className={`pointer-events-none h-7 w-auto select-none object-contain md:h-8 ${
                       client.name === "Wipro" ? "opacity-100" : "opacity-95"
                     }`}
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
                   />
                 </div>
               ))}
