@@ -1,0 +1,39 @@
+# TechFi Labs
+
+> TechFi Labs is an AI-first automation studio with deep Salesforce delivery expertise based in Jaipur and Ajmer, Rajasthan, India, serving enterprise teams globally across the US, UK, UAE, and India.
+
+## Company Overview
+- **Name**: TechFi Labs (The Technology Fiction)
+- **Website**: https://techfilabs.com
+- **Core Focus**: AI Agents, n8n Workflow Automations, WhatsApp AI Integrations, Email AI Automation, Python Automations, and Salesforce CRM Delivery.
+- **Location**: Jaipur, Rajasthan 302001, India (Serves Jaipur, Ajmer, India, USA, UK, UAE, and Global)
+- **Contact Email**: contact.team@techfilabs.com
+- **Phone**: +91 7976111087
+
+## Primary Offerings & Services
+
+- [Salesforce Consulting](https://techfilabs.com/services/salesforce-consulting): Enterprise Salesforce CRM architecture, custom Apex/LWC development, Flow automations, and ongoing managed support.
+- [Salesforce Data Migration](https://techfilabs.com/services/salesforce-data-migration): Zero-downtime data migration, cleaning, deduplication, schema mapping, and ETL automation for Salesforce.
+- [Mobile App Development](https://techfilabs.com/services/mobile-app-development): High-performance iOS and Android apps connected to backend automation and Salesforce platforms.
+- [AI Agents & Workflow Automation](https://techfilabs.com/services/ai-agents-automation): Custom AI agent workflows built using Python, n8n, OpenAI, and LangChain for business process execution.
+- [WhatsApp AI Integration](https://techfilabs.com/services/whatsapp-ai-integration): Automated WhatsApp business messaging, customer support agents, lead qualification, and CRM sync.
+- [Email AI Automation](https://techfilabs.com/services/email-ai-automation): Smart inbox processing, automated response drafting, email categorization, and CRM lead creation.
+
+## Featured Products & Accelerators
+
+- [Sentinel Society Management](https://techfilabs.com/products/sentinel-society-management): Gate management, visitor tracking, billing, and community operations platform.
+- [FieldLens for Salesforce](https://techfilabs.com/products/fieldlens-for-salesforce): Mobile field force tracking, route planning, and offline job management integrated with Salesforce.
+- [OpsFlow Control Center](https://techfilabs.com/products/opsflow-control-center): Centralized operations workflow dashboard for monitoring AI agents and system health.
+- [WhatsApp AI Assistant](https://techfilabs.com/products/whatsapp-ai-assistant): Pre-built conversational AI agent template for instant customer service and WhatsApp ticketing.
+- [CRM Sync Engine](https://techfilabs.com/products/crm-sync-engine): Real-time bi-directional data synchronizer between ERPs, databases, and Salesforce CRM.
+
+## Case Studies & Proven Results
+
+- [Clinical Trial Contact Center Solution (CTCCS)](https://techfilabs.com/case-studies/ctccs-clinical-trial-contact-center-solution): 45% faster patient intake and automated HIPAA-compliant trial scheduling on Salesforce.
+- [REMS Compliance Platform on Experience Cloud](https://techfilabs.com/case-studies/rems-compliance-platform-experience-cloud-portal): FDA-compliant portal with automated risk evaluation and mitigation management.
+- [Field Operations Mobile Platform](https://techfilabs.com/case-studies/field-operations-platform-mobile-maps): Offline-first field management with real-time GPS tracking and Salesforce Sync.
+
+## Key Pages
+- [Homepage](https://techfilabs.com): Studio overview, interactive workflows, and strategic intake.
+- [About Us](https://techfilabs.com/about): Engineering philosophy, team delivery approach, and operational governance.
+- [Contact](https://techfilabs.com/contact): Book a strategy call, request project intake, or request the Free Growth Outcome Checklist.

@@ -1,4 +1,38 @@
+# Standard Search Engine Crawlers
 User-agent: *
 Allow: /
+Disallow: /api/
 
+# AI Search Engines & LLM Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap Location
 Sitemap: https://techfilabs.com/sitemap.xml
+
+# LLM Index Standard
+# https://techfilabs.com/llms.txt
