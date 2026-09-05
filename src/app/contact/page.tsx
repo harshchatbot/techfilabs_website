@@ -4,21 +4,14 @@ import FAQSection from "@/components/sections/FAQSection";
 import Schema from "@/components/Schema";
 import { CONTACT_INFO, PRODUCTS_DATA, CONTACT_PAGE_FAQS } from "@/constants";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createPageMetadata } from "@/utils/metadata";
 
-export const metadata: Metadata = {
-  title: `Contact ${ORGANIZATION_CONFIG.name} | Book a Strategy Call & Project Intake`,
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact TechFi Labs: Discuss Your Automation Project",
   description:
     `Get in touch with ${ORGANIZATION_CONFIG.name} for AI agent development, n8n workflow automation, WhatsApp & Email AI integration, or Salesforce CRM consulting in ${ORGANIZATION_CONFIG.contact.city} and worldwide.`,
-  alternates: {
-    canonical: `${ORGANIZATION_CONFIG.url}/contact`,
-  },
-  openGraph: {
-    title: `Contact ${ORGANIZATION_CONFIG.name} | Book a Strategy Call & Project Intake`,
-    description:
-      "Schedule a call with our automation architects to streamline your business workflows.",
-    url: `${ORGANIZATION_CONFIG.url}/contact`,
-  },
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const serializableProducts = PRODUCTS_DATA.map((product) => ({

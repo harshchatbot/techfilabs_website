@@ -66,7 +66,11 @@ export const metadata: Metadata = {
     images: [ORGANIZATION_CONFIG.logoUrl],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   robots: {
     index: true,
@@ -96,7 +100,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["ProfessionalService", "LocalBusiness"],
+        "@type": ["Organization", "ProfessionalService"],
         "@id": `${ORGANIZATION_CONFIG.url}/#organization`,
         name: ORGANIZATION_CONFIG.name,
         alternateName: ORGANIZATION_CONFIG.alternateName,
@@ -106,7 +110,6 @@ export default function RootLayout({
         description: ORGANIZATION_CONFIG.description,
         telephone: ORGANIZATION_CONFIG.contact.phone,
         email: ORGANIZATION_CONFIG.contact.email,
-        priceRange: "$$",
         address: {
           "@type": "PostalAddress",
           streetAddress: ORGANIZATION_CONFIG.contact.streetAddress,

@@ -2,21 +2,14 @@ import type { Metadata } from "next";
 import Schema from "@/components/Schema";
 import ServicesClientContent from "@/components/pages/ServicesClientContent";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createPageMetadata } from "@/utils/metadata";
 
-export const metadata: Metadata = {
-  title: `AI Automation & Salesforce Delivery Services | ${ORGANIZATION_CONFIG.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "AI Automation & Salesforce Delivery Services",
   description:
     `Explore ${ORGANIZATION_CONFIG.name} enterprise services including AI Agents, n8n Workflow Automation, WhatsApp & Email AI Integration, and Salesforce CRM Consulting.`,
-  alternates: {
-    canonical: `${ORGANIZATION_CONFIG.url}/services`,
-  },
-  openGraph: {
-    title: `AI Automation & Salesforce Delivery Services | ${ORGANIZATION_CONFIG.name}`,
-    description:
-      "Production-ready AI workflows, WhatsApp integrations, and Salesforce CRM architectures engineered for enterprise impact.",
-    url: `${ORGANIZATION_CONFIG.url}/services`,
-  },
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   const breadcrumbSchema = {

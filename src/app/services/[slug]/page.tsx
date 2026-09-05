@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Schema from "@/components/Schema";
 import { SERVICE_LANDING_DATA } from "@/constants/data";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createNotFoundMetadata, createPageMetadata } from "@/utils/metadata";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,18 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = SERVICE_LANDING_DATA[slug];
 
   if (!service) {
-    return {
-      title: `Service Not Found | ${ORGANIZATION_CONFIG.name}`,
-    };
+    return createNotFoundMetadata("Service");
   }
 
-  return {
-    title: `${service.seoTitle} | ${ORGANIZATION_CONFIG.name}`,
+  return createPageMetadata({
+    title: service.seoTitle,
     description: service.seoDescription,
-    alternates: {
-      canonical: service.canonical,
-    },
-  };
+    path: `/services/${service.slug}`,
+  });
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -48,21 +45,45 @@ export default async function ServicePage({ params }: Props) {
     "@graph": [
       {
         "@type": "Service",
+        "@id": `${service.canonical}/#service`,
         name: service.title,
         provider: {
-          "@type": "Organization",
-          name: ORGANIZATION_CONFIG.name,
-          url: ORGANIZATION_CONFIG.url,
+          "@id": `${ORGANIZATION_CONFIG.url}/#organization`,
         },
         areaServed: ORGANIZATION_CONFIG.areasServed,
         description: service.heroSubtitle,
         serviceType: service.title,
         url: service.canonical,
       },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${service.canonical}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: ORGANIZATION_CONFIG.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: `${ORGANIZATION_CONFIG.url}/services`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: service.title,
+            item: service.canonical,
+          },
+        ],
+      },
       ...(service.faq && service.faq.length > 0
         ? [
             {
               "@type": "FAQPage",
+              "@id": `${service.canonical}/#faq`,
               mainEntity: service.faq.map((item) => ({
                 "@type": "Question",
                 name: item.q,

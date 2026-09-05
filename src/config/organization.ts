@@ -5,10 +5,10 @@ export const ORGANIZATION_CONFIG = {
   tagline: "AI-First Automation Studio & Salesforce Delivery",
   description:
     "TechFi Labs is an AI-first automation studio with deep Salesforce delivery expertise based in Jaipur and Ajmer, India, serving global enterprise clients across US, UK, UAE, and India.",
-  url: "https://techfilabs.com",
-  domain: "techfilabs.com",
+  url: "https://www.techfilabs.com",
+  domain: "www.techfilabs.com",
   logo: "/techfilabs_logo_2026.png",
-  logoUrl: "https://techfilabs.com/techfilabs_logo_2026.png",
+  logoUrl: "https://www.techfilabs.com/techfilabs_logo_2026.png",
   googleSiteVerification: "google44a1b859b54e70e0",
   googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
   contact: {

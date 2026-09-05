@@ -1,7 +1,7 @@
 # TechFi Labs Website Design System
 
 ## Brand Direction
-TechFi Labs is an AI-first automation studio with deep Salesforce delivery expertise.
+TechFi Labs is an AI automation, Salesforce, and custom engineering company with deep Salesforce delivery expertise.
 
 The website should feel:
 - premium
@@ -124,31 +124,35 @@ Suggested weights:
 - Buttons/nav/chips: Inter 500/600
 
 ## Homepage Content Rules
-Homepage should be concise and premium.
 
-Recommended homepage sections:
+Homepage should be concise, premium, and conversion-focused.
+
+Current homepage flow:
 1. Hero
-2. What We Build
+2. Trust and Proof Strip
 3. AI Automation Workflows
-4. Salesforce + AI Expertise
-5. Why TechFi Labs
-6. Proof / Experience
-7. Selected Work / Accelerators
-8. Contact CTA
+4. Client Logos / Trust Signals
+5. Salesforce + AI Expertise
+6. FAQ
+7. Contact CTA
 
-Do not keep adding new sections unless they replace or simplify existing content.
+Preserve this current homepage structure unless explicitly changed.
 
-Homepage should stay within this lean 8-section flow unless explicitly changed:
-1. Hero
-2. What We Build
-3. AI Automation Workflows
-4. Salesforce + AI Expertise
-5. Why TechFi Labs
-6. Proof / Experience
-7. Selected Work / Accelerators
-8. Contact CTA
+Do not reintroduce old removed sections such as:
+- What We Build
+- Why TechFi Labs
+- Proof / Experience
+- Selected Work / Accelerators
+
+unless the user explicitly asks to add them back.
 
 Merge or remove repeated content instead of stacking more sections.
+
+Keep homepage copy short:
+- one clear heading
+- one short supporting sentence
+- minimal cards/chips
+- visuals should carry more of the story
 
 ## Animation Rules
 Use tasteful motion:
@@ -170,8 +174,9 @@ Avoid:
 Respect reduced-motion preferences.
 
 ## Build Rule
-After every change, run:
-npm run build
+After meaningful changes, run:
+- npm run build
+- npm run lint, if lint script exists
 
 Fix all issues before considering the task complete.
 
@@ -232,3 +237,116 @@ For image/video tasks:
 - Do not hotlink external assets.
 - Document downloaded assets and license/source in `ASSET_LICENSES.md`.
 - Avoid recognizable third-party logos, trademarks, or real client data.
+## Architecture Rules
+
+This project uses Next.js App Router with TypeScript.
+
+Preserve:
+- `src/app/` for routes and page-level metadata
+- `src/components/` for reusable UI
+- `src/constants/` for content data
+- `src/config/` for organization/site configuration
+- `public/` for local assets
+
+Do not revert to Vite, React Router, or old JavaScript-only structure.
+
+Use TypeScript types for new data structures and props.
+
+Use `"use client"` only where interactivity is required:
+- Framer Motion
+- forms
+- accordions/selectors
+- browser APIs
+- navigation state
+
+Prefer server components for static page composition where practical.
+
+## SEO / AEO / GEO Rules
+
+Use Next.js Metadata API for page metadata.
+
+Use Next.js metadata route files where appropriate:
+- `src/app/sitemap.ts`
+- `src/app/robots.ts`
+
+Also maintain:
+- `public/llms.txt` or an equivalent route if implemented
+
+Keep sitemap and robots aligned with the canonical domain:
+`https://www.techfilabs.com`
+
+Every important page should have:
+- one clear H1
+- unique title
+- unique meta description
+- canonical URL
+- OpenGraph metadata
+- clear service/entity summary
+- internal links to related services
+- FAQ content where useful
+- JSON-LD where relevant
+
+Structured data must match visible page content.
+
+Recommended schema:
+- Organization
+- LocalBusiness or ProfessionalService
+- WebSite
+- Service
+- FAQPage
+- BreadcrumbList
+- Product where appropriate for FieldLens
+
+Do not add schema for claims not visible on the page.
+Do not add fake reviews, fake ratings, fake clients, or fake aggregate ratings.
+Do not keyword-stuff pages.
+Do not create thin duplicate location/service pages.
+
+## Collaboration Rules
+
+Do not push directly to `main`.
+
+All changes should be made on a feature branch and merged through Pull Request review.
+
+Before considering work complete:
+- run `npm ci` if dependencies changed
+- run `npm run build`
+- summarize changed files
+- summarize visual/content impact
+- mention any route or SEO changes
+
+Do not approve PRs if build fails.
+
+## Public Copy Safety Rules
+
+Never show developer placeholder wording in public UI.
+
+Avoid public text such as:
+- coming soon
+- media placeholder
+- visual-ready
+- demo slot
+- add product visuals
+- ready for future
+- asset preview
+
+Use polished fallback labels instead:
+- CRM architecture visual
+- Workflow visual
+- Product overview
+- Screens or demo media
+## Page and Route Rules
+
+This site uses Next.js App Router routes.
+
+Important routes:
+- Homepage: `/`
+- Products: `/products/[slug]`
+- Services: `/services/[slug]`
+- Case studies: `/case-studies/[slug]`
+
+When adding SEO/AEO/GEO content, prefer dedicated service pages over making the homepage longer.
+
+Service pages can contain more detailed copy, FAQs, schema, examples, and keyword-specific content.
+
+Homepage should remain minimal and brand-led.

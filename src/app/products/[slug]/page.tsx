@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import Schema from "@/components/Schema";
 import { PRODUCTS_DATA, PRODUCT_PAGE_FALLBACK } from "@/constants/data";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createNotFoundMetadata, createPageMetadata } from "@/utils/metadata";
 
 const PRODUCT_THEMES: Record<string, Record<string, string>> = {
   sentinel: {
@@ -69,18 +70,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = PRODUCTS_DATA.find((item) => item.slug === slug);
 
   if (!product) {
-    return {
-      title: `${PRODUCT_PAGE_FALLBACK.title} | ${ORGANIZATION_CONFIG.name}`,
-    };
+    return createNotFoundMetadata(PRODUCT_PAGE_FALLBACK.title);
   }
 
-  return {
-    title: `${product.name} | ${ORGANIZATION_CONFIG.name}`,
+  return createPageMetadata({
+    title: product.name,
     description: product.summary,
-    alternates: {
-      canonical: `${ORGANIZATION_CONFIG.url}/products/${product.slug}`,
-    },
-  };
+    path: `/products/${product.slug}`,
+    image: product.screenshots[0],
+  });
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -91,15 +89,47 @@ export default async function ProductPage({ params }: Props) {
     notFound();
   }
 
+  const productUrl = `${ORGANIZATION_CONFIG.url}/products/${product.slug}`;
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: product.name,
-    applicationCategory: product.category,
-    operatingSystem: product.platforms.join(", "),
-    description: product.summary,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-    brand: { "@type": "Organization", name: ORGANIZATION_CONFIG.name, url: ORGANIZATION_CONFIG.url },
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${productUrl}/#software-application`,
+        name: product.name,
+        url: productUrl,
+        applicationCategory: product.category,
+        operatingSystem: product.platforms.join(", "),
+        description: product.summary,
+        screenshot: product.screenshots.map((screenshot) => `${ORGANIZATION_CONFIG.url}${screenshot}`),
+        brand: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
+        publisher: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${productUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: ORGANIZATION_CONFIG.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: `${ORGANIZATION_CONFIG.url}/products`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: product.name,
+            item: productUrl,
+          },
+        ],
+      },
+    ],
   };
 
   const descriptionParagraphs = product.description

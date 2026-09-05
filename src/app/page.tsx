@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import WorkflowShowcase from "@/components/sections/WorkflowShowcase";
 import ExpertiseSection from "@/components/sections/ExpertiseSection";
@@ -12,6 +11,22 @@ import {
   CONTACT_INFO,
   HOMEPAGE_FAQS,
 } from "@/constants";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createPageMetadata } from "@/utils/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "AI Automation, Salesforce & Custom Engineering",
+  description:
+    "TechFi Labs builds AI agents, workflow automations, Salesforce workflows, and custom tools that reduce manual work for business teams.",
+  path: "/",
+  keywords: [
+    "AI automation services",
+    "Salesforce consulting",
+    "workflow automation",
+    "custom engineering",
+    ORGANIZATION_CONFIG.name,
+  ],
+});
 
 export default function HomePage() {
   return (

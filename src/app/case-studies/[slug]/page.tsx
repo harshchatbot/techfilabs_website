@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Schema from "@/components/Schema";
 import { CASE_STUDIES_DATA } from "@/constants/data";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createNotFoundMetadata, createPageMetadata } from "@/utils/metadata";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,18 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const study = CASE_STUDIES_DATA.find((item) => item.slug === slug);
 
   if (!study) {
-    return {
-      title: `Case Study Not Found | ${ORGANIZATION_CONFIG.name}`,
-    };
+    return createNotFoundMetadata("Case Study");
   }
 
-  return {
-    title: `${study.title} | Salesforce Case Study | ${ORGANIZATION_CONFIG.name}`,
+  return createPageMetadata({
+    title: `${study.title} | Salesforce Case Study`,
     description: study.summary,
-    alternates: {
-      canonical: `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`,
-    },
-  };
+    path: `/case-studies/${study.slug}`,
+  });
 }
 
 export default async function CaseStudyDetailPage({ params }: Props) {
@@ -43,28 +40,23 @@ export default async function CaseStudyDetailPage({ params }: Props) {
     notFound();
   }
 
+  const caseStudyUrl = `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`;
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Article",
-        headline: study.title,
+        "@type": "WebPage",
+        "@id": `${caseStudyUrl}/#webpage`,
+        url: caseStudyUrl,
+        name: study.title,
         about: study.keywords,
-        datePublished: "2025-01-01",
-        author: {
-          "@type": "Organization",
-          name: ORGANIZATION_CONFIG.name,
-        },
-        publisher: {
-          "@type": "Organization",
-          name: ORGANIZATION_CONFIG.name,
-          url: ORGANIZATION_CONFIG.url,
-        },
-        mainEntityOfPage: `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`,
         description: study.summary,
+        isPartOf: { "@id": `${ORGANIZATION_CONFIG.url}/#website` },
+        publisher: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
       },
       {
         "@type": "BreadcrumbList",
+        "@id": `${caseStudyUrl}/#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -75,14 +67,8 @@ export default async function CaseStudyDetailPage({ params }: Props) {
           {
             "@type": "ListItem",
             position: 2,
-            name: "Case Studies",
-            item: `${ORGANIZATION_CONFIG.url}/#case-studies`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
             name: study.title,
-            item: `${ORGANIZATION_CONFIG.url}/case-studies/${study.slug}`,
+            item: caseStudyUrl,
           },
         ],
       },
