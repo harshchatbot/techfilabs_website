@@ -12,31 +12,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/products`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -46,14 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     SERVICE_LANDING_DATA
   ).map((slug) => ({
     url: `${baseUrl}/services/${slug}`,
-    lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.8,
   }));
 
   const productPages: MetadataRoute.Sitemap = PRODUCTS_DATA.map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
-    lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.8,
   }));
@@ -61,7 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const caseStudyPages: MetadataRoute.Sitemap = CASE_STUDIES_DATA.map(
     (study) => ({
       url: `${baseUrl}/case-studies/${study.slug}`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     })

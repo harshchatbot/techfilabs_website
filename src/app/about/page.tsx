@@ -6,21 +6,14 @@ import FAQSection from "@/components/sections/FAQSection";
 import Schema from "@/components/Schema";
 import { ABOUT_DATA, MISSION_VALUES_DATA, HOMEPAGE_ENGAGEMENT_MODELS, ABOUT_PAGE_FAQS } from "@/constants";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { createPageMetadata } from "@/utils/metadata";
 
-export const metadata: Metadata = {
-  title: `About ${ORGANIZATION_CONFIG.name} | AI Automation & Salesforce Studio`,
+export const metadata: Metadata = createPageMetadata({
+  title: "About TechFi Labs: AI Automation & Salesforce Delivery",
   description:
     `Discover how ${ORGANIZATION_CONFIG.name} helps modern enterprise teams streamline workflows, deploy custom AI agents, and build robust Salesforce CRM systems in ${ORGANIZATION_CONFIG.contact.city} and globally.`,
-  alternates: {
-    canonical: `${ORGANIZATION_CONFIG.url}/about`,
-  },
-  openGraph: {
-    title: `About ${ORGANIZATION_CONFIG.name} | AI Automation & Salesforce Studio`,
-    description:
-      "Learn about our engineering philosophy, AI automation approach, and Salesforce delivery expertise.",
-    url: `${ORGANIZATION_CONFIG.url}/about`,
-  },
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   const aboutSchema = {
