@@ -129,17 +129,14 @@ export default function Footer({
               .
             </span>
           </p>
-          <a
+          <Link
             href={FOOTER_LEGAL_DATA.privacyPolicyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className={`inline-flex min-h-[44px] items-center rounded-lg py-1 transition-colors ${footerTheme.linkHover}`}
           >
             {FOOTER_LEGAL_DATA.privacyPolicyLabel}
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
   );
 }
-

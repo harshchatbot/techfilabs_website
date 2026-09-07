@@ -35,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date("2026-09-07"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 
   const servicePages: MetadataRoute.Sitemap = Object.keys(
