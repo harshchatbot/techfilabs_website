@@ -34,5 +34,5 @@ export const FOOTER_LEGAL_DATA = {
   parentCompanyName: "The Technology Fiction",
   parentCompanyUrl: "https://thetechnologyfiction.com/",
   privacyPolicyLabel: "Privacy Policy",
-  privacyPolicyUrl: "https://thetechnologyfiction.com/blog/privacy-policy/",
+  privacyPolicyUrl: "/privacy-policy",
 };
