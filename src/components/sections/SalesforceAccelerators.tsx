@@ -288,7 +288,7 @@ export default function SalesforceAccelerators({
                 </div>
               </motion.article>
 
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid min-w-0 gap-4 md:grid-cols-2">
                 {rest.map((item, index) => (
                   <motion.article
                     key={item.title}
@@ -317,15 +317,15 @@ export default function SalesforceAccelerators({
                       <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
                       <div className="mt-4">{getCardVisual(item.title) || <div className="h-[80px]" />}</div>
                     </div>
-                    <div className="relative z-10 mt-4 flex flex-col items-start gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
-                      <div className="flex-1">
+                    <div className="relative z-10 mt-4 flex min-w-0 flex-col items-start gap-3 border-t border-white/10 pt-4">
+                      <div className="min-w-0 w-full">
                         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-200/80">Outcome</p>
                         <p className="mt-1 text-sm font-medium text-white">{item.value}</p>
                       </div>
                       {item.href ? (
                         <Link
                           href={item.href}
-                          className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-3.5 py-2.5 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
+                          className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-4 py-2.5 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
                         >
                           {item.ctaLabel || "View work"}
                           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

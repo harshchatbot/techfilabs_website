@@ -28,8 +28,8 @@ const NAV_THEMES: Record<string, Record<string, string>> = {
     mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
   },
   green: {
-    navScrolled: "bg-[rgba(247,254,250,0.99)] border-emerald-200/80 shadow-[0_20px_44px_rgba(3,41,29,0.16)] backdrop-blur-xl",
-    navIdle: "bg-[rgba(247,254,250,0.97)] border-emerald-200/75 shadow-[0_18px_40px_rgba(3,41,29,0.16)] backdrop-blur-xl",
+    navScrolled: "bg-[#f7fefa] border-emerald-200/90 shadow-[0_20px_44px_rgba(3,41,29,0.18)]",
+    navIdle: "bg-[#f7fefa] border-emerald-200/90 shadow-[0_18px_40px_rgba(3,41,29,0.18)]",
     logoWrap: "border-emerald-200/75 bg-white shadow-[0_12px_30px_rgba(16,185,129,0.10)]",
     logoText: "text-slate-950",
     logoTextScrolled: "text-slate-950",
@@ -41,7 +41,7 @@ const NAV_THEMES: Record<string, Record<string, string>> = {
     ctaButton:
       "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
     mobileToggle: "text-slate-950 hover:bg-emerald-50",
-    mobilePanel: "bg-[rgba(247,254,250,0.98)] backdrop-blur-xl",
+    mobilePanel: "bg-[#f7fefa]",
     mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
     mobileSentinel: "border-gray-200 text-gray-700",
     mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
