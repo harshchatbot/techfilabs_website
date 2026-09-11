@@ -188,40 +188,28 @@ export default function SalesforceAccelerators({
     <section id="products" className="relative overflow-hidden bg-[linear-gradient(180deg,#071f18_0%,#0a2b21_100%)] py-20 text-white md:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.1),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(167,243,208,0.05),transparent_28%)]" />
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-14">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          viewport={{ once: true }}
+          className="mb-10 grid gap-5 border-b border-white/10 pb-8 md:mb-12 md:pb-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-12"
+        >
+          <div>
             <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">[ Selected Work ]</p>
-            <h2 className="max-w-[11ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h2 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
               {title}
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">
+          </div>
+          <div className="lg:border-l lg:border-white/10 lg:pl-10">
+            <p className="max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">
               {subtitle}
             </p>
-            <div className="mt-8 space-y-4 border-t border-white/10 pt-6">
-              {(rest.slice(0, 4)).map((item, index) => (
-                <div key={item.title} className="flex flex-col items-start gap-3 border-b border-white/10 pb-4 last:border-b-0 last:pb-0 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                      {String(index + 2).padStart(2, "0")}/ {item.badge}
-                    </p>
-                    <p className="mt-2 text-lg font-semibold text-white">{item.title}</p>
-                  </div>
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200">
-                    {item.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {featured ? (
-            <div className="grid gap-5">
+        {featured ? (
+          <div className="grid gap-5">
               <motion.article
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -335,9 +323,8 @@ export default function SalesforceAccelerators({
                   </motion.article>
                 ))}
               </div>
-            </div>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
