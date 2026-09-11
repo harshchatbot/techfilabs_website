@@ -22,8 +22,7 @@ export const mobileAppDevelopmentLandingData: ServiceLandingItem = {
   heroTitle: "Mobile App Development for Android, iOS, and Cross-Platform",
   heroSubtitle:
     "Build reliable, fast, and user-friendly mobile products with TechFi Labs across native and cross-platform stacks.",
-  seoTitle:
-    `Mobile App Development Company in Ajmer, Jaipur & Global | ${ORGANIZATION_CONFIG.name}`,
+  seoTitle: `Mobile App Development Services | ${ORGANIZATION_CONFIG.name}`,
   seoDescription:
     `${ORGANIZATION_CONFIG.name} is a mobile app development company building Android, iOS, and Flutter apps with strong UX, secure architecture, and scalable release workflows for local and global businesses.`,
   canonical: `${ORGANIZATION_CONFIG.url}/services/mobile-app-development`,

@@ -22,7 +22,7 @@ interface FooterProps {
 export default function Footer({
   logo = { name: "TechFi Labs", logo: "/techfilabs_logo_2026.png" },
   description =
-    "TechFi Labs builds and scales digital products across mobile, web, Salesforce, and AI automation workflows.",
+    "TechFi Labs builds AI automations, Salesforce workflows, and custom engineering tools for modern business teams.",
   themeVariant = "green",
 }: FooterProps) {
   const footerTheme =
@@ -69,7 +69,7 @@ export default function Footer({
             <p className={`mb-5 max-w-sm ${footerTheme.bodyText}`}>{description}</p>
 
             <div className="flex flex-wrap gap-3">
-              {FOOTER_DATA.socialLinks.map((social) => {
+              {FOOTER_DATA.socialLinks.filter((social) => social.href).map((social) => {
                 const Icon = getIcon(social.icon);
                 return (
                   <a
@@ -91,7 +91,14 @@ export default function Footer({
             <h4 className={`mb-3 font-semibold ${footerTheme.heading}`}>Services</h4>
             <ul className={`space-y-2.5 ${footerTheme.list}`}>
               {FOOTER_DATA.services.map((service) => (
-                <li key={service}>{service}</li>
+                <li key={service.name}>
+                  <Link
+                    href={service.href}
+                    className={`inline-flex min-h-[44px] items-center rounded-lg py-1 transition-colors ${footerTheme.linkHover}`}
+                  >
+                    {service.name}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

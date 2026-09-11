@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(52,211,153,0.18),transparent_32%),radial-gradient(circle_at_12%_88%,rgba(167,243,208,0.08),transparent_30%)]" />
         <div className="relative mx-auto max-w-5xl">
           <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-emerald-100/80">
-            <Link className="rounded-md hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200" href="/">
+            <Link className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200" href="/">
               Home
             </Link>
             <span aria-hidden="true">/</span>
@@ -91,13 +91,13 @@ export default function PrivacyPolicyPage() {
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16 lg:py-20">
         <aside className="lg:sticky lg:top-28 lg:self-start">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
             On this page
           </p>
           <nav aria-label="Privacy policy sections">
-            <ul className="grid gap-1 sm:grid-cols-2 lg:grid-cols-1">
+            <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
               {sections.map((section) => (
                 <li key={section.id}>
                   <a
@@ -223,13 +223,23 @@ export default function PrivacyPolicyPage() {
             <address className="not-italic">
               <strong>{ORGANIZATION_CONFIG.name}</strong><br />
               A unit of The Technology Fiction<br />
-              {ORGANIZATION_CONFIG.contact.address}<br />
-              Email: <a href={`mailto:${ORGANIZATION_CONFIG.contact.email}`}>{ORGANIZATION_CONFIG.contact.email}</a><br />
-              Phone: <a href={`tel:${ORGANIZATION_CONFIG.contact.phone.replace(/\s/g, "")}`}>{ORGANIZATION_CONFIG.contact.phoneFormatted}</a>
+              {ORGANIZATION_CONFIG.contact.address}
+              <span className="mt-2 flex flex-wrap items-center gap-x-2">
+                Email:
+                <a className="inline-flex min-h-11 items-center" href={`mailto:${ORGANIZATION_CONFIG.contact.email}`}>
+                  {ORGANIZATION_CONFIG.contact.email}
+                </a>
+              </span>
+              <span className="mt-2 flex flex-wrap items-center gap-x-2">
+                Phone:
+                <a className="inline-flex min-h-11 items-center" href={`tel:${ORGANIZATION_CONFIG.contact.phone.replace(/\s/g, "")}`}>
+                  {ORGANIZATION_CONFIG.contact.phoneFormatted}
+                </a>
+              </span>
             </address>
           </PolicySection>
         </article>
-      </main>
+      </div>
     </div>
   );
 }

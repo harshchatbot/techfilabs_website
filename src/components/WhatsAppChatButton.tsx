@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+
 interface WhatsAppChatButtonProps {
   phone?: string;
   text?: string;
@@ -11,29 +16,70 @@ export default function WhatsAppChatButton({
   text = DEFAULT_TEXT,
 }: WhatsAppChatButtonProps) {
   const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  const pathname = usePathname();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [hasCollision, setHasCollision] = useState(false);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const checkCollision = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const root = rootRef.current;
+        if (!root) return;
+
+        const buttonRect = root.getBoundingClientRect();
+        const collision = Array.from(
+          document.querySelectorAll<HTMLElement>("a, button, input, select, textarea")
+        ).some((element) => {
+          if (root.contains(element)) return false;
+
+          const style = window.getComputedStyle(element);
+          if (style.display === "none" || style.visibility === "hidden") return false;
+
+          const rect = element.getBoundingClientRect();
+          const gap = 8;
+          return !(
+            rect.right + gap <= buttonRect.left ||
+            rect.left - gap >= buttonRect.right ||
+            rect.bottom + gap <= buttonRect.top ||
+            rect.top - gap >= buttonRect.bottom
+          );
+        });
+
+        setHasCollision(collision);
+      });
+    };
+
+    checkCollision();
+    window.addEventListener("scroll", checkCollision, { passive: true });
+    window.addEventListener("resize", checkCollision);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", checkCollision);
+      window.removeEventListener("resize", checkCollision);
+    };
+  }, [pathname]);
 
   return (
-    <div className="pointer-events-none fixed bottom-4 right-4 z-30 sm:bottom-5 sm:right-5 lg:bottom-6 lg:right-6">
-      <span
-        className="
-          absolute right-full top-1/2 mr-3 hidden -translate-y-1/2 rounded-lg
-          bg-gray-900 px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg
-          transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100
-          pointer-events-none whitespace-nowrap lg:block
-        "
-      >
-        Chat with an Expert
-      </span>
-
+    <div
+      ref={rootRef}
+      className={`pointer-events-none fixed bottom-5 right-5 z-30 transition-opacity duration-200 sm:bottom-6 sm:right-6 lg:bottom-7 lg:right-7 ${
+        hasCollision ? "invisible opacity-0" : "visible opacity-100"
+      }`}
+    >
       <a
         href={waLink}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
+        tabIndex={hasCollision ? -1 : undefined}
         className="group pointer-events-auto relative flex h-12 w-12 items-center justify-center focus:outline-none sm:h-14 sm:w-14"
         title="Chat on WhatsApp"
       >
-        <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-70 animate-ping"></span>
+        <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-50 motion-safe:animate-ping"></span>
 
         <span
           className="

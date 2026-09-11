@@ -7,9 +7,9 @@ import { ORGANIZATION_CONFIG } from "@/config/organization";
 import { createPageMetadata } from "@/utils/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact TechFi Labs: Discuss Your Automation Project",
+  title: "Discuss AI Automation & Salesforce Support",
   description:
-    `Get in touch with ${ORGANIZATION_CONFIG.name} for AI agent development, n8n workflow automation, WhatsApp & Email AI integration, or Salesforce CRM consulting in ${ORGANIZATION_CONFIG.contact.city} and worldwide.`,
+    `Contact ${ORGANIZATION_CONFIG.name} to discuss AI agents, workflow automation, WhatsApp and email integrations, Salesforce delivery, or managed support.`,
   path: "/contact",
 });
 
@@ -77,7 +77,6 @@ export default function ContactPage() {
       <Contact
         contactInfo={CONTACT_INFO}
         products={serializableProducts}
-        showLeadMagnet={true}
         isPageHeader={true}
       />
       <FAQSection

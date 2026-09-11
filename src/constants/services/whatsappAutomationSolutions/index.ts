@@ -22,8 +22,7 @@ export const whatsappAutomationSolutionsLandingData: ServiceLandingItem = {
   heroTitle: "WhatsApp Automation for Sales, Support, and Engagement",
   heroSubtitle:
     "TechFi Labs creates WhatsApp automation flows that improve response times, qualify leads, and streamline customer communication.",
-  seoTitle:
-    `WhatsApp Automation Services in Ajmer, Jaipur & Global | ${ORGANIZATION_CONFIG.name}`,
+  seoTitle: `WhatsApp Automation Solutions | ${ORGANIZATION_CONFIG.name}`,
   seoDescription:
     `${ORGANIZATION_CONFIG.name} delivers WhatsApp automation solutions including chatbot flows, lead qualification, campaign messaging, and CRM integration for businesses in India and global markets.`,
   canonical: `${ORGANIZATION_CONFIG.url}/services/whatsapp-automation-solutions`,

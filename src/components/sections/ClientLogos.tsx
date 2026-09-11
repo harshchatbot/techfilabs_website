@@ -14,11 +14,7 @@ const CLIENTS = [
   { name: "Wipro", file: "Wipro_logo.png" },
 ];
 
-interface ClientLogosProps {
-  logos?: any[];
-}
-
-export default function ClientLogos({ logos }: ClientLogosProps = {}) {
+export default function ClientLogos() {
   return (
     <section className="py-20 bg-white border-t border-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -47,7 +43,11 @@ export default function ClientLogos({ logos }: ClientLogosProps = {}) {
               {CLIENTS.map((client) => (
                 <div
                   key={client.name}
-                  className="group flex h-24 min-w-[220px] items-center justify-center rounded-2xl border border-gray-100 bg-white px-8 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1"
+                  className={`group flex h-24 min-w-[220px] items-center justify-center rounded-2xl border px-8 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 ${
+                    client.name === "Wipro"
+                      ? "border-slate-200 bg-slate-100"
+                      : "border-gray-100 bg-white"
+                  }`}
                 >
                   <div className="flex flex-col items-center gap-2">
                     <Image

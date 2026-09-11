@@ -78,6 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: product.summary,
     path: `/products/${product.slug}`,
     image: product.screenshots[0],
+    indexable: product.indexable !== false,
   });
 }
 
@@ -90,21 +91,32 @@ export default async function ProductPage({ params }: Props) {
   }
 
   const productUrl = `${ORGANIZATION_CONFIG.url}/products/${product.slug}`;
+  const applicationSchema = product.indexable === false
+    ? []
+    : [
+        {
+          "@type": "SoftwareApplication",
+          "@id": `${productUrl}/#software-application`,
+          name: product.name,
+          url: productUrl,
+          applicationCategory: product.category,
+          operatingSystem: product.platforms.join(", "),
+          description: product.summary,
+          ...(product.screenshots.length > 0
+            ? {
+                screenshot: product.screenshots.map(
+                  (screenshot) => `${ORGANIZATION_CONFIG.url}${screenshot}`
+                ),
+              }
+            : {}),
+          brand: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
+          publisher: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
+        },
+      ];
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "@id": `${productUrl}/#software-application`,
-        name: product.name,
-        url: productUrl,
-        applicationCategory: product.category,
-        operatingSystem: product.platforms.join(", "),
-        description: product.summary,
-        screenshot: product.screenshots.map((screenshot) => `${ORGANIZATION_CONFIG.url}${screenshot}`),
-        brand: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
-        publisher: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
-      },
+      ...applicationSchema,
       {
         "@type": "BreadcrumbList",
         "@id": `${productUrl}/#breadcrumb`,
@@ -139,6 +151,7 @@ export default async function ProductPage({ params }: Props) {
   const heroTitle = product.heroHeadline || product.name;
   const heroSubtext = product.heroSubtext || product.tagline;
   const brandName = product.brandName || product.name;
+  const isExternalLink = (href: string) => /^https?:\/\//i.test(href);
 
   const isSentinelTheme = product.theme === "sentinel";
   const galleryAspectClass = isSentinelTheme ? "aspect-[9/16]" : "aspect-[16/10]";
@@ -148,13 +161,13 @@ export default async function ProductPage({ params }: Props) {
     <div className={`min-h-screen ${theme.pageBg} pt-28 pb-20`}>
       <Schema id={`product-${product.slug}-schema`} data={schemaData} />
 
-      <main>
+      <div>
         <section className="max-w-7xl mx-auto px-6">
           <Link
-            href="/"
+            href="/products"
             className={`inline-flex min-h-[44px] items-center gap-2 rounded-full px-3 py-2 transition-colors ${theme.backLink}`}
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Home
+            <ArrowLeft className="w-4 h-4" /> All products
           </Link>
 
           <div className="mt-8 grid lg:grid-cols-2 gap-10 items-center">
@@ -182,19 +195,31 @@ export default async function ProductPage({ params }: Props) {
               <div className="flex flex-wrap gap-3">
                 <a
                   href={product.ctas.primary.href}
+                  {...(isExternalLink(product.ctas.primary.href)
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
                 >
                   {product.ctas.primary.label}
-                  <ArrowRight className="w-4 h-4" />
+                  {isExternalLink(product.ctas.primary.href) ? (
+                    <ExternalLink className="w-4 h-4" />
+                  ) : (
+                    <ArrowRight className="w-4 h-4" />
+                  )}
                 </a>
                 <a
                   href={product.ctas.secondary.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(isExternalLink(product.ctas.secondary.href)
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
                 >
                   {product.ctas.secondary.label}
-                  <ExternalLink className="w-4 h-4" />
+                  {isExternalLink(product.ctas.secondary.href) ? (
+                    <ExternalLink className="w-4 h-4" />
+                  ) : (
+                    <ArrowRight className="w-4 h-4" />
+                  )}
                 </a>
                 {product.links?.playStore && (
                   <a
@@ -277,7 +302,8 @@ export default async function ProductPage({ params }: Props) {
                           src={src}
                           alt={`${product.name} screenshot ${index + 1}`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
+                          sizes="(max-width: 640px) calc(100vw - 4rem), (max-width: 1024px) 45vw, 25vw"
+                          priority={index === 0}
                           className="h-full w-full rounded-xl object-cover object-top"
                         />
                       </div>
@@ -379,26 +405,36 @@ export default async function ProductPage({ params }: Props) {
             <div className="flex flex-wrap gap-3">
               <a
                 href={product.ctas.primary.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(isExternalLink(product.ctas.primary.href)
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaPrimary}`}
               >
                 {product.ctas.primary.label}
-                <ArrowRight className="w-4 h-4" />
+                {isExternalLink(product.ctas.primary.href) ? (
+                  <ExternalLink className="w-4 h-4" />
+                ) : (
+                  <ArrowRight className="w-4 h-4" />
+                )}
               </a>
               <a
                 href={product.ctas.secondary.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(isExternalLink(product.ctas.secondary.href)
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className={`inline-flex min-h-[48px] max-w-full items-center gap-2 rounded-full border px-6 py-3 text-center font-semibold leading-tight transition-colors ${theme.ctaSecondary}`}
               >
                 {product.ctas.secondary.label}
-                <ExternalLink className="w-4 h-4" />
+                {isExternalLink(product.ctas.secondary.href) ? (
+                  <ExternalLink className="w-4 h-4" />
+                ) : (
+                  <ArrowRight className="w-4 h-4" />
+                )}
               </a>
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

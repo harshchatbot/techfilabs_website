@@ -22,8 +22,7 @@ export const webApplicationDevelopmentLandingData: ServiceLandingItem = {
   heroTitle: "Web App Development Services for Scalable Digital Platforms",
   heroSubtitle:
     "TechFi Labs builds high-performance websites and web applications focused on conversion, usability, and long-term maintainability.",
-  seoTitle:
-    `Web Application Development Company in Ajmer, Jaipur & Global | ${ORGANIZATION_CONFIG.name}`,
+  seoTitle: `Web Application Development Services | ${ORGANIZATION_CONFIG.name}`,
   seoDescription:
     `${ORGANIZATION_CONFIG.name} provides website and web application development services including UX, frontend, backend, integrations, and performance optimization for businesses in India and global markets.`,
   canonical: `${ORGANIZATION_CONFIG.url}/services/web-application-development`,

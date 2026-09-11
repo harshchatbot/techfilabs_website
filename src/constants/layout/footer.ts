@@ -2,14 +2,15 @@ import { ORGANIZATION_CONFIG } from "@/config/organization";
 
 export const FOOTER_DATA = {
   services: [
-    "AI Agents",
-    "WhatsApp AI Integrations",
-    "Email AI Automation",
-    "Salesforce AI & CRM Delivery",
+    { name: "AI Agents", href: "/services/ai-agents-automation" },
+    { name: "WhatsApp Automation", href: "/services/whatsapp-automation-solutions" },
+    { name: "Salesforce Consulting", href: "/services/salesforce-consulting" },
+    { name: "Salesforce Data Migration", href: "/services/salesforce-data-migration" },
   ],
   company: [
     { name: "What We Build", href: "/services" },
     { name: "Selected Work", href: "/products" },
+    { name: "Case Studies", href: "/case-studies" },
     { name: "Why TechFi Labs", href: "/about" },
     { name: "Contact", href: "/contact" },
   ],
@@ -29,7 +30,7 @@ export const FOOTER_DATA = {
 };
 
 export const FOOTER_LEGAL_DATA = {
-  copyright: "© 2025 TechFi Labs. All rights reserved.",
+  copyright: "© 2026 TechFi Labs. All rights reserved.",
   parentCompanyPrefix: "A unit of",
   parentCompanyName: "The Technology Fiction",
   parentCompanyUrl: "https://thetechnologyfiction.com/",

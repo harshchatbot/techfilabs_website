@@ -4,11 +4,13 @@ export const ORGANIZATION_CONFIG = {
   initials: "TF",
   tagline: "AI-First Automation Studio & Salesforce Delivery",
   description:
-    "TechFi Labs is an AI-first automation studio with deep Salesforce delivery expertise based in Jaipur and Ajmer, India, serving global enterprise clients across US, UK, UAE, and India.",
+    "TechFi Labs is an AI automation, Salesforce, and custom engineering company based in Jaipur, Rajasthan, India, supporting business and consulting teams globally.",
   url: "https://www.techfilabs.com",
   domain: "www.techfilabs.com",
   logo: "/techfilabs_logo_2026.png",
   logoUrl: "https://www.techfilabs.com/techfilabs_logo_2026.png",
+  socialImage: "/og-techfi-labs.png",
+  socialImageUrl: "https://www.techfilabs.com/og-techfi-labs.png",
   googleSiteVerification: "google44a1b859b54e70e0",
   googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
   contact: {
@@ -34,7 +36,7 @@ export const ORGANIZATION_CONFIG = {
   social: {
     facebook: "https://www.facebook.com/thetechnologyfiction/",
     linkedin: "https://www.linkedin.com/company/the-technology-fiction/",
-    instagram: "#",
+    instagram: "",
   },
   areasServed: [
     "Jaipur",

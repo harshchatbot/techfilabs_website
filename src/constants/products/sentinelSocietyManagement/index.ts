@@ -17,7 +17,7 @@ export const sentinelSocietyManagementProduct: Product = {
   platforms: ["Android"],
   audience: ["Resident Welfare Associations", "Property Managers", "Security Teams"],
   highlights: [
-    { label: "Gate entry approval", value: "Under 10 sec" },
+    { label: "Gate entry approval", value: "Faster reviews" },
     { label: "Role-specific workflows", value: "3 user types" },
     { label: "Operations visibility", value: "Real-time" },
   ],
@@ -32,9 +32,7 @@ export const sentinelSocietyManagementProduct: Product = {
     primary: { label: "Book Sentinel Demo", href: "/#contact" },
     secondary: { label: "Chat on WhatsApp", href: "https://wa.me/917976111087" },
   },
-  links: {
-    playStore: "https://play.google.com/store/apps",
-  },
+  links: {},
   screenshots: [
     "/products/sentinel/sentinel1.jpg",
     "/products/sentinel/sentinel2.jpg",

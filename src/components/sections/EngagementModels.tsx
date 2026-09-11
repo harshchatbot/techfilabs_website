@@ -47,7 +47,7 @@ export default function EngagementModels({
           >
             <div className="relative overflow-hidden rounded-[1.5rem] aspect-[16/10]">
               <Image
-                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80&auto=format&fit=crop"
+                src="/assets/media/why-support.jpg"
                 alt="Salesforce delivery process and client discussion"
                 fill
                 sizes="(max-width: 1200px) 100vw, 50vw"

@@ -36,6 +36,7 @@ Contact: https://www.techfilabs.com/contact
 
 These pages describe representative delivery experience. Client names and confidential details are omitted.
 
+- [Case Studies](https://www.techfilabs.com/case-studies): Representative Salesforce delivery experience across regulated and field-operation environments.
 - [Clinical Trial Contact Center Solution](https://www.techfilabs.com/case-studies/ctccs-clinical-trial-contact-center-solution)
 - [REMS Compliance Platform and Experience Cloud Portal](https://www.techfilabs.com/case-studies/rems-compliance-platform-experience-cloud-portal)
 - [Field Operations Platform with Mobile and Maps](https://www.techfilabs.com/case-studies/field-operations-platform-mobile-maps)

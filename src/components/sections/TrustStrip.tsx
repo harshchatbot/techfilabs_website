@@ -14,7 +14,7 @@ export default function TrustStrip({
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <p className="text-xs uppercase tracking-[0.22em] text-green-600">
-            Salesforce Partner • Trusted by teams across India, USA &amp; UK
+            AI automation • Salesforce delivery • Custom engineering
           </p>
           <div className="flex flex-wrap gap-3">
             {items.map((item, index) => (

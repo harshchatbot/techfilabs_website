@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return createPageMetadata({
-    title: `${study.title} | Salesforce Case Study`,
+    title: study.seoTitle,
     description: study.summary,
     path: `/case-studies/${study.slug}`,
   });
@@ -49,7 +49,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         "@id": `${caseStudyUrl}/#webpage`,
         url: caseStudyUrl,
         name: study.title,
-        about: study.keywords,
+        about: [study.industry, ...study.technologies],
         description: study.summary,
         isPartOf: { "@id": `${ORGANIZATION_CONFIG.url}/#website` },
         publisher: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
@@ -67,6 +67,12 @@ export default async function CaseStudyDetailPage({ params }: Props) {
           {
             "@type": "ListItem",
             position: 2,
+            name: "Case Studies",
+            item: `${ORGANIZATION_CONFIG.url}/case-studies`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
             name: study.title,
             item: caseStudyUrl,
           },
@@ -79,10 +85,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
     <div className="min-h-screen bg-emerald-950 text-white pt-28 pb-20">
       <Schema id={`case-study-${study.slug}-schema`} data={schemaData} />
 
-      <main>
+      <div>
         <section className="max-w-7xl mx-auto px-6">
-          <Link href="/" className="inline-flex items-center gap-2 text-lime-200 hover:text-white transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Home
+          <Link href="/case-studies" className="inline-flex min-h-[44px] items-center gap-2 rounded-full px-2 text-lime-200 transition-colors hover:text-white">
+            <ArrowLeft className="w-4 h-4" /> All case studies
           </Link>
 
           <div className="mt-8 max-w-5xl">
@@ -91,19 +97,22 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <p className="text-lime-100/90 text-lg mb-3">Industry: {study.industry}</p>
             <p className="text-emerald-100/75 mb-8">Timeline: {study.period}</p>
             <p className="text-emerald-100/85 leading-relaxed text-lg">{study.summary}</p>
+            <p className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm leading-relaxed text-emerald-100/75">
+              These examples represent delivery experience across enterprise engagements. Client names and confidential details are intentionally omitted.
+            </p>
           </div>
         </section>
 
         <section className="max-w-7xl mx-auto px-6 mt-16 grid lg:grid-cols-2 gap-6">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl font-bold mb-4">Project Scope</h2>
+            <h2 className="text-2xl font-bold mb-4">Delivery Context</h2>
             <p className="text-emerald-100/85 leading-relaxed">
-              Led and delivered enterprise Salesforce and AI solutions, supporting operations across critical phases in regulated environments. Enabled concierge services, virtual research coordination, and automated hotlines to manage engagement, coordination, and safety workflows.
+              {study.summary}
             </p>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl font-bold mb-4">Business Outcomes</h2>
+            <h2 className="text-2xl font-bold mb-4">Delivery Highlights</h2>
             <ul className="space-y-3 text-emerald-50/90">
               {study.outcomes.map((item) => (
                 <li key={item}>• {item}</li>
@@ -113,32 +122,16 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         </section>
 
         <section className="max-w-7xl mx-auto px-6 mt-16">
-          <div className="rounded-3xl border border-white/10 bg-emerald-900/30 p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-5">Key Contributions</h2>
-            <div className="grid md:grid-cols-2 gap-4 text-emerald-50/90">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Designed scalable CRM and AI workflow architecture</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Implemented intake, documentation, and escalation workflows</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Built compliance-driven case management with audit trail controls and SLA tracking</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Contributed to CSV execution including IQ, OQ, and PQ activities</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Authored validation artifacts and system specs</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Standardized data handling and audit-readiness for reporting</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Architected intelligent routing and automated matching</div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">Led enterprise go-live, hypercare stabilization, and ongoing optimization</div>
-            </div>
-          </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-6 mt-16">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-5">Technologies and Keywords</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-5">Technology Stack</h2>
             <div className="flex flex-wrap gap-2">
-              {[...study.technologies, ...study.keywords].map((item) => (
+              {study.technologies.map((item) => (
                 <span key={item} className="rounded-full border border-white/20 px-3 py-1 text-sm text-emerald-50">{item}</span>
               ))}
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

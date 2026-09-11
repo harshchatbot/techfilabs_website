@@ -22,14 +22,14 @@ export const aiAgentsAutomationLandingData: ServiceLandingItem = {
   heroTitle: "AI Agents and Automation Systems for Business Operations",
   heroSubtitle:
     "TechFi Labs designs AI-driven workflows that automate repetitive tasks, improve response times, and integrate with your core systems.",
-  seoTitle: `AI Automation Agency in Ajmer, Jaipur & Global | ${ORGANIZATION_CONFIG.name}`,
+  seoTitle: `AI Agents and Automation Services | ${ORGANIZATION_CONFIG.name}`,
   seoDescription:
     `${ORGANIZATION_CONFIG.name} builds AI agents and automation workflows for sales, support, and operations, with CRM integration and process orchestration for global businesses.`,
   canonical: `${ORGANIZATION_CONFIG.url}/services/ai-agents-automation`,
   intro:
     "From conversational agents to backend process orchestration, we create practical AI systems that reduce manual load and improve execution speed.",
   outcomes: [
-    "24/7 AI-assisted lead and support handling",
+    "Consistent AI-assisted lead and support handling",
     "Reduced manual operations across repetitive workflows",
     "Better process visibility through unified automation layers",
   ],

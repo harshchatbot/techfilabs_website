@@ -154,7 +154,7 @@ function getCardVisual(title: string) {
       );
     case "AI Workflow Starter Kit":
       return (
-        <div className="flex items-center gap-2 rounded-[1.4rem] border border-emerald-900/10 bg-white/70 p-4">
+        <div className="flex flex-wrap items-center gap-2 rounded-[1.4rem] border border-emerald-900/10 bg-white/70 p-4">
           {["Inbox", "Classify", "Draft", "Escalate"].map((item, index) => (
             <div key={item} className="flex items-center gap-2">
               <span className="rounded-full border border-emerald-900/10 bg-white px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
