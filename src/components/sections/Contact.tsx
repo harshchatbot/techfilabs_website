@@ -16,6 +16,7 @@ const EMAILJS_NOTIFY_TEMPLATE_ID = "template_akdqils";
 const EMAILJS_PUBLIC_KEY = "6ICiKx6wEuxS-3WZ5";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_leadmagnet_autoreply";
 const LEAD_MAGNET_DOWNLOAD_URL = `${ORGANIZATION_CONFIG.url}/lead-magnets/product-salesforce-growth-checklist-2026.pdf`;
+const CONTACT_RECIPIENT_EMAIL = "thetechfisolutions@gmail.com";
 
 const initialFormState = {
   name: "",
@@ -126,13 +127,18 @@ export default function Contact({
       `Message: ${formData.message}`,
     ].join("\n");
 
+    const emailSubject = `New Website Lead from ${formData.name}`;
     const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      title: emailSubject,
+      to_email: CONTACT_RECIPIENT_EMAIL,
       user_name: formData.name,
       user_email: formData.email,
       user_message: compiledMessage,
       to_name: "TechFi Labs Team",
       website_source: "TechFi Website",
-      subject: `New Website Lead from ${formData.name}`,
+      subject: emailSubject,
     };
 
     try {
@@ -169,6 +175,10 @@ export default function Contact({
     setLeadMagnetStatus(null);
 
     const templateParams = {
+      name: "Lead Magnet Request",
+      email: leadMagnetEmail,
+      title: "New Lead Magnet Signup",
+      to_email: CONTACT_RECIPIENT_EMAIL,
       user_name: "Lead Magnet Request",
       user_email: leadMagnetEmail,
       user_message: "Requested lead magnet: Free Product + Salesforce Growth Checklist (2026 edition).",
