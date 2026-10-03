@@ -29,6 +29,7 @@ export interface Product {
   brandName?: string;
   category: string;
   status: string;
+  indexable?: boolean;
   icon: ElementType;
   theme: string;
   tagline: string;
@@ -84,6 +85,7 @@ export interface CaseStudy {
   industry: string;
   period: string;
   summary: string;
+  seoTitle: string;
   outcomes: string[];
   keywords: string[];
   technologies: string[];

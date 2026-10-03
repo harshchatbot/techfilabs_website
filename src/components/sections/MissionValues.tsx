@@ -44,7 +44,7 @@ export default function MissionValues({
 
               <div className="relative overflow-hidden rounded-3xl aspect-[4/3] border border-gray-200 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
                 <Image
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80&auto=format&fit=crop"
+                  src="/assets/media/why-delivery.jpg"
                   alt="Salesforce team planning together"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

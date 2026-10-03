@@ -22,8 +22,7 @@ export const salesforceConsultingLandingData: ServiceLandingItem = {
   heroTitle: "Salesforce Consulting Services for Growth-Focused Teams",
   heroSubtitle:
     "TechFi Labs helps companies design, implement, and optimize Salesforce with clear business outcomes, better adoption, and scalable architecture.",
-  seoTitle:
-    `Salesforce Consulting Services in Ajmer, Jaipur & Global | ${ORGANIZATION_CONFIG.name}`,
+  seoTitle: `Salesforce Consulting and Implementation | ${ORGANIZATION_CONFIG.name}`,
   seoDescription:
     `Expert Salesforce consulting and implementation services by ${ORGANIZATION_CONFIG.name}. We support setup, customization, automation, integrations, and ongoing optimization for businesses in Ajmer, Jaipur, India, and global markets.`,
   canonical: `${ORGANIZATION_CONFIG.url}/services/salesforce-consulting`,

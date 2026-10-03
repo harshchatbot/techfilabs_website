@@ -36,6 +36,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/case-studies`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/privacy-policy`,
       lastModified: new Date("2026-09-07"),
       changeFrequency: "yearly",
@@ -51,11 +56,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const productPages: MetadataRoute.Sitemap = PRODUCTS_DATA.map((product) => ({
-    url: `${baseUrl}/products/${product.slug}`,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
+  const productPages: MetadataRoute.Sitemap = PRODUCTS_DATA.filter(
+    (product) => product.indexable !== false
+  ).map((product) => ({
+      url: `${baseUrl}/products/${product.slug}`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
 
   const caseStudyPages: MetadataRoute.Sitemap = CASE_STUDIES_DATA.map(
     (study) => ({

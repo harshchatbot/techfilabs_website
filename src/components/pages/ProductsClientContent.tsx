@@ -29,7 +29,6 @@ export default function ProductsClientContent() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12">
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             Proprietary Products & Accelerators
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl font-heading mb-6">
@@ -49,18 +48,18 @@ export default function ProductsClientContent() {
             return (
               <div
                 key={product.slug}
-                className="flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-emerald-300"
+                className="flex min-w-0 flex-col justify-between rounded-3xl border border-emerald-900/10 bg-[#f7fefa] p-6 shadow-sm transition-all duration-300 hover:border-emerald-300 hover:shadow-md sm:p-8"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
+                  <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+                    <div className="flex min-w-0 flex-1 items-center gap-3">
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
                         <IconComponent className="h-6 w-6" />
                       </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-slate-900 font-heading">
+                      <div className="min-w-0">
+                        <h2 className="break-words text-xl font-bold text-slate-900 font-heading">
                           {product.name}
-                        </h3>
+                        </h2>
                         <span className="text-xs text-slate-500 font-medium">{product.category}</span>
                       </div>
                     </div>
@@ -75,9 +74,9 @@ export default function ProductsClientContent() {
 
                   <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
                     {product.highlights.map((h, i) => (
-                      <div key={i} className="text-center">
-                        <div className="text-xs font-bold text-slate-900">{h.value}</div>
-                        <div className="text-[11px] text-slate-500">{h.label}</div>
+                      <div key={i} className="min-w-0 text-center">
+                        <div className="break-words text-[11px] font-bold leading-tight text-slate-900 sm:text-xs">{h.value}</div>
+                        <div className="mt-1 break-words text-[10px] leading-tight text-slate-500 sm:text-[11px]">{h.label}</div>
                       </div>
                     ))}
                   </div>

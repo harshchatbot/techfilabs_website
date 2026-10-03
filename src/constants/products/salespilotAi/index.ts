@@ -7,6 +7,7 @@ export const salespilotAiProduct: Product = {
   shortName: "SalesPilot",
   category: "AI Tool",
   status: "In Development",
+  indexable: false,
   icon: Bot,
   theme: "teal",
   tagline: "AI-led lead qualification and follow-up automation.",
@@ -17,7 +18,7 @@ export const salespilotAiProduct: Product = {
   platforms: ["Web", "WhatsApp", "Voice"],
   audience: ["Sales Teams", "Founders", "Inside Sales"],
   highlights: [
-    { label: "Lead response", value: "24/7" },
+    { label: "Lead response", value: "Automated" },
     { label: "CRM sync", value: "Automated" },
     { label: "Workflows", value: "AI-assisted" },
   ],

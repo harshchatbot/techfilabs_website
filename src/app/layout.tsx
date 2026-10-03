@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   authors: [{ name: ORGANIZATION_CONFIG.name, url: ORGANIZATION_CONFIG.url }],
   creator: ORGANIZATION_CONFIG.name,
   publisher: ORGANIZATION_CONFIG.name,
+  manifest: "/site.webmanifest",
   alternates: {
     canonical: ORGANIZATION_CONFIG.url,
   },
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     siteName: ORGANIZATION_CONFIG.name,
     images: [
       {
-        url: ORGANIZATION_CONFIG.logoUrl,
+        url: ORGANIZATION_CONFIG.socialImageUrl,
         width: 1200,
         height: 630,
         alt: `${ORGANIZATION_CONFIG.name} - ${ORGANIZATION_CONFIG.tagline}`,
@@ -63,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${ORGANIZATION_CONFIG.name} | ${ORGANIZATION_CONFIG.tagline}`,
     description: ORGANIZATION_CONFIG.description,
-    images: [ORGANIZATION_CONFIG.logoUrl],
+    images: [ORGANIZATION_CONFIG.socialImageUrl],
   },
   icons: {
     icon: [
@@ -124,7 +125,15 @@ export default function RootLayout({
           longitude: ORGANIZATION_CONFIG.geo.longitude,
         },
         areaServed: ORGANIZATION_CONFIG.areasServed.map((place) => ({
-          "@type": place === "India" || place === "United States" || place === "United Kingdom" || place === "United Arab Emirates" ? "Country" : "City",
+          "@type":
+            place === "India" ||
+            place === "United States" ||
+            place === "United Kingdom" ||
+            place === "United Arab Emirates"
+              ? "Country"
+              : place === "Global"
+                ? "AdministrativeArea"
+                : "City",
           name: place,
         })),
         knowsAbout: [...ORGANIZATION_CONFIG.services],
@@ -149,10 +158,14 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <head />
       <body className="bg-techfi-mintBg text-slate-900 font-sans antialiased min-h-screen flex flex-col">
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
         <Navigation />
-        <main className="flex-grow">{children}</main>
+        <main id="main-content" className="min-w-0 flex-grow" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
         <WhatsAppChatButton />
         <Schema id="organization-schema" data={globalSchema} />

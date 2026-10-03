@@ -41,7 +41,7 @@ export default function WhoWeHelp({
           >
             <div className="relative overflow-hidden rounded-[1.5rem] aspect-[16/8]">
               <Image
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80&auto=format&fit=crop"
+                src="/assets/media/why-salesforce.jpg"
                 alt="Salesforce and consulting delivery team collaborating"
                 fill
                 sizes="(max-width: 1200px) 100vw, 50vw"

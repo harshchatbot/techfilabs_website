@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { AlertCircle, ArrowRight, CheckCircle2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { sendGAEvent } from "@next/third-parties/google";
+import Link from "next/link";
 import LiquidMetalButton from "../ui/LiquidMetalButton";
 
 import { CONTACT_SECTION_CONTENT, CONTACT_INFO } from "@/constants";
@@ -15,6 +16,7 @@ const EMAILJS_NOTIFY_TEMPLATE_ID = "template_akdqils";
 const EMAILJS_PUBLIC_KEY = "6ICiKx6wEuxS-3WZ5";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_leadmagnet_autoreply";
 const LEAD_MAGNET_DOWNLOAD_URL = `${ORGANIZATION_CONFIG.url}/lead-magnets/product-salesforce-growth-checklist-2026.pdf`;
+const CONTACT_RECIPIENT_EMAIL = "thetechfisolutions@gmail.com";
 
 const initialFormState = {
   name: "",
@@ -125,13 +127,18 @@ export default function Contact({
       `Message: ${formData.message}`,
     ].join("\n");
 
+    const emailSubject = `New Website Lead from ${formData.name}`;
     const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      title: emailSubject,
+      to_email: CONTACT_RECIPIENT_EMAIL,
       user_name: formData.name,
       user_email: formData.email,
       user_message: compiledMessage,
       to_name: "TechFi Labs Team",
       website_source: "TechFi Website",
-      subject: `New Website Lead from ${formData.name}`,
+      subject: emailSubject,
     };
 
     try {
@@ -168,6 +175,10 @@ export default function Contact({
     setLeadMagnetStatus(null);
 
     const templateParams = {
+      name: "Lead Magnet Request",
+      email: leadMagnetEmail,
+      title: "New Lead Magnet Signup",
+      to_email: CONTACT_RECIPIENT_EMAIL,
       user_name: "Lead Magnet Request",
       user_email: leadMagnetEmail,
       user_message: "Requested lead magnet: Free Product + Salesforce Growth Checklist (2026 edition).",
@@ -220,7 +231,7 @@ export default function Contact({
   const contactRows = [
     { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
     { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
-    { icon: MapPin, label: "Location", value: contactInfo.address, href: "#" },
+    { icon: MapPin, label: "Location", value: contactInfo.address, href: null },
   ];
 
   return (
@@ -244,19 +255,34 @@ export default function Contact({
             <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
 
             <div className="mt-8 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-3">
-              {contactRows.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors hover:bg-white/[0.06]"
-                >
+              {contactRows.map((item) => {
+                const content = (
+                  <>
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-300/16 bg-emerald-300/10 text-emerald-200">
                     <item.icon className="h-5 w-5" />
                   </div>
                   <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{item.label}</p>
                   <p className="mt-1 text-sm leading-relaxed text-slate-100">{item.value}</p>
-                </a>
-              ))}
+                  </>
+                );
+
+                return item.href ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors hover:bg-white/[0.06]"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div
+                    key={item.label}
+                    className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4"
+                  >
+                    {content}
+                  </div>
+                );
+              })}
             </div>
 
 
@@ -292,8 +318,14 @@ export default function Contact({
                 ) : null}
 
                 <form onSubmit={handleLeadMagnetSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+                  <label htmlFor="lead-magnet-email" className="sr-only">
+                    Work email for checklist delivery
+                  </label>
                   <input
+                    id="lead-magnet-email"
+                    name="leadMagnetEmail"
                     type="email"
+                    autoComplete="email"
                     value={leadMagnetEmail}
                     onChange={(event) => setLeadMagnetEmail(event.target.value)}
                     required
@@ -366,6 +398,7 @@ export default function Contact({
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    autoComplete="name"
                     className="input-base"
                     placeholder="Your name"
                   />
@@ -377,6 +410,7 @@ export default function Contact({
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    autoComplete="email"
                     className="input-base"
                     placeholder="name@company.com"
                   />
@@ -391,6 +425,7 @@ export default function Contact({
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="input-base"
+                    autoComplete="tel"
                     placeholder="+91"
                   />
                 </Field>
@@ -401,6 +436,7 @@ export default function Contact({
                     value={formData.company}
                     onChange={handleInputChange}
                     className="input-base"
+                    autoComplete="organization"
                     placeholder="Company name"
                   />
                 </Field>
@@ -459,6 +495,13 @@ export default function Contact({
                 <span>{isSubmitting ? "Sending..." : submitButtonLabel}</span>
                 <ArrowRight className="h-4 w-4" />
               </LiquidMetalButton>
+              <p className="text-center text-xs leading-relaxed text-slate-500">
+                By submitting this form, you agree that we may use your details to respond to your request. Read our{" "}
+                <Link className="inline-flex min-h-12 items-center rounded-md font-semibold text-emerald-700 underline underline-offset-2" href="/privacy-policy">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
             </form>
           </motion.div>
         </div>

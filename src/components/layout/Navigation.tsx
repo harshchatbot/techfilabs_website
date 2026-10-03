@@ -3,13 +3,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { NAV_CONFIG } from "@/constants";
-
-const HOME_SECTIONS = new Set(["home", "products", "services", "case-studies", "about", "contact", "testimonials"]);
-
 
 const NAV_THEMES: Record<string, Record<string, string>> = {
   sentinel: {
@@ -31,20 +28,20 @@ const NAV_THEMES: Record<string, Record<string, string>> = {
     mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
   },
   green: {
-    navScrolled: "bg-[#f7fefa]/92 border-white/80 shadow-[0_20px_44px_rgba(3,41,29,0.12)] backdrop-blur-xl",
-    navIdle: "bg-[#f7fefa]/82 border-white/70 shadow-[0_16px_36px_rgba(3,41,29,0.10)] backdrop-blur-xl",
+    navScrolled: "bg-[#f7fefa] border-emerald-200/90 shadow-[0_20px_44px_rgba(3,41,29,0.18)]",
+    navIdle: "bg-[#f7fefa] border-emerald-200/90 shadow-[0_18px_40px_rgba(3,41,29,0.18)]",
     logoWrap: "border-emerald-200/75 bg-white shadow-[0_12px_30px_rgba(16,185,129,0.10)]",
-    logoText: "text-slate-900",
-    logoTextScrolled: "text-slate-900",
-    menuActive: "text-emerald-700",
-    menuActiveScrolled: "text-emerald-700",
-    menuIdle: "text-slate-800 hover:text-emerald-700",
-    menuIdleScrolled: "text-slate-800 hover:text-emerald-700",
+    logoText: "text-slate-950",
+    logoTextScrolled: "text-slate-950",
+    menuActive: "text-emerald-800",
+    menuActiveScrolled: "text-emerald-800",
+    menuIdle: "text-slate-900 hover:text-emerald-800",
+    menuIdleScrolled: "text-slate-900 hover:text-emerald-800",
     sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
     ctaButton:
       "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
-    mobileToggle: "text-slate-800 hover:bg-emerald-50/80",
-    mobilePanel: "bg-[#f7fefa]/96 backdrop-blur-xl",
+    mobileToggle: "text-slate-950 hover:bg-emerald-50",
+    mobilePanel: "bg-[#f7fefa]",
     mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
     mobileSentinel: "border-gray-200 text-gray-700",
     mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
@@ -67,45 +64,26 @@ export default function Navigation({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = isMenuOpen ? "hidden" : previousOverflow;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleEscape);
+
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
     };
   }, [isMenuOpen]);
 
-  const handleMenuClick = (item: string) => {
-    setIsMenuOpen(false);
+  useEffect(() => setIsMenuOpen(false), [pathname]);
 
-    if (item === "home") {
-      if (pathname === "/") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
-      router.push("/");
-      return;
-    }
-
-    const routeMap: Record<string, string> = {
-      products: "/products",
-      services: "/services",
-      about: "/about",
-      contact: "/contact",
-    };
-
-    const targetRoute = routeMap[item] || `/${item}`;
-    router.push(targetRoute);
-  };
-
-  const handleCtaClick = () => {
-    setIsMenuOpen(false);
-    router.push("/contact");
-  };
+  const getMenuHref = (item: string) => (item === "home" ? "/" : `/${item}`);
 
   const isItemActive = (item: string) => {
     if (item === "home") return pathname === "/";
@@ -126,7 +104,7 @@ export default function Navigation({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 sm:px-5 sm:pt-4">
+      <nav aria-label="Primary navigation" className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 sm:px-5 sm:pt-4">
         <div className="mx-auto max-w-7xl px-3 sm:px-5">
           <div
             className={`flex items-center justify-between gap-4 rounded-[1.75rem] border px-4 py-3 transition-all duration-300 sm:px-5 ${
@@ -135,7 +113,7 @@ export default function Navigation({
           >
             <Link href="/" className="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa]">
               <div className={`h-11 w-11 overflow-hidden rounded-full border sm:h-12 sm:w-12 relative ${navTheme.logoWrap}`}>
-                <Image src={logo.logo} alt={logo.name} width={48} height={48} className="h-full w-full object-cover scale-[1.14]" />
+                <Image src={logo.logo} alt={logo.name} width={48} height={48} priority className="h-full w-full object-cover scale-[1.14]" />
               </div>
               <span
                 className={`hidden sm:block text-[15px] font-semibold tracking-tight ${
@@ -150,38 +128,38 @@ export default function Navigation({
               {menuItems.map((item) => {
                 const active = isItemActive(item);
                 return (
-                  <button
+                  <Link
                     key={item}
-                    onClick={() => handleMenuClick(item)}
+                    href={getMenuHref(item)}
                     aria-current={active ? "page" : undefined}
                     className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2.5 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
                       active
                         ? scrolled
                           ? `${navTheme.menuActiveScrolled || navTheme.menuActive} bg-emerald-50 border border-emerald-100/80`
-                          : `${navTheme.menuActive} bg-white/[0.10] border border-white/10`
+                          : `${navTheme.menuActive} bg-emerald-50 border border-emerald-200/80`
                         : scrolled
                           ? navTheme.menuIdleScrolled || navTheme.menuIdle
                           : navTheme.menuIdle
                     }`}
                   >
                     {item}
-                  </button>
+                  </Link>
                 );
               })}
 
-              <button
-                onClick={handleCtaClick}
+              <Link
+                href="/contact"
                 className={`inline-flex min-h-[46px] items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.ctaButton}`}
               >
                 {ctaButton.text}
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
 
             <button
               className={`lg:hidden rounded-xl p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.mobileToggle}`}
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              aria-label="Toggle menu"
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -198,28 +176,29 @@ export default function Navigation({
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
             className={`fixed inset-0 z-40 overflow-y-auto lg:hidden px-5 pb-8 pt-24 ${navTheme.mobilePanel}`}
+            aria-label="Mobile navigation"
           >
             <div className="space-y-3">
               {menuItems.map((item) => (
-                <button
+                <Link
                   key={item}
-                  onClick={() => handleMenuClick(item)}
-                  className={`w-full rounded-2xl border px-4 py-4 text-left text-xl font-semibold capitalize transition-colors ${navTheme.mobileMenuItem}`}
+                  href={getMenuHref(item)}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`flex min-h-[56px] w-full items-center rounded-2xl border px-4 py-3 text-left text-xl font-semibold capitalize transition-colors ${navTheme.mobileMenuItem}`}
                 >
                   {item}
-                </button>
+                </Link>
               ))}
             </div>
 
             <div className="mt-8 space-y-4">
-              <button
-                onClick={() => {
-                  handleCtaClick();
-                }}
-                className={`w-full rounded-2xl py-4 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/95 ${navTheme.mobileCta}`}
+              <Link
+                href="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className={`flex min-h-[56px] w-full items-center justify-center rounded-2xl px-4 py-3 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/95 ${navTheme.mobileCta}`}
               >
                 {ctaButton.text}
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}

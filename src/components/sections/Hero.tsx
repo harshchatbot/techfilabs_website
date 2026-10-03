@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import LiquidMetalButton from "../ui/LiquidMetalButton";
 import { prefersReducedMotion } from "../../utils/motionConfig";
 import DottedSurface from "../ui/DottedSurface";
@@ -18,7 +19,7 @@ interface HeroProps {
   headline?: string;
   subtitle?: string;
   primaryButton?: { text: string; action: () => void };
-  secondaryButton?: { text: string; action: () => void } | null;
+  secondaryButton?: { text: string; href?: string; action?: () => void } | null;
   chips?: string[];
 }
 
@@ -27,7 +28,7 @@ export default function Hero({
   headline = HERO_CONTENT.headline,
   subtitle = HERO_CONTENT.subtitle,
   primaryButton = { text: HERO_CONTENT.primaryButtonLabel, action: () => {} },
-  secondaryButton = null,
+  secondaryButton = { text: "Explore Services", href: "/services" },
   chips = HERO_CONTENT.chips,
 }: HeroProps) {
 
@@ -60,7 +61,7 @@ export default function Hero({
       <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top,transparent_0%,transparent_54%,rgba(3,41,29,0.28)_100%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl items-center px-5 pb-12 sm:px-6 md:min-h-[86svh] md:pb-16 lg:min-h-[90svh]">
-        <div className="w-full max-w-3xl">
+        <div className="w-full max-w-4xl">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
@@ -76,16 +77,23 @@ export default function Hero({
             initial={reduceMotion ? false : { opacity: 0, y: 26 }}
             animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.62, ease: "easeOut", delay: 0.06 }}
-            className="max-w-[13ch] text-[2.35rem] font-extrabold leading-[0.96] tracking-[-0.04em] text-white sm:max-w-[14ch] sm:text-[2.9rem] md:max-w-[15ch] md:text-[3.45rem] lg:max-w-[14ch] lg:text-[4rem] xl:max-w-[14ch] xl:text-[4.35rem]"
+            className="max-w-[13ch] text-[2.35rem] font-extrabold leading-[0.96] tracking-[-0.04em] text-white sm:max-w-[14ch] sm:text-[2.9rem] md:max-w-[15ch] md:text-[3.45rem] lg:max-w-4xl lg:text-[3.75rem] xl:text-[4rem]"
           >
-            {headline}
+            {headline === HERO_CONTENT.headline ? (
+              <>
+                AI Agents &amp; Automation
+                <span className="lg:block"> for Modern Business Teams</span>
+              </>
+            ) : (
+              headline
+            )}
           </motion.h1>
 
           <motion.p
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.58, ease: "easeOut", delay: 0.2 }}
-            className="mb-5 mt-5 max-w-xl rounded-xl bg-[rgba(3,41,29,0.24)] px-4 py-3 text-base font-medium leading-relaxed text-emerald-50 shadow-[0_10px_30px_rgba(3,41,29,0.12)] backdrop-blur-sm [text-shadow:0_1px_10px_rgba(3,41,29,0.5)] sm:text-lg md:mt-6 md:text-[1.04rem]"
+            className="mb-5 mt-5 max-w-xl rounded-xl bg-[rgba(3,41,29,0.46)] px-4 py-3 text-base font-medium leading-relaxed text-white shadow-[0_10px_30px_rgba(3,41,29,0.2)] backdrop-blur-sm [text-shadow:0_1px_12px_rgba(0,0,0,0.7)] sm:text-lg md:mt-6 md:text-[1.04rem]"
           >
             {subtitle}
           </motion.p>
@@ -113,7 +121,8 @@ export default function Hero({
             className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 lg:gap-4"
           >
             <LiquidMetalButton
-              onClick={primaryButton.action}
+              as={Link}
+              href="/contact"
               className="min-h-[56px] text-base focus:ring-offset-[#052e1f] sm:min-w-[228px] sm:px-7"
               aria-label={primaryButton.text}
             >
@@ -122,13 +131,14 @@ export default function Hero({
             </LiquidMetalButton>
 
             {secondaryButton ? (
-              <button
+              <Link
+                href={secondaryButton.href || "/services"}
                 onClick={secondaryButton.action}
-                className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.14] px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(3,41,29,0.18)] backdrop-blur-md transition-all duration-300 hover:translate-y-[-1px] hover:bg-white/[0.18] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#052e1f] sm:min-w-[200px] sm:px-7"
+                className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full border border-emerald-100/35 bg-[rgba(3,41,29,0.78)] px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(3,41,29,0.24)] backdrop-blur-md transition-all duration-300 hover:translate-y-[-1px] hover:bg-[rgba(6,78,47,0.88)] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#052e1f] sm:min-w-[200px] sm:px-7"
               >
                 {secondaryButton.text}
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
             ) : null}
           </motion.div>
 

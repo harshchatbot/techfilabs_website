@@ -184,12 +184,12 @@ export default function WorkflowShowcase({
               </motion.div>
             ))}
 
-            <div className="space-y-3">
+            <div className="min-w-0 space-y-3 overflow-hidden">
               {DETAIL_INPUTS.map((item, index) => (
                 <motion.div
                   key={item.label}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.42, delay: 0.18 + index * 0.06 }}
                   viewport={{ once: true }}
                   className="relative overflow-hidden rounded-2xl border border-emerald-300/10 bg-white/[0.045] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
@@ -198,7 +198,7 @@ export default function WorkflowShowcase({
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-300/20 bg-emerald-300/10 text-emerald-200">
                       <item.icon className="h-4.5 w-4.5" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-sm font-semibold text-white">{item.label}</p>
                       <p className="text-xs text-slate-400">Incoming request</p>
                     </div>
@@ -241,12 +241,12 @@ export default function WorkflowShowcase({
               </motion.div>
             </div>
 
-            <div className="space-y-3">
+            <div className="min-w-0 space-y-3 overflow-hidden">
               {DETAIL_OUTPUTS.map((item, index) => (
                 <motion.div
                   key={item.label}
-                  initial={{ opacity: 0, x: 16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.42, delay: 0.38 + index * 0.06 }}
                   viewport={{ once: true }}
                   className="relative overflow-hidden rounded-2xl border border-emerald-300/10 bg-white/[0.045] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
@@ -255,7 +255,7 @@ export default function WorkflowShowcase({
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-300/20 bg-emerald-300/10 text-emerald-200">
                       <item.icon className="h-4.5 w-4.5" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-sm font-semibold text-white">{item.label}</p>
                       <p className="text-xs text-slate-400">Next step</p>
                     </div>

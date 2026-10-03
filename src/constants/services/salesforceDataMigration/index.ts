@@ -22,8 +22,7 @@ export const salesforceDataMigrationLandingData: ServiceLandingItem = {
   heroTitle: "Secure Salesforce Data Migration & ETL Services",
   heroSubtitle:
     "Migrate to Salesforce with confidence using validated mapping, transformation logic, and quality controls built for production reliability.",
-  seoTitle:
-    `Salesforce Data Migration Services in Ajmer, Jaipur & Global | ${ORGANIZATION_CONFIG.name}`,
+  seoTitle: `Salesforce Data Migration and ETL Services | ${ORGANIZATION_CONFIG.name}`,
   seoDescription:
     `${ORGANIZATION_CONFIG.name} delivers Salesforce data migration and ETL services including mapping, cleansing, transformation, deduplication, and validation for businesses in India and global markets.`,
   canonical: `${ORGANIZATION_CONFIG.url}/services/salesforce-data-migration`,

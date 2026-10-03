@@ -74,9 +74,8 @@ function getCardVisual(title: string) {
                           {Array.from({ length: 3 }).map((_, frameIndex) => (
                             <div
                               key={`${label}-${frameIndex}`}
-                              className={`h-6 rounded-lg border border-emerald-900/8 ${
-                                frameIndex === 1 ? "bg-white/90 shadow-[0_6px_16px_rgba(6,95,70,0.08)]" : "bg-white/55"
-                              }`}
+                              className={`h-6 rounded-lg border border-emerald-900/8 ${frameIndex === 1 ? "bg-white/90 shadow-[0_6px_16px_rgba(6,95,70,0.08)]" : "bg-white/55"
+                                }`}
                             />
                           ))}
                         </div>
@@ -154,7 +153,7 @@ function getCardVisual(title: string) {
       );
     case "AI Workflow Starter Kit":
       return (
-        <div className="flex items-center gap-2 rounded-[1.4rem] border border-emerald-900/10 bg-white/70 p-4">
+        <div className="flex flex-wrap items-center gap-2 rounded-[1.4rem] border border-emerald-900/10 bg-white/70 p-4">
           {["Inbox", "Classify", "Draft", "Escalate"].map((item, index) => (
             <div key={item} className="flex items-center gap-2">
               <span className="rounded-full border border-emerald-900/10 bg-white px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
@@ -188,156 +187,145 @@ export default function SalesforceAccelerators({
     <section id="products" className="relative overflow-hidden bg-[linear-gradient(180deg,#071f18_0%,#0a2b21_100%)] py-20 text-white md:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.1),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(167,243,208,0.05),transparent_28%)]" />
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-14">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          viewport={{ once: true }}
+          className="mb-10 grid gap-5 border-b border-white/10 pb-8 md:mb-12 md:pb-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-12"
+        >
+          <div>
             <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">[ Selected Work ]</p>
-            <h2 className="max-w-[11ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h2 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
               {title}
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">
+          </div>
+          <div className="lg:border-l lg:border-white/10 lg:pl-10">
+            <p className="max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">
               {subtitle}
             </p>
-            <div className="mt-8 space-y-4 border-t border-white/10 pt-6">
-              {(rest.slice(0, 4)).map((item, index) => (
-                <div key={item.title} className="flex flex-col items-start gap-3 border-b border-white/10 pb-4 last:border-b-0 last:pb-0 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                      {String(index + 2).padStart(2, "0")}/ {item.badge}
-                    </p>
-                    <p className="mt-2 text-lg font-semibold text-white">{item.title}</p>
-                  </div>
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200">
-                    {item.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {featured ? (
-            <div className="grid gap-5">
-              <motion.article
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.42 }}
-                viewport={{ once: true }}
-                whileHover={reduceMotion ? undefined : { y: -4 }}
-                className="group relative overflow-hidden rounded-[2.2rem] border border-emerald-200/14 bg-[linear-gradient(180deg,#064e2f_0%,#055536_72%,#03291d_100%)] p-6 shadow-[0_24px_64px_rgba(3,41,29,0.22)] transition-shadow duration-300 hover:shadow-[0_30px_76px_rgba(3,41,29,0.26)] md:p-7"
-              >
-                <BorderBeam size={280} duration={8.5} colorFrom="#10B981" colorTo="#A7F3D0" opacity={0.7} />
-                <div className="absolute inset-[1px] rounded-[2.05rem] border border-white/6 opacity-80" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.16),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(3,41,29,0.22),transparent_26%)]" />
-                <div className="relative z-10 grid gap-6 lg:grid-cols-[0.96fr_1.04fr] lg:items-end">
-                  <div className="min-w-0">
-                    <div className="mb-4 flex items-center justify-between gap-4">
-                      <span className="rounded-full border border-white/10 bg-white/[0.07] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-300">
-                        {featured.badge}
+        {featured ? (
+          <div className="grid gap-5">
+            <motion.article
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.42 }}
+              viewport={{ once: true }}
+              whileHover={reduceMotion ? undefined : { y: -4 }}
+              className="group relative overflow-hidden rounded-[2.2rem] border border-emerald-200/14 bg-[linear-gradient(180deg,#064e2f_0%,#055536_72%,#03291d_100%)] p-6 shadow-[0_24px_64px_rgba(3,41,29,0.22)] transition-shadow duration-300 hover:shadow-[0_30px_76px_rgba(3,41,29,0.26)] md:p-7"
+            >
+              <BorderBeam size={280} duration={8.5} colorFrom="#10B981" colorTo="#A7F3D0" opacity={0.7} />
+              <div className="absolute inset-[1px] rounded-[2.05rem] border border-white/6 opacity-80" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.16),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(3,41,29,0.22),transparent_26%)]" />
+              <div className="relative z-10 grid gap-6 lg:grid-cols-[0.96fr_1.04fr] lg:items-end">
+                <div className="min-w-0">
+                  <div className="mb-4 flex items-center justify-between gap-4">
+                    <span className="rounded-full border border-white/10 bg-white/[0.07] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-300">
+                      {featured.badge}
+                    </span>
+                    {featured.icon ? (
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.07] text-emerald-200">
+                        <featured.icon className="h-5 w-5" />
+                      </div>
+                    ) : null}
+                  </div>
+                  <h3 className="break-words text-2xl font-semibold text-white md:text-[2rem]">{featured.title}</h3>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 md:text-[15px]">{featured.description}</p>
+                  <div className="mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">Outcome</p>
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                    <p className="text-sm font-medium text-white">{featured.value}</p>
+                  </div>
+                  <div className="mt-5">
+                    {featured.href ? (
+                      <Link
+                        href={featured.href}
+                        className="inline-flex min-h-[48px] w-full max-w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(90deg,#34d399_0%,#10b981_55%,#059669_100%)] px-5 py-3 text-center text-sm font-semibold leading-tight text-white shadow-[0_14px_36px_rgba(16,185,129,0.22)] transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto"
+                      >
+                        {featured.ctaLabel || "Explore selected work"}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="grid min-w-0 gap-4">
+                  <div>{getCardVisual(featured.title)}</div>
+                  <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">Release workflow fit</p>
+                    <p className="mt-4 text-2xl font-semibold text-white">Where FieldLens adds confidence</p>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                      Useful before cleanup, field retirement, schema changes, and release reviews where hidden dependencies can create avoidable risk.
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {["Impact checks", "Org cleanup", "Release reviews"].map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+
+            <div className="grid min-w-0 gap-4 md:grid-cols-2">
+              {rest.map((item, index) => (
+                <motion.article
+                  key={item.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.05 + index * 0.05 }}
+                  viewport={{ once: true }}
+                  whileHover={reduceMotion ? undefined : { y: -4 }}
+                  className={`group relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-5 shadow-[0_16px_40px_rgba(3,41,29,0.14)] transition-shadow duration-300 hover:shadow-[0_22px_48px_rgba(3,41,29,0.2)] ${CARD_LAYOUTS[item.title as keyof typeof CARD_LAYOUTS] || ""}`}
+                >
+                  {item.title === "RangManch AI" ? <BorderBeam size={200} duration={9} delay={0.35} colorFrom="#10B981" colorTo="#A7F3D0" opacity={0.45} /> : null}
+                  {item.title === "Sentinel" ? <BorderBeam size={180} duration={10} delay={0.6} colorFrom="#064E2F" colorTo="#10B981" opacity={0.38} /> : null}
+                  <div className="absolute inset-[1px] rounded-[1.55rem] border border-white/10 opacity-70" />
+                  <div className="relative z-10 min-w-0">
+                    <div className="mb-4 flex items-start justify-between gap-3">
+                      <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-200">
+                        {item.badge}
                       </span>
-                      {featured.icon ? (
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.07] text-emerald-200">
-                          <featured.icon className="h-5 w-5" />
+                      {item.icon ? (
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.07] text-emerald-200">
+                          <item.icon className="h-4.5 w-4.5" />
                         </div>
                       ) : null}
                     </div>
-                    <h3 className="break-words text-2xl font-semibold text-white md:text-[2rem]">{featured.title}</h3>
-                    <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 md:text-[15px]">{featured.description}</p>
-                    <div className="mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">Outcome</p>
-                      <div className="h-1.5 w-1.5 rounded-full bg-emerald-300" />
-                      <p className="text-sm font-medium text-white">{featured.value}</p>
-                    </div>
-                    <div className="mt-5">
-                      {featured.href ? (
-                        <Link
-                          href={featured.href}
-                          className="inline-flex min-h-[48px] w-full max-w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(90deg,#34d399_0%,#10b981_55%,#059669_100%)] px-5 py-3 text-center text-sm font-semibold leading-tight text-white shadow-[0_14px_36px_rgba(16,185,129,0.22)] transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto"
-                        >
-                          {featured.ctaLabel || "Explore selected work"}
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      ) : null}
-                    </div>
+                    <h3 className="mb-2 break-words text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
+                    <div className="mt-4">{getCardVisual(item.title) || <div className="h-[80px]" />}</div>
                   </div>
-
-                  <div className="grid min-w-0 gap-4">
-                    <div>{getCardVisual(featured.title)}</div>
-                    <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">Release workflow fit</p>
-                      <p className="mt-4 text-2xl font-semibold text-white">Where FieldLens adds confidence</p>
-                      <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                        Useful before cleanup, field retirement, schema changes, and release reviews where hidden dependencies can create avoidable risk.
+                  <div className="relative z-10 mt-4 flex min-w-0 flex-col items-start gap-3 border-t border-white/10 pt-4">
+                    <div className="min-w-0 w-full">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-200/80">Outcome</p>
+                      <p className="mt-1 max-w-full whitespace-normal text-balance break-words text-sm font-medium leading-snug text-white">
+                        {item.value}
                       </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {["Impact checks", "Org cleanup", "Release reviews"].map((item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
                     </div>
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-4 py-2.5 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
+                      >
+                        {item.ctaLabel || "View work"}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </Link>
+                    ) : null}
                   </div>
-                </div>
-              </motion.article>
-
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {rest.map((item, index) => (
-                  <motion.article
-                    key={item.title}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.05 + index * 0.05 }}
-                    viewport={{ once: true }}
-                    whileHover={reduceMotion ? undefined : { y: -4 }}
-                    className={`group relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-5 shadow-[0_16px_40px_rgba(3,41,29,0.14)] transition-shadow duration-300 hover:shadow-[0_22px_48px_rgba(3,41,29,0.2)] ${CARD_LAYOUTS[item.title as keyof typeof CARD_LAYOUTS] || ""}`}
-                  >
-                    {item.title === "RangManch AI" ? <BorderBeam size={200} duration={9} delay={0.35} colorFrom="#10B981" colorTo="#A7F3D0" opacity={0.45} /> : null}
-                    {item.title === "Sentinel" ? <BorderBeam size={180} duration={10} delay={0.6} colorFrom="#064E2F" colorTo="#10B981" opacity={0.38} /> : null}
-                    <div className="absolute inset-[1px] rounded-[1.55rem] border border-white/10 opacity-70" />
-                    <div className="relative z-10 min-w-0">
-                      <div className="mb-4 flex items-start justify-between gap-3">
-                        <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-200">
-                          {item.badge}
-                        </span>
-                        {item.icon ? (
-                          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.07] text-emerald-200">
-                            <item.icon className="h-4.5 w-4.5" />
-                          </div>
-                        ) : null}
-                      </div>
-                      <h3 className="mb-2 break-words text-lg font-semibold text-white">{item.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
-                      <div className="mt-4">{getCardVisual(item.title) || <div className="h-[80px]" />}</div>
-                    </div>
-                    <div className="relative z-10 mt-4 flex flex-col items-start gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
-                      <div className="flex-1">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-200/80">Outcome</p>
-                        <p className="mt-1 text-sm font-medium text-white">{item.value}</p>
-                      </div>
-                      {item.href ? (
-                        <Link
-                          href={item.href}
-                          className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.07] px-3.5 py-2.5 text-center text-sm font-semibold leading-tight text-white transition-colors hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 sm:w-auto"
-                        >
-                          {item.ctaLabel || "View work"}
-                          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        </Link>
-                      ) : null}
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
+                </motion.article>
+              ))}
             </div>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );

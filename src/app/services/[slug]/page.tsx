@@ -40,6 +40,10 @@ export default async function ServicePage({ params }: Props) {
     notFound();
   }
 
+  const relatedServices = Object.values(SERVICE_LANDING_DATA)
+    .filter((item) => item.slug !== service.slug)
+    .slice(0, 3);
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -102,7 +106,7 @@ export default async function ServicePage({ params }: Props) {
     <div className="min-h-screen bg-emerald-950 text-white pt-28 pb-20">
       <Schema id={`service-${service.slug}-schema`} data={schemaData} />
 
-      <main>
+      <div>
         <section className="max-w-7xl mx-auto px-6">
           <p className="text-xs uppercase tracking-[0.2em] text-lime-200 mb-4">Service Page</p>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4 max-w-5xl">{service.heroTitle}</h1>
@@ -112,7 +116,7 @@ export default async function ServicePage({ params }: Props) {
           <div className="flex flex-wrap gap-3 mt-8">
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-6 py-3 font-semibold text-emerald-950 hover:bg-lime-200 transition-colors"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-lime-300 px-6 py-3 font-semibold text-emerald-950 transition-colors hover:bg-lime-200"
             >
               Get Your Outcome Plan <ArrowRight className="w-4 h-4" />
             </Link>
@@ -120,7 +124,7 @@ export default async function ServicePage({ params }: Props) {
               href="https://wa.me/917976111087"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
             >
               Chat on WhatsApp
             </a>
@@ -180,7 +184,25 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </div>
         </section>
-      </main>
+
+        <section className="mx-auto mt-16 max-w-7xl px-6" aria-labelledby="related-services-heading">
+          <h2 id="related-services-heading" className="mb-5 text-2xl font-bold md:text-3xl">
+            Explore Related Services
+          </h2>
+          <div className="grid gap-3 md:grid-cols-3">
+            {relatedServices.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/services/${item.slug}`}
+                className="group flex min-h-20 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-emerald-50 transition-colors hover:bg-white/10"
+              >
+                <span className="font-semibold">{item.title}</span>
+                <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

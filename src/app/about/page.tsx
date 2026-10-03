@@ -9,9 +9,9 @@ import { ORGANIZATION_CONFIG } from "@/config/organization";
 import { createPageMetadata } from "@/utils/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About TechFi Labs: AI Automation & Salesforce Delivery",
+  title: "About Our AI & Salesforce Delivery Team",
   description:
-    `Discover how ${ORGANIZATION_CONFIG.name} helps modern enterprise teams streamline workflows, deploy custom AI agents, and build robust Salesforce CRM systems in ${ORGANIZATION_CONFIG.contact.city} and globally.`,
+    `Learn how ${ORGANIZATION_CONFIG.name} helps business teams streamline workflows, build practical AI automation, and improve Salesforce operations from ${ORGANIZATION_CONFIG.contact.city}, India.`,
   path: "/about",
 });
 

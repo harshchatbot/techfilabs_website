@@ -1,10 +1,10 @@
 export const HERO_CONTENT = {
   eyebrowPrefix: "AI automation systems",
-  headline: "AI Agents & Automation for Modern Business Teams",
+  headline: "AI Agents & Automation for Customer Operations",
   subtitle:
-    "We build AI agents, WhatsApp and email automations, and Salesforce-connected workflows that reduce manual work and help teams respond faster.",
+    "We help businesses reduce manual work, respond faster, and connect customer workflows across WhatsApp, email, Salesforce, and internal tools using AI agents, n8n, Python, and custom integrations.",
   primaryButtonLabel: "Build Your AI Workflow",
-  chips: ["AI Agents", "WhatsApp + Email", "Salesforce + n8n"],
-  liveLayerBadge: "Live AI workflow layer",
+  chips: ["AI Agents", "n8n + Python", "Salesforce Delivery"],
+  liveLayerBadge: "AI workflow layer",
   liveLayerChannels: "WhatsApp • Email • Salesforce",
 };

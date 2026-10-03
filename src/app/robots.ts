@@ -24,8 +24,10 @@ export default function robots(): MetadataRoute.Robots {
           "CCBot",
         ],
         allow: "/",
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   };
 }

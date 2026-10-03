@@ -4,10 +4,11 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
     slug: "ctccs-clinical-trial-contact-center-solution",
     title: "Clinical Trial Contact Center Solution on Salesforce",
+    seoTitle: "Salesforce Clinical Trial Contact Center",
     industry: "Life Sciences / Clinical Trial Operations",
     period: "Representative Delivery Experience",
     summary:
-      "Delivered a Salesforce-based contact center solution supporting patient engagement, clinical site coordination, hotline operations, and safety workflows in a regulated life sciences environment.",
+      "Representative delivery experience for a Salesforce-based contact center supporting patient engagement, clinical site coordination, hotline operations, and safety workflows in a regulated life sciences environment.",
     outcomes: [
       "Patient concierge and clinical trial hotline workflows",
       "Virtual research coordination support",
@@ -37,10 +38,11 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
     slug: "rems-compliance-platform-experience-cloud-portal",
     title: "REMS Compliance Platform & Experience Cloud Portal",
+    seoTitle: "Salesforce REMS & Experience Cloud Case Study",
     industry: "Healthcare / Life Sciences",
     period: "Representative Delivery Experience",
     summary:
-      "Delivered a configurable Salesforce REMS platform with admin console capabilities, enrollment automation, and a secure Experience Cloud portal for external stakeholders.",
+      "Representative delivery experience for a configurable Salesforce REMS platform with admin console capabilities, enrollment automation, and a secure Experience Cloud portal for external stakeholders.",
     outcomes: [
       "REMS program setup and user management",
       "Program switching and configuration-driven workflows",
@@ -70,10 +72,11 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
     slug: "field-operations-platform-mobile-maps",
     title: "Field Operations Platform with Mobile & Maps",
+    seoTitle: "Salesforce Mobile Field Operations Case Study",
     industry: "Field Service / Mobile Operations",
     period: "Representative Delivery Experience",
     summary:
-      "Delivered a Salesforce field operations platform with mobile workflows, map-based assignment, geo-audit capabilities, and supervisor visibility.",
+      "Representative delivery experience for a Salesforce field operations platform with mobile workflows, map-based assignment, geo-audit capabilities, and supervisor visibility.",
     outcomes: [
       "Salesforce mobile workflows",
       "Offline-ready execution",
