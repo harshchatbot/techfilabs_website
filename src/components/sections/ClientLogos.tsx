@@ -16,19 +16,21 @@ const CLIENTS = [
 
 export default function ClientLogos() {
   return (
-    <section className="py-20 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="overflow-hidden border-t border-emerald-900/10 bg-white py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-12 text-center"
         >
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
-            A trusted partner in customer success
+          <h2 className="mb-2 text-2xl font-semibold text-gray-900 md:text-3xl">
+            Built from real enterprise delivery experience
           </h2>
-          <p className="text-gray-500 text-sm">Some of the customers we have served</p>
+          <p className="text-sm text-gray-500">
+            Experience across CRM, healthcare, banking, consulting, and enterprise technology environments.
+          </p>
         </motion.div>
 
         <motion.div
@@ -36,7 +38,7 @@ export default function ClientLogos() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           viewport={{ once: true }}
-          className="rounded-[2rem] border border-gray-100 bg-gradient-to-b from-white via-gray-50/80 to-white p-6 md:p-8 shadow-[0_18px_50px_rgba(15,23,42,0.04)]"
+          className="rounded-[2rem] border border-emerald-900/10 bg-gradient-to-b from-white via-emerald-50/40 to-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.04)] md:p-8"
         >
           <div className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
             <InfiniteSlider gap={40} reverse speed={72} speedOnHover={28} className="py-2">

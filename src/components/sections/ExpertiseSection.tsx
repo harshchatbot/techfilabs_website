@@ -9,36 +9,30 @@ import { prefersReducedMotion } from "../../utils/motionConfig";
 
 const CAPABILITIES = [
   {
-    title: "Consulting & Implementation",
-    description:
-      "Setup, configuration, automation, and integrations.",
+    title: "Implement",
+    description: "Salesforce setup, configuration, and delivery.",
   },
   {
-    title: "CRM Automation",
-    description:
-      "Flows, Apex, APIs, and AI-assisted workflows.",
+    title: "Automate",
+    description: "Flows, Apex, APIs, AI agents, and integrations.",
   },
   {
-    title: "Managed Services",
-    description:
-      "Admin support, enhancements, releases, and improvements.",
+    title: "Migrate",
+    description: "Clean CRM data movement and validation support.",
   },
   {
-    title: "Production Support",
-    description:
-      "Triage, deployment support, and post-go-live stability.",
+    title: "Support",
+    description: "Enhancements, releases, triage, and stability.",
   },
 ];
 
 const DELIVERY_TAGS = [
   "Salesforce",
+  "Agentforce",
   "Flow",
   "Apex",
-  "LWC",
-  "Integrations",
-  "Data Migration",
   "AI Automation",
-  "Support",
+  "Data Migration",
 ];
 
 const ARCHITECTURE_MEDIA = {
@@ -64,13 +58,14 @@ function ArchitectureCard() {
       setTriedFallback(true);
       return;
     }
+
     setIsMissing(true);
   };
 
   return (
     <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] shadow-[0_24px_60px_rgba(3,41,29,0.2)]">
       {isMissing ? (
-        <div className="flex min-h-[280px] items-center justify-center px-6 py-12 text-center md:min-h-[340px]">
+        <div className="flex min-h-[260px] items-center justify-center px-6 py-12 text-center md:min-h-[320px]">
           <div className="rounded-2xl border border-emerald-300/15 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200">
               CRM architecture visual
@@ -81,7 +76,7 @@ function ArchitectureCard() {
           </div>
         </div>
       ) : (
-        <div className="relative h-[280px] w-full md:h-[340px]">
+        <div className="relative h-[260px] w-full md:h-[320px]">
           <Image
             src={mediaSrc}
             alt={ARCHITECTURE_MEDIA.alt}
@@ -101,10 +96,10 @@ function ArchitectureCard() {
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">
           Salesforce + AI Delivery Layer
         </p>
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 md:text-[15px]">
-          CRM data, automation, support processes, and AI workflows connected
-          into one practical operating layer.
+        <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-300">
+          CRM workflows connected with automation, integrations, support, and AI.
         </p>
+
         <div className="mt-5 flex flex-wrap gap-2">
           {DELIVERY_TAGS.map((tag) => (
             <span
@@ -126,16 +121,17 @@ interface ExpertiseSectionProps {
 }
 
 export default function ExpertiseSection({
-  title,
-  subtitle,
+  title = "Salesforce delivery for real business workflows",
+  subtitle = "Consulting, implementation, automation, data migration, and support — connected with AI where it creates practical value.",
 }: ExpertiseSectionProps = {}) {
   const reduceMotion = prefersReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#071f18_0%,#0a2b21_100%)] py-20 text-white md:py-26">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#071f18_0%,#0a2b21_100%)] py-16 text-white md:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.10),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(167,243,208,0.05),transparent_26%)]" />
+
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -146,14 +142,16 @@ export default function ExpertiseSection({
             <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">
               Salesforce + AI Expertise
             </p>
-            <h2 className="max-w-[12ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Salesforce Delivery That Connects With Real Business Workflows
+
+            <h2 className="max-w-[13ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
+              {title}
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
-              Implementation, automation, support, and AI workflows for better CRM operations.
+
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+              {subtitle}
             </p>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {CAPABILITIES.map((capability, index) => (
                 <motion.div
                   key={capability.title}
@@ -164,12 +162,12 @@ export default function ExpertiseSection({
                     delay: reduceMotion ? 0 : index * 0.06,
                   }}
                   viewport={{ once: true }}
-                  className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5"
+                  className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4"
                 >
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-white">
                     {capability.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300 md:text-[15px]">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
                     {capability.description}
                   </p>
                 </motion.div>
@@ -187,23 +185,22 @@ export default function ExpertiseSection({
             <ArchitectureCard />
 
             <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_46px_rgba(3,41,29,0.14)] md:p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">
-                Featured Accelerator
-              </p>
-              <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-xl">
-                  <h3 className="text-2xl font-semibold text-white md:text-[1.9rem]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200">
+                    Featured Accelerator
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold text-white md:text-[1.9rem]">
                     FieldLens for Salesforce
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300 md:text-[15px]">
-                    A Chrome extension that helps admins and developers check
-                    field impact, dependencies, and usage directly inside
-                    Salesforce Lightning.
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                    Check field impact, dependencies, and usage inside Salesforce Lightning.
                   </p>
                 </div>
+
                 <Link
                   href="/products/fieldlens-for-salesforce"
-                  className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[linear-gradient(90deg,#34d399_0%,#10b981_55%,#059669_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_36px_rgba(16,185,129,0.22)] transition-transform duration-300 hover:-translate-y-0.5"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(90deg,#34d399_0%,#10b981_55%,#059669_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_36px_rgba(16,185,129,0.22)] transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   View FieldLens
                   <ArrowRight className="h-4 w-4" />

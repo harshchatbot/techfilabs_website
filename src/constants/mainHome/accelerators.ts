@@ -36,7 +36,7 @@ export const HOMEPAGE_ACCELERATORS = [
     description:
       "A practical support framework for incidents, enhancements, releases, and service tracking.",
     badge: "Delivery Framework",
-    value: "Repeatable managed support execution",
+    value: "Repeatable support model",
     icon: ShieldCheck,
     href: "/#contact",
     ctaLabel: "Discuss this work",

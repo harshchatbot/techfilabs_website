@@ -1,23 +1,23 @@
 export const WORKFLOW_SHOWCASE_CONTENT = {
   eyebrow: "AI Automation Workflows",
-  title: "AI workflows that connect messages, systems, and business actions.",
+  title: "Automate the path from customer message to business action.",
   subtitle:
-    "We connect incoming requests to one workflow that can sort messages, summarize context, draft responses, update Salesforce, write to sheets, and send exceptions for human review.",
+    "We help teams convert WhatsApp, email, and CRM requests into structured workflows that classify messages, summarize context, draft replies, update Salesforce or sheets, and route exceptions for human review.",
   flowPills: [
     { label: "WhatsApp / Email" },
     { label: "AI Agent" },
-    { label: "Classify / Summarize / Draft Reply" },
-    { label: "Salesforce / Sheets / Human Review" },
+    { label: "Classify / Summarize / Draft" },
+    { label: "Salesforce / Sheets / Review" },
   ],
   graphHeader: {
     eyebrow: "Workflow Graph",
-    subtitle: "Detailed AI orchestration across channels, CRM, and review",
-    liveBadge: "Live workflow",
+    subtitle: "AI orchestration across channels, CRM, data updates, and human review",
+    liveBadge: "Workflow preview",
   },
   agentCard: {
-    badge: "Active AI Orchestrator",
+    badge: "AI Orchestrator",
     title: "AI Agent Engine",
-    description: "Multi-step reasoning pipeline running on n8n + custom services",
-    steps: ["Classify", "Summarize", "Draft Reply", "Route", "Log"],
+    description: "Built with n8n workflows, custom Python services, and CRM integrations",
+    steps: ["Classify", "Summarize", "Draft", "Route", "Log"],
   },
 };
