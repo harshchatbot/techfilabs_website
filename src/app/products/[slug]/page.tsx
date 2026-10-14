@@ -73,6 +73,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return createNotFoundMetadata(PRODUCT_PAGE_FALLBACK.title);
   }
 
+  if (product.slug === "fieldlens-for-salesforce") {
+    const canonical = `${ORGANIZATION_CONFIG.url}/products/fieldlens-for-salesforce`;
+    const title = "FieldLens for Salesforce – Field Impact Analysis Chrome Extension";
+    const description =
+      "FieldLens helps Salesforce Admins, Developers, and Architects scan field impact across Apex, Flows, Validation Rules, Layouts, List Views, Report Types, and FLS in Salesforce Lightning.";
+
+    return {
+      title: { absolute: title },
+      description,
+      alternates: { canonical },
+      openGraph: {
+        title: "FieldLens for Salesforce",
+        description:
+          "Salesforce field impact analysis for admins, developers, consultants, and architects.",
+        url: canonical,
+        type: "website",
+        siteName: ORGANIZATION_CONFIG.name,
+        images: [
+          {
+            url: `${ORGANIZATION_CONFIG.url}${product.screenshots[0]}`,
+            alt: "FieldLens for Salesforce field impact analysis",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "FieldLens for Salesforce",
+        description:
+          "Salesforce field impact analysis for admins, developers, consultants, and architects.",
+        images: [`${ORGANIZATION_CONFIG.url}${product.screenshots[0]}`],
+      },
+    };
+  }
+
   return createPageMetadata({
     title: product.name,
     description: product.summary,
@@ -113,10 +147,27 @@ export default async function ProductPage({ params }: Props) {
           publisher: { "@id": `${ORGANIZATION_CONFIG.url}/#organization` },
         },
       ];
+  const faqSchema = product.faq?.length
+    ? [
+        {
+          "@type": "FAQPage",
+          "@id": `${productUrl}/#faq`,
+          mainEntity: product.faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        },
+      ]
+    : [];
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       ...applicationSchema,
+      ...faqSchema,
       {
         "@type": "BreadcrumbList",
         "@id": `${productUrl}/#breadcrumb`,
@@ -270,7 +321,9 @@ export default async function ProductPage({ params }: Props) {
                     </span>
                     <span className="leading-tight text-left">
                       <span className="block text-[10px] uppercase tracking-[0.16em] opacity-80">Available on</span>
-                      <span className="block text-sm font-bold">Chrome Web Store</span>
+                      <span className="block text-sm font-bold">
+                        {product.links.chromeWebStoreLabel || "Chrome Web Store"}
+                      </span>
                     </span>
                   </a>
                 )}
@@ -286,6 +339,11 @@ export default async function ProductPage({ params }: Props) {
                   </a>
                 )}
               </div>
+              {product.trustNote ? (
+                <p className={`mt-5 max-w-2xl text-sm leading-relaxed ${theme.muted}`}>
+                  {product.trustNote}
+                </p>
+              ) : null}
             </div>
 
             <div className={`relative min-h-[420px] overflow-hidden rounded-3xl border p-4 sm:p-6 ${theme.mediaCard}`}>
@@ -378,6 +436,32 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {product.faq?.length ? (
+          <section className="max-w-7xl mx-auto px-6 mt-20" aria-labelledby="product-faq-heading">
+            <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>
+              <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>
+                FieldLens FAQ
+              </p>
+              <h2 id="product-faq-heading" className={`text-3xl font-bold mb-8 ${theme.title}`}>
+                Common questions about FieldLens
+              </h2>
+              <div className="divide-y divide-white/10">
+                {product.faq.map((item) => (
+                  <details key={item.question} className="group py-5 first:pt-0 last:pb-0">
+                    <summary className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 font-semibold ${theme.title}`}>
+                      <span>{item.question}</span>
+                      <span className={`text-xl transition-transform group-open:rotate-45 ${theme.sectionLabel}`} aria-hidden="true">
+                        +
+                      </span>
+                    </summary>
+                    <p className={`max-w-3xl pt-3 leading-relaxed ${theme.body}`}>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section className="max-w-7xl mx-auto px-6 mt-20">
           <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>

@@ -12,7 +12,7 @@ export const ORGANIZATION_CONFIG = {
   socialImage: "/og-techfi-labs.png",
   socialImageUrl: "https://www.techfilabs.com/og-techfi-labs.png",
   googleSiteVerification: "google44a1b859b54e70e0",
-  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
+  googleAnalyticsId: "G-P6JQTG0HG5",
   contact: {
     email: "contact.team@techfilabs.com",
     phone: "+91 7976111087",

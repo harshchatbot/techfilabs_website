@@ -36,9 +36,39 @@ export const fieldlensForSalesforceProduct: Product = {
     primary: { label: "Book FieldLens Walkthrough", href: "/#contact" },
     secondary: { label: "Talk on WhatsApp", href: "https://wa.me/917976111087" },
   },
+  trustNote:
+    "FieldLens runs in your browser and uses your active Salesforce session. It does not store Salesforce access tokens or send Salesforce metadata to external analytics.",
+  faq: [
+    {
+      question: "What is FieldLens for Salesforce?",
+      answer:
+        "FieldLens is a Chrome extension for Salesforce Lightning that helps admins, developers, consultants, and architects understand where a field is referenced before making changes.",
+    },
+    {
+      question: "Does FieldLens store my Salesforce access token?",
+      answer:
+        "No. FieldLens uses your active Salesforce browser session and does not store Salesforce access tokens.",
+    },
+    {
+      question: "Does FieldLens send Salesforce metadata to analytics?",
+      answer:
+        "No. FieldLens does not send Salesforce metadata, field names, object names, scan results, session data, or tokens to external analytics.",
+    },
+    {
+      question: "Does FieldLens support Salesforce Classic?",
+      answer:
+        "No. FieldLens currently supports Salesforce Lightning Experience only.",
+    },
+    {
+      question: "What is the difference between Quick Scan and Deep Scan?",
+      answer:
+        "Quick Scan checks common high-value metadata areas faster. Deep Scan checks more metadata categories and may take longer in larger orgs.",
+    },
+  ],
   links: {
     chromeWebStore:
-      "https://chromewebstore.google.com/detail/nllmdajkbbgnkpokfcjoabhakebfoljk?utm_source=item-share-cb",
+      "https://chromewebstore.google.com/detail/nllmdajkbbgnkpokfcjoabhakebfoljk?utm_source=techfilabs&utm_medium=website&utm_campaign=fieldlens_v112_launch",
+    chromeWebStoreLabel: "Add FieldLens to Chrome",
   },
   screenshots: [
     "/products/fieldlens/fl_snap1.png",

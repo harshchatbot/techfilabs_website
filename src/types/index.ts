@@ -19,7 +19,13 @@ export interface ProductCtas {
 export interface ProductLinks {
   playStore?: string;
   chromeWebStore?: string;
+  chromeWebStoreLabel?: string;
   website?: string;
+}
+
+export interface ProductFaq {
+  question: string;
+  answer: string;
 }
 
 export interface Product {
@@ -47,6 +53,8 @@ export interface Product {
     title: string;
     description: string;
   };
+  trustNote?: string;
+  faq?: ProductFaq[];
   links: ProductLinks;
   screenshots: string[];
 }
