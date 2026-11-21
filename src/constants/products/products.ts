@@ -6,12 +6,16 @@ import { fieldlensForSalesforceProduct } from "./fieldlensForSalesforce";
 import { opsflowControlCenterProduct } from "./opsflowControlCenter";
 import { rangmanchAiProduct } from "./rangmanchAi";
 import { salespilotAiProduct } from "./salespilotAi";
+import { orgReadyProduct } from "./orgReady";
+import { desiPosProduct } from "./desiPos";
 
 export * from "./sentinelSocietyManagement";
 export * from "./fieldlensForSalesforce";
 export * from "./opsflowControlCenter";
 export * from "./rangmanchAi";
 export * from "./salespilotAi";
+export * from "./orgReady";
+export * from "./desiPos";
 
 export const PRODUCT_PAGE_FALLBACK = {
   title: "Product not found",
@@ -21,9 +25,11 @@ export const PRODUCT_PAGE_FALLBACK = {
 };
 
 export const PRODUCTS_DATA: Product[] = [
-  sentinelSocietyManagementProduct,
-  fieldlensForSalesforceProduct,
-  opsflowControlCenterProduct,
   rangmanchAiProduct,
+  orgReadyProduct,
+  desiPosProduct,
+  fieldlensForSalesforceProduct,
+  sentinelSocietyManagementProduct,
+  opsflowControlCenterProduct,
   salespilotAiProduct,
 ];
