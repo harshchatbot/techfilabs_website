@@ -32,7 +32,7 @@ export default function About({
           <Heading className="font-serif text-[clamp(2.8rem,6vw,5.2rem)] font-normal leading-[1.05] tracking-[-0.055em]">{title}</Heading>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#625F59] sm:text-lg">{subtitle}</p>
         </header>
-        <div className="mt-14 grid border-t border-[#24231F]/15 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid border-t border-[#24231F]/10 sm:grid-cols-2 lg:grid-cols-3">
           {entries.map((item: { number?: string; title: string; description: string }, index: number) => (
             <motion.div
               key={item.title}
@@ -40,7 +40,7 @@ export default function About({
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: reduceMotion ? 0 : index * 0.04 }}
-              className={`border-b border-[#24231F]/15 py-7 sm:pr-6 lg:pr-8 ${index % 3 !== 0 ? "lg:border-l lg:pl-8" : ""}`}
+              className={`border-b border-[#24231F]/10 py-7 sm:pr-6 lg:pr-8 ${index % 3 !== 0 ? "lg:border-l lg:pl-8" : ""}`}
             >
               <p className="text-xs font-semibold text-[#9B482E]">{String(index + 1).padStart(2, "0")}</p>
               <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
