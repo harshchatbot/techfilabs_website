@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import WorkflowShowcase from "@/components/sections/WorkflowShowcase";
 import AgentLab from "@/components/sections/AgentLab";
+import HomeProductShowcase from "@/components/sections/HomeProductShowcase";
 import ExpertiseSection from "@/components/sections/ExpertiseSection";
 import FAQSection from "@/components/sections/FAQSection";
 import Contact from "@/components/sections/Contact";
@@ -38,22 +39,25 @@ export default function HomePage() {
       {/* 2. Trust & Proof Bar */}
       <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
 
-      {/* 3. AI Automation Workflows */}
+      {/* 3. Products with official imagery */}
+      <HomeProductShowcase />
+
+      {/* 4. AI Automation Workflows */}
       <WorkflowShowcase />
 
-      {/* 4. Interactive, scripted AI agent demonstration */}
+      {/* 5. Interactive, scripted AI agent demonstration */}
       <AgentLab />
 
-      {/* 5. Client Logos Marquee */}
+      {/* 6. Client Logos Marquee */}
       <ClientLogos />
 
-      {/* 6. Salesforce + AI Expertise */}
+      {/* 7. Salesforce + AI Expertise */}
       <ExpertiseSection />
 
-      {/* 7. Frequently Asked Questions */}
+      {/* 8. Frequently Asked Questions */}
       <FAQSection faqs={HOMEPAGE_FAQS} schemaId="homepage-faq-schema" />
 
-      {/* 8. Contact CTA */}
+      {/* 9. Contact CTA */}
       <Contact contactInfo={CONTACT_INFO} />
     </>
   );
