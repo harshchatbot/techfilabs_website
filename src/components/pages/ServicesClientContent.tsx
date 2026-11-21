@@ -34,9 +34,9 @@ export default function ServicesClientContent() {
         </p>
       </header>
       <section aria-label="Our services" className="mx-auto max-w-7xl px-5 pb-20 sm:px-6 lg:px-8">
-        <div className="grid border-t border-[#24231F]/15 md:grid-cols-2">
+        <div className="grid border-t border-[#24231F]/10 md:grid-cols-2">
           {SERVICES_DATA.map((service, index) => (
-            <article key={service.slug} className={`border-b border-[#24231F]/15 py-8 sm:py-10 ${index % 2 === 0 ? "md:pr-12" : "md:border-l md:border-[#24231F]/15 md:pl-12"}`}>
+            <article key={service.slug} className={`border-b border-[#24231F]/10 py-8 sm:py-10 ${index % 2 === 0 ? "md:pr-12" : "md:border-l md:border-[#24231F]/10 md:pl-12"}`}>
               <p className="text-xs font-semibold uppercase tracking-[0.17em] text-[#9B482E]">
                 {String(index + 1).padStart(2, "0")}
               </p>
