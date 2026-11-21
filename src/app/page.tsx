@@ -39,9 +39,6 @@ export default function HomePage() {
       {/* 2. Trust & Proof Bar */}
       <TrustStrip items={HOMEPAGE_TRUST_STRIP} />
 
-      {/* 3. Products with official imagery */}
-      <HomeProductShowcase />
-
       {/* 4. AI Automation Workflows */}
       <WorkflowShowcase />
 
@@ -54,10 +51,13 @@ export default function HomePage() {
       {/* 7. Salesforce + AI Expertise */}
       <ExpertiseSection />
 
-      {/* 8. Frequently Asked Questions */}
+      {/* 8. Compact product showcase */}
+      <HomeProductShowcase />
+
+      {/* 9. Frequently Asked Questions */}
       <FAQSection faqs={HOMEPAGE_FAQS} schemaId="homepage-faq-schema" />
 
-      {/* 9. Contact CTA */}
+      {/* 10. Contact CTA */}
       <Contact contactInfo={CONTACT_INFO} />
     </>
   );
