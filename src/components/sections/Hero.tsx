@@ -32,7 +32,7 @@ export default function Hero({
       {/* The video covers the entire hero. Low opacity and an ivory overlay protect text contrast. */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <video
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.24] motion-reduce:hidden sm:opacity-[0.30]"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.40] motion-reduce:hidden sm:opacity-[0.46]"
           autoPlay
           muted
           loop
@@ -43,8 +43,8 @@ export default function Hero({
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 hidden bg-[url('/assets/techfi-ai-hero-poster.webp')] bg-cover bg-center opacity-[0.24] motion-reduce:block" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(250,249,245,0.96)_0%,rgba(250,249,245,0.88)_45%,rgba(250,249,245,0.68)_100%)] sm:bg-[linear-gradient(90deg,rgba(250,249,245,0.94)_0%,rgba(250,249,245,0.78)_48%,rgba(250,249,245,0.52)_100%)]" />
+        <div className="absolute inset-0 hidden bg-[url('/assets/techfi-ai-hero-poster.webp')] bg-cover bg-center opacity-[0.40] motion-reduce:block" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(250,249,245,0.91)_0%,rgba(250,249,245,0.85)_45%,rgba(250,249,245,0.72)_100%)] sm:bg-[linear-gradient(90deg,rgba(250,249,245,0.90)_0%,rgba(250,249,245,0.76)_48%,rgba(250,249,245,0.40)_100%)]" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
