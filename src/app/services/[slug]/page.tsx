@@ -103,101 +103,75 @@ export default async function ServicePage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-emerald-950 text-white pt-28 pb-20">
+    <div className="min-h-screen bg-[#FAF9F5] pb-20 pt-32 text-[#24231F] sm:pt-40">
       <Schema id={`service-${service.slug}-schema`} data={schemaData} />
-
-      <div>
-        <section className="max-w-7xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-lime-200 mb-4">Service Page</p>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4 max-w-5xl">{service.heroTitle}</h1>
-          <p className="text-xl text-lime-100/90 max-w-4xl mb-8">{service.heroSubtitle}</p>
-          <p className="text-emerald-100/80 max-w-4xl leading-relaxed">{service.intro}</p>
-
-          <div className="flex flex-wrap gap-3 mt-8">
-            <Link
-              href="/#contact"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-lime-300 px-6 py-3 font-semibold text-emerald-950 transition-colors hover:bg-lime-200"
-            >
-              Get Your Outcome Plan <ArrowRight className="w-4 h-4" />
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <header className="max-w-4xl">
+          <Link href="/services" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#9B482E] hover:underline">
+            <ArrowRight aria-hidden="true" className="h-4 w-4 rotate-180" /> All services
+          </Link>
+          <p className="mb-5 mt-9 text-xs font-semibold uppercase tracking-[0.2em] text-[#9B482E]">Our services</p>
+          <h1 className="font-serif text-[clamp(2.8rem,6vw,5.3rem)] font-normal leading-[1.05] tracking-[-0.055em]">{service.heroTitle}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#625F59]">{service.heroSubtitle}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <Link href="/contact" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#24231F] px-6 py-3 text-sm font-semibold text-white hover:bg-[#49433E]">
+              Discuss your project <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
-            <a
-              href="https://wa.me/917976111087"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Chat on WhatsApp
-            </a>
+            <a href="https://wa.me/917976111087" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center border-b border-[#A45137] text-sm font-semibold text-[#9B482E] hover:underline">WhatsApp</a>
           </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-6 mt-16 grid lg:grid-cols-2 gap-6">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-7">
-            <h2 className="text-2xl font-bold mb-4">Key Outcomes</h2>
-            <ul className="space-y-3">
+        </header>
+        <div className="mt-14 grid gap-12 border-t border-[#24231F]/15 pt-10 lg:grid-cols-2 lg:gap-20">
+          <section>
+            <h2 className="font-serif text-2xl font-normal sm:text-3xl">What this helps you achieve</h2>
+            <ul className="mt-6 space-y-4">
               {service.outcomes.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-emerald-50/90">
-                  <CheckCircle2 className="w-5 h-5 mt-0.5 text-lime-200 shrink-0" />
-                  <span>{item}</span>
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[#625F59]">
+                  <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[#9B482E]" />{item}
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-7">
-            <h2 className="text-2xl font-bold mb-4">What We Deliver</h2>
-            <ul className="space-y-3">
+          </section>
+          <section>
+            <h2 className="font-serif text-2xl font-normal sm:text-3xl">What we deliver</h2>
+            <ul className="mt-6 space-y-4">
               {service.capabilities.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-emerald-50/90">
-                  <CheckCircle2 className="w-5 h-5 mt-0.5 text-lime-200 shrink-0" />
-                  <span>{item}</span>
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[#625F59]">
+                  <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[#9B482E]" />{item}
                 </li>
               ))}
             </ul>
+          </section>
+        </div>
+        <section className="mt-16 border-t border-[#24231F]/15 pt-10">
+          <h2 className="font-serif text-2xl font-normal sm:text-3xl">How we work</h2>
+          <div className="mt-6 grid border-t border-[#24231F]/15 sm:grid-cols-3">
+            {service.process.map((step, index) => (
+              <div key={step} className={`border-b border-[#24231F]/15 py-6 sm:pr-6 ${index > 0 ? "sm:border-l sm:pl-6" : ""}`}>
+                <p className="text-xs font-semibold text-[#9B482E]">{String(index + 1).padStart(2, "0")}</p>
+                <p className="mt-3 text-sm leading-relaxed text-[#625F59]">{step}</p>
+              </div>
+            ))}
           </div>
         </section>
-
-        <section className="max-w-7xl mx-auto px-6 mt-16">
-          <div className="rounded-3xl border border-white/10 bg-emerald-900/30 p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-5">Delivery Process</h2>
-            <div className="grid md:grid-cols-3 gap-4">
-              {service.process.map((step, index) => (
-                <div key={step} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-xs uppercase tracking-[0.15em] text-lime-200 mb-2">Step {index + 1}</p>
-                  <p className="text-emerald-50/90">{step}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-6 mt-16">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-5">Frequently Asked Questions</h2>
-            <div className="space-y-4">
+        {service.faq.length > 0 && (
+          <section className="mt-16 grid gap-8 border-t border-[#24231F]/15 pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+            <h2 className="font-serif text-2xl font-normal sm:text-3xl">Questions, answered.</h2>
+            <div className="border-t border-[#24231F]/15">
               {service.faq.map((item) => (
-                <div key={item.q} className="rounded-2xl border border-white/10 bg-emerald-950/50 p-5">
-                  <h3 className="font-semibold text-white mb-2">{item.q}</h3>
-                  <p className="text-emerald-100/80">{item.a}</p>
-                </div>
+                <details key={item.q} className="group border-b border-[#24231F]/15">
+                  <summary className="cursor-pointer py-5 text-base font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A45137]">{item.q}</summary>
+                  <p className="pb-5 text-sm leading-relaxed text-[#625F59]">{item.a}</p>
+                </details>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="mx-auto mt-16 max-w-7xl px-6" aria-labelledby="related-services-heading">
-          <h2 id="related-services-heading" className="mb-5 text-2xl font-bold md:text-3xl">
-            Explore Related Services
-          </h2>
-          <div className="grid gap-3 md:grid-cols-3">
+          </section>
+        )}
+        <section className="mt-16 border-t border-[#24231F]/15 pt-10" aria-labelledby="related-services-heading">
+          <h2 id="related-services-heading" className="font-serif text-2xl font-normal sm:text-3xl">Related services</h2>
+          <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
             {relatedServices.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/services/${item.slug}`}
-                className="group flex min-h-20 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-emerald-50 transition-colors hover:bg-white/10"
-              >
-                <span className="font-semibold">{item.title}</span>
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+              <Link key={item.slug} href={`/services/${item.slug}`} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#9B482E] hover:underline">
+                {item.title} <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
             ))}
           </div>
