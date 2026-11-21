@@ -67,7 +67,7 @@ export default function ProductsClientContent() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: reduceMotion ? 0 : 0.48, ease: "easeOut" }}
-              className="border-t border-[#24231f]/15 py-12 sm:py-16 lg:py-20"
+              className="border-t border-[#24231f]/10 py-12 sm:py-16 lg:py-20"
             >
               <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
                 <div className={`min-w-0 ${reverse ? "md:order-2" : "md:order-1"}`}>
@@ -123,20 +123,20 @@ export default function ProductsClientContent() {
             </motion.article>
           );
         })}
-        <p className="border-t border-[#24231f]/15 pt-5 text-xs leading-relaxed text-slate-500">
+        <p className="border-t border-[#24231f]/10 pt-5 text-xs leading-relaxed text-slate-500">
           Images are official product artwork or existing screenshots where available. Desi POS uses brand artwork because its application workspace is private.
         </p>
       </section>
 
       <section aria-labelledby="products-faq-title" className="mx-auto max-w-7xl px-5 pt-24 sm:px-6 sm:pt-32 lg:px-8">
-        <div className="grid gap-8 border-t border-[#24231f]/15 pt-12 md:grid-cols-[0.8fr_1.2fr] md:gap-20">
+        <div className="grid gap-8 border-t border-[#24231f]/10 pt-12 md:grid-cols-[0.8fr_1.2fr] md:gap-20">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#A45137]">Good to know</p>
             <h2 id="products-faq-title" className="text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">A few quick answers.</h2>
           </div>
           <div>
             {PRODUCTS_PAGE_FAQS.map((item) => (
-              <details key={item.question} className="group border-b border-[#24231f]/15">
+              <details key={item.question} className="group border-b border-[#24231f]/10">
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-5 text-left text-base font-medium leading-snug marker:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A45137] [&::-webkit-details-marker]:hidden">
                   {item.question}
                   <Plus aria-hidden="true" className="h-4 w-4 shrink-0 text-[#A45137] transition-transform group-open:rotate-45" />
@@ -149,7 +149,7 @@ export default function ProductsClientContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-6 sm:pt-32 lg:px-8">
-        <div className="flex flex-col gap-6 border-t border-[#24231f]/15 pt-12 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 border-t border-[#24231f]/10 pt-12 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#A45137]">Beyond the products</p>
             <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.045em] sm:text-4xl">
