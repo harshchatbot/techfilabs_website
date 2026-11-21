@@ -15,7 +15,7 @@ interface HeroProps {
 }
 
 export default function Hero({
-  eyebrow = "Making everyday work easier",
+  eyebrow = "Smarter work. More time for you.",
   headline = HERO_CONTENT.headline,
   subtitle = HERO_CONTENT.subtitle,
   primaryButton = { text: HERO_CONTENT.primaryButtonLabel, action: () => {} },
@@ -67,9 +67,9 @@ export default function Hero({
           >
             {headline === HERO_CONTENT.headline ? (
               <>
-                Less manual work.
+                Automate the repetitive.
                 <br />
-                <span className="text-[#8F432C]">More time for what matters.</span>
+                <span className="text-[#8F432C]">Focus on what matters.</span>
               </>
             ) : (
               headline
