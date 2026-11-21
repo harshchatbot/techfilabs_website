@@ -28,23 +28,22 @@ const NAV_THEMES: Record<string, Record<string, string>> = {
     mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
   },
   green: {
-    navScrolled: "bg-[#f7fefa] border-emerald-200/90 shadow-[0_20px_44px_rgba(3,41,29,0.18)]",
-    navIdle: "bg-[#f7fefa] border-emerald-200/90 shadow-[0_18px_40px_rgba(3,41,29,0.18)]",
-    logoWrap: "border-emerald-200/75 bg-white shadow-[0_12px_30px_rgba(16,185,129,0.10)]",
-    logoText: "text-slate-950",
-    logoTextScrolled: "text-slate-950",
-    menuActive: "text-emerald-800",
-    menuActiveScrolled: "text-emerald-800",
-    menuIdle: "text-slate-900 hover:text-emerald-800",
-    menuIdleScrolled: "text-slate-900 hover:text-emerald-800",
-    sentinelButton: "border-gray-200 text-gray-700 hover:bg-gray-50",
-    ctaButton:
-      "bg-emerald-600 text-white hover:bg-emerald-700 rounded-full px-5 py-2.5 shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
-    mobileToggle: "text-slate-950 hover:bg-emerald-50",
-    mobilePanel: "bg-[#f7fefa]",
-    mobileMenuItem: "border-slate-200 text-slate-800 hover:border-emerald-200 hover:bg-emerald-50/60",
-    mobileSentinel: "border-gray-200 text-gray-700",
-    mobileCta: "bg-emerald-600 text-white shadow-[0_14px_32px_rgba(5,150,105,0.22)]",
+    navScrolled: "bg-[#FAF9F5]/97 border-[#24231f]/12 shadow-[0_6px_24px_rgba(36,35,31,0.05)] backdrop-blur-xl",
+    navIdle: "bg-[#FAF9F5]/95 border-[#24231f]/10 backdrop-blur-xl",
+    logoWrap: "border-[#24231f]/10 bg-white",
+    logoText: "text-[#24231f]",
+    logoTextScrolled: "text-[#24231f]",
+    menuActive: "text-[#A45137]",
+    menuActiveScrolled: "text-[#A45137]",
+    menuIdle: "text-[#4F4C47] hover:text-[#A45137]",
+    menuIdleScrolled: "text-[#4F4C47] hover:text-[#A45137]",
+    sentinelButton: "border-[#24231f]/15 text-[#24231f]",
+    ctaButton: "bg-[#24231f] text-[#FAF9F5] hover:bg-[#49433e] rounded-full px-5 py-2.5",
+    mobileToggle: "text-[#24231f] hover:bg-[#F1EEE7]",
+    mobilePanel: "bg-[#FAF9F5]",
+    mobileMenuItem: "border-[#24231f]/10 text-[#24231f] hover:bg-[#F1EEE7]",
+    mobileSentinel: "border-[#24231f]/15 text-[#24231f]",
+    mobileCta: "bg-[#24231f] text-white",
   },
 };
 
@@ -111,7 +110,7 @@ export default function Navigation({
               scrolled ? navTheme.navScrolled : navTheme.navIdle
             }`}
           >
-            <Link href="/" className="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa]">
+            <Link href="/" className="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#A45137] focus:ring-offset-2 focus:ring-offset-[#FAF9F5]">
               <div className={`h-11 w-11 overflow-hidden rounded-full border sm:h-12 sm:w-12 relative ${navTheme.logoWrap}`}>
                 <Image src={logo.logo} alt={logo.name} width={48} height={48} priority className="h-full w-full object-cover scale-[1.14]" />
               </div>
@@ -132,11 +131,11 @@ export default function Navigation({
                     key={item}
                     href={getMenuHref(item)}
                     aria-current={active ? "page" : undefined}
-                    className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2.5 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${
+                    className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2.5 capitalize text-sm font-semibold tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-[#A45137] focus:ring-offset-2 focus:ring-offset-[#FAF9F5] ${
                       active
                         ? scrolled
-                          ? `${navTheme.menuActiveScrolled || navTheme.menuActive} bg-emerald-50 border border-emerald-100/80`
-                          : `${navTheme.menuActive} bg-emerald-50 border border-emerald-200/80`
+                          ? `${navTheme.menuActiveScrolled || navTheme.menuActive} border-b-2 border-[#A45137]`
+                          : `${navTheme.menuActive} border-b-2 border-[#A45137]`
                         : scrolled
                           ? navTheme.menuIdleScrolled || navTheme.menuIdle
                           : navTheme.menuIdle
@@ -149,7 +148,7 @@ export default function Navigation({
 
               <Link
                 href="/contact"
-                className={`inline-flex min-h-[46px] items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.ctaButton}`}
+                className={`inline-flex min-h-[46px] items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#A45137] focus:ring-offset-2 focus:ring-offset-[#FAF9F5] ${navTheme.ctaButton}`}
               >
                 {ctaButton.text}
                 <ArrowRight className="w-4 h-4" />
@@ -157,7 +156,7 @@ export default function Navigation({
             </div>
 
             <button
-              className={`lg:hidden rounded-xl p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#f7fefa] ${navTheme.mobileToggle}`}
+              className={`lg:hidden rounded-xl p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#A45137] focus:ring-offset-2 focus:ring-offset-[#FAF9F5] ${navTheme.mobileToggle}`}
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMenuOpen}
@@ -195,7 +194,7 @@ export default function Navigation({
               <Link
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className={`flex min-h-[56px] w-full items-center justify-center rounded-2xl px-4 py-3 font-bold focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-white/95 ${navTheme.mobileCta}`}
+                className={`flex min-h-[56px] w-full items-center justify-center rounded-2xl px-4 py-3 font-bold focus:outline-none focus:ring-2 focus:ring-[#A45137] focus:ring-offset-2 focus:ring-offset-white/95 ${navTheme.mobileCta}`}
               >
                 {ctaButton.text}
               </Link>
