@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import Schema from "@/components/Schema";
+import ProductArtwork from "@/components/products/ProductArtwork";
 import { PRODUCTS_DATA, PRODUCT_PAGE_FALLBACK } from "@/constants/data";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
 import { createNotFoundMetadata, createPageMetadata } from "@/utils/metadata";
@@ -77,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: product.name,
     description: product.summary,
     path: `/products/${product.slug}`,
-    image: product.screenshots[0],
+    image: product.screenshots[0] || product.coverImage,
     indexable: product.indexable !== false,
   });
 }
@@ -309,6 +310,8 @@ export default async function ProductPage({ params }: Props) {
                       </div>
                     ))}
                   </div>
+                ) : product.coverImage ? (
+                  <ProductArtwork product={product} priority className="h-[360px] sm:h-[420px]" />
                 ) : (
                   <div className="min-h-[360px] flex items-center justify-center text-center">
                     <div className="max-w-md">
@@ -339,7 +342,7 @@ export default async function ProductPage({ params }: Props) {
           <div className="grid lg:grid-cols-[1.35fr_0.65fr] gap-6">
             <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>
               <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>Summary</p>
-              <h2 className={`text-3xl font-bold mb-5 ${theme.title}`}>Built for speed, creativity, and scale</h2>
+              <h2 className={`text-3xl font-bold mb-5 ${theme.title}`}>About this product</h2>
               {product.intro ? <p className={`text-lg leading-relaxed mb-6 ${theme.subtitle}`}>{product.intro}</p> : null}
               <div className="space-y-5">
                 {descriptionParagraphs.map((paragraph) => (
