@@ -7,14 +7,14 @@ export const CONTACT_INFO = {
 };
 
 export const CONTACT_SECTION_CONTENT = {
-  badge: "[ Contact ]",
-  title: "Need AI automation or Salesforce support?",
+  badge: "Contact",
+  title: "Let’s make work simpler.",
   subtitle: "Tell us what you want to automate, improve, or support.",
   intakeHeader: {
     badge: "Project intake",
-    title: "Share what you want to improve.",
+    title: "Tell us what you need.",
     subtitle:
-      "Send the workflow, support need, or Salesforce challenge you are dealing with. We will help shape the right next step.",
+      "A short note is enough to get started.",
   },
   formLabels: {
     name: "Full Name",
@@ -30,7 +30,7 @@ export const CONTACT_SECTION_CONTENT = {
     projectBrief: "Project Brief",
     messagePlaceholder:
       "Describe the workflow, AI use case, or CRM process you want to automate.",
-    submitButton: "Schedule a Quick Call",
+    submitButton: "Send enquiry",
     sendingButton: "Sending...",
   },
   leadMagnet: {

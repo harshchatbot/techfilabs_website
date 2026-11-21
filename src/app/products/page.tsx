@@ -5,9 +5,9 @@ import { ORGANIZATION_CONFIG } from "@/config/organization";
 import { createPageMetadata } from "@/utils/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Software Products & Accelerators",
+  title: "Software Products | AI, Salesforce & Business Tools",
   description:
-    `Discover ${ORGANIZATION_CONFIG.name} software products, Chrome extensions, and operational automation platforms including Sentinel Society Management and FieldLens for Salesforce.`,
+    `Explore ${ORGANIZATION_CONFIG.name} products including RangManch AI, OrgReady, Desi POS, FieldLens for Salesforce, and Sentinel.`,
   path: "/products",
 });
 

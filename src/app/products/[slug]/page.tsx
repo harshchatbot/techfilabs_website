@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import Schema from "@/components/Schema";
+import ProductArtwork from "@/components/products/ProductArtwork";
 import { PRODUCTS_DATA, PRODUCT_PAGE_FALLBACK } from "@/constants/data";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
 import { createNotFoundMetadata, createPageMetadata } from "@/utils/metadata";
@@ -32,26 +33,25 @@ const PRODUCT_THEMES: Record<string, Record<string, string>> = {
     muted: "text-[#d9c8ad]",
   },
   default: {
-    pageBg: "bg-emerald-950 text-white",
-    backLink: "text-lime-200 hover:text-white",
-    tag: "text-lime-200",
-    title: "text-white",
-    subtitle: "text-lime-100/90",
-    body: "text-emerald-100/80",
-    highlightCard: "border-white/15 bg-white/5",
-    highlightLabel: "text-emerald-100/70",
-    highlightValue: "text-lime-100",
-    ctaPrimary: "bg-lime-300 text-emerald-950 hover:bg-lime-200",
-    ctaSecondary: "border-white/20 text-white hover:bg-white/10",
-    mediaCard: "border-lime-200/30 bg-gradient-to-b from-emerald-800/70 to-emerald-950",
-    mediaGlow:
-      "bg-[radial-gradient(circle_at_20%_20%,rgba(190,242,100,0.25),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(74,222,128,0.18),transparent_55%)]",
-    shotCard: "border-white/20 bg-emerald-950/40",
-    featureWrap: "border-white/10 bg-emerald-900/30",
-    featureCard: "border-white/10 bg-white/5 text-emerald-50/90",
-    surfaceCard: "border-white/10 bg-white/5",
-    sectionLabel: "text-lime-200",
-    muted: "text-emerald-100/75",
+    pageBg: "bg-[#FAF9F5] text-[#24231F]",
+    backLink: "text-[#9B482E] hover:text-[#73321F]",
+    tag: "text-[#9B482E]",
+    title: "text-[#24231F]",
+    subtitle: "text-[#494640]",
+    body: "text-[#625F59]",
+    highlightCard: "border-[#24231F]/10 bg-white/70",
+    highlightLabel: "text-[#625F59]",
+    highlightValue: "text-[#24231F]",
+    ctaPrimary: "bg-[#24231F] text-white hover:bg-[#49433E]",
+    ctaSecondary: "border-[#24231F]/20 text-[#24231F] hover:bg-[#F1EEE7]",
+    mediaCard: "border-[#24231F]/10 bg-[#F1EEE7]",
+    mediaGlow: "bg-none",
+    shotCard: "border-[#24231F]/10 bg-white",
+    featureWrap: "border-[#24231F]/10 bg-white/50",
+    featureCard: "border-[#24231F]/10 bg-white/70 text-[#24231F]",
+    surfaceCard: "border-[#24231F]/10 bg-white/50",
+    sectionLabel: "text-[#9B482E]",
+    muted: "text-[#625F59]",
   },
 };
 
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: product.name,
     description: product.summary,
     path: `/products/${product.slug}`,
-    image: product.screenshots[0],
+    image: product.screenshots[0] || product.coverImage,
     indexable: product.indexable !== false,
   });
 }
@@ -309,6 +309,8 @@ export default async function ProductPage({ params }: Props) {
                       </div>
                     ))}
                   </div>
+                ) : product.coverImage ? (
+                  <ProductArtwork product={product} priority className="h-[360px] sm:h-[420px]" />
                 ) : (
                   <div className="min-h-[360px] flex items-center justify-center text-center">
                     <div className="max-w-md">
@@ -339,7 +341,7 @@ export default async function ProductPage({ params }: Props) {
           <div className="grid lg:grid-cols-[1.35fr_0.65fr] gap-6">
             <div className={`rounded-3xl border p-8 md:p-10 ${theme.featureWrap}`}>
               <p className={`text-xs tracking-[0.2em] uppercase mb-4 ${theme.sectionLabel}`}>Summary</p>
-              <h2 className={`text-3xl font-bold mb-5 ${theme.title}`}>Built for speed, creativity, and scale</h2>
+              <h2 className={`text-3xl font-bold mb-5 ${theme.title}`}>About this product</h2>
               {product.intro ? <p className={`text-lg leading-relaxed mb-6 ${theme.subtitle}`}>{product.intro}</p> : null}
               <div className="space-y-5">
                 {descriptionParagraphs.map((paragraph) => (

@@ -237,9 +237,9 @@ export default function Contact({
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#064e2f_0%,#055536_68%,#03291d_100%)] py-20 text-white md:py-24"
+      className="relative overflow-hidden bg-[#24231F] py-20 text-white md:py-24"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.16),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(3,41,29,0.28),transparent_30%)]" />
+      <div className="absolute inset-0 bg-none" />
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid gap-10 lg:grid-cols-[0.84fr_1.16fr] lg:items-start lg:gap-14">
           <motion.div
@@ -248,20 +248,20 @@ export default function Contact({
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <p className="mb-5 text-xs uppercase tracking-[0.24em] text-emerald-300">
+            <p className="mb-5 text-xs uppercase tracking-[0.24em] text-[#E7A88D]">
               {CONTACT_SECTION_CONTENT.badge}
             </p>
             <HeadingTag className="max-w-[10ch] text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{title}</HeadingTag>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#C8C3B9] md:text-lg">{subtitle}</p>
 
             <div className="mt-8 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-3">
               {contactRows.map((item) => {
                 const content = (
                   <>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-300/16 bg-emerald-300/10 text-emerald-200">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#E7A88D]/16 bg-[#E7A88D]/10 text-[#EBC0AA]">
                     <item.icon className="h-5 w-5" />
                   </div>
-                  <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{item.label}</p>
+                  <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#B7B0A6]">{item.label}</p>
                   <p className="mt-1 text-sm leading-relaxed text-slate-100">{item.value}</p>
                   </>
                 );
@@ -270,14 +270,14 @@ export default function Contact({
                   <a
                     key={item.label}
                     href={item.href}
-                    className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors hover:bg-white/[0.06]"
+                    className="border-b border-white/20 px-0 py-4 transition-colors hover:bg-white/[0.06]"
                   >
                     {content}
                   </a>
                 ) : (
                   <div
                     key={item.label}
-                    className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4"
+                    className="border-b border-white/20 px-0 py-4"
                   >
                     {content}
                   </div>
@@ -288,18 +288,18 @@ export default function Contact({
 
             {showLeadMagnet ? (
               <div className="mt-6 rounded-[1.7rem] border border-white/10 bg-white/[0.04] p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E7A88D]">
                   {CONTACT_SECTION_CONTENT.leadMagnet.badge}
                 </p>
                 <h3 className="mt-3 text-xl font-semibold text-white">
                   {CONTACT_SECTION_CONTENT.leadMagnet.title}
                 </h3>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300">
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#C8C3B9]">
                   {CONTACT_SECTION_CONTENT.leadMagnet.description}
                 </p>
 
                 {leadMagnetStatus === "success" ? (
-                  <p className="mt-4 text-sm text-emerald-200">
+                  <p className="mt-4 text-sm text-[#EBC0AA]">
                     {CONTACT_SECTION_CONTENT.leadMagnet.successMsg}{" "}
                     <a
                       href={LEAD_MAGNET_DOWNLOAD_URL}
@@ -335,7 +335,7 @@ export default function Contact({
                   <button
                     type="submit"
                     disabled={leadMagnetSubmitting}
-                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white shadow-[0_14px_32px_rgba(5,150,105,0.18)] transition-colors hover:bg-emerald-700 disabled:opacity-60"
+                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#A45137] px-4 py-3 font-semibold text-white shadow-[0_14px_32px_rgba(5,150,105,0.18)] transition-colors hover:bg-[#8F432C] disabled:opacity-60"
                   >
                     {leadMagnetSubmitting
                       ? CONTACT_SECTION_CONTENT.leadMagnet.submittingButton
@@ -350,10 +350,10 @@ export default function Contact({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-[2rem] border border-emerald-900/12 bg-[linear-gradient(180deg,#f7fefa_0%,#effcf5_100%)] p-5 shadow-[0_20px_56px_rgba(6,95,70,0.10)] md:p-7"
+            className="rounded-[1.25rem] border border-[#24231F]/10 bg-[#FAF9F5] p-5 shadow-none md:p-7"
           >
-            <div className="mb-6 border-b border-emerald-900/10 pb-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+            <div className="mb-6 border-b border-[#24231F]/10 pb-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9B482E]">
                 {CONTACT_SECTION_CONTENT.intakeHeader.badge}
               </p>
               <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
@@ -497,7 +497,7 @@ export default function Contact({
               </LiquidMetalButton>
               <p className="text-center text-xs leading-relaxed text-slate-500">
                 By submitting this form, you agree that we may use your details to respond to your request. Read our{" "}
-                <Link className="inline-flex min-h-12 items-center rounded-md font-semibold text-emerald-700 underline underline-offset-2" href="/privacy-policy">
+                <Link className="inline-flex min-h-12 items-center rounded-md font-semibold text-[#9B482E] underline underline-offset-2" href="/privacy-policy">
                   Privacy Policy
                 </Link>
                 .

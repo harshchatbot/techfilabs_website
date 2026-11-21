@@ -63,29 +63,29 @@ export default function PrivacyPolicyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#effcf5] text-slate-800">
+    <div className="min-h-screen bg-[#FAF9F5] text-slate-800">
       <Schema id="privacy-policy-jsonld" data={schemaData} />
 
-      <header className="relative overflow-hidden bg-[linear-gradient(145deg,#03291d_0%,#064e2f_58%,#047857_100%)] px-6 pb-16 pt-36 text-white sm:pb-20 sm:pt-40">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(52,211,153,0.18),transparent_32%),radial-gradient(circle_at_12%_88%,rgba(167,243,208,0.08),transparent_30%)]" />
+      <header className="relative overflow-hidden bg-[#24231F] px-6 pb-16 pt-36 text-white sm:pb-20 sm:pt-40">
+        <div className="absolute inset-0 bg-none" />
         <div className="relative mx-auto max-w-5xl">
-          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-emerald-100/80">
-            <Link className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200" href="/">
+          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-[#E9E0D6]/80">
+            <Link className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E7A88D]" href="/">
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <span aria-current="page" className="text-emerald-50">Privacy Policy</span>
+            <span aria-current="page" className="text-[#F8F2E9]">Privacy Policy</span>
           </nav>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#E7A88D]">
             Legal &amp; Privacy
           </p>
           <h1 className="max-w-4xl font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             Privacy Policy
           </h1>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-emerald-50/85 sm:text-lg">
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-[#F8F2E9]/85 sm:text-lg">
             This policy explains how TechFi Labs handles personal information when you visit our website, contact us, or discuss our services.
           </p>
-          <p className="mt-6 text-sm font-medium text-emerald-100/75">
+          <p className="mt-6 text-sm font-medium text-[#E9E0D6]/75">
             Effective and last updated: September 7, 2026
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16 lg:py-20">
         <aside className="lg:sticky lg:top-28 lg:self-start">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#9B482E]">
             On this page
           </p>
           <nav aria-label="Privacy policy sections">
@@ -101,7 +101,7 @@ export default function PrivacyPolicyPage() {
               {sections.map((section) => (
                 <li key={section.id}>
                   <a
-                    className="inline-flex min-h-11 w-full items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-emerald-100/60 hover:text-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="inline-flex min-h-11 w-full items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-[#F1EEE7] hover:text-[#8F432C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                     href={`#${section.id}`}
                   >
                     {section.label}
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
           </nav>
         </aside>
 
-        <article className="min-w-0 rounded-[2rem] border border-emerald-900/10 bg-[#f7fefa] p-6 shadow-[0_24px_64px_rgba(6,78,47,0.08)] sm:p-9 lg:p-12">
+        <article className="min-w-0 rounded-[2rem] border border-emerald-900/10 bg-white p-6 shadow-[0_24px_64px_rgba(6,78,47,0.08)] sm:p-9 lg:p-12">
           <section aria-labelledby="overview-heading">
             <h2 id="overview-heading" className="font-heading text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
               Overview
@@ -256,7 +256,7 @@ function PolicySection({ id, title, children }: PolicySectionProps) {
       <h2 className="font-heading text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
         {title}
       </h2>
-      <div className="mt-4 space-y-4 text-base leading-7 text-slate-600 [&_a]:font-semibold [&_a]:text-emerald-700 [&_a]:underline [&_a]:decoration-emerald-300 [&_a]:underline-offset-4 [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-slate-800 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
+      <div className="mt-4 space-y-4 text-base leading-7 text-slate-600 [&_a]:font-semibold [&_a]:text-[#9B482E] [&_a]:underline [&_a]:decoration-emerald-300 [&_a]:underline-offset-4 [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-slate-800 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
         {children}
       </div>
     </section>

@@ -1,15 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Handshake, RefreshCw, ShieldCheck, Target } from "lucide-react";
 import Image from "next/image";
-
-const ICONS = [Target, Handshake, ShieldCheck, RefreshCw];
 
 interface MissionValuesProps {
   mission?: string;
   whoWeAre?: string;
-  values?: any[];
+  values?: { title: string; description: string }[];
   commitment?: string;
 }
 
@@ -20,83 +16,31 @@ export default function MissionValues({
   commitment = "",
 }: MissionValuesProps) {
   return (
-    <section className="py-28 bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid xl:grid-cols-[1fr_1.1fr] gap-8 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -18 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45 }}
-            viewport={{ once: true }}
-            className="rounded-[2rem] border border-gray-200 bg-gradient-to-br from-green-50 via-white to-white p-8 md:p-10 shadow-[0_18px_50px_rgba(15,23,42,0.05)]"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-green-600 mb-4">Our Mission</p>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">
-              Purpose with practical Salesforce execution.
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-6 max-w-2xl">{mission}</p>
-
-            <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr] items-center">
-              <div className="rounded-3xl border border-green-100 bg-white/80 p-6">
-                <p className="text-xs uppercase tracking-[0.16em] text-green-700 mb-3">Who We Are</p>
-                <p className="text-gray-600 leading-relaxed">{whoWeAre}</p>
-              </div>
-
-              <div className="relative overflow-hidden rounded-3xl aspect-[4/3] border border-gray-200 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
-                <Image
-                  src="/assets/media/why-delivery.jpg"
-                  alt="Salesforce team planning together"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                <div className="absolute left-4 bottom-4 rounded-2xl border border-white/40 bg-white/85 px-4 py-3 shadow-sm backdrop-blur-sm">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-green-700 mb-1">Mission in practice</p>
-                  <p className="text-sm font-medium text-gray-900">Stable delivery, clean handover, clear next steps.</p>
+    <section className="border-t border-[#24231F]/10 bg-white py-16 text-[#24231F] sm:py-20">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:px-8">
+        <div>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#9B482E]">Our purpose</p>
+          <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.045em] sm:text-4xl">Clear thinking. Dependable delivery.</h2>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-[#625F59]">{mission}</p>
+          <div className="relative mt-8 aspect-[5/3] overflow-hidden rounded-[1.25rem] bg-[#F1EEE7]">
+            <Image src="/assets/media/why-delivery.jpg" alt="Team collaborating on a technology delivery project" fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" />
+          </div>
+          <p className="mt-5 text-sm leading-relaxed text-[#625F59]">{whoWeAre}</p>
+        </div>
+        <div>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#9B482E]">What guides us</p>
+          <div className="border-t border-[#24231F]/10">
+            {values.map((value, index) => (
+              <div key={value.title} className="grid gap-2 border-b border-[#24231F]/10 py-6 sm:grid-cols-[2rem_1fr] sm:gap-5">
+                <span className="text-xs font-semibold text-[#9B482E]">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="text-lg font-semibold">{value.title}</h3>
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-[#625F59]">{value.description}</p>
                 </div>
               </div>
-            </div>
-          </motion.div>
-
-          <div className="grid gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-green-600 mb-4">Our Values</p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {values.map((value, index) => {
-                  const Icon = ICONS[index % ICONS.length];
-                  return (
-                    <div
-                      key={value.title}
-                      className="rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.04)]"
-                    >
-                      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-green-50 text-green-700">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{value.title}</h3>
-                      <p className="text-sm leading-relaxed text-gray-600">{value.description}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.08 }}
-              viewport={{ once: true }}
-              className="rounded-[2rem] border border-green-100 bg-green-50/70 p-7 shadow-[0_16px_40px_rgba(22,101,52,0.05)]"
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-green-700 mb-4">Our Commitment</p>
-              <p className="text-base md:text-lg leading-relaxed text-gray-700 max-w-3xl">{commitment}</p>
-            </motion.div>
+            ))}
           </div>
+          {commitment && <p className="mt-7 max-w-lg text-sm leading-relaxed text-[#625F59]">{commitment}</p>}
         </div>
       </div>
     </section>

@@ -38,31 +38,30 @@ export default function CaseStudiesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-emerald-950 px-6 pb-20 pt-32 text-white sm:pt-36">
+    <div className="min-h-screen bg-[#FAF9F5] px-5 pb-20 pt-32 text-[#24231F] sm:px-6 sm:pt-40">
       <Schema id="case-studies-index-schema" data={schemaData} />
       <div className="mx-auto max-w-7xl">
-        <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">Delivery Experience</p>
-          <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-            Representative Salesforce Delivery Experience
+        <header className="max-w-4xl pb-14 sm:pb-20">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#9B482E]">Delivery experience</p>
+          <h1 className="font-serif text-[clamp(2.8rem,6vw,5.5rem)] font-normal leading-[1.05] tracking-[-0.055em]">
+            Experience behind the work.
           </h1>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-emerald-100/80 sm:text-lg">
-            Selected examples of Salesforce implementation and support experience. Client names and confidential details are intentionally omitted.
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#625F59] sm:text-lg">
+            Selected Salesforce delivery examples. Confidential client details are omitted.
           </p>
-        </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {CASE_STUDIES_DATA.map((study) => (
-            <article key={study.slug} className="flex min-w-0 flex-col rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_52px_rgba(3,41,29,0.2)] sm:p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">{study.industry}</p>
-              <h2 className="mt-4 text-2xl font-bold text-white">{study.title}</h2>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-emerald-100/75">{study.summary}</p>
-              <Link href={`/case-studies/${study.slug}`} className="mt-6 inline-flex min-h-[48px] items-center gap-2 self-start rounded-full border border-emerald-200/20 bg-white/5 px-5 py-3 font-semibold text-emerald-50 transition-colors hover:bg-white/10">
-                View delivery overview <ArrowRight className="h-4 w-4" />
+        </header>
+        <section aria-label="Case studies" className="grid border-t border-[#24231F]/10 md:grid-cols-2 lg:grid-cols-3">
+          {CASE_STUDIES_DATA.map((study, index) => (
+            <article key={study.slug} className={`border-b border-[#24231F]/10 py-8 md:pr-7 lg:py-10 ${index % 3 !== 0 ? "lg:border-l lg:pl-7" : ""}`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#9B482E]">{study.industry}</p>
+              <h2 className="mt-4 font-serif text-2xl font-normal leading-tight tracking-[-0.035em] sm:text-3xl">{study.title}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-[#625F59]">{study.summary}</p>
+              <Link href={`/case-studies/${study.slug}`} className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#9B482E] hover:underline">
+                Read overview <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
             </article>
           ))}
-        </div>
+        </section>
       </div>
     </div>
   );

@@ -1,18 +1,19 @@
 "use client";
 
-import SalesforceAccelerators from "@/components/sections/SalesforceAccelerators";
-import FAQSection from "@/components/sections/FAQSection";
-import Schema from "@/components/Schema";
-import { PRODUCTS_DATA, HOMEPAGE_ACCELERATORS, PRODUCTS_PAGE_FAQS } from "@/constants";
-import { ORGANIZATION_CONFIG } from "@/config/organization";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import Schema from "@/components/Schema";
+import ProductArtwork from "@/components/products/ProductArtwork";
+import { PRODUCTS_DATA, PRODUCTS_PAGE_FAQS } from "@/constants";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
 
 export default function ProductsClientContent() {
+  const reduceMotion = useReducedMotion();
   const productsSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "TechFi Labs Products & Accelerators",
+    name: "TechFi Labs software products",
     itemListElement: PRODUCTS_DATA.map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -21,96 +22,152 @@ export default function ProductsClientContent() {
       url: `${ORGANIZATION_CONFIG.url}/products/${product.slug}`,
     })),
   };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: PRODUCTS_PAGE_FAQS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
 
   return (
-    <div className="pt-24 pb-16">
+    <main className="bg-[#FAF9F5] pb-20 pt-28 text-[#24231F] sm:pt-36">
       <Schema id="products-page-schema" data={productsSchema} />
-      {/* Page Header */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-4">
-            Proprietary Products & Accelerators
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl font-heading mb-6">
-            Selected Work & Software Products
-          </h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            We design, build, and deploy high-impact SaaS tools, Chrome extensions, and operational automation platforms.
-          </p>
-        </div>
-      </div>
+      <Schema id="products-page-faq-schema" data={faqSchema} />
 
-      {/* Flagship SaaS & Product Cards */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PRODUCTS_DATA.map((product) => {
-            const IconComponent = product.icon;
-            return (
-              <div
-                key={product.slug}
-                className="flex min-w-0 flex-col justify-between rounded-3xl border border-emerald-900/10 bg-[#f7fefa] p-6 shadow-sm transition-all duration-300 hover:border-emerald-300 hover:shadow-md sm:p-8"
-              >
-                <div>
-                  <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
-                    <div className="flex min-w-0 flex-1 items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
-                        <IconComponent className="h-6 w-6" />
-                      </div>
-                      <div className="min-w-0">
-                        <h2 className="break-words text-xl font-bold text-slate-900 font-heading">
-                          {product.name}
-                        </h2>
-                        <span className="text-xs text-slate-500 font-medium">{product.category}</span>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-bold text-emerald-800">
+      <header className="mx-auto max-w-7xl px-5 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+        <p className="mb-7 text-xs font-semibold uppercase tracking-[0.24em] text-[#A45137]">
+          TechFi Labs / Our work
+        </p>
+        <h1 className="max-w-5xl text-[clamp(2.8rem,7vw,6.5rem)] font-semibold leading-[1.02] tracking-[-0.065em]">
+          Software, built<br />
+          <span className="text-[#A45137]">with purpose.</span>
+        </h1>
+        <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
+          <p className="max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+            Useful software for creators, Salesforce teams and everyday business operations.
+          </p>
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            Selected products / {String(PRODUCTS_DATA.length).padStart(2, "0")}
+          </span>
+        </div>
+      </header>
+
+      <section aria-label="Our software products" className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        {PRODUCTS_DATA.map((product, index) => {
+          const reverse = index % 2 === 1;
+          const number = String(index + 1).padStart(2, "0");
+
+          return (
+            <motion.article
+              key={product.slug}
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: reduceMotion ? 0 : 0.48, ease: "easeOut" }}
+              className="border-t border-[#24231f]/10 py-12 sm:py-16 lg:py-20"
+            >
+              <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
+                <div className={`min-w-0 ${reverse ? "md:order-2" : "md:order-1"}`}>
+                  <div className="mb-8 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.17em] text-[#A45137]">
+                    <span className="tabular-nums">{number}</span>
+                    <span aria-hidden="true" className="h-px w-7 bg-[#A45137]/30" />
+                    <span>{product.category}</span>
+                  </div>
+                  <h2 className="max-w-lg text-4xl font-semibold leading-[1.07] tracking-[-0.055em] sm:text-5xl lg:text-[3.5rem]">
+                    {product.name}
+                  </h2>
+                  <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-600 sm:text-lg">
+                    {product.summary}
+                  </p>
+                  <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-500">
+                    <span className="inline-flex items-center gap-2">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#A45137]" />
                       {product.status}
                     </span>
-                  </div>
-
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {product.tagline}
-                  </p>
-
-                  <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                    {product.highlights.map((h, i) => (
-                      <div key={i} className="min-w-0 text-center">
-                        <div className="break-words text-[11px] font-bold leading-tight text-slate-900 sm:text-xs">{h.value}</div>
-                        <div className="mt-1 break-words text-[10px] leading-tight text-slate-500 sm:text-[11px]">{h.label}</div>
-                      </div>
+                    {product.platforms.slice(0, 2).map((platform) => (
+                      <span key={platform}>{platform}</span>
                     ))}
+                  </div>
+                  <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="group inline-flex min-h-11 items-center gap-2 border-b border-[#A45137] pb-1 text-sm font-semibold text-[#8F432C] transition-colors hover:border-[#C46849] hover:text-[#A45137] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A45137]"
+                    >
+                      Explore {product.shortName}
+                      <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-1" />
+                    </Link>
+                    {product.links.website && (
+                      <a
+                        href={product.links.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-[#A45137] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A45137]"
+                      >
+                        Visit website <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
 
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-emerald-600 hover:shadow-md"
-                >
-                  View Product Showcase
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <div className={`min-w-0 ${reverse ? "md:order-1" : "md:order-2"}`}>
+                  <ProductArtwork
+                    product={product}
+                    variant="editorial"
+                    className="h-[270px] rounded-[1.25rem] sm:h-[360px] lg:h-[420px]"
+                  />
+                </div>
               </div>
-            );
-          })}
+            </motion.article>
+          );
+        })}
+        <p className="border-t border-[#24231f]/10 pt-5 text-xs leading-relaxed text-slate-500">
+          Images are official product artwork or existing screenshots where available. Desi POS uses brand artwork because its application workspace is private.
+        </p>
+      </section>
+
+      <section aria-labelledby="products-faq-title" className="mx-auto max-w-7xl px-5 pt-24 sm:px-6 sm:pt-32 lg:px-8">
+        <div className="grid gap-8 border-t border-[#24231f]/10 pt-12 md:grid-cols-[0.8fr_1.2fr] md:gap-20">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#A45137]">Good to know</p>
+            <h2 id="products-faq-title" className="text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">A few quick answers.</h2>
+          </div>
+          <div>
+            {PRODUCTS_PAGE_FAQS.map((item) => (
+              <details key={item.question} className="group border-b border-[#24231f]/10">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-5 text-left text-base font-medium leading-snug marker:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A45137] [&::-webkit-details-marker]:hidden">
+                  {item.question}
+                  <Plus aria-hidden="true" className="h-4 w-4 shrink-0 text-[#A45137] transition-transform group-open:rotate-45" />
+                </summary>
+                <p className="max-w-2xl pb-6 pr-8 text-sm leading-relaxed text-slate-600 sm:text-base">{item.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Homepage Accelerators & Tools Component */}
-      <SalesforceAccelerators
-        title="More Delivery Tools & Frameworks"
-        subtitle="Reusable frameworks, RAG systems, and production starter kits built for clients."
-        items={HOMEPAGE_ACCELERATORS}
-      />
-
-      {/* Products FAQ Section */}
-      <div className="mt-16">
-        <FAQSection
-          eyebrow="Products & Licensing FAQ"
-          title="Software & Accelerator FAQ"
-          faqs={PRODUCTS_PAGE_FAQS}
-          schemaId="products-page-faq-schema"
-        />
-      </div>
-    </div>
+      <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-6 sm:pt-32 lg:px-8">
+        <div className="flex flex-col gap-6 border-t border-[#24231f]/10 pt-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#A45137]">Beyond the products</p>
+            <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.045em] sm:text-4xl">
+              Have a problem worth building for?
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
+              We also design AI automation, Salesforce solutions and custom software for business teams.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="group inline-flex min-h-12 shrink-0 items-center gap-2 self-start border-b border-[#A45137] pb-1 text-sm font-semibold text-[#8F432C] hover:text-[#A45137] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A45137]"
+          >
+            Start a conversation
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

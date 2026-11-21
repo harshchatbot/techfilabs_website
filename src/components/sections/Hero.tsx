@@ -1,18 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import LiquidMetalButton from "../ui/LiquidMetalButton";
-import { prefersReducedMotion } from "../../utils/motionConfig";
-import DottedSurface from "../ui/DottedSurface";
-
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { HERO_CONTENT } from "@/constants";
-
-function getDeliveryText() {
-  const now = new Date();
-  return `${HERO_CONTENT.eyebrowPrefix} • ${now.getFullYear()}`;
-}
 
 interface HeroProps {
   eyebrow?: string;
@@ -23,66 +15,121 @@ interface HeroProps {
   chips?: string[];
 }
 
+const FIRST_LINE = "Automate the repetitive.";
+const SECOND_LINE = "Focus on what matters.";
+const TYPE_INTERVAL_MS = 55;
+
 export default function Hero({
-  eyebrow = getDeliveryText(),
+  eyebrow = "Smarter work. More time for you.",
   headline = HERO_CONTENT.headline,
   subtitle = HERO_CONTENT.subtitle,
   primaryButton = { text: HERO_CONTENT.primaryButtonLabel, action: () => {} },
-  secondaryButton = { text: "Explore Services", href: "/services" },
-  chips = HERO_CONTENT.chips,
+  secondaryButton = { text: "Explore services", href: "/services" },
 }: HeroProps) {
+  const reduceMotion = useReducedMotion();
+  const [typedCount, setTypedCount] = useState(0);
+  const [secondLineStarted, setSecondLineStarted] = useState(false);
+  const isDefaultHeadline = headline === HERO_CONTENT.headline;
+  const firstLineComplete = typedCount >= FIRST_LINE.length;
+  const secondLineComplete = typedCount >= FIRST_LINE.length + SECOND_LINE.length;
+  const showFullHeadline = reduceMotion === true;
 
-  const reduceMotion = prefersReducedMotion();
+  useEffect(() => {
+    if (!isDefaultHeadline || reduceMotion) return;
+
+    let step = 0;
+    let interval: ReturnType<typeof setInterval> | undefined;
+    const start = setTimeout(() => {
+      interval = setInterval(() => {
+        step += 1;
+        if (step <= FIRST_LINE.length) {
+          setTypedCount(step);
+          return;
+        }
+        if (step === FIRST_LINE.length + 1) {
+          setSecondLineStarted(true);
+          return;
+        }
+        const next = step - 1;
+        setTypedCount(next);
+        if (next >= FIRST_LINE.length + SECOND_LINE.length) {
+          clearInterval(interval);
+        }
+      }, TYPE_INTERVAL_MS);
+    }, 550);
+
+    return () => {
+      clearTimeout(start);
+      if (interval) clearInterval(interval);
+    };
+  }, [isDefaultHeadline, reduceMotion]);
+
 
   return (
     <section
       id="home"
-      className="relative min-h-[78svh] overflow-hidden pt-32 sm:pt-36 md:min-h-[86svh] md:pt-40 lg:min-h-[90svh]"
+      aria-labelledby="home-heading"
+      className="relative isolate flex min-h-[660px] items-center overflow-hidden bg-[#FAF9F5] pb-20 pt-36 text-[#24231F] sm:min-h-[720px] sm:pb-24 sm:pt-40 lg:min-h-[780px]"
     >
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      {/* The video covers the entire hero. Low opacity and an ivory overlay protect text contrast. */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <video
-          className="h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.40] motion-reduce:hidden sm:opacity-[0.46]"
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
           poster="/assets/techfi-ai-hero-poster.webp"
+          tabIndex={-1}
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
+        <div className="absolute inset-0 hidden bg-[url('/assets/techfi-ai-hero-poster.webp')] bg-cover bg-center opacity-[0.40] motion-reduce:block" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(250,249,245,0.91)_0%,rgba(250,249,245,0.85)_45%,rgba(250,249,245,0.72)_100%)] sm:bg-[linear-gradient(90deg,rgba(250,249,245,0.90)_0%,rgba(250,249,245,0.76)_48%,rgba(250,249,245,0.40)_100%)]" />
       </div>
 
-      <div className="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(3,41,29,0.74)_0%,rgba(3,41,29,0.62)_18%,rgba(3,41,29,0.62)_42%,rgba(3,41,29,0.78)_76%,rgba(3,41,29,0.92)_100%)]" />
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_18%_22%,rgba(16,185,129,0.20),transparent_24%),radial-gradient(circle_at_76%_20%,rgba(52,211,153,0.10),transparent_18%),radial-gradient(circle_at_50%_82%,rgba(6,95,70,0.28),transparent_34%)]" />
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(3,41,29,0.78)_0%,rgba(3,41,29,0.68)_26%,rgba(3,41,29,0.38)_52%,rgba(3,41,29,0.18)_72%,rgba(3,41,29,0.24)_100%)]" />
-      <div className="absolute inset-0 z-[2] md:hidden bg-[linear-gradient(180deg,rgba(3,41,29,0.84)_0%,rgba(3,41,29,0.70)_26%,rgba(3,41,29,0.72)_56%,rgba(3,41,29,0.90)_100%)]" />
-      <DottedSurface className="z-[2] opacity-[0.08]" />
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top,transparent_0%,transparent_54%,rgba(3,41,29,0.28)_100%)]" />
-
-      <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl items-center px-5 pb-12 sm:px-6 md:min-h-[86svh] md:pb-16 lg:min-h-[90svh]">
-        <div className="w-full max-w-4xl">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="mb-5 inline-flex items-center rounded-full border border-white/14 bg-white/[0.10] px-4 py-2 shadow-[0_18px_42px_rgba(3,41,29,0.2)] backdrop-blur-md"
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[790px]">
+          <motion.p
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="mb-7 text-xs font-semibold uppercase tracking-[0.18em] text-[#8F432C]"
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 md:text-xs">
-              {eyebrow}
-            </span>
-          </motion.div>
+            {eyebrow}
+          </motion.p>
 
           <motion.h1
-            initial={reduceMotion ? false : { opacity: 0, y: 26 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.62, ease: "easeOut", delay: 0.06 }}
-            className="max-w-[13ch] text-[2.35rem] font-extrabold leading-[0.96] tracking-[-0.04em] text-white sm:max-w-[14ch] sm:text-[2.9rem] md:max-w-[15ch] md:text-[3.45rem] lg:max-w-4xl lg:text-[3.75rem] xl:text-[4rem]"
+            id="home-heading"
+            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.05 }}
+            className="max-w-[16ch] font-serif text-[clamp(3.15rem,6.5vw,6.2rem)] font-normal leading-[1.04] tracking-[-0.055em]"
           >
-            {headline === HERO_CONTENT.headline ? (
+            {isDefaultHeadline ? (
               <>
-                AI Agents &amp; Automation
-                <span className="lg:block"> for Modern Business Teams</span>
+                <span className="sr-only">{headline}</span>
+                <span aria-hidden="true" className="block">
+                  <span className="relative block">
+                    <span className="invisible">{FIRST_LINE}</span>
+                    <span className="absolute inset-0">
+                      {showFullHeadline ? FIRST_LINE : FIRST_LINE.slice(0, typedCount)}
+                      {!showFullHeadline && !firstLineComplete && (
+                        <span className="ml-1 inline-block h-[0.12em] w-[0.12em] rounded-full bg-[#8F432C] align-middle animate-pulse" />
+                      )}
+                    </span>
+                  </span>
+                  <span className="relative block text-[#8F432C]">
+                    <span className="invisible">{SECOND_LINE}</span>
+                    <span className="absolute inset-0">
+                      {showFullHeadline ? SECOND_LINE : SECOND_LINE.slice(0, Math.max(0, typedCount - FIRST_LINE.length))}
+                      {!showFullHeadline && secondLineStarted && !secondLineComplete && (
+                        <span className="ml-1 inline-block h-[0.12em] w-[0.12em] rounded-full bg-[#8F432C] align-middle animate-pulse" />
+                      )}
+                    </span>
+                  </span>
+                </span>
               </>
             ) : (
               headline
@@ -90,80 +137,42 @@ export default function Hero({
           </motion.h1>
 
           <motion.p
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.58, ease: "easeOut", delay: 0.2 }}
-            className="mb-5 mt-5 max-w-xl rounded-xl bg-[rgba(3,41,29,0.46)] px-4 py-3 text-base font-medium leading-relaxed text-white shadow-[0_10px_30px_rgba(3,41,29,0.2)] backdrop-blur-sm [text-shadow:0_1px_12px_rgba(0,0,0,0.7)] sm:text-lg md:mt-6 md:text-[1.04rem]"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.12 }}
+            className="mt-8 max-w-[570px] text-base leading-[1.8] text-[#494640] sm:text-lg"
           >
             {subtitle}
           </motion.p>
 
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.56, ease: "easeOut", delay: 0.24 }}
-            className="mb-6 flex flex-wrap gap-2.5 sm:gap-3"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.18 }}
+            className="mt-10 flex flex-wrap items-center gap-5"
           >
-            {chips.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-white/16 bg-white/[0.12] px-3.5 py-1.5 text-[11px] font-medium text-white shadow-[0_12px_28px_rgba(3,41,29,0.16)] backdrop-blur-sm sm:text-xs"
-              >
-                {item}
-              </span>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.58, ease: "easeOut", delay: 0.3 }}
-            className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 lg:gap-4"
-          >
-            <LiquidMetalButton
-              as={Link}
+            <Link
               href="/contact"
-              className="min-h-[56px] text-base focus:ring-offset-[#052e1f] sm:min-w-[228px] sm:px-7"
+              onClick={primaryButton.action}
               aria-label={primaryButton.text}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#24231F] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#49433E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B482E]"
             >
-              <span>{primaryButton.text}</span>
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </LiquidMetalButton>
-
-            {secondaryButton ? (
+              {primaryButton.text}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+            {secondaryButton && (
               <Link
                 href={secondaryButton.href || "/services"}
                 onClick={secondaryButton.action}
-                className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full border border-emerald-100/35 bg-[rgba(3,41,29,0.78)] px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(3,41,29,0.24)] backdrop-blur-md transition-all duration-300 hover:translate-y-[-1px] hover:bg-[rgba(6,78,47,0.88)] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-[#052e1f] sm:min-w-[200px] sm:px-7"
+                className="inline-flex min-h-12 items-center gap-1.5 border-b border-[#24231F]/40 px-1 text-sm font-semibold text-[#24231F] transition-colors hover:border-[#8F432C] hover:text-[#8F432C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8F432C]"
               >
                 {secondaryButton.text}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
               </Link>
-            ) : null}
-          </motion.div>
-
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.58, ease: "easeOut", delay: 0.36 }}
-            className="mt-7 hidden max-w-max items-center gap-3 rounded-2xl border border-white/14 bg-white/[0.09] px-4 py-3 text-white shadow-[0_18px_42px_rgba(3,41,29,0.16)] backdrop-blur-md xl:inline-flex"
-          >
-            <span className="relative flex h-2.5 w-2.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300/70" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-300" />
-            </span>
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                {HERO_CONTENT.liveLayerBadge}
-              </p>
-              <p className="mt-1 text-sm text-white/80">{HERO_CONTENT.liveLayerChannels}</p>
-
-            </div>
+            )}
           </motion.div>
         </div>
       </div>
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-28 bg-gradient-to-b from-transparent via-[#f7fcf9]/70 to-white" />
     </section>
   );
 }
