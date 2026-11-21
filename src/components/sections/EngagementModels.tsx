@@ -24,7 +24,7 @@ export default function EngagementModels({
           <h2 className="font-serif text-3xl font-normal tracking-[-0.045em] sm:text-4xl">{title}</h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#625F59]">{subtitle}</p>
         </div>
-        <div className="mt-10 grid border-t border-[#24231F]/15 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid border-t border-[#24231F]/10 sm:grid-cols-2 lg:grid-cols-4">
           {models.map((model, index) => (
             <motion.article
               key={model.title}
@@ -32,7 +32,7 @@ export default function EngagementModels({
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: reduceMotion ? 0 : index * 0.05 }}
-              className={`border-b border-[#24231F]/15 py-7 sm:pr-5 lg:border-b-0 ${index > 0 ? "lg:border-l lg:border-[#24231F]/15 lg:pl-6" : ""}`}
+              className={`border-b border-[#24231F]/10 py-7 sm:pr-5 lg:border-b-0 ${index > 0 ? "lg:border-l lg:border-[#24231F]/10 lg:pl-6" : ""}`}
             >
               <p className="text-xs font-semibold text-[#9B482E]">{String(index + 1).padStart(2, "0")}</p>
               <h3 className="mt-4 text-lg font-semibold">{model.title}</h3>
