@@ -31,7 +31,7 @@ export default function ExpertiseSection({
             {title}
           </h2>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-[#625F59]">{subtitle}</p>
-          <div className="mt-8 border-t border-[#24231F]/15">
+          <div className="mt-8 border-t border-[#24231F]/10">
             {CAPABILITIES.map(({ title: itemTitle, description }, index) => (
               <motion.div
                 key={itemTitle}
@@ -39,7 +39,7 @@ export default function ExpertiseSection({
                 whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: reduceMotion ? 0 : index * 0.04 }}
-                className="flex flex-col gap-1 border-b border-[#24231F]/15 py-4 sm:flex-row sm:items-baseline sm:gap-6"
+                className="flex flex-col gap-1 border-b border-[#24231F]/10 py-4 sm:flex-row sm:items-baseline sm:gap-6"
               >
                 <h3 className="w-24 shrink-0 text-base font-semibold">{itemTitle}</h3>
                 <p className="text-sm leading-relaxed text-[#625F59]">{description}</p>
@@ -60,7 +60,7 @@ export default function ExpertiseSection({
               className="object-cover"
             />
           </div>
-          <div className="mt-5 flex flex-wrap items-start justify-between gap-3 border-b border-[#24231F]/15 pb-5">
+          <div className="mt-5 flex flex-wrap items-start justify-between gap-3 border-b border-[#24231F]/10 pb-5">
             <div>
               <p className="text-sm font-semibold">FieldLens for Salesforce</p>
               <p className="mt-1 text-xs leading-relaxed text-[#625F59]">Explore field dependencies and usage in Lightning.</p>
