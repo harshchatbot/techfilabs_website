@@ -28,7 +28,7 @@ const NAV_THEMES: Record<string, Record<string, string>> = {
     mobileCta: "bg-[#f3ead9] text-[#3d2a1f]",
   },
   green: {
-    navScrolled: "bg-[#FAF9F5]/97 border-[#24231f]/12 shadow-[0_6px_24px_rgba(36,35,31,0.05)] backdrop-blur-xl",
+    navScrolled: "bg-[#FAF9F5]/95 border-[#24231f]/10 shadow-[0_6px_24px_rgba(36,35,31,0.05)] backdrop-blur-xl",
     navIdle: "bg-[#FAF9F5]/95 border-[#24231f]/10 backdrop-blur-xl",
     logoWrap: "border-[#24231f]/10 bg-white",
     logoText: "text-[#24231f]",
@@ -37,12 +37,12 @@ const NAV_THEMES: Record<string, Record<string, string>> = {
     menuActiveScrolled: "text-[#A45137]",
     menuIdle: "text-[#4F4C47] hover:text-[#A45137]",
     menuIdleScrolled: "text-[#4F4C47] hover:text-[#A45137]",
-    sentinelButton: "border-[#24231f]/15 text-[#24231f]",
+    sentinelButton: "border-[#24231f]/10 text-[#24231f]",
     ctaButton: "bg-[#24231f] text-[#FAF9F5] hover:bg-[#49433e] rounded-full px-5 py-2.5",
     mobileToggle: "text-[#24231f] hover:bg-[#F1EEE7]",
     mobilePanel: "bg-[#FAF9F5]",
     mobileMenuItem: "border-[#24231f]/10 text-[#24231f] hover:bg-[#F1EEE7]",
-    mobileSentinel: "border-[#24231f]/15 text-[#24231f]",
+    mobileSentinel: "border-[#24231f]/10 text-[#24231f]",
     mobileCta: "bg-[#24231f] text-white",
   },
 };
