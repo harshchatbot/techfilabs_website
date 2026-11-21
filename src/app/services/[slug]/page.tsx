@@ -120,7 +120,7 @@ export default async function ServicePage({ params }: Props) {
             <a href="https://wa.me/917976111087" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center border-b border-[#A45137] text-sm font-semibold text-[#9B482E] hover:underline">WhatsApp</a>
           </div>
         </header>
-        <div className="mt-14 grid gap-12 border-t border-[#24231F]/15 pt-10 lg:grid-cols-2 lg:gap-20">
+        <div className="mt-14 grid gap-12 border-t border-[#24231F]/10 pt-10 lg:grid-cols-2 lg:gap-20">
           <section>
             <h2 className="font-serif text-2xl font-normal sm:text-3xl">What this helps you achieve</h2>
             <ul className="mt-6 space-y-4">
@@ -142,11 +142,11 @@ export default async function ServicePage({ params }: Props) {
             </ul>
           </section>
         </div>
-        <section className="mt-16 border-t border-[#24231F]/15 pt-10">
+        <section className="mt-16 border-t border-[#24231F]/10 pt-10">
           <h2 className="font-serif text-2xl font-normal sm:text-3xl">How we work</h2>
-          <div className="mt-6 grid border-t border-[#24231F]/15 sm:grid-cols-3">
+          <div className="mt-6 grid border-t border-[#24231F]/10 sm:grid-cols-3">
             {service.process.map((step, index) => (
-              <div key={step} className={`border-b border-[#24231F]/15 py-6 sm:pr-6 ${index > 0 ? "sm:border-l sm:pl-6" : ""}`}>
+              <div key={step} className={`border-b border-[#24231F]/10 py-6 sm:pr-6 ${index > 0 ? "sm:border-l sm:pl-6" : ""}`}>
                 <p className="text-xs font-semibold text-[#9B482E]">{String(index + 1).padStart(2, "0")}</p>
                 <p className="mt-3 text-sm leading-relaxed text-[#625F59]">{step}</p>
               </div>
@@ -154,11 +154,11 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </section>
         {service.faq.length > 0 && (
-          <section className="mt-16 grid gap-8 border-t border-[#24231F]/15 pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+          <section className="mt-16 grid gap-8 border-t border-[#24231F]/10 pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <h2 className="font-serif text-2xl font-normal sm:text-3xl">Questions, answered.</h2>
-            <div className="border-t border-[#24231F]/15">
+            <div className="border-t border-[#24231F]/10">
               {service.faq.map((item) => (
-                <details key={item.q} className="group border-b border-[#24231F]/15">
+                <details key={item.q} className="group border-b border-[#24231F]/10">
                   <summary className="cursor-pointer py-5 text-base font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A45137]">{item.q}</summary>
                   <p className="pb-5 text-sm leading-relaxed text-[#625F59]">{item.a}</p>
                 </details>
@@ -166,7 +166,7 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </section>
         )}
-        <section className="mt-16 border-t border-[#24231F]/15 pt-10" aria-labelledby="related-services-heading">
+        <section className="mt-16 border-t border-[#24231F]/10 pt-10" aria-labelledby="related-services-heading">
           <h2 id="related-services-heading" className="font-serif text-2xl font-normal sm:text-3xl">Related services</h2>
           <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
             {relatedServices.map((item) => (
