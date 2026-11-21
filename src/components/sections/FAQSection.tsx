@@ -48,9 +48,9 @@ export default function FAQSection({
           </h2>
           {subtitle && <p className={`mt-4 max-w-sm text-sm leading-relaxed ${darkTheme ? "text-[#C8C3B9]" : "text-[#625F59]"}`}>{subtitle}</p>}
         </div>
-        <div className={`border-t ${darkTheme ? "border-white/20" : "border-[#24231F]/15"}`}>
+        <div className={`border-t ${darkTheme ? "border-white/20" : "border-[#24231F]/10"}`}>
           {faqs.map((item) => (
-            <details key={item.question} className={`group border-b ${darkTheme ? "border-white/20" : "border-[#24231F]/15"}`}>
+            <details key={item.question} className={`group border-b ${darkTheme ? "border-white/20" : "border-[#24231F]/10"}`}>
               <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base font-medium leading-snug focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#A45137] [&::-webkit-details-marker]:hidden">
                 {item.question}
                 <Plus aria-hidden="true" className={`h-4 w-4 shrink-0 transition-transform group-open:rotate-45 ${darkTheme ? "text-[#E7A88D]" : "text-[#9B482E]"}`} />
