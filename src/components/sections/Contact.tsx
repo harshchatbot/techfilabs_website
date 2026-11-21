@@ -270,14 +270,14 @@ export default function Contact({
                   <a
                     key={item.label}
                     href={item.href}
-                    className="border-b border-white/15 px-0 py-4 transition-colors hover:bg-white/[0.06]"
+                    className="border-b border-white/20 px-0 py-4 transition-colors hover:bg-white/[0.06]"
                   >
                     {content}
                   </a>
                 ) : (
                   <div
                     key={item.label}
-                    className="border-b border-white/15 px-0 py-4"
+                    className="border-b border-white/20 px-0 py-4"
                   >
                     {content}
                   </div>
