@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -14,6 +15,10 @@ interface HeroProps {
   chips?: string[];
 }
 
+const FIRST_LINE = "Automate the repetitive.";
+const SECOND_LINE = "Focus on what matters.";
+const TYPE_INTERVAL_MS = 55;
+
 export default function Hero({
   eyebrow = "Smarter work. More time for you.",
   headline = HERO_CONTENT.headline,
@@ -22,6 +27,43 @@ export default function Hero({
   secondaryButton = { text: "Explore services", href: "/services" },
 }: HeroProps) {
   const reduceMotion = useReducedMotion();
+  const [typedCount, setTypedCount] = useState(0);
+  const [secondLineStarted, setSecondLineStarted] = useState(false);
+  const isDefaultHeadline = headline === HERO_CONTENT.headline;
+  const firstLineComplete = typedCount >= FIRST_LINE.length;
+  const secondLineComplete = typedCount >= FIRST_LINE.length + SECOND_LINE.length;
+  const showFullHeadline = reduceMotion === true;
+
+  useEffect(() => {
+    if (!isDefaultHeadline || reduceMotion) return;
+
+    let step = 0;
+    let interval: ReturnType<typeof setInterval> | undefined;
+    const start = setTimeout(() => {
+      interval = setInterval(() => {
+        step += 1;
+        if (step <= FIRST_LINE.length) {
+          setTypedCount(step);
+          return;
+        }
+        if (step === FIRST_LINE.length + 1) {
+          setSecondLineStarted(true);
+          return;
+        }
+        const next = step - 1;
+        setTypedCount(next);
+        if (next >= FIRST_LINE.length + SECOND_LINE.length) {
+          clearInterval(interval);
+        }
+      }, TYPE_INTERVAL_MS);
+    }, 550);
+
+    return () => {
+      clearTimeout(start);
+      if (interval) clearInterval(interval);
+    };
+  }, [isDefaultHeadline, reduceMotion]);
+
 
   return (
     <section
@@ -65,11 +107,29 @@ export default function Hero({
             transition={{ duration: 0.55, delay: 0.05 }}
             className="max-w-[16ch] font-serif text-[clamp(3.15rem,6.5vw,6.2rem)] font-normal leading-[1.04] tracking-[-0.055em]"
           >
-            {headline === HERO_CONTENT.headline ? (
+            {isDefaultHeadline ? (
               <>
-                Automate the repetitive.
-                <br />
-                <span className="text-[#8F432C]">Focus on what matters.</span>
+                <span className="sr-only">{headline}</span>
+                <span aria-hidden="true" className="block">
+                  <span className="relative block">
+                    <span className="invisible">{FIRST_LINE}</span>
+                    <span className="absolute inset-0">
+                      {showFullHeadline ? FIRST_LINE : FIRST_LINE.slice(0, typedCount)}
+                      {!showFullHeadline && !firstLineComplete && (
+                        <span className="ml-1 inline-block h-[0.12em] w-[0.12em] rounded-full bg-[#8F432C] align-middle animate-pulse" />
+                      )}
+                    </span>
+                  </span>
+                  <span className="relative block text-[#8F432C]">
+                    <span className="invisible">{SECOND_LINE}</span>
+                    <span className="absolute inset-0">
+                      {showFullHeadline ? SECOND_LINE : SECOND_LINE.slice(0, Math.max(0, typedCount - FIRST_LINE.length))}
+                      {!showFullHeadline && secondLineStarted && !secondLineComplete && (
+                        <span className="ml-1 inline-block h-[0.12em] w-[0.12em] rounded-full bg-[#8F432C] align-middle animate-pulse" />
+                      )}
+                    </span>
+                  </span>
+                </span>
               </>
             ) : (
               headline
