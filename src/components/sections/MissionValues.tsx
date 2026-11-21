@@ -29,9 +29,9 @@ export default function MissionValues({
         </div>
         <div>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#9B482E]">What guides us</p>
-          <div className="border-t border-[#24231F]/15">
+          <div className="border-t border-[#24231F]/10">
             {values.map((value, index) => (
-              <div key={value.title} className="grid gap-2 border-b border-[#24231F]/15 py-6 sm:grid-cols-[2rem_1fr] sm:gap-5">
+              <div key={value.title} className="grid gap-2 border-b border-[#24231F]/10 py-6 sm:grid-cols-[2rem_1fr] sm:gap-5">
                 <span className="text-xs font-semibold text-[#9B482E]">{String(index + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="text-lg font-semibold">{value.title}</h3>
