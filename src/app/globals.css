@@ -4,7 +4,9 @@
 
 @layer base {
   :root {
-    font-family: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-body);
+    --font-display: Georgia, Cambria, "Times New Roman", serif;
+    --font-body: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
     --brand-green: #315647;
     --surface: #FAF9F5;
     --surface-alt: #F1EEE7;
@@ -42,7 +44,7 @@
   h4,
   h5,
   h6 {
-    font-family: Georgia, Cambria, "Times New Roman", serif;
+    font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.035em;
   }
@@ -78,6 +80,12 @@
   :focus-visible {
     outline: 2px solid var(--brand-bright);
     outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-display);
   }
 }
 
