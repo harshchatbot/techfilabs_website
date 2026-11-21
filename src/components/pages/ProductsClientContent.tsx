@@ -1,14 +1,17 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import SalesforceAccelerators from "@/components/sections/SalesforceAccelerators";
 import FAQSection from "@/components/sections/FAQSection";
 import Schema from "@/components/Schema";
+import ProductArtwork from "@/components/products/ProductArtwork";
 import { PRODUCTS_DATA, HOMEPAGE_ACCELERATORS, PRODUCTS_PAGE_FAQS } from "@/constants";
 import { ORGANIZATION_CONFIG } from "@/config/organization";
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function ProductsClientContent() {
+  const reduceMotion = useReducedMotion();
   const productsSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -23,86 +26,67 @@ export default function ProductsClientContent() {
   };
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pb-16 pt-28">
       <Schema id="products-page-schema" data={productsSchema} />
-      {/* Page Header */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-4">
-            Proprietary Products & Accelerators
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl font-heading mb-6">
-            Selected Work & Software Products
+      <section className="relative overflow-hidden bg-[#092c25] py-20 text-white sm:py-24">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(110,231,183,0.15),transparent_45%)]" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-emerald-300">TechFi Labs · Software portfolio</p>
+          <h1 className="max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+            Built to solve.<br /><span className="text-emerald-300">Designed to feel effortless.</span>
           </h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            We design, build, and deploy high-impact SaaS tools, Chrome extensions, and operational automation platforms.
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-emerald-50/75 sm:text-lg">
+            Discover our creator tools, Salesforce software, counter solutions, and operational products. Explore real product imagery and what each experience is designed to do.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Flagship SaaS & Product Cards */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PRODUCTS_DATA.map((product) => {
-            const IconComponent = product.icon;
-            return (
-              <div
-                key={product.slug}
-                className="flex min-w-0 flex-col justify-between rounded-3xl border border-emerald-900/10 bg-[#f7fefa] p-6 shadow-sm transition-all duration-300 hover:border-emerald-300 hover:shadow-md sm:p-8"
-              >
-                <div>
-                  <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
-                    <div className="flex min-w-0 flex-1 items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
-                        <IconComponent className="h-6 w-6" />
-                      </div>
-                      <div className="min-w-0">
-                        <h2 className="break-words text-xl font-bold text-slate-900 font-heading">
-                          {product.name}
-                        </h2>
-                        <span className="text-xs text-slate-500 font-medium">{product.category}</span>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-bold text-emerald-800">
-                      {product.status}
-                    </span>
-                  </div>
-
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {product.tagline}
-                  </p>
-
-                  <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                    {product.highlights.map((h, i) => (
-                      <div key={i} className="min-w-0 text-center">
-                        <div className="break-words text-[11px] font-bold leading-tight text-slate-900 sm:text-xs">{h.value}</div>
-                        <div className="mt-1 break-words text-[10px] leading-tight text-slate-500 sm:text-[11px]">{h.label}</div>
-                      </div>
-                    ))}
-                  </div>
+      <section aria-label="Software products" className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+          {PRODUCTS_DATA.map((product, index) => (
+            <motion.article
+              key={product.slug}
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.38, delay: reduceMotion ? 0 : Math.min(index * 0.04, 0.16) }}
+              className={`group flex min-w-0 flex-col overflow-hidden rounded-[1.75rem] border border-emerald-900/10 bg-[#f8fcf9] p-3 shadow-sm transition-shadow hover:shadow-xl sm:p-4 ${index === 0 ? "md:col-span-2" : ""}`}
+            >
+              <ProductArtwork product={product} className={index === 0 ? "h-[300px] sm:h-[420px]" : "h-[260px] sm:h-[300px]"} />
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">{product.category}</span>
+                  <span className="rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs font-semibold text-emerald-800">{product.status}</span>
                 </div>
-
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-emerald-600 hover:shadow-md"
-                >
-                  View Product Showcase
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-[#0a2b23] sm:text-3xl">{product.name}</h2>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 sm:text-base">{product.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {product.highlights.slice(0, 3).map((highlight) => (
+                    <span key={highlight.label} className="rounded-full border border-emerald-900/10 bg-white px-3 py-1.5 text-xs font-medium text-slate-700">{highlight.value}</span>
+                  ))}
+                </div>
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-emerald-900/10 pt-5">
+                  <Link href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0a2b23] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">
+                    View product <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  </Link>
+                  {product.links.website && <a href={product.links.website} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">
+                    Product website <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                  </a>}
+                </div>
               </div>
-            );
-          })}
+            </motion.article>
+          ))}
         </div>
-      </div>
+        <p className="mt-6 text-xs leading-relaxed text-slate-500">
+          Official product artwork and existing screenshots are used where available. Desi POS currently offers a private workspace sign-in; its card uses official branding rather than a fabricated application screenshot.
+        </p>
+      </section>
 
-      {/* Homepage Accelerators & Tools Component */}
       <SalesforceAccelerators
         title="More Delivery Tools & Frameworks"
         subtitle="Reusable frameworks, RAG systems, and production starter kits built for clients."
         items={HOMEPAGE_ACCELERATORS}
       />
-
-      {/* Products FAQ Section */}
       <div className="mt-16">
         <FAQSection
           eyebrow="Products & Licensing FAQ"
