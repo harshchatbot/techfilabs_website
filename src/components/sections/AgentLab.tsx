@@ -120,26 +120,26 @@ export default function AgentLab() {
   }
 
   return (
-    <section id="agent-lab" aria-labelledby="agent-lab-title" className="relative overflow-hidden bg-[#061f1b] py-20 text-white sm:py-24">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(52,211,153,0.13),transparent_42%)]" />
+    <section id="agent-lab" aria-labelledby="agent-lab-title" className="relative overflow-hidden bg-[#24231F] py-20 text-white sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(217,119,87,0.08),transparent_42%)]" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mb-9 max-w-3xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">Experience the engineering</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#E7A88D]">Experience the engineering</p>
           <h2 id="agent-lab-title" className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            See an AI agent think in steps.
+            See how an AI agent works.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-emerald-50/75 sm:text-lg">
-            Intelligence in motion. Engineering you can experience. Explore a scripted agent workflow with tools, safeguards, and human decisions.
+          <p className="mt-4 text-base leading-relaxed text-[#F8F2E9]/75 sm:text-lg">
+            Explore a guided example of tools, safeguards and human review.
           </p>
         </div>
 
-        <div className="rounded-[1.75rem] border border-emerald-200/20 bg-white/[0.045] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:p-7">
+        <div className="rounded-[1.75rem] border border-[#E7A88D]/20 bg-white/[0.045] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
             <div className="flex items-center gap-3">
-              <span className="rounded-xl border border-emerald-300/20 bg-emerald-300/10 p-2.5 text-emerald-200"><Bot aria-hidden="true" className="h-5 w-5" /></span>
+              <span className="rounded-xl border border-[#E7A88D]/20 bg-[#E7A88D]/10 p-2.5 text-[#EBC0AA]"><Bot aria-hidden="true" className="h-5 w-5" /></span>
               <div>
                 <p className="text-base font-semibold">TechFi AgentLab</p>
-                <p className="text-xs text-emerald-100/60">Guided orchestration walkthrough</p>
+                <p className="text-xs text-[#E9E0D6]/60">Guided orchestration walkthrough</p>
               </div>
             </div>
             <span className="rounded-full border border-amber-200/40 bg-amber-200/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-100">
@@ -148,7 +148,7 @@ export default function AgentLab() {
           </div>
 
           <div className="mt-6">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200/75">Choose a scenario</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#EBC0AA]/75">Choose a scenario</p>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Business scenarios">
               {SCENARIOS.map((item, index) => (
                 <button
@@ -156,7 +156,7 @@ export default function AgentLab() {
                   type="button"
                   aria-pressed={scenarioIndex === index}
                   onClick={() => chooseScenario(index)}
-                  className={`rounded-full border px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300 ${scenarioIndex === index ? "border-emerald-200 bg-emerald-200 text-emerald-950" : "border-white/20 bg-white/5 text-emerald-50 hover:bg-white/10"}`}
+                  className={`rounded-full border px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E7A88D] ${scenarioIndex === index ? "border-[#E7A88D] bg-[#E7A88D] text-[#24231F]" : "border-white/20 bg-white/5 text-[#F8F2E9] hover:bg-white/10"}`}
                 >
                   {item.name}
                 </button>
@@ -166,12 +166,12 @@ export default function AgentLab() {
 
           <div className="mt-6 grid gap-5 lg:grid-cols-[0.9fr_1.4fr]">
             <div className="rounded-2xl border border-white/10 bg-[#0c2d27] p-5">
-              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-emerald-200">
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#EBC0AA]">
                 {scenario.channel === "Email" ? <Mail aria-hidden="true" className="h-4 w-4" /> : <MessageCircle aria-hidden="true" className="h-4 w-4" />}
                 Incoming {scenario.channel} request
               </div>
               <p className="text-base leading-relaxed text-white/90">&ldquo;{scenario.message}&rdquo;</p>
-              <p className="mt-5 text-xs text-emerald-100/55">Example input · no customer data</p>
+              <p className="mt-5 text-xs text-[#E9E0D6]/55">Example input · no customer data</p>
             </div>
 
             <div className="min-w-0 rounded-2xl border border-white/10 bg-[#0c2d27] p-4 sm:p-5">
@@ -179,10 +179,10 @@ export default function AgentLab() {
                 {STAGES.map(({ name, Icon }, index) => {
                   const reached = step > index;
                   return (
-                    <div key={name} className={`min-w-0 rounded-xl border p-2 text-center transition-colors sm:p-3 ${reached ? "border-emerald-300/60 bg-emerald-300/15" : "border-white/10 bg-white/[0.035]"}`}>
-                      <Icon aria-hidden="true" className={`mx-auto mb-2 h-4 w-4 sm:h-5 sm:w-5 ${reached ? "text-emerald-200" : "text-emerald-100/45"}`} />
+                    <div key={name} className={`min-w-0 rounded-xl border p-2 text-center transition-colors sm:p-3 ${reached ? "border-[#E7A88D]/60 bg-[#E7A88D]/15" : "border-white/10 bg-white/[0.035]"}`}>
+                      <Icon aria-hidden="true" className={`mx-auto mb-2 h-4 w-4 sm:h-5 sm:w-5 ${reached ? "text-[#EBC0AA]" : "text-[#E9E0D6]/45"}`} />
                       <p className={`break-words text-[10px] font-semibold leading-tight sm:text-xs ${reached ? "text-white" : "text-white/55"}`}>{name}</p>
-                      {reached && <Check aria-label="Reached" className="mx-auto mt-2 h-3 w-3 text-emerald-300" />}
+                      {reached && <Check aria-label="Reached" className="mx-auto mt-2 h-3 w-3 text-[#E7A88D]" />}
                     </div>
                   );
                 })}
@@ -198,7 +198,7 @@ export default function AgentLab() {
                     transition={{ duration: reduceMotion ? 0 : 0.24 }}
                     className="rounded-xl border border-white/10 bg-white/[0.045] p-4"
                   >
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-emerald-200">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#EBC0AA]">
                       {step === 0 ? "Ready to simulate" : `Stage ${step} · ${STAGES[step - 1].name}`}
                     </p>
                     <p className="text-sm leading-relaxed text-white/85">
@@ -213,7 +213,7 @@ export default function AgentLab() {
                 <div className="mt-3 rounded-xl border border-amber-200/30 bg-amber-200/[0.06] p-4">
                   <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-amber-100"><CirclePause aria-hidden="true" className="h-4 w-4" /> Human review required</p>
                   <div className="flex flex-wrap gap-2">
-                    <button type="button" onClick={() => setReviewDecision("approved")} className="rounded-lg bg-emerald-200 px-3 py-2 text-sm font-semibold text-emerald-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Approve safe response</button>
+                    <button type="button" onClick={() => setReviewDecision("approved")} className="rounded-lg bg-[#E7A88D] px-3 py-2 text-sm font-semibold text-[#24231F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Approve safe response</button>
                     <button type="button" onClick={() => setReviewDecision("held")} className="rounded-lg border border-white/25 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Hold for follow-up</button>
                   </div>
                   {reviewDecision && <p role="status" className="mt-3 text-sm text-amber-50">{reviewDecision === "approved" ? "Safe draft approved for this simulation. No message will be sent." : "Workflow held. A human must resolve the exception before continuing."}</p>}
@@ -221,12 +221,12 @@ export default function AgentLab() {
               )}
 
               <details className="group mt-4 rounded-xl border border-white/10 bg-black/10 p-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-sm font-semibold text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-sm font-semibold text-[#E9E0D6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#E7A88D]">
                   <span>Inspect simulated tool trace</span>
                   <ChevronDown aria-hidden="true" className="h-4 w-4 transition-transform group-open:rotate-180" />
                 </summary>
-                <ol className="mt-3 space-y-2 border-t border-white/10 pt-3 font-mono text-xs leading-relaxed text-emerald-100/75">
-                  {scenario.trace.map((entry, index) => <li key={entry}><span className="mr-2 text-emerald-300/60">{String(index + 1).padStart(2, "0")}</span>{entry}</li>)}
+                <ol className="mt-3 space-y-2 border-t border-white/10 pt-3 font-mono text-xs leading-relaxed text-[#E9E0D6]/75">
+                  {scenario.trace.map((entry, index) => <li key={entry}><span className="mr-2 text-[#E7A88D]/60">{String(index + 1).padStart(2, "0")}</span>{entry}</li>)}
                 </ol>
                 <p className="mt-3 text-xs text-amber-100/70">Illustrative trace only; no API calls, records, or credentials.</p>
               </details>
@@ -236,18 +236,18 @@ export default function AgentLab() {
                   type="button"
                   onClick={() => setStep((current) => Math.min(current + 1, 5))}
                   disabled={!canAdvance}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-200 px-5 py-2.5 text-sm font-semibold text-emerald-950 transition-colors hover:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#E7A88D] px-5 py-2.5 text-sm font-semibold text-[#24231F] transition-colors hover:bg-[#F0C8B6] disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {step === 0 ? "Run workflow" : step === 5 ? "Completed" : "Next stage"} <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </button>
                 <button type="button" onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-sm text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                   <RotateCcw aria-hidden="true" className="h-4 w-4" /> Reset
                 </button>
-                <span className="text-xs text-emerald-100/60" aria-live="polite">{step} / 5 stages</span>
+                <span className="text-xs text-[#E9E0D6]/60" aria-live="polite">{step} / 5 stages</span>
               </div>
             </div>
           </div>
-          <p className="mt-5 text-xs leading-relaxed text-emerald-100/55">
+          <p className="mt-5 text-xs leading-relaxed text-[#E9E0D6]/55">
             This is a predefined educational simulation, not a live AI agent. Approvals, tool traces, and outputs are illustrative; no data leaves the page.
           </p>
         </div>
