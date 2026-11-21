@@ -88,22 +88,23 @@ export default function Hero({
           className="relative overflow-hidden rounded-[1.35rem] bg-[#292925] shadow-[0_18px_60px_rgba(36,35,31,0.09)]"
         >
           <div className="relative aspect-[5/4] sm:aspect-[6/4] lg:aspect-[4/5]">
-            {reduceMotion ? (
-              <div className="absolute inset-0 bg-[url('/assets/techfi-ai-hero-poster.webp')] bg-cover bg-center" role="img" aria-label="Abstract technology and automation visual" />
-            ) : (
-              <video
-                className="absolute inset-0 h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/assets/techfi-ai-hero-poster.webp"
-                aria-label="Abstract technology and automation visual"
-              >
-                <source src="/hero.mp4" type="video/mp4" />
-              </video>
-            )}
+            <video
+              className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/assets/techfi-ai-hero-poster.webp"
+              aria-label="Abstract technology and automation visual"
+            >
+              <source src="/hero.mp4" type="video/mp4" />
+            </video>
+            <div
+              className="absolute inset-0 hidden bg-[url('/assets/techfi-ai-hero-poster.webp')] bg-cover bg-center motion-reduce:block"
+              role="img"
+              aria-label="Abstract technology and automation visual"
+            />
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(20,20,19,0.05)_30%,rgba(20,20,19,0.6)_100%)]" />
             <p className="absolute bottom-5 left-6 right-6 text-xs font-medium tracking-[0.12em] text-white/85 sm:bottom-7 sm:left-8">
               Built around the way your team works.
