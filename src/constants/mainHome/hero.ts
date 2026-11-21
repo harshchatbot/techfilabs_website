@@ -1,8 +1,8 @@
 export const HERO_CONTENT = {
   eyebrowPrefix: "AI automation systems",
-  headline: "AI Agents & Automation for Customer Operations",
+  headline: "Less manual work. More time for what matters.",
   subtitle:
-    "We build AI agents, Salesforce solutions and connected workflows that save your team time.",
+    "We automate repetitive tasks, connect your tools and help your team respond faster—with practical AI and Salesforce solutions.",
   primaryButtonLabel: "Let’s talk",
   chips: ["AI Agents", "n8n + Python", "Salesforce Delivery"],
   liveLayerBadge: "AI workflow layer",
