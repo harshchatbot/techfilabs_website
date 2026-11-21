@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import WorkflowShowcase from "@/components/sections/WorkflowShowcase";
+import AgentLab from "@/components/sections/AgentLab";
 import ExpertiseSection from "@/components/sections/ExpertiseSection";
 import FAQSection from "@/components/sections/FAQSection";
 import Contact from "@/components/sections/Contact";
@@ -40,16 +41,19 @@ export default function HomePage() {
       {/* 3. AI Automation Workflows */}
       <WorkflowShowcase />
 
-      {/* 4. Client Logos Marquee */}
+      {/* 4. Interactive, scripted AI agent demonstration */}
+      <AgentLab />
+
+      {/* 5. Client Logos Marquee */}
       <ClientLogos />
 
-      {/* 5. Salesforce + AI Expertise */}
+      {/* 6. Salesforce + AI Expertise */}
       <ExpertiseSection />
 
-      {/* 6. Frequently Asked Questions */}
+      {/* 7. Frequently Asked Questions */}
       <FAQSection faqs={HOMEPAGE_FAQS} schemaId="homepage-faq-schema" />
 
-      {/* 7. Contact CTA */}
+      {/* 8. Contact CTA */}
       <Contact contactInfo={CONTACT_INFO} />
     </>
   );
