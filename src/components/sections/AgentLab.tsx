@@ -3,12 +3,9 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowRight,
   Bot,
-  Check,
   ChevronDown,
   CirclePause,
-  MessageCircle,
   Play,
   RotateCcw,
   Send,
@@ -72,7 +69,6 @@ function matchScenario(message: string): Scenario | null {
 
 export default function AgentLab() {
   const sectionRef = useRef<HTMLElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
   const reduceMotion = useReducedMotion();
 
   const [visible, setVisible] = useState(false);
@@ -383,7 +379,6 @@ export default function AgentLab() {
               <form onSubmit={submitMessage} className="flex items-end gap-2 rounded-xl border border-[#24231F]/15 bg-white p-2 focus-within:border-[#A45137]">
                 <label htmlFor="agent-demo-input" className="sr-only">Try a message in the scripted demo</label>
                 <textarea
-                  ref={inputRef}
                   id="agent-demo-input"
                   value={draft}
                   onFocus={() => setPaused(true)}
