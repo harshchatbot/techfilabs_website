@@ -25,7 +25,7 @@ interface FooterProps {
 export default function Footer({
   logo = { name: "TechFi Labs", logo: "/techfilabs_logo_2026.png" },
   description =
-    "TechFi Labs helps business teams reduce manual work, respond faster, and connect customer workflows using AI agents, n8n, Python, Salesforce, and custom integrations.",
+    "Practical AI, Salesforce and custom software that make everyday work simpler.",
   themeVariant = "green",
 }: FooterProps) {
   const footerTheme =
@@ -44,18 +44,18 @@ export default function Footer({
           bottomBar: "border-[#d7c8ae]/20 text-[#d7c8ae]",
         }
       : {
-          root: "bg-[linear-gradient(180deg,#064e2f_0%,#05472b_72%,#03291d_100%)] border-emerald-200/15",
+          root: "bg-[#24231F] border-[#FAF9F5]/10",
           glow:
-            "bg-[radial-gradient(circle_at_90%_20%,rgba(52,211,153,0.16),transparent_45%),radial-gradient(circle_at_12%_100%,rgba(3,41,29,0.26),transparent_38%)]",
-          logoWrap: "border-lime-300/30 bg-white/90",
-          logoText: "text-lime-100",
-          bodyText: "text-stone-300",
+            "bg-none",
+          logoWrap: "border-white/15 bg-white",
+          logoText: "text-[#FAF9F5]",
+          bodyText: "text-[#C8C3B9]",
           social:
-            "border-lime-200/20 bg-white/5 text-lime-100 hover:bg-lime-300 hover:text-emerald-950",
+            "border-white/15 bg-white/5 text-[#FAF9F5] hover:bg-[#FAF9F5] hover:text-[#24231f]",
           heading: "text-white",
-          list: "text-stone-300 text-sm",
-          linkHover: "hover:text-stone-100",
-          bottomBar: "border-lime-200/10 text-stone-400",
+          list: "text-[#C8C3B9] text-sm",
+          linkHover: "hover:text-white",
+          bottomBar: "border-white/15 text-[#B7B0A6]",
         };
 
   return (
