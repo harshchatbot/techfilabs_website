@@ -82,53 +82,32 @@ export default async function CaseStudyDetailPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-emerald-950 text-white pt-28 pb-20">
+    <div className="min-h-screen bg-[#FAF9F5] pb-20 pt-32 text-[#24231F] sm:pt-40">
       <Schema id={`case-study-${study.slug}-schema`} data={schemaData} />
-
-      <div>
-        <section className="max-w-7xl mx-auto px-6">
-          <Link href="/case-studies" className="inline-flex min-h-[44px] items-center gap-2 rounded-full px-2 text-lime-200 transition-colors hover:text-white">
-            <ArrowLeft className="w-4 h-4" /> All case studies
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <header className="max-w-4xl">
+          <Link href="/case-studies" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#9B482E] hover:underline">
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" /> All case studies
           </Link>
-
-          <div className="mt-8 max-w-5xl">
-            <p className="text-xs uppercase tracking-[0.2em] text-lime-200 mb-4">Salesforce Case Study</p>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4">{study.title}</h1>
-            <p className="text-lime-100/90 text-lg mb-3">Industry: {study.industry}</p>
-            <p className="text-emerald-100/75 mb-8">Timeline: {study.period}</p>
-            <p className="text-emerald-100/85 leading-relaxed text-lg">{study.summary}</p>
-            <p className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm leading-relaxed text-emerald-100/75">
-              These examples represent delivery experience across enterprise engagements. Client names and confidential details are intentionally omitted.
-            </p>
-          </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-6 mt-16 grid lg:grid-cols-2 gap-6">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl font-bold mb-4">Delivery Context</h2>
-            <p className="text-emerald-100/85 leading-relaxed">
-              {study.summary}
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl font-bold mb-4">Delivery Highlights</h2>
-            <ul className="space-y-3 text-emerald-50/90">
-              {study.outcomes.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-6 mt-16">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-5">Technology Stack</h2>
-            <div className="flex flex-wrap gap-2">
-              {study.technologies.map((item) => (
-                <span key={item} className="rounded-full border border-white/20 px-3 py-1 text-sm text-emerald-50">{item}</span>
-              ))}
-            </div>
+          <p className="mb-5 mt-9 text-xs font-semibold uppercase tracking-[0.2em] text-[#9B482E]">{study.industry}</p>
+          <h1 className="font-serif text-[clamp(2.8rem,6vw,5.3rem)] font-normal leading-[1.05] tracking-[-0.055em]">{study.title}</h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#625F59] sm:text-lg">{study.summary}</p>
+          <p className="mt-5 text-xs text-[#77726A]">{study.period} · Representative delivery experience; client identities and confidential details omitted.</p>
+        </header>
+        <div className="mt-14 grid gap-12 border-t border-[#24231F]/15 pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <section>
+            <h2 className="font-serif text-2xl font-normal sm:text-3xl">Delivery highlights</h2>
+          </section>
+          <ul className="border-t border-[#24231F]/15">
+            {study.outcomes.map((item) => (
+              <li key={item} className="border-b border-[#24231F]/15 py-4 text-sm leading-relaxed text-[#625F59]">{item}</li>
+            ))}
+          </ul>
+        </div>
+        <section className="mt-14 border-t border-[#24231F]/15 pt-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9B482E]">Technology</p>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {study.technologies.map((item) => <span key={item} className="text-sm text-[#625F59]">{item}</span>)}
           </div>
         </section>
       </div>
