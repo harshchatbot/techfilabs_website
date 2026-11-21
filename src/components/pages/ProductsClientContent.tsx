@@ -115,6 +115,7 @@ export default function ProductsClientContent() {
                 <div className={`min-w-0 ${reverse ? "md:order-1" : "md:order-2"}`}>
                   <ProductArtwork
                     product={product}
+                    variant="editorial"
                     className="h-[270px] rounded-[1.25rem] sm:h-[360px] lg:h-[420px]"
                   />
                 </div>
