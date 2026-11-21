@@ -94,17 +94,17 @@ export default async function CaseStudyDetailPage({ params }: Props) {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#625F59] sm:text-lg">{study.summary}</p>
           <p className="mt-5 text-xs text-[#77726A]">{study.period} · Representative delivery experience; client identities and confidential details omitted.</p>
         </header>
-        <div className="mt-14 grid gap-12 border-t border-[#24231F]/15 pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+        <div className="mt-14 grid gap-12 border-t border-[#24231F]/10 pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <section>
             <h2 className="font-serif text-2xl font-normal sm:text-3xl">Delivery highlights</h2>
           </section>
-          <ul className="border-t border-[#24231F]/15">
+          <ul className="border-t border-[#24231F]/10">
             {study.outcomes.map((item) => (
-              <li key={item} className="border-b border-[#24231F]/15 py-4 text-sm leading-relaxed text-[#625F59]">{item}</li>
+              <li key={item} className="border-b border-[#24231F]/10 py-4 text-sm leading-relaxed text-[#625F59]">{item}</li>
             ))}
           </ul>
         </div>
-        <section className="mt-14 border-t border-[#24231F]/15 pt-8">
+        <section className="mt-14 border-t border-[#24231F]/10 pt-8">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9B482E]">Technology</p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {study.technologies.map((item) => <span key={item} className="text-sm text-[#625F59]">{item}</span>)}
