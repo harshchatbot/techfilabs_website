@@ -34,7 +34,7 @@ export default function WorkflowShowcase({
             See the walkthrough <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-10 grid border-t border-[#24231F]/15 md:grid-cols-3">
+        <div className="mt-10 grid border-t border-[#24231F]/10 md:grid-cols-3">
           {STEPS.map(({ title: stepTitle, description, Icon }, index) => (
             <motion.div
               key={stepTitle}
@@ -42,7 +42,7 @@ export default function WorkflowShowcase({
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.38, delay: reduceMotion ? 0 : index * 0.07 }}
-              className={`flex gap-4 border-b border-[#24231F]/15 py-7 md:block md:border-b-0 md:py-8 ${index > 0 ? "md:border-l md:border-[#24231F]/15 md:pl-8" : ""} ${index < 2 ? "md:pr-8" : ""}`}
+              className={`flex gap-4 border-b border-[#24231F]/10 py-7 md:block md:border-b-0 md:py-8 ${index > 0 ? "md:border-l md:border-[#24231F]/10 md:pl-8" : ""} ${index < 2 ? "md:pr-8" : ""}`}
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#A45137]/25 text-[#9B482E]">
                 <Icon aria-hidden="true" className="h-4 w-4" />
