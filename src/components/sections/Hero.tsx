@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { HERO_CONTENT } from "@/constants";
+import { ORGANIZATION_CONFIG } from "@/config/organization";
+import { buildWhatsAppUrl } from "@/utils/whatsapp";
 
 interface HeroProps {
   eyebrow?: string;
@@ -18,6 +20,10 @@ interface HeroProps {
 const FIRST_LINE = "Automate the repetitive.";
 const SECOND_LINE = "Focus on what matters.";
 const TYPE_INTERVAL_MS = 55;
+const HERO_WHATSAPP_URL = buildWhatsAppUrl({
+  phone: ORGANIZATION_CONFIG.contact.phone,
+  message: "Hi TechFi Labs, I would like to discuss automating repetitive tasks for my business.",
+});
 
 export default function Hero({
   eyebrow = "Smarter work. More time for you.",
@@ -151,15 +157,17 @@ export default function Hero({
             transition={{ duration: 0.5, delay: 0.18 }}
             className="mt-10 flex flex-wrap items-center gap-5"
           >
-            <Link
-              href="/contact"
+            <a
+              href={HERO_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={primaryButton.action}
-              aria-label={primaryButton.text}
+              aria-label={`${primaryButton.text} on WhatsApp (opens in a new tab)`}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#24231F] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#49433E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B482E]"
             >
               {primaryButton.text}
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </Link>
+            </a>
             {secondaryButton && (
               <Link
                 href={secondaryButton.href || "/services"}
