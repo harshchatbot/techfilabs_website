@@ -50,9 +50,9 @@ export default function CaseStudiesPage() {
             Selected Salesforce delivery examples. Confidential client details are omitted.
           </p>
         </header>
-        <section aria-label="Case studies" className="grid border-t border-[#24231F]/15 md:grid-cols-2 lg:grid-cols-3">
+        <section aria-label="Case studies" className="grid border-t border-[#24231F]/10 md:grid-cols-2 lg:grid-cols-3">
           {CASE_STUDIES_DATA.map((study, index) => (
-            <article key={study.slug} className={`border-b border-[#24231F]/15 py-8 md:pr-7 lg:py-10 ${index % 3 !== 0 ? "lg:border-l lg:pl-7" : ""}`}>
+            <article key={study.slug} className={`border-b border-[#24231F]/10 py-8 md:pr-7 lg:py-10 ${index % 3 !== 0 ? "lg:border-l lg:pl-7" : ""}`}>
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#9B482E]">{study.industry}</p>
               <h2 className="mt-4 font-serif text-2xl font-normal leading-tight tracking-[-0.035em] sm:text-3xl">{study.title}</h2>
               <p className="mt-4 text-sm leading-relaxed text-[#625F59]">{study.summary}</p>
