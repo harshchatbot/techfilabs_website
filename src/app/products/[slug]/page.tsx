@@ -39,7 +39,7 @@ const PRODUCT_THEMES: Record<string, Record<string, string>> = {
     title: "text-[#24231F]",
     subtitle: "text-[#494640]",
     body: "text-[#625F59]",
-    highlightCard: "border-[#24231F]/12 bg-white/70",
+    highlightCard: "border-[#24231F]/10 bg-white/70",
     highlightLabel: "text-[#625F59]",
     highlightValue: "text-[#24231F]",
     ctaPrimary: "bg-[#24231F] text-white hover:bg-[#49433E]",
