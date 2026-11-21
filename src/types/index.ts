@@ -49,6 +49,9 @@ export interface Product {
   };
   links: ProductLinks;
   screenshots: string[];
+  /** Official product image or brand artwork when a public UI screenshot is unavailable. */
+  coverImage?: string;
+  coverAlt?: string;
 }
 
 export interface Service {
