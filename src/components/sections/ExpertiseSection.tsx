@@ -19,7 +19,7 @@ interface ExpertiseSectionProps {
 
 export default function ExpertiseSection({
   title = "Salesforce, made to work for you.",
-  subtitle = "Implementation, integration and ongoing support — without unnecessary complexity.",
+  subtitle = "Implementation, integration and ongoing support, without unnecessary complexity.",
 }: ExpertiseSectionProps = {}) {
   const reduceMotion = useReducedMotion();
   return (
